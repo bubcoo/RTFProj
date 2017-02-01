@@ -1,0 +1,3 @@
+VAR_CONFIG
+	::FBCamera_0.InSight.ModuleOk AT %IX."In-Sight".ModuleOk;
+END_VAR
