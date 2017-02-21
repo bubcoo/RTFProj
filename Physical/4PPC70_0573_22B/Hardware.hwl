@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<BR.AS.HardwareTopology Version="0.0.0.1">
+  <Modules>
+    <Module Name="4PPC70_0573_22B" Type="4PPC70.0573-22B" X="100" Y="100" />
+    <Module Name="80VD100PD.C000-01" Type="80VD100PD.C000-01" X="336" Y="256" />
+    <Module Name="80VD100PD.C188-01" Type="80VD100PD.C188-01" X="242" Y="256" />
+    <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" X="442" Y="277.5" />
+  </Modules>
+  <Links>
+    <Link From="4PPC70_0573_22B" To="80VD100PD.C188-01" FromPort="IF1" ToPort="PLK1" IsRoutedByUser="False">
+      <Point X="124.2" Y="202" />
+      <Point X="124.2" Y="202" />
+      <Point X="124.2" Y="207" />
+      <Point X="124.2" Y="215" />
+      <Point X="305" Y="215" />
+      <Point X="305" Y="315" />
+      <Point X="300" Y="315" />
+      <Point X="281" Y="315" />
+      <Point X="281" Y="330" />
+    </Link>
+    <Link From="80VD100PD.C000-01" To="80VD100PD.C188-01" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
+      <Point X="375" Y="330" />
+      <Point X="375" Y="315" />
+      <Point X="394" Y="315" />
+      <Point X="405" Y="315" />
+      <Point X="405" Y="405" />
+      <Point X="325" Y="405" />
+      <Point X="325" Y="330" />
+      <Point X="300" Y="330" />
+      <Point X="291" Y="330" />
+      <Point X="291" Y="330" />
+    </Link>
+    <Link From="In-Sight" To="80VD100PD.C000-01" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
+      <Point X="475" Y="316.5" />
+      <Point X="475" Y="316.5" />
+      <Point X="475" Y="323.5" />
+      <Point X="475" Y="330" />
+      <Point X="394" Y="330" />
+      <Point X="385" Y="330" />
+      <Point X="385" Y="330" />
+    </Link>
+  </Links>
+  <InfoElements />
+</BR.AS.HardwareTopology>

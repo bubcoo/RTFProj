@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Element ID="gk_mappAxisR" Type="mpaxisbasic" />
+  <Element ID="df_mappAxisR" Type="mpaxisbasic" />
+  <Element ID="md_mappAxisR" Type="mpaxisbasic" />
+  <Element ID="fw_mappAxisR" Type="mpaxisbasic" />
+</Configuration>

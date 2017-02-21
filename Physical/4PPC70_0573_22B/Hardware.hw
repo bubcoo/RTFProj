@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.7.54 SP?>
+<Hardware xmlns="http://br-automation.co.at/AS/Hardware">
+  <Module Name="4PPC70_0573_22B" Type="4PPC70.0573-22B" Version="1.4.0.0">
+    <Connector Name="IF1">
+      <Group ID="Channel1" />
+      <Parameter ID="ChannelID1" Value="ACP10_MC_BROADCAST" />
+      <Parameter ID="ChannelType1" Value="OCTET[96]" />
+    </Connector>
+    <Connector Name="IF2">
+      <Parameter ID="ActivateDevice" Value="1" />
+      <Parameter ID="Mode" Value="Manual" />
+      <Parameter ID="InternetAddress" Value="192.168.0.1" />
+      <Parameter ID="SubnetMask" Value="255.250.255.0" />
+    </Connector>
+    <Parameter ID="ConfigurationID" Value="MastersThesis_RomanParak_4PPC70_0573_22B" />
+    <Parameter ID="TimerDeviceType" Value="EPLX2X" />
+    <Parameter ID="TimerDevice" Value="4PPC70_0573_22B.IF1" />
+    <Parameter ID="TaskClassIdleTime" Value="2000" />
+    <Parameter ID="Cyclic1Duration" Value="2000" />
+    <Parameter ID="Cyclic1Tolerance" Value="0" />
+    <Parameter ID="Cyclic2Duration" Value="20000" />
+    <Parameter ID="Cyclic2Tolerance" Value="20000" />
+    <Parameter ID="Cyclic3Duration" Value="50000" />
+    <Parameter ID="Cyclic3Tolerance" Value="50000" />
+    <Parameter ID="Cyclic4Duration" Value="100000" />
+    <Parameter ID="Cyclic4Tolerance" Value="100000" />
+    <Parameter ID="Cyclic5Duration" Value="200000" />
+    <Parameter ID="Cyclic5Tolerance" Value="200000" />
+    <Parameter ID="Cyclic6Duration" Value="500000" />
+    <Parameter ID="Cyclic6Tolerance" Value="500000" />
+    <Parameter ID="Cyclic7Duration" Value="1000000" />
+    <Parameter ID="Cyclic7Tolerance" Value="1000000" />
+    <Parameter ID="Cyclic8Duration" Value="10000" />
+    <Parameter ID="Cyclic8Tolerance" Value="30000000" />
+    <Parameter ID="KeyMappingFile" Value="VC\4PPC70_0573_22B.dis" />
+  </Module>
+  <Module Name="80VD100PD.C000-01" Type="80VD100PD.C000-01" Version="2.0.1.0">
+    <Connection Connector="PLK1" TargetModule="80VD100PD.C188-01" TargetConnector="PLK2" NodeNumber="1" />
+    <Connection Connector="PLK2" TargetModule="In-Sight" TargetConnector="PLK1" NodeNumber="1" />
+    <Parameter ID="BothEndSwitchesAreNormallyOpen_r1" Value="on" />
+    <Parameter ID="QuickStopIsNormallyOpen_r1" Value="on" />
+  </Module>
+  <Module Name="80VD100PD.C188-01" Type="80VD100PD.C188-01" Version="2.0.1.0">
+    <Connection Connector="PLK1" TargetModule="4PPC70_0573_22B" TargetConnector="IF1" NodeNumber="3" />
+    <Connection Connector="PLK2" TargetModule="80VD100PD.C000-01" TargetConnector="PLK1" NodeNumber="3" />
+    <Parameter ID="BothEndSwitchesAreNormallyOpen_r1" Value="on" />
+    <Parameter ID="QuickStopIsNormallyOpen_r1" Value="on" />
+  </Module>
+  <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" Version="4.8.0" OrderNumber="In-Sight">
+    <Connection Connector="PLK1" TargetModule="80VD100PD.C000-01" TargetConnector="PLK2" NodeNumber="2" />
+    <Parameter ID="p2000s01_direction" Value="wo" />
+    <Parameter ID="p2000s02_direction" Value="wo" />
+    <Parameter ID="p2001s01_direction" Value="ro" />
+    <Parameter ID="p2001s02_direction" Value="ro" />
+    <Parameter ID="p2001s03_direction" Value="ro" />
+    <Parameter ID="p2010s01_direction" Value="ro" />
+    <Parameter ID="p2010s02_direction" Value="ro" />
+    <Parameter ID="p2011s01_direction" Value="ro" />
+    <Parameter ID="p2011s02_direction" Value="ro" />
+    <Parameter ID="p2021s01_direction" Value="wo" />
+  </Module>
+</Hardware>

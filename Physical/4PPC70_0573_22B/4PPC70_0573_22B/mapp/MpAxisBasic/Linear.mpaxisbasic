@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Element ID="gk_mappAxisL" Type="mpaxisbasic">
+    <Selector ID="AxisConfiguration">
+      <Group ID="Axis">
+        <Property ID="MeasurementUnit" Value="2" />
+      </Group>
+    </Selector>
+  </Element>
+  <Element ID="df_mappAxisL" Type="mpaxisbasic" />
+  <Element ID="md_mappAxisL" Type="mpaxisbasic" />
+  <Element ID="fw_mappAxisL" Type="mpaxisbasic" />
+</Configuration>
