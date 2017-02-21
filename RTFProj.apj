@@ -7,4 +7,8 @@
   <Motion RestartAcoposParameter="true" RestartInitParameter="true" />
   <Project StoreRuntimeInProject="false" />
   <Variables DefaultInitValue="0" DefaultRetain="false" DefaultVolatile="true" />
+  <TechnologyPackages>
+    <mapp Version="1.50.0" />
+    <mappView Version="1.1.1" mvLoader="1.0.0" />
+  </TechnologyPackages>
 </Project>

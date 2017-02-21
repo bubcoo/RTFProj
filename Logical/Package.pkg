@@ -5,7 +5,9 @@
     <Object Type="File" Description="Global data types">Global.typ</Object>
     <Object Type="File" Description="Global variables">Global.var</Object>
     <Object Type="Package" Description="Global libraries">Libraries</Object>
-    <Object Type="Program" Language="ANSIC">Program</Object>
-    <Object Type="Library" Language="Binary" Description="The AsString Library contains FBKs for memory and character string handling.">asstring</Object>
+    <Object Type="Package">ACP10_ETXEN</Object>
+    <Object Type="Package">Simulation</Object>
+    <Object Type="Package">Real_Game</Object>
+    <Object Type="Package">mappView</Object>
   </Objects>
 </Package>

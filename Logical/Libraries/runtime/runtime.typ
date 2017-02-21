@@ -148,9 +148,9 @@ TYPE
 		DoneRef			: UDINT;
 		ErrorRef		: UDINT;
 		ActiveRef		: UDINT;
-		FBInit			: UDINT;
+		StatusRef		: UDINT;
 		FBCyclic		: UDINT;
-		FBCleanup		: UDINT;
+		AsyfumaState		: UDINT;
 		FBResetOut		: UDINT;
 		Argument		: UDINT;
 		State			: UDINT;

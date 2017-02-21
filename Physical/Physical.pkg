@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio Version=4.2.6.110 SP?>
+<?AutomationStudio Version=4.2.7.54 SP?>
 <Physical xmlns="http://br-automation.co.at/AS/Physical">
   <Objects>
-    <Object Type="Configuration">4PPC70</Object>
-    <Object Type="Configuration">Config1</Object>
+    <Object Type="Configuration">Lubo</Object>
+    <Object Type="Configuration">4PPC70_0573_22B</Object>
+    <Object Type="Configuration">Simulation</Object>
   </Objects>
 </Physical>
