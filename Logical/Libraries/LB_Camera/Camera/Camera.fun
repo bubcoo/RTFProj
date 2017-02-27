@@ -3,6 +3,7 @@ FUNCTION_BLOCK FBCamera
 	VAR_INPUT
 		Enable : BOOL;
 		InSight : InSight_type;
+		MappView : MappView_type;
 		ErrorReset : BOOL;
 		Search : BOOL;
 	END_VAR

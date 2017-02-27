@@ -36,4 +36,7 @@ TYPE
 	CameraControl_type : 	STRUCT 
 		ControlSwitch : ControlSwitch_enum;
 	END_STRUCT;
+	MappView_type : 	STRUCT 
+		LoadImage : BOOL;
+	END_STRUCT;
 END_TYPE

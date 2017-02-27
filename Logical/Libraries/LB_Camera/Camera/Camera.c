@@ -15,6 +15,8 @@ void getRealAxes(struct FBCamera *inst);
 
 void FBCamera(struct FBCamera *inst)
 {	
+	
+	
 	if ((!inst->Enable) && (!inst->Internal.disableBit))
 		initFB(inst); 
 	

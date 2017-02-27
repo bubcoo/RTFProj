@@ -11,10 +11,6 @@
 **********************************************************************************************/
 
 #include <bur/plctypes.h>
-#include <AsIecCon.h>
-#include <sys_lib.h>
-
-
 
 #ifdef _DEFAULT_INCLUDES
 #include <AsDefault.h>
@@ -22,6 +18,7 @@
 
 _GLOBAL FBCamera_typ FBCamera_0;
 
+_GLOBAL Light_typ Light_0;
 
 void _INIT ProgramInit(void)
 {
@@ -30,7 +27,9 @@ void _INIT ProgramInit(void)
 
 void _CYCLIC ProgramCyclic(void)
 {
+	
 	FBCamera(&FBCamera_0);
+	Light(&Light_0);
 
 }
 
