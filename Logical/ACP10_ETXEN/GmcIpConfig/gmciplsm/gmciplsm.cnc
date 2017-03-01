@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?ARNC0 Version="3.15.1"?>
+<?ARNC0 Version="3.16.1"?>
 <Root LangModule="ailgcode" Version="1.0">
   <PrimTypes CaseSensitive="No" >
     <!-- Specify what B&R datatypes correspond to the user-language defined types -->
@@ -425,6 +425,9 @@
     <TKG_BITWISE_BINARY_OR IsPattern="Yes">b_or:\W</TKG_BITWISE_BINARY_OR>
     <TKG_BITWISE_BINARY_XOR IsPattern="Yes">b_xor:\W</TKG_BITWISE_BINARY_XOR>
     <TKG_BITWISE_UNARY_COMPLEMENT IsPattern="Yes">b_not:\W</TKG_BITWISE_UNARY_COMPLEMENT>
+    <TKG_PATHSYNCH_REC_IEC FileXLInvalid="Yes" IsPattern="Yes">do_path_synch:\W</TKG_PATHSYNCH_REC_IEC>
+    <TKG_PATHSYNCH_END FileXLInvalid="Yes" IsPattern="Yes">end_path_synch:\W</TKG_PATHSYNCH_END>
+    <TKG_PATHSYNCH_IPEVAL FileXLInvalid="Yes" IsPattern="Yes">ip_eval:\W</TKG_PATHSYNCH_IPEVAL>
     <TKG_IF FileXLInvalid="Yes" IsPattern="Yes">if:\W</TKG_IF>
     <TKG_THEN FileXLInvalid="Yes" IsPattern="Yes">then:\W</TKG_THEN>
     <TKG_BLOCK_ELSE FileXLInvalid="Yes" IsPattern="Yes">else:\W</TKG_BLOCK_ELSE>

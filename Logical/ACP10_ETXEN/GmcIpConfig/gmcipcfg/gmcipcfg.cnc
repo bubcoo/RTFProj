@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?ARNC0 Version="3.15.1"?>
+<?ARNC0 Version="3.16.1"?>
 <CONFIG>
 
   <!-- Include user configuration data for variables, functions and function blocks -->

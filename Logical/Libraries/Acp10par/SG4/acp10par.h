@@ -2,7 +2,7 @@
 *                    B & R   P O S I T I O N I N G                          *
 *****************************************************************************
 *                                                                           *
-*            Header File for Library ACP10PAR (Version 3151)                * 
+*            Header File for Library ACP10PAR (Version 3161)                * 
 *                                                                           *
 **************************** COPYRIGHT (C) **********************************
 *     THIS SOFTWARE IS THE PROPERTY OF B&R AUSTRIA: ALL RIGHTS RESERVED.    *
@@ -346,7 +346,7 @@
 #define ACP10PAR_STAT_ENC2_HOMING_OK        427 /* (UDINT) Encoder2: Status home position valid */
 #define ACP10PAR_SGEN_S_SET                 428 /* (DINT) CTRL Position controller: Input set position [Units] */
 #define ACP10PAR_ENCOD2_S_FILTER_T10        429 /* (REAL) Encoder2: Time constant for actual position filter [s] */
-#define ACP10PAR_AUT_INDEX_DATA             432 /* (AUT_DATA_INDEX, AUT_POLY_DATA) Cam automat: Index and data of polynomial cam profile */
+#define ACP10PAR_AUT_INDEX_DATA             432 /* (AUT_DATA_INDEX, AUT_POLY_DATA) Cam automat: Index and data of polynomial cam */
 #define ACP10PAR_TRACE_TEST_ADDR            451 /* (DINT) Trace: Address for test date */
 #define ACP10PAR_CYCLIC_TOFRDRV_MODE        457 /* (USINT) Cyclic communication: Mode */
 #define ACP10PAR_TRACE_TRIGGER_ADDR         458 /* (DINT) Trace: Address for trigger event */
@@ -368,8 +368,8 @@
 #define ACP10PAR_MA3_CYCLIC_SEND            494 /* (UINT) Network coupling: Parameter ID of send data master3 */
 #define ACP10PAR_AUT_START_ST_INDEX         495 /* (USINT) Cam automat: Index for start state */
 #define ACP10PAR_AUT_START_ST_INDEX_VAX1    496 /* (USINT) VAX Cam automat: Index for start state */
-#define ACP10PAR_AUT_POLY_DATA              500 /* (DATA) Cam automat: Cam profile polynomial data */
-#define ACP10PAR_AUT_DATA_INDEX             501 /* (UINT) Cam automat: Index of cam profile data for Upload/Download */
+#define ACP10PAR_AUT_POLY_DATA              500 /* (DATA) Cam automat: Cam polynomial data */
+#define ACP10PAR_AUT_DATA_INDEX             501 /* (UINT) Cam automat: Index of cam data for Upload/Download */
 #define ACP10PAR_CMD_AUT_START              502 /* (UINT) Cam automat: Command */
 #define ACP10PAR_AUT_MA_AXIS                503 /* (UINT) Cam automat: Master axis */
 #define ACP10PAR_AUT_MA_S_START             504 /* (DINT) Cam automat: Start position of the master axis [Units] */
@@ -377,7 +377,7 @@
 #define ACP10PAR_AUT_MA_V_MAX               506 /* (REAL) Cam automat: Maximum speed of master axis [Units/s] */
 #define ACP10PAR_AUT_ST_INDEX               507 /* (USINT) Cam automat: Index of parameter record for one state */
 #define ACP10PAR_AUT_EV_INDEX               508 /* (USINT) Cam automat: Index of parameter record for one event */
-#define ACP10PAR_AUT_ST_DATA_INDEX          509 /* (UINT) Cam automat: Index of cam profile data for one state */
+#define ACP10PAR_AUT_ST_DATA_INDEX          509 /* (UINT) Cam automat: Index of cam data for one state */
 #define ACP10PAR_AUT_COMP_MODE              510 /* (USINT) Cam automat: Compensation gears mode */
 #define ACP10PAR_AUT_COMP_MA_S              511 /* (DINT) Cam automat: Compensation distance of master axis [Units] */
 #define ACP10PAR_AUT_COMP_SL_S              512 /* (DINT) Cam automat: Compensation distance of slave axis [Units] */
@@ -400,8 +400,8 @@
 #define ACP10PAR_MA2_CYCLIC_POS             543 /* (DINT) Network coupling: Cyclic position master2 */
 #define ACP10PAR_PAR_SEQU_INDEX_DATA        544 /* (PAR_SEQU_INDEX, PAR_SEQU) Parameter sequence: Index and data */
 #define ACP10PAR_MA3_CYCLIC_POS             548 /* (DINT) Network coupling: Cyclic position master3 */
-#define ACP10PAR_AUT_CAM_MA_S_REL           549 /* (DINT) Cam automat: Relative start distance of master axis within cam profile [Units] */
-#define ACP10PAR_AUT_CAM_MA_S_REL_VAX1      550 /* (DINT) VAX Cam automat: Relative start distance of master axis within cam profile [Units] */
+#define ACP10PAR_AUT_CAM_MA_S_REL           549 /* (DINT) Cam automat: Relative start distance of master axis within cam [Units] */
+#define ACP10PAR_AUT_CAM_MA_S_REL_VAX1      550 /* (DINT) VAX Cam automat: Relative start distance of master axis within cam [Units] */
 #define ACP10PAR_CMD_AUT_START_VAX1         551 /* (UINT) VAX Cam automat: Command */
 #define ACP10PAR_AUT_MA_AXIS_VAX1           552 /* (UINT) VAX Cam automat: Master axis */
 #define ACP10PAR_AUT_MA_S_START_VAX1        553 /* (DINT) VAX Cam automat: Start position of the master axis [Units] */
@@ -409,7 +409,7 @@
 #define ACP10PAR_AUT_MA_V_MAX_VAX1          555 /* (REAL) VAX Cam automat: Maximum speed of master axis [Units/s] */
 #define ACP10PAR_AUT_ST_INDEX_VAX1          556 /* (USINT) VAX Cam automat: Index of parameter record for one state */
 #define ACP10PAR_AUT_EV_INDEX_VAX1          557 /* (USINT) VAX Cam automat: Index of parameter record for one event */
-#define ACP10PAR_AUT_ST_DATA_INDEX_VAX1     558 /* (UINT) VAX Cam automat: Index of cam profile data for one state */
+#define ACP10PAR_AUT_ST_DATA_INDEX_VAX1     558 /* (UINT) VAX Cam automat: Index of cam data for one state */
 #define ACP10PAR_AUT_COMP_MODE_VAX1         559 /* (USINT) VAX Cam automat: Compensation gears mode */
 #define ACP10PAR_AUT_COMP_MA_S_VAX1         560 /* (DINT) VAX Cam automat: Compensation distance of master axis [Units] */
 #define ACP10PAR_AUT_COMP_SL_S_VAX1         561 /* (DINT) VAX Cam automat: Compensation distance of slave axis [Units] */
@@ -474,8 +474,8 @@
 #define ACP10PAR_ERROR_NUMBER_VAX1          630 /* (UINT) VAX Messages: Error number */
 #define ACP10PAR_ERROR_INFO_VAX1            631 /* (DINT) VAX Messages: Additional error info */
 #define ACP10PAR_ERROR_REC_VAX1             632 /* (ERROR_NUMBER_VAX1, ERROR_INFO_VAX1) VAX Messages: Error record */
-#define ACP10PAR_AUT_ACT_ST_DAT_IDX         633 /* (UINT) Cam automat: Index of cam profile data of the actual state */
-#define ACP10PAR_AUT_ACT_ST_DAT_IDX_VAX1    634 /* (UINT) VAX Cam automat: Index of cam profile data of the actual state */
+#define ACP10PAR_AUT_ACT_ST_DAT_IDX         633 /* (UINT) Cam automat: Index of cam data of the actual state */
+#define ACP10PAR_AUT_ACT_ST_DAT_IDX_VAX1    634 /* (UINT) VAX Cam automat: Index of cam data of the actual state */
 #define ACP10PAR_LIM_A_SET_STOP             635 /* (REAL) Limit values: Maximum acceleration for stop of a movement [Units/s²] */
 #define ACP10PAR_CMD_PAR_SEQU_INIT_VAX1     636 /* (UINT) VAX: Initialize parameter sequence */
 #define ACP10PAR_AUT_MA_ID                  637 /* (UINT) Cam automat: Parameter ID of master axis */
@@ -590,7 +590,7 @@
 #define ACP10PAR_AUT_COMP_SL_A1_MAX_VAX1    767 /* (REAL) VAX Cam automat: Maximum acceleration of slave axis within compensation phase1 [Units/s²] */
 #define ACP10PAR_AUT_COMP_SL_A2_MAX         768 /* (REAL) Cam automat: Maximum acceleration of slave axis within compensation phase2 [Units/s²] */
 #define ACP10PAR_AUT_COMP_SL_A2_MAX_VAX1    769 /* (REAL) VAX Cam automat: Maximum acceleration of slave axis within compensation phase2 [Units/s²] */
-#define ACP10PAR_AUT_POLY_CHECK             770 /* (UINT) Cam automat: Check cam profile polynomial data */
+#define ACP10PAR_AUT_POLY_CHECK             770 /* (UINT) Cam automat: Check cam polynomial data */
 #define ACP10PAR_AUT_S_SET                  771 /* (DINT) Cam automat: Set position [Units] */
 #define ACP10PAR_CMD_AUT_ST_CHECK           772 /* (USINT) Cam automat: Check parameter record for one state */
 #define ACP10PAR_CMD_AUT_ST_CHECK_VAX1      773 /* (USINT) VAX Cam automat: Check parameter record for one state */
@@ -851,8 +851,8 @@
 #define ACP10PAR_ENCOD3_CMD_HOMING         1074 /* (HOMING_S, HOMING_MODE, HOMING_MODE_BITS) Encoder3: Command start homing procedure */
 #define ACP10PAR_AUT_MA_CAM_REL            1075 /* (REAL) Cam automat: Relative distance of master axis within cam [Units] */
 #define ACP10PAR_AUT_MA_CAM_REL_VAX1       1076 /* (REAL) VAX Cam automat: Relative distance of master axis within cam [Units] */
-#define ACP10PAR_AUT_MA_CAM_LEADIN         1077 /* (DINT) Cam automat: Relative entry distance of master axis within cam profile [Units] */
-#define ACP10PAR_AUT_MA_CAM_LEADIN_VAX1    1078 /* (DINT) VAX Cam automat: Relative entry distance of master axis within cam profile [Units] */
+#define ACP10PAR_AUT_MA_CAM_LEADIN         1077 /* (DINT) Cam automat: Relative entry distance of master axis within cam [Units] */
+#define ACP10PAR_AUT_MA_CAM_LEADIN_VAX1    1078 /* (DINT) VAX Cam automat: Relative entry distance of master axis within cam [Units] */
 #define ACP10PAR_AUT_MSG_MODE_BITS_VAX1    1079 /* (UDINT) VAX Cam automat: Control bits for message mode */
 #define ACP10PAR_TRACE_DATA                1100 /* (DATA) Trace: Data */
 #define ACP10PAR_TUNE_I_MAX_PERCENT        1101 /* (REAL) Autotuning: Maximum percentage for rated current [%] */
@@ -919,10 +919,10 @@
 #define ACP10PAR_EPROM_ORDERTEXT           1171 /* (STR32) Order text */
 #define ACP10PAR_TEMP_MOTOR_MODEL_LIM      1172 /* (REAL) Motor: Temperature model: Limit temperature [°C] */
 #define ACP10PAR_ENCOD_COMP_MODE           1173 /* (UINT) Encoder1: Compensation: Mode */
-#define ACP10PAR_ENCOD_DAT_IDX             1174 /* (DINT) Encoder: Data: Index */
-#define ACP10PAR_ENCOD_DAT_A0              1175 /* (REAL) Encoder: Data: Parameter A0 */
-#define ACP10PAR_ENCOD_DAT_A1              1176 /* (REAL) Encoder: Data: Parameter A1 */
-#define ACP10PAR_ENCOD_DAT_A2              1177 /* (REAL) Encoder: Data: Parameter A2 */
+#define ACP10PAR_ENCOD_DAT_IDX             1174 /* (DINT) Encoder1: Data: Index */
+#define ACP10PAR_ENCOD_DAT_A0              1175 /* (REAL) Encoder1: Data: Parameter A0 */
+#define ACP10PAR_ENCOD_DAT_A1              1176 /* (REAL) Encoder1: Data: Parameter A1 */
+#define ACP10PAR_ENCOD_DAT_A2              1177 /* (REAL) Encoder1: Data: Parameter A2 */
 #define ACP10PAR_T_STOP_EVENT_BIT          1179 /* (DINT) Movement stop: Minimum time for cyclic bit 'stop after drive event' [us] */
 #define ACP10PAR_PCTRL_ENABLE_A2_POS       1180 /* (REAL) CTRL Position controller: Deceleration in positive direction at activating the enable input [Units/s²] */
 #define ACP10PAR_PCTRL_ENABLE_A2_NEG       1181 /* (REAL) CTRL Position controller: Deceleration in negative direction at activating the enable input [Units/s²] */
@@ -1340,7 +1340,7 @@
 #define ACP10PAR_PID_DT1_VALUE             7760 /* (REAL) FB PID: result of DT1 part */
 #define ACP10PAR_CURVE_MODE                8192 /* (UINT) FB CURVE: Mode */
 #define ACP10PAR_CURVE_IN_PARID            8200 /* (UINT) FB CURVE: Parameter ID of input */
-#define ACP10PAR_CURVE_AUT_DATA_INDEX      8208 /* (UINT) FB CURVE: Index of cam profile data */
+#define ACP10PAR_CURVE_AUT_DATA_INDEX      8208 /* (UINT) FB CURVE: Index of cam data */
 #define ACP10PAR_CURVE_VALUE_I4            8216 /* (DINT) FB CURVE: Result value I4 */
 #define ACP10PAR_CURVE_VALUE_FRAC          8224 /* (REAL) FB CURVE: Result value I4 fractional part */
 #define ACP10PAR_CURVE_VALUE_R4            8232 /* (REAL) FB CURVE: Result value R4 */

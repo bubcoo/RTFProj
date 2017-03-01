@@ -99,6 +99,7 @@ TYPE
 	MpAlarmXListUISetupType : 	STRUCT 
 		AlarmListSize : UINT := 20; (*Alarm list size*)
 		AlarmListScrollWindow : USINT := 1; (*Scroll window (overlap for PageUp/Down)*)
+		TimeStampPattern : STRING[50] := '%Y-%m-%d %H:%M:%S:%L'; (*Format pattern for the timestamp shown in the UIConnect structure. See MpAlarmXHistory configuration for details about the pattern syntax.*)
 	END_STRUCT;
 	MpAlarmXHistoryUIAlarmListType : 	STRUCT 
 		Severity : ARRAY[0..49]OF UDINT; (*Alarm severity*)
@@ -143,13 +144,37 @@ TYPE
 	MpAlarmXHistoryUISetupType : 	STRUCT 
 		AlarmListSize : UINT := 20; (*Alarm list size*)
 		AlarmListScrollWindow : USINT := 1; (*Scroll window (overlap for PageUp/Down)*)
+		TimeStampPattern : STRING[50] := '%Y-%m-%d %H:%M:%S:%L'; (*Format pattern for the timestamp shown in the UIConnect structure. See MpAlarmXHistory configuration for details about the pattern syntax.*)
 	END_STRUCT;
 END_TYPE
 
 (*Configuration Types*)
 
 TYPE
-	MpAlarmXAlarmConfigType : 	STRUCT  (*Configuration structure*)
+	MpAlarmXMappingTypeEnum : 
+		(
+		mpALARMX_MAPPING_TYPE_ALARM_NAME := 0, (*Load/Save a mapping by AlarmName from/to the configuration*)
+		mpALARMX_MAPPING_TYPE_SEVERITY := 1, (*Load/Save a mapping by Severity from/to the configuration*)
+		mpALARMX_MAPPING_TYPE_DEFAULT := 2 (*Load/Save a default mapping from/to the configuration*)
+		);
+	MpAlarmXActionEnum : 
+		(
+		mpALARMX_ACT_NONE := 0, (*No action*)
+		mpALARMX_ACT_REACTION := 1, (*Local reaction which can be evaluated with the MpAlarmXCheckReaction function*)
+		mpALARMX_ACT_ESCALATE_ALARM := 2, (*Alarm is escalated by one level to the parent alarm core*)
+		mpALARMX_ACT_ESCALATE_REACTION := 3, (*Reaction escalated by one level to the parent alarm core, can be evaluated with the MpAlarmXCheckReaction function there*)
+		mpALARMX_ACT_REPLACE_ALARM := 4, (*Alarm is replaced by another alarm which is escalated by one level to the parent alarm core*)
+		mpALARMX_ACT_SEND_MESSAGE := 5, (*Message is sent via MpTweet*)
+		mpALARMX_ACT_REMAIN := 6 (*Alarm is remaining at this level*)
+		);
+	MpAlarmXActionConfigType : 	STRUCT  (*Defines configuration of one action*)
+		Type : MpAlarmXActionEnum := 0; (*Reaction, Escalate, Replace, etc.*)
+		Name : STRING[255] := ''; (*The meaning of this parameter depends on the Type, e.g. it is the alarm name for the ReplaceAlarm type, but the reaction name for the Reaction type*)
+	END_STRUCT;
+	MpAlarmXMappingConfigType : 	STRUCT  (*Configuration structure for the MpAlarmXConfigMapping FB*)
+		Action : ARRAY[0..19]OF MpAlarmXActionConfigType; (*List of actions that should be performed with this mapping*)
+	END_STRUCT;
+	MpAlarmXAlarmConfigType : 	STRUCT  (*Configuration structure for the MpAlarmXConfigAlarm FB*)
 		Message : STRING[255] := ''; (*The description text which the operator will see on the screen. Can include format items and references to the text system.*)
 		Code : UDINT := 0; (*Numeric alarm code*)
 		Severity : UDINT := 1; (*Severity is an indication of the urgency of an alarm, commonly also called Priority.*)

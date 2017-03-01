@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?ARNC0 Version="3.15.1"?>
+<?ARNC0 Version="3.16.1"?>
 <Root LangModule="ailgcode" Version="1.0">
   <BuiltInProcs>
     <cancel MinArgs="1" MaxArgs="*">
@@ -400,6 +400,9 @@
     <TKG_ARITH_BINARY_POWER>**</TKG_ARITH_BINARY_POWER>
     <TKG_ARITH_BINARY_MULTIPLY>*</TKG_ARITH_BINARY_MULTIPLY>
     <TKG_ARITH_BINARY_DIVIDE>/</TKG_ARITH_BINARY_DIVIDE>
+    <TKG_PATHSYNCH_REC_IEC FileXLInvalid="Yes">$DO_PATH_SYNCH</TKG_PATHSYNCH_REC_IEC>
+    <TKG_PATHSYNCH_END FileXLInvalid="Yes">$END_PATH_SYNCH</TKG_PATHSYNCH_END>
+    <TKG_PATHSYNCH_IPEVAL FileXLInvalid="Yes">$IP_EVAL</TKG_PATHSYNCH_IPEVAL>
     <TKG_IF FileXLInvalid="Yes">$IF</TKG_IF>
     <TKG_THEN FileXLInvalid="Yes">$THEN</TKG_THEN>
     <TKG_BLOCK_ELSEIF FileXLInvalid="Yes">$ELSEIF</TKG_BLOCK_ELSEIF>

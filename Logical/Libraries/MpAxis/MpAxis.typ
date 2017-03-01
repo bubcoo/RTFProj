@@ -350,6 +350,7 @@ TYPE
 		Input : UDINT := 1; (*Input ratio*)
 		Output : UDINT := 1; (*Output ratio*)
 		Direction : MpAxisMotorDirectionEnum := mpAXIS_DIR_CLOCKWISE; (*Direction of rotation of the motor*)
+		MaximumTorque : REAL; (*Maximum torque allowed*)
 	END_STRUCT;
 	MpAxisTransformationType : 	STRUCT  (*Transformation configuration*)
 		ReferenceDistance : LREAL := 360.0; (*Linear axis: Defines the distance moved by the linear axis while the output after the gearbox (on the load side) moves one rotation [units]

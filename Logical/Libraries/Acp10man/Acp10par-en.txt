@@ -393,7 +393,7 @@
   427: Encoder2: Status home position valid
   428: CTRL Position controller: Input set position
   429: Encoder2: Time constant for actual position filter
-  432: Cam automat: Index and data of polynomial cam profile
+  432: Cam automat: Index and data of polynomial cam
   451: Trace: Address for test date
   457: Cyclic communication: Mode
   458: Trace: Address for trigger event
@@ -416,8 +416,8 @@
   495: Cam automat: Index for start state
   496: VAX Cam automat: Index for start state
   499: Internal test parameter for development
-  500: Cam automat: Cam profile polynomial data
-  501: Cam automat: Index of cam profile data for Upload/Download
+  500: Cam automat: Cam polynomial data
+  501: Cam automat: Index of cam data for Upload/Download
   502: Cam automat: Command
   503: Cam automat: Master axis
   504: Cam automat: Start position of the master axis
@@ -425,7 +425,7 @@
   506: Cam automat: Maximum speed of master axis
   507: Cam automat: Index of parameter record for one state
   508: Cam automat: Index of parameter record for one event
-  509: Cam automat: Index of cam profile data for one state
+  509: Cam automat: Index of cam data for one state
   510: Cam automat: Compensation gears mode
   511: Cam automat: Compensation distance of master axis
   512: Cam automat: Compensation distance of slave axis
@@ -448,8 +448,8 @@
   543: Network coupling: Cyclic position master2
   544: Parameter sequence: Index and data
   548: Network coupling: Cyclic position master3
-  549: Cam automat: Relative start distance of master axis within cam profile
-  550: VAX Cam automat: Relative start distance of master axis within cam profile
+  549: Cam automat: Relative start distance of master axis within cam
+  550: VAX Cam automat: Relative start distance of master axis within cam
   551: VAX Cam automat: Command
   552: VAX Cam automat: Master axis
   553: VAX Cam automat: Start position of the master axis
@@ -457,7 +457,7 @@
   555: VAX Cam automat: Maximum speed of master axis
   556: VAX Cam automat: Index of parameter record for one state
   557: VAX Cam automat: Index of parameter record for one event
-  558: VAX Cam automat: Index of cam profile data for one state
+  558: VAX Cam automat: Index of cam data for one state
   559: VAX Cam automat: Compensation gears mode
   560: VAX Cam automat: Compensation distance of master axis
   561: VAX Cam automat: Compensation distance of slave axis
@@ -522,8 +522,8 @@
   630: VAX Messages: Error number
   631: VAX Messages: Additional error info
   632: VAX Messages: Error record
-  633: Cam automat: Index of cam profile data of the actual state
-  634: VAX Cam automat: Index of cam profile data of the actual state
+  633: Cam automat: Index of cam data of the actual state
+  634: VAX Cam automat: Index of cam data of the actual state
   635: Limit values: Maximum acceleration for stop of a movement
   636: VAX: Initialize parameter sequence
   637: Cam automat: Parameter ID of master axis
@@ -646,7 +646,7 @@
   767: VAX Cam automat: Maximum acceleration of slave axis within compensation phase1
   768: Cam automat: Maximum acceleration of slave axis within compensation phase2
   769: VAX Cam automat: Maximum acceleration of slave axis within compensation phase2
-  770: Cam automat: Check cam profile polynomial data
+  770: Cam automat: Check cam polynomial data
   771: Cam automat: Set position
   772: Cam automat: Check parameter record for one state
   773: VAX Cam automat: Check parameter record for one state
@@ -947,8 +947,8 @@
  1074: Encoder3: Command start homing procedure
  1075: Cam automat: Relative distance of master axis within cam
  1076: VAX Cam automat: Relative distance of master axis within cam
- 1077: Cam automat: Relative entry distance of master axis within cam profile
- 1078: VAX Cam automat: Relative entry distance of master axis within cam profile
+ 1077: Cam automat: Relative entry distance of master axis within cam
+ 1078: VAX Cam automat: Relative entry distance of master axis within cam
  1079: VAX Cam automat: Control bits for message mode
  1080: Address of system variable0
  1081: Address of system variable1
@@ -1044,10 +1044,10 @@
  1171: Order text
  1172: Motor: Temperature model: Limit temperature
  1173: Encoder1: Compensation: Mode
- 1174: Encoder: Data: Index
- 1175: Encoder: Data: Parameter A0
- 1176: Encoder: Data: Parameter A1
- 1177: Encoder: Data: Parameter A2
+ 1174: Encoder1: Data: Index
+ 1175: Encoder1: Data: Parameter A0
+ 1176: Encoder1: Data: Parameter A1
+ 1177: Encoder1: Data: Parameter A2
  1178: CTRL CR_OK: Switch off threshold
  1179: Movement stop: Minimum time for cyclic bit 'stop after drive event'
  1180: CTRL Position controller: Deceleration in positive direction at activating the enable input
@@ -1140,7 +1140,6 @@
  1273: MAINSSIM_VOLTAGE
  1274: MAINSSIM_FREQUENCY
  1275: MAINSSIM_STATE
- 1276: CTRL Speed: Controller output
  1277: Motor: Magnetic saliency ratio
  1278: CTRL DC bus: Voltage offset
  1279: Inverter: Summation current: Limit
@@ -1365,8 +1364,6 @@
  1504: Motor holding brake: Release voltage
  1505: Motor holding brake: Hold voltage
  1506: Motor holding brake: Overvoltage limit
- 1507: Basis movements: Set value generator mode
- 1508: VAX Basis movements: Set value generator mode
  1509: Axis crosslink: Encoder2: Actual position
  1510: Pitch error-backlash compensation: Mode
  1511: Pitch error-backlash compensation: Compensation time
@@ -1436,6 +1433,7 @@
  1580: Signal generator: Amplitude at the end of the signal
  1581: SafeMC: Corretction count direction
  1582: SafeMC: ACPCOM state
+ 1583: System administration: Mode of drive cycle time
  3072: FB LOGIC: Mode
  3080: FB LOGIC: Parameter ID of input1
  3088: FB LOGIC: Parameter ID of input2
@@ -1581,7 +1579,7 @@
  7760: FB PID: result of DT1 part
  8192: FB CURVE: Mode
  8200: FB CURVE: Parameter ID of input
- 8208: FB CURVE: Index of cam profile data
+ 8208: FB CURVE: Index of cam data
  8216: FB CURVE: Result value I4
  8224: FB CURVE: Result value I4 fractional part
  8232: FB CURVE: Result value R4
@@ -1855,9 +1853,12 @@
 63492: LLM: DC-Bus: middle voltage
 63493: LLM: shuttle: initial position
 63494: LLM: shuttle: index initial position
-63495: ISC: status
-63496: RESERVED63496
+63495: ISC: state
+63496: ISC: error tolerance
 63497: LLM: IBN
+63498: ISC: internal status
+63499: ISC: error counter low-Side
+63500: ISC: error counter high-Side
 63501: LLM: measured phase current 1
 63502: LLM: measured phase current 2
 63503: LLM: measured phase current 3
@@ -2008,53 +2009,97 @@
 63648: RESERVED63648
 63649: RESERVED63649
 63650: Virtual Encoder: Actual position
-63651: Virtual Encoder: d_pos
+63651: Virtual Encoder: position difference in 200us
 63652: Sensor Map: active Sensor
-63653: Sensor Map: period count
-63654: Sensor Map: gamma valid sensor
-63655: Sensor Map: absV valid sensor
-63670: test
-63671: test
-63672: test
-63673: test
-63674: test
-63675: test
-63676: test
-63677: test
-63678: test
-63679: test
-63680: test
-63681: test
-63682: test
-63683: test
-63684: test
-63685: test
-63686: test
-63687: test
-63688: test
-63689: test
-63690: test
-63691: test
-63692: test
-63693: test
-63694: test
-63695: test
-63696: test
-63697: test
-63698: test
-63699: test
-63700: test
-63701: test
-63702: test
-63703: test
-63704: test
-63705: test
-63706: test
-63707: test
-63708: test
-63709: test
-63710: test
+63653: Sensor Map: period count active sensor
+63654: Sensor Map: gamma active sensor
+63655: Sensor Map: absolute value active sensor
+63656: Sensor Map: sine active sensor
+63657: Sensor Map: cosine active sensor
+63711: Sine signal magnet sensor 1
+63712: Cosine signal magnet sensor 1
+63713: Sine signal magnet sensor 2
+63714: Cosine signal magnet sensor 2
+63715: Sine signal magnet sensor 3
+63716: Cosine signal magnet sensor 3
+63717: Sine signal magnet sensor 4
+63718: Cosine signal magnet sensor 4
+63719: Sine signal magnet sensor 5
+63720: Cosine signal magnet sensor 5
+63721: Sine signal magnet sensor 6
+63722: Cosine signal magnet sensor 6
+63723: Sine signal magnet sensor 7
+63724: Cosine signal magnet sensor 7
+63725: Sine signal magnet sensor 8
+63726: Cosine signal magnet sensor 8
+63727: Sine signal magnet sensor 9
+63728: Cosine signal magnet sensor 9
+63729: Sine signal magnet sensor 10
+63730: Cosine signal magnet sensor 10
+63731: Sine signal magnet sensor 11
+63732: Cosine signal magnet sensor 11
+63733: Sine signal magnet sensor 12
+63734: Cosine signal magnet sensor 12
+63735: Sine signal magnet sensor 13
+63736: Cosine signal magnet sensor 13
+63737: Sine signal magnet sensor 14
+63738: Cosine signal magnet sensor 14
+63739: Sine signal magnet sensor 15
+63740: Cosine signal magnet sensor 15
+63741: Sine signal magnet sensor 16
+63742: Cosine signal magnet sensor 16
+63743: Sine signal magnet sensor 17
+63744: Cosine signal magnet sensor 17
+63745: Sine signal magnet sensor 18
+63746: Cosine signal magnet sensor 18
+63747: Sine signal magnet sensor 19
+63748: Cosine signal magnet sensor 19
+63749: Sine signal magnet sensor 20
+63750: Cosine signal magnet sensor 20
+63751: Sine signal magnet sensor 21
+63752: Cosine signal magnet sensor 21
+63753: Sine signal magnet sensor 22
+63754: Cosine signal magnet sensor 22
+63755: Sine signal magnet sensor 23
+63756: Cosine signal magnet sensor 23
+63757: Sine signal magnet sensor 24
+63758: Cosine signal magnet sensor 24
+63759: Sine signal magnet sensor 25
+63760: Cosine signal magnet sensor 25
+63761: Sine signal magnet sensor 26
+63762: Cosine signal magnet sensor 26
+63763: Sine signal magnet sensor 27
+63764: Cosine signal magnet sensor 27
+63765: Sine signal magnet sensor 28
+63766: Cosine signal magnet sensor 28
+63767: Sine signal magnet sensor 29
+63768: Cosine signal magnet sensor 29
+63769: Sine signal magnet sensor 30
+63770: Cosine signal magnet sensor 30
+63771: Sine signal magnet sensor 31
+63772: Cosine signal magnet sensor 31
+63773: Sine signal magnet sensor 32
+63774: Cosine signal magnet sensor 32
+63775: Sine signal magnet sensor 33
+63776: Cosine signal magnet sensor 33
+63777: Sine signal magnet sensor 34
+63778: Cosine signal magnet sensor 34
+63779: Sine signal magnet sensor 35
+63780: Cosine signal magnet sensor 35
+63781: Sine signal magnet sensor 36
+63782: Cosine signal magnet sensor 36
+63783: Sine signal magnet sensor 37
+63784: Cosine signal magnet sensor 37
+63785: Sine signal magnet sensor 38
+63786: Cosine signal magnet sensor 38
+63787: Sine signal magnet sensor 39
+63788: Cosine signal magnet sensor 39
+63789: Sine signal magnet sensor 40
+63790: Cosine signal magnet sensor 40
+63791: Sine signal magnet sensor 41
+63792: Cosine signal magnet sensor 41
 63800: LLM: Switch release current
+63879: LLM: Configuration: Index of parameter record
 63880: LLM: Position controller: Actual position
 63881: LLM: Test R8
 63882: LLM: Cyclic set value

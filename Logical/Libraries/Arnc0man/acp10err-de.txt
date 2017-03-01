@@ -48,7 +48,6 @@
  1001: Fehler-FIFO Überlauf
  1002: Parameter nicht im gültigen Wertebereich
  1003: Parameter schreiben bei aktiver Regelung nicht erlaubt
- 1004: Timeout bei Netzwerk-Lebensüberwachung
  1005: Parameter schreiben bei aktiver Bewegung nicht erlaubt
  1006: Ungültiger Parameter für Trigger-Ereignis (Digital-Eingang + Flanke)
  1008: Master für Netzwerk-Kopplung deaktiviert - Geberfehler
@@ -128,11 +127,8 @@
  5038: Referenzier-Modus nicht möglich: Restore-Daten ungültig
        Info(UINT): Detail
  5039: Funktion nicht möglich: Geberfehler
- 5040: Ruckbegrenzer: Zu viele Beschleunigungsänderungen - Bewegungs-Abbruch
- 5041: Ruckbegrenzer: Kommando nicht erlaubt
- 5042: Ruckbegrenzer: Zu viele Beschleunigungsänd. - Kommando nicht möglich
  5043: Referenzieren nicht möglich: Kompensation aktiv
- 5101: Kurvenscheiben-Ausgleichsgetriebe: Grenzwerte überschritten
+ 5101: Ausgleichsgetriebe: Grenzwerte überschritten
        Info(USINT): Zustands-Index
  5102: Zu viele Kurvenwechsel pro Zyklus (Masterperiode zu kurz)
        Info(USINT): Zustands-Index
@@ -230,7 +226,7 @@
  7012: Geber: Hiperface Error Bit
        Info(USINT): Slot
  7013: Geber: Statusmeldung
-       Info(USINT): Statuscode
+       Info(UDINT): Statuscode
  7014: Geber: CRC Fehler beim Parameter übertragen
        Info(USINT): Slot
  7015: Geber: Timeout Fehler beim Parameter übertragen
@@ -340,6 +336,8 @@
  7078: Geber: Intersegmentkommunikation ausgefallen
  7079: Geber: Interner Fehler
        Info(UDINT): -
+ 7080: Geber: Fehler in der Geberkommunikation
+       Info(USINT): Slot
  7100: Parameterfunktion wird nicht unterstützt. (Einsteckkarte ?)
  7103: Nicht unterstützte Schnittstelle
        Info(UDINT): Schnittstelle
@@ -398,8 +396,6 @@
  9000: Kühler-Temperatursensor: Abbruchgrenze überschritten
        Info(REAL): Grenztemperatur
  9001: Kühler-Temperatursensor: Ausschaltgrenze überschritten
-       Info(REAL): Grenztemperatur
- 9002: Kühler-Temperatursensor: Nicht angeschlossen oder zerstört
        Info(REAL): Grenztemperatur
  9003: Kühler-Temperatursensor: Nicht angeschlossen oder zerstört
        Info(REAL): Grenztemperatur
@@ -1621,7 +1617,7 @@
        Info(REAL): Differenz
 37112: Polynom in den Kurvenscheibendaten überschreitet Grenzwert
        Info(UINT): Detail
-37113: Kurvenscheiben-Ausgleichsgetriebe: Grenzwerte überschritten
+37113: Ausgleichsgetriebe: Grenzwerte überschritten
        Info(USINT): Zustands-Index
 38000: Stromregler: Während dem Einschalten ist Motordrehzahl zu hoch
 38001: Momentbegrenzer: Grenzwert größer als Maximalwert
@@ -1744,6 +1740,12 @@
        Info(USINT): Slot
 39056: Geber: Inkremental-Signalamplitude zu groß
        Info(USINT): Slot
+39059: Geber: Statusmeldung
+       Info(UDINT): Statuscode
+39060: Geber: Sync-Bit Fehler
+       Info(USINT): Slot
+39061: Geber: UART Übertragungsfehler 
+       Info(USINT): Slot
 39301: Digital IO: 24V-Spannungsversorgung fehlerhaft
        Info(UINT): Slot
 39302: Digital IO 1-4: Diagnosebit aktiv (Strom, 24V Versorgung)
@@ -1822,6 +1824,8 @@
        Info(USINT): Slot
 41001: Kühler-Temperatursensor: Warngrenze überschritten
        Info(REAL): Kühlertemperatur
+41002: Kühler-Temperatursensor: Nicht angeschlossen oder zerstört
+       Info(REAL): Grenztemperatur
 41011: Temperatursensor (Motor|Drossel|Extern): Warngrenze überschritten
        Info(REAL): Temperatur
 41031: Sperrschicht-Temperaturmodell: Warngrenze überschritten

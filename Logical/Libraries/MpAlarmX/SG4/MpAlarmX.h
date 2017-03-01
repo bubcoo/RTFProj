@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpAlarmX 1.50.0 */
+/* MpAlarmX 1.60.0 */
 
 #ifndef _MPALARMX_
 #define _MPALARMX_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpAlarmX_VERSION
-#define _MpAlarmX_VERSION 1.50.0
+#define _MpAlarmX_VERSION 1.60.0
 #endif
 
 #include <bur/plctypes.h>
@@ -56,6 +56,22 @@ typedef enum MpAlarmXHistoryUIStatusEnum
 {	mpALARMX_HISTORY_UI_STATUS_IDLE = 0,
 	mpALARMX_HISTORY_UI_STATUS_ERROR = 99
 } MpAlarmXHistoryUIStatusEnum;
+
+typedef enum MpAlarmXMappingTypeEnum
+{	mpALARMX_MAPPING_TYPE_ALARM_NAME = 0,
+	mpALARMX_MAPPING_TYPE_SEVERITY = 1,
+	mpALARMX_MAPPING_TYPE_DEFAULT = 2
+} MpAlarmXMappingTypeEnum;
+
+typedef enum MpAlarmXActionEnum
+{	mpALARMX_ACT_NONE = 0,
+	mpALARMX_ACT_REACTION = 1,
+	mpALARMX_ACT_ESCALATE_ALARM = 2,
+	mpALARMX_ACT_ESCALATE_REACTION = 3,
+	mpALARMX_ACT_REPLACE_ALARM = 4,
+	mpALARMX_ACT_SEND_MESSAGE = 5,
+	mpALARMX_ACT_REMAIN = 6
+} MpAlarmXActionEnum;
 
 typedef enum MpAlarmXErrorEnum
 {	mpALARMX_NO_ERROR = 0,
@@ -152,6 +168,7 @@ typedef struct MpAlarmXListUIConnectType
 typedef struct MpAlarmXListUISetupType
 {	unsigned short AlarmListSize;
 	unsigned char AlarmListScrollWindow;
+	plcstring TimeStampPattern[51];
 } MpAlarmXListUISetupType;
 
 typedef struct MpAlarmXHistoryUIAlarmListType
@@ -200,7 +217,17 @@ typedef struct MpAlarmXHistoryUIConnectType
 typedef struct MpAlarmXHistoryUISetupType
 {	unsigned short AlarmListSize;
 	unsigned char AlarmListScrollWindow;
+	plcstring TimeStampPattern[51];
 } MpAlarmXHistoryUISetupType;
+
+typedef struct MpAlarmXActionConfigType
+{	enum MpAlarmXActionEnum Type;
+	plcstring Name[256];
+} MpAlarmXActionConfigType;
+
+typedef struct MpAlarmXMappingConfigType
+{	struct MpAlarmXActionConfigType Action[20];
+} MpAlarmXMappingConfigType;
 
 typedef struct MpAlarmXHistoryReportType
 {	plcbit InactiveToActive;
@@ -328,6 +355,30 @@ typedef struct MpAlarmXConfigAlarm
 	plcbit CommandDone;
 } MpAlarmXConfigAlarm_typ;
 
+typedef struct MpAlarmXConfigMapping
+{
+	/* VAR_INPUT (analog) */
+	struct MpComIdentType* MpLink;
+	enum MpAlarmXMappingTypeEnum Type;
+	plcstring (*Name);
+	struct MpAlarmXMappingConfigType* Configuration;
+	/* VAR_OUTPUT (analog) */
+	signed long StatusID;
+	struct MpAlarmXInfoType Info;
+	/* VAR (analog) */
+	struct MpComInternalDataType Internal;
+	/* VAR_INPUT (digital) */
+	plcbit Enable;
+	plcbit ErrorReset;
+	plcbit Load;
+	plcbit Save;
+	/* VAR_OUTPUT (digital) */
+	plcbit Active;
+	plcbit Error;
+	plcbit CommandBusy;
+	plcbit CommandDone;
+} MpAlarmXConfigMapping_typ;
+
 
 
 /* Prototyping of functions and function blocks */
@@ -336,6 +387,7 @@ _BUR_PUBLIC void MpAlarmXListUI(struct MpAlarmXListUI* inst);
 _BUR_PUBLIC void MpAlarmXHistoryUI(struct MpAlarmXHistoryUI* inst);
 _BUR_PUBLIC void MpAlarmXHistory(struct MpAlarmXHistory* inst);
 _BUR_PUBLIC void MpAlarmXConfigAlarm(struct MpAlarmXConfigAlarm* inst);
+_BUR_PUBLIC void MpAlarmXConfigMapping(struct MpAlarmXConfigMapping* inst);
 _BUR_PUBLIC plcbit MpAlarmXCheckState(struct MpComIdentType* MpLink, plcstring* Name, enum MpAlarmXStateEnum State);
 _BUR_PUBLIC plcbit MpAlarmXCheckStateID(struct MpComIdentType* MpLink, unsigned long InstanceID, enum MpAlarmXStateEnum State);
 _BUR_PUBLIC plcbit MpAlarmXCheckReaction(struct MpComIdentType* MpLink, plcstring* Name);

@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpAxis 1.50.0 */
+/* MpAxis 1.60.0 */
 
 #ifndef _MPAXIS_
 #define _MPAXIS_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpAxis_VERSION
-#define _MpAxis_VERSION 1.50.0
+#define _MpAxis_VERSION 1.60.0
 #endif
 
 #include <bur/plctypes.h>
@@ -571,6 +571,7 @@ typedef struct MpAxisGearboxType
 {	unsigned long Input;
 	unsigned long Output;
 	enum MpAxisMotorDirectionEnum Direction;
+	float MaximumTorque;
 } MpAxisGearboxType;
 
 typedef struct MpAxisTransformationType

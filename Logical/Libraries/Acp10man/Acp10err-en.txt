@@ -48,7 +48,6 @@
  1001: Error-FIFO overflow
  1002: Parameter outside the valid range
  1003: Parameter cannot be written while loop control is active
- 1004: Timeout in network life sign monitor
  1005: Parameter cannot be written while a movement is active
  1006: Invalid parameter for trigger event (digital input + edge)
  1008: Master for network coupling deactivated - Encoder error
@@ -128,13 +127,10 @@
  5038: Homing procedure mode not possible: Restore data invalid
        Info(UINT): Detail
  5039: Function not possible: Encoder error
- 5040: Jolt limiter: Too many changes in acceleration - Movement stopped
- 5041: Jolt limiter: Command not allowed
- 5042: Jolt limiter: Too many changes in acceleration - Command not possible
  5043: Homing procedure mode not possible: Compensation active
- 5101: Cam profile compensation gears: Limit values exceeded
+ 5101: Compensation gear: Limit values exceeded
        Info(USINT): State index
- 5102: Too many changes of cam profile per cycle (master period too short)
+ 5102: Too many changes of cam per cycle (master period too short)
        Info(USINT): State index
  5107: Cam coupling cannot be started: Parameter outside the valid range
        Info('PARID'): Parameter ID
@@ -148,14 +144,14 @@
  5301: Start cam automat linkage not possible: Parameter outside the valid range
        Info('PARID'): Parameter ID
  5302: Parameter cannot be written: Cam automat active
- 5303: Cam profile data not available at index
- 5304: Format error in cam profile data
+ 5303: Cam data not available at index
+ 5304: Format error in cam data
        Info(UINT): Detail
  5311: Cam automat: Event leads to non initialized state
- 5315: Download error: Cam profile data in use by cam automat or function block
+ 5315: Download error: Cam data in use by cam automat or function block
  5316: Event type is not possible for entry in compensation gears
- 5319: Cam profile data not allowed for state 0
- 5329: No valid cam profile data
+ 5319: Cam data not allowed for state 0
+ 5329: No valid cam data
  6000: Master sampling time is not a multiple of position controller sampling time
  6002: Sync controller: Error tolerance of system time difference exceeded
  6008: Controller is already active
@@ -230,7 +226,7 @@
  7012: Encoder: Hiperface error bit
        Info(USINT): Slot
  7013: Encoder: Status message
-       Info(USINT): Status code
+       Info(UDINT): Status code
  7014: Encoder: CRC error during parameter transfer
        Info(USINT): Slot
  7015: Encoder: Timeout error during parameter transfer
@@ -340,6 +336,8 @@
  7078: Encoder: Intersegment communication failure
  7079: Encoder: Internal Error
        Info(UDINT): -
+ 7080: Encoder: Error in the encoder communication
+       Info(USINT): Slot
  7100: Parameter function not supported. (Module ?)
  7103: Not supported interface
        Info(UDINT): Interface
@@ -398,8 +396,6 @@
  9000: Heatsink temperature sensor: Stop limit exceeded
        Info(REAL): Temperature limit
  9001: Heatsink temperature sensor: Switch off limit exceeded
-       Info(REAL): Temperature limit
- 9002: Heatsink temperature sensor: Not connected or damaged
        Info(REAL): Temperature limit
  9003: Heatsink temperature sensor: Not connected or destroyed
        Info(REAL): Temperature limit
@@ -1593,11 +1589,11 @@
        Info(USINT): State index
 37108: Calculated compensation distance of master axis limited to minimum
        Info(USINT): State index
-37111: Cam profile data: Difference between polynomial value y(xn) and slave period
+37111: Cam data: Difference between polynomial value y(xn) and slave period
        Info(REAL): Difference
-37112: Polynomial within cam profile data exceeds limit value
+37112: Polynomial within cam data exceeds limit value
        Info(UINT): Detail
-37113: Cam profile compensation gears: Limit values exceeded
+37113: Compensation gear: Limit values exceeded
        Info(USINT): State index
 38000: Current controller: Motor speed is too high during switching on
 38001: Torque limiter: Limit value higher than maximum value
@@ -1720,6 +1716,12 @@
        Info(USINT): Slot
 39056: Encoder: Incremental signal amplitude too large
        Info(USINT): Slot
+39059: Encoder: Status message
+       Info(UDINT): Status code
+39060: Encoder: Sync bit error
+       Info(USINT): Slot
+39061: Encoder: UART Transmission error
+       Info(USINT): Slot
 39301: Digital IO: 24V power supply fail
        Info(UINT): Slot
 39302: Digital IO 1-4: Diagnose bit active (current, 24V supply)
@@ -1798,6 +1800,8 @@
        Info(USINT): Slot
 41001: Heatsink temperature sensor: Warning limit exceeded
        Info(REAL): Heatsink temperature
+41002: Heatsink temperature sensor: Not connected or damaged
+       Info(REAL): Temperature limit
 41011: Temperature sensor (Motor|Choke|External): Warning limit exceeded
        Info(REAL): Temperature
 41031: Junction temperature model: Warning limit exceeded

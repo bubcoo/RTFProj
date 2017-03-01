@@ -581,8 +581,10 @@ F5133:2:" Datenmodul 2"
 7204:"WS Fehler. Sich selbst Kollision":F7146:F7209:F7210
 7205:"WS Error. Interchannel collision":F7212
 7206:"WS Error. Interchannel collision":F7146:F7209:F7210
+7207:"WS Error. External interchannel collision":F7213
+7208:"WS Error. External interchannel collision":F7146:F7209:F7210
 7226:"Programmierte Achse nicht betriebsbereit":F7115:F7116:F7145
-7232:"Keine Eingangsdaten bei aktiver Bewegung (Wechsel der NC-SÑtze zu schnell)":F7146:F7147:F7148
+7232:"Keine Eingangsdaten am Bahngenerator (z.B. kurze NC-SÑtze, hohe Geschwindigkeit)":F7146:F7147:F7148
 7233:"T_max Åberschritten bei Kontrolle der 'In-Pos.-Toleranz' (Genauhalt)":F7115:F7116:F7145
 7234:"Falscher NC-Init-Programm-Name bei 'RESTART' angegeben":F7129
 7235:"NC-Programm, falsche Startposition (Position oder Typ)"
@@ -764,9 +766,10 @@ F7208:"TRF_generic() return status (bgen)":4,4,d
 F7209:"Adresse fÅr die Kollisionsinformation":4,4,d
 F7210:"Blocknummer N":8,4,d
 F7211:"Reason":0,1,d
-F7212:"channel name":0,12,s
-F7212:0:"Line pointer queue OFF"
-F7212:1:"Bad single step mode"
+F7211:0:"Line pointer queue OFF"
+F7211:1:"Bad single step mode"
+F7212:"Channel name":0,12,s
+F7213:"Wire-frame model index":0,4,d
 8000:" CNC Dynamikberechnung "
 8101:"Nur eine Tangentialachse mîglich"
 8102:"Kein Vorschub (F...) fÅr NC-Satz (Linear-Interpolation)":F8101:F8113:F8114
@@ -2701,7 +2704,9 @@ F14116:"Ncalloc-Status":0,2,d
 15926:"Program date or time different at RESTART":F15108
 15927:"Inline attribute ignored due to multiple usage of argument reference":F15100:F15101
 15928:"Bad execution context":F15100:F15101
-15929:"Last error code (never issued)"
+15929:"Assignment to the return value of a string type must be the last statement":F15100:F15101
+15930:"Invalid axis name":F15100:F15101
+15931:"Last error code (never issued)"
 F15100:"File Name":4,8,s
 F15101:"Line Number":0,4,d
 F15102:"Operation":4,8,s
@@ -3803,7 +3808,6 @@ F50014:"Mindestversion ":0,2,u
 101001:"Fehler-FIFO öberlauf":F60000
 101002:"Parameter nicht im gÅltigen Wertebereich":F60000
 101003:"Parameter schreiben bei aktiver Regelung nicht erlaubt":F60000
-101004:"Timeout bei Netzwerk-LebensÅberwachung":F60000
 101005:"Parameter schreiben bei aktiver Bewegung nicht erlaubt":F60000
 101006:"UngÅltiger Parameter fÅr Trigger-Ereignis (Digital-Eingang + Flanke)":F60000
 101008:"Master fÅr Netzwerk-Kopplung deaktiviert - Geberfehler":F50015:F60000
@@ -3883,11 +3887,8 @@ F50025:"Beschleunigung ":0,4,f
 105038:"Referenzier-Modus nicht mîglich: Restore-Daten ungÅltig":F50026:F60000
 F50026:"Detail ":0,2,u
 105039:"Funktion nicht mîglich: Geberfehler":F60000
-105040:"Ruckbegrenzer: Zu viele BeschleunigungsÑnderungen - Bewegungs-Abbruch":F60000
-105041:"Ruckbegrenzer: Kommando nicht erlaubt":F60000
-105042:"Ruckbegrenzer: Zu viele BeschleunigungsÑnd. - Kommando nicht mîglich":F60000
 105043:"Referenzieren nicht mîglich: Kompensation aktiv":F60000
-105101:"Kurvenscheiben-Ausgleichsgetriebe: Grenzwerte Åberschritten":F50027:F60000
+105101:"Ausgleichsgetriebe: Grenzwerte Åberschritten":F50027:F60000
 F50027:"Zustands-Index ":0,1,u
 105102:"Zu viele Kurvenwechsel pro Zyklus (Masterperiode zu kurz)":F50028:F60000
 F50028:"Zustands-Index ":0,1,u
@@ -3985,7 +3986,7 @@ F50052:"Grenzwert ":0,4,f
 107012:"Geber: Hiperface Error Bit":F50053:F60000
 F50053:"Slot ":0,1,u
 107013:"Geber: Statusmeldung":F50054:F60000
-F50054:"Statuscode ":0,1,u
+F50054:"Statuscode ":0,4,u
 107014:"Geber: CRC Fehler beim Parameter Åbertragen":F50055:F60000
 F50055:"Slot ":0,1,u
 107015:"Geber: Timeout Fehler beim Parameter Åbertragen":F50056:F60000
@@ -4095,66 +4096,66 @@ F50107:"Slot ":0,1,u
 107078:"Geber: Intersegmentkommunikation ausgefallen":F60000
 107079:"Geber: Interner Fehler":F50108:F60000
 F50108:"- ":0,4,u
+107080:"Geber: Fehler in der Geberkommunikation":F50109:F60000
+F50109:"Slot ":0,1,u
 107100:"Parameterfunktion wird nicht unterstÅtzt. (Einsteckkarte ?)":F60000
-107103:"Nicht unterstÅtzte Schnittstelle":F50109:F60000
-F50109:"Schnittstelle ":0,4,u
+107103:"Nicht unterstÅtzte Schnittstelle":F50110:F60000
+F50110:"Schnittstelle ":0,4,u
 107200:"Zwischenkreis: öberspannung":F60000
 107210:"Zwischenkreis: Vorladen: Spannung instabil ":F60000
-107211:"Zwischenkreis: Spannungseinbruch":F50110:F60000
-F50110:"Grenzwert fÅr Spannungseinbruch ":0,4,f
-107212:"Zwischenkreis: Starker Spannungseinbruch":F50111:F60000
+107211:"Zwischenkreis: Spannungseinbruch":F50111:F60000
 F50111:"Grenzwert fÅr Spannungseinbruch ":0,4,f
+107212:"Zwischenkreis: Starker Spannungseinbruch":F50112:F60000
+F50112:"Grenzwert fÅr Spannungseinbruch ":0,4,f
 107214:"Zwischenkreis: Vorladewiderstand Åberhitzt (zu viele NetzausfÑlle)":F60000
 107215:"Netzversorgung: Mindestens eine Netzphase ist ausgefallen":F60000
-107217:"Zwischenkreis: Nennspannungserkennung: Spannung zu hoch":F50112:F60000
-F50112:"Maximal zulÑssige Zwischenkreisspannung ":0,4,f
-107218:"Zwischenkreis: Nennspannungserkennung: Spannung zu klein":F50113:F60000
-F50113:"Minimal erforderliche Zwischenkreisspannung ":0,4,f
-107219:"Zwischenkreis: Vorladen: Spannung zu klein":F50114:F60000
+107217:"Zwischenkreis: Nennspannungserkennung: Spannung zu hoch":F50113:F60000
+F50113:"Maximal zulÑssige Zwischenkreisspannung ":0,4,f
+107218:"Zwischenkreis: Nennspannungserkennung: Spannung zu klein":F50114:F60000
 F50114:"Minimal erforderliche Zwischenkreisspannung ":0,4,f
-107220:"Zwischenkreis: Nennspannungserkennung: Spannung nicht zulÑssig":F50115:F60000
-F50115:"Zwischenkreisspannung ":0,4,f
-107221:"Netz: Stîrung":F50116:F60000
-F50116:"Netzfrequenz ":0,4,f
-107222:"Wechselrichter: Ausgang: Summenstrom: öberstrom (Erdschluss)":F50117:F60000
-F50117:"Grenzwert ":0,4,f
+107219:"Zwischenkreis: Vorladen: Spannung zu klein":F50115:F60000
+F50115:"Minimal erforderliche Zwischenkreisspannung ":0,4,f
+107220:"Zwischenkreis: Nennspannungserkennung: Spannung nicht zulÑssig":F50116:F60000
+F50116:"Zwischenkreisspannung ":0,4,f
+107221:"Netz: Stîrung":F50117:F60000
+F50117:"Netzfrequenz ":0,4,f
+107222:"Wechselrichter: Ausgang: Summenstrom: öberstrom (Erdschluss)":F50118:F60000
+F50118:"Grenzwert ":0,4,f
 107223:"Zwischenkreis: öberspannung DC-GND":F60000
 107224:"RÅckwandstecker: KontaktÅberwachung 24V-GND: Spannung zu klein":F60000
 107225:"Zwischenkreis: öberspannung":F60000
 107226:"Zwischenkreis: öberstrom":F60000
-107227:"Bremswiderstand: öberstrom":F50118:F60000
-F50118:"Grenzwert ":0,4,f
-107228:"Zwischenkreis: Nennspannungserkennung: Hoher Einschaltstrom":F50119:F60000
-F50119:"SpannungsanstiegsverhÑltnis ":0,4,f
+107227:"Bremswiderstand: öberstrom":F50119:F60000
+F50119:"Grenzwert ":0,4,f
+107228:"Zwischenkreis: Nennspannungserkennung: Hoher Einschaltstrom":F50120:F60000
+F50120:"SpannungsanstiegsverhÑltnis ":0,4,f
 107229:"Chopper: öberstrom":F60000
 107230:"Zwischenkreis: Bereichsverletzung an Messstelle 2 ":F60000
-107300:"Digital IO: UngÅltige IO Konfiguration":F50120:F60000
-F50120:"Slot ":0,2,u
+107300:"Digital IO: UngÅltige IO Konfiguration":F50121:F60000
+F50121:"Slot ":0,2,u
 107401:"Parameterposition Åberschreitet maximale DatenlÑnge":F60000
-107402:"Bearbeitung der Parameter-Sequenz abgebrochen: Fehler beim Schreiben":F50121:F60000
-F50121:"Index des Parameters ":0,2,u
+107402:"Bearbeitung der Parameter-Sequenz abgebrochen: Fehler beim Schreiben":F50122:F60000
+F50122:"Index des Parameters ":0,2,u
 107403:"Bearbeitung der Parameter-Sequenz ist noch aktiv":F60000
 107404:"Keine Parameter-Sequenz bei Index vorhanden":F60000
 108001:"EEPROM-Select nicht gÅltig":F60000
 108003:"Tabellenindex nicht gÅltig":F60000
 108004:"EEPROM-Variablentyp nicht gÅltig":F60000
 108005:"EEPROM Speichertyp nicht gÅltig":F60000
-108006:"Wert des EEPROM-Parameters ist gleich 0":F50122:F60000
-F50122:"EEPROM Parameter-ID ":0,2,u
-108007:"Wert des EEPROM-Parameters ist ungÅltig ":F50123:F60000
+108006:"Wert des EEPROM-Parameters ist gleich 0":F50123:F60000
 F50123:"EEPROM Parameter-ID ":0,2,u
-108011:"EPROM: Daten nicht gÅltig":F50124:F60000
-F50124:"CODE ":0,4,u
-108012:"EPROM: Controller-ID nicht gÅltig":F50125:F60000
-F50125:"CODE ":0,1,u
-108013:"EPROM: CRC Fehler":F50126:F60000
+108007:"Wert des EEPROM-Parameters ist ungÅltig ":F50124:F60000
+F50124:"EEPROM Parameter-ID ":0,2,u
+108011:"EPROM: Daten nicht gÅltig":F50125:F60000
+F50125:"CODE ":0,4,u
+108012:"EPROM: Controller-ID nicht gÅltig":F50126:F60000
 F50126:"CODE ":0,1,u
+108013:"EPROM: CRC Fehler":F50127:F60000
+F50127:"CODE ":0,1,u
 108020:"UngÅltige Schaltfrequenz":F60000
-109000:"KÅhler-Temperatursensor: Abbruchgrenze Åberschritten":F50127:F60000
-F50127:"Grenztemperatur ":0,4,f
-109001:"KÅhler-Temperatursensor: Ausschaltgrenze Åberschritten":F50128:F60000
+109000:"KÅhler-Temperatursensor: Abbruchgrenze Åberschritten":F50128:F60000
 F50128:"Grenztemperatur ":0,4,f
-109002:"KÅhler-Temperatursensor: Nicht angeschlossen oder zerstîrt":F50129:F60000
+109001:"KÅhler-Temperatursensor: Ausschaltgrenze Åberschritten":F50129:F60000
 F50129:"Grenztemperatur ":0,4,f
 109003:"KÅhler-Temperatursensor: Nicht angeschlossen oder zerstîrt":F50130:F60000
 F50130:"Grenztemperatur ":0,4,f
@@ -5376,7 +5377,7 @@ F50552:"Zustands-Index ":0,1,u
 F50553:"Differenz ":0,4,f
 137112:"Polynom in den Kurvenscheibendaten Åberschreitet Grenzwert":F50554:F60000
 F50554:"Detail ":0,2,u
-137113:"Kurvenscheiben-Ausgleichsgetriebe: Grenzwerte Åberschritten":F50555:F60000
+137113:"Ausgleichsgetriebe: Grenzwerte Åberschritten":F50555:F60000
 F50555:"Zustands-Index ":0,1,u
 138000:"Stromregler: WÑhrend dem Einschalten ist Motordrehzahl zu hoch":F60000
 138001:"Momentbegrenzer: Grenzwert grî·er als Maximalwert":F50556:F60000
@@ -5499,141 +5500,149 @@ F50611:"Slot ":0,1,u
 F50612:"Slot ":0,1,u
 139056:"Geber: Inkremental-Signalamplitude zu gro·":F50613:F60000
 F50613:"Slot ":0,1,u
-139301:"Digital IO: 24V-Spannungsversorgung fehlerhaft":F50614:F60000
-F50614:"Slot ":0,2,u
-139302:"Digital IO 1-4: Diagnosebit aktiv (Strom, 24V Versorgung)":F50615:F60000
-F50615:"Slot ":0,2,u
-139303:"Digital IO 5-8: Diagnosebit aktiv (Strom, 24V Versorgung)":F50616:F60000
-F50616:"Slot ":0,2,u
-139305:"Digital IO 10: Diagnosebit aktiv (Strom, Temperatur)":F50617:F60000
+139059:"Geber: Statusmeldung":F50614:F60000
+F50614:"Statuscode ":0,4,u
+139060:"Geber: Sync-Bit Fehler":F50615:F60000
+F50615:"Slot ":0,1,u
+139061:"Geber: UART öbertragungsfehler ":F50616:F60000
+F50616:"Slot ":0,1,u
+139301:"Digital IO: 24V-Spannungsversorgung fehlerhaft":F50617:F60000
 F50617:"Slot ":0,2,u
-139306:"Digital IO 9: Diagnosebit aktiv (Strom, Temperatur)":F50618:F60000
+139302:"Digital IO 1-4: Diagnosebit aktiv (Strom, 24V Versorgung)":F50618:F60000
 F50618:"Slot ":0,2,u
-139307:"Digital IO: AusgÑnge nach Netzwerkfehler mittels Ausgangsmaske deaktiviert":F50619:F60000
+139303:"Digital IO 5-8: Diagnosebit aktiv (Strom, 24V Versorgung)":F50619:F60000
 F50619:"Slot ":0,2,u
-139500:"Geber: HIPERFACE: Status: Abgleichdaten fehlerhaft (01h)":F50620:F60000
-F50620:"Slot ":0,1,u
-139501:"Geber: HIPERFACE: Status: Sensor nicht eingestellt oder gerade dabei (20h)":F50621:F60000
-F50621:"Slot ":0,1,u
-139502:"Geber: HIPERFACE: Status: Abstand Ma·stab/Sensor zu hoch (21h)":F50622:F60000
-F50622:"Slot ":0,1,u
-139504:"Geber: HIPERFACE: Status: Linear Positionsfehler (23h)":F50623:F60000
+139305:"Digital IO 10: Diagnosebit aktiv (Strom, Temperatur)":F50620:F60000
+F50620:"Slot ":0,2,u
+139306:"Digital IO 9: Diagnosebit aktiv (Strom, Temperatur)":F50621:F60000
+F50621:"Slot ":0,2,u
+139307:"Digital IO: AusgÑnge nach Netzwerkfehler mittels Ausgangsmaske deaktiviert":F50622:F60000
+F50622:"Slot ":0,2,u
+139500:"Geber: HIPERFACE: Status: Abgleichdaten fehlerhaft (01h)":F50623:F60000
 F50623:"Slot ":0,1,u
-139510:"Geber: HIPERFACE: Status: Der Geber hat keinen Fehler erkannt (00h)":F50624:F60000
+139501:"Geber: HIPERFACE: Status: Sensor nicht eingestellt oder gerade dabei (20h)":F50624:F60000
 F50624:"Slot ":0,1,u
-139511:"Geber: HIPERFACE: Status: Analogsignale au·erhalb Spezifikation (01h)":F50625:F60000
+139502:"Geber: HIPERFACE: Status: Abstand Ma·stab/Sensor zu hoch (21h)":F50625:F60000
 F50625:"Slot ":0,1,u
-139512:"Geber: HIPERFACE: Status: Fehlerhafter Interner Winkeloffset (02h)":F50626:F60000
+139504:"Geber: HIPERFACE: Status: Linear Positionsfehler (23h)":F50626:F60000
 F50626:"Slot ":0,1,u
-139513:"Geber: HIPERFACE: Status: Datenfeld Partitionstabelle zerstîrt (03h)":F50627:F60000
+139510:"Geber: HIPERFACE: Status: Der Geber hat keinen Fehler erkannt (00h)":F50627:F60000
 F50627:"Slot ":0,1,u
-139514:"Geber: HIPERFACE: Status: Analoge Grenzwerte nicht verfÅgbar (04h)":F50628:F60000
+139511:"Geber: HIPERFACE: Status: Analogsignale au·erhalb Spezifikation (01h)":F50628:F60000
 F50628:"Slot ":0,1,u
-139515:"Geber: HIPERFACE: Status: Interner I˝C-Bus nicht funktionsfÑhig (05h)":F50629:F60000
+139512:"Geber: HIPERFACE: Status: Fehlerhafter Interner Winkeloffset (02h)":F50629:F60000
 F50629:"Slot ":0,1,u
-139516:"Geber: HIPERFACE: Status: Interner Checksummenfehler (06h)":F50630:F60000
+139513:"Geber: HIPERFACE: Status: Datenfeld Partitionstabelle zerstîrt (03h)":F50630:F60000
 F50630:"Slot ":0,1,u
-139517:"Geber: HIPERFACE: Status: ProgrammÅberwachungs-Fehler (07h)":F50631:F60000
+139514:"Geber: HIPERFACE: Status: Analoge Grenzwerte nicht verfÅgbar (04h)":F50631:F60000
 F50631:"Slot ":0,1,u
-139518:"Geber: HIPERFACE: Status: öberlauf des ZÑhlers (08h)":F50632:F60000
+139515:"Geber: HIPERFACE: Status: Interner I˝C-Bus nicht funktionsfÑhig (05h)":F50632:F60000
 F50632:"Slot ":0,1,u
-139519:"Geber: HIPERFACE: Status: Parityfehler (09h)":F50633:F60000
+139516:"Geber: HIPERFACE: Status: Interner Checksummenfehler (06h)":F50633:F60000
 F50633:"Slot ":0,1,u
-139520:"Geber: HIPERFACE: Status: Checksummenfehler (0Ah)":F50634:F60000
+139517:"Geber: HIPERFACE: Status: ProgrammÅberwachungs-Fehler (07h)":F50634:F60000
 F50634:"Slot ":0,1,u
-139521:"Geber: HIPERFACE: Status: Unbekannter Befehl (0Bh)":F50635:F60000
+139518:"Geber: HIPERFACE: Status: öberlauf des ZÑhlers (08h)":F50635:F60000
 F50635:"Slot ":0,1,u
-139522:"Geber: HIPERFACE: Status: Falsche BefehlslÑnge (0Ch)":F50636:F60000
+139519:"Geber: HIPERFACE: Status: Parityfehler (09h)":F50636:F60000
 F50636:"Slot ":0,1,u
-139523:"Geber: HIPERFACE: Status: Falscher Befehlsargument (0Dh)":F50637:F60000
+139520:"Geber: HIPERFACE: Status: Checksummenfehler (0Ah)":F50637:F60000
 F50637:"Slot ":0,1,u
-139524:"Geber: HIPERFACE: Status: SchreibgeschÅtztes Datenfeld (0Eh)":F50638:F60000
+139521:"Geber: HIPERFACE: Status: Unbekannter Befehl (0Bh)":F50638:F60000
 F50638:"Slot ":0,1,u
-139525:"Geber: HIPERFACE: Status: Falscher Zugriffscode (0Fh)":F50639:F60000
+139522:"Geber: HIPERFACE: Status: Falsche BefehlslÑnge (0Ch)":F50639:F60000
 F50639:"Slot ":0,1,u
-139526:"Geber: HIPERFACE: Status: UngenÅgend-Speicher-Fehler (10h)":F50640:F60000
+139523:"Geber: HIPERFACE: Status: Falscher Befehlsargument (0Dh)":F50640:F60000
 F50640:"Slot ":0,1,u
-139527:"Geber: HIPERFACE: Status: Falscher Datenfeld Offset (11h)":F50641:F60000
+139524:"Geber: HIPERFACE: Status: SchreibgeschÅtztes Datenfeld (0Eh)":F50641:F60000
 F50641:"Slot ":0,1,u
-139528:"Geber: HIPERFACE: Status: Falsche Datenfeldnummer (12h)":F50642:F60000
+139525:"Geber: HIPERFACE: Status: Falscher Zugriffscode (0Fh)":F50642:F60000
 F50642:"Slot ":0,1,u
-139538:"Geber: HIPERFACE: Status: BetragsÅberwachung Analogsignale (1Ch)":F50643:F60000
+139526:"Geber: HIPERFACE: Status: UngenÅgend-Speicher-Fehler (10h)":F50643:F60000
 F50643:"Slot ":0,1,u
-139539:"Geber: HIPERFACE: Status: Senderstrom kritisch (1Dh)":F50644:F60000
+139527:"Geber: HIPERFACE: Status: Falscher Datenfeld Offset (11h)":F50644:F60000
 F50644:"Slot ":0,1,u
-139540:"Geber: HIPERFACE: Status: Gebertemperatur kritisch (1Eh)":F50645:F60000
+139528:"Geber: HIPERFACE: Status: Falsche Datenfeldnummer (12h)":F50645:F60000
 F50645:"Slot ":0,1,u
-139541:"Geber: HIPERFACE: Status: Drehzahl zu hoch (1Fh)":F50646:F60000
+139538:"Geber: HIPERFACE: Status: BetragsÅberwachung Analogsignale (1Ch)":F50646:F60000
 F50646:"Slot ":0,1,u
-139542:"Geber: HIPERFACE: Status: Singleturn Position unzuverlÑssig (20h)":F50647:F60000
+139539:"Geber: HIPERFACE: Status: Senderstrom kritisch (1Dh)":F50647:F60000
 F50647:"Slot ":0,1,u
-139543:"Geber: HIPERFACE: Status: Multiturn Amplitudenfehler (21h)":F50648:F60000
+139540:"Geber: HIPERFACE: Status: Gebertemperatur kritisch (1Eh)":F50648:F60000
 F50648:"Slot ":0,1,u
-139544:"Geber: HIPERFACE: Status: Multiturn Synchronisierungsfehler (22h)":F50649:F60000
+139541:"Geber: HIPERFACE: Status: Drehzahl zu hoch (1Fh)":F50649:F60000
 F50649:"Slot ":0,1,u
-139545:"Geber: HIPERFACE: Status: Multiturn ZeigerlÑngenfehler (23h)":F50650:F60000
+139542:"Geber: HIPERFACE: Status: Singleturn Position unzuverlÑssig (20h)":F50650:F60000
 F50650:"Slot ":0,1,u
-139546:"Geber: HIPERFACE: Status: Multiturn ZÑhlerfehler (24h)":F50651:F60000
+139543:"Geber: HIPERFACE: Status: Multiturn Amplitudenfehler (21h)":F50651:F60000
 F50651:"Slot ":0,1,u
-141001:"KÅhler-Temperatursensor: Warngrenze Åberschritten":F50652:F60000
-F50652:"KÅhlertemperatur ":0,4,f
-141011:"Temperatursensor (Motor|Drossel|Extern): Warngrenze Åberschritten":F50653:F60000
-F50653:"Temperatur ":0,4,f
-141031:"Sperrschicht-Temperaturmodell: Warngrenze Åberschritten":F50654:F60000
-F50654:"Sperrschichttemperatur ":0,4,f
-141041:"Bremswiderstand-Temperaturmodell: Warngrenze Åberschritten":F50655:F60000
-F50655:"Bremswiderstandtemperatur ":0,4,f
-141051:"ACOPOS-Spitzenstrom: Warngrenze Åberschritten":F50656:F60000
-F50656:"Spitzenstromauslastung ":0,4,f
-141061:"ACOPOS-Dauerstrom: Warngrenze Åberschritten":F50657:F60000
-F50657:"Dauerstromauslastung ":0,4,f
-141070:"Motor-Temperaturmodell: Warngrenze Åberschritten":F50658:F60000
-F50658:"Modellierte Motortemperatur ":0,4,f
+139544:"Geber: HIPERFACE: Status: Multiturn Synchronisierungsfehler (22h)":F50652:F60000
+F50652:"Slot ":0,1,u
+139545:"Geber: HIPERFACE: Status: Multiturn ZeigerlÑngenfehler (23h)":F50653:F60000
+F50653:"Slot ":0,1,u
+139546:"Geber: HIPERFACE: Status: Multiturn ZÑhlerfehler (24h)":F50654:F60000
+F50654:"Slot ":0,1,u
+141001:"KÅhler-Temperatursensor: Warngrenze Åberschritten":F50655:F60000
+F50655:"KÅhlertemperatur ":0,4,f
+141002:"KÅhler-Temperatursensor: Nicht angeschlossen oder zerstîrt":F50656:F60000
+F50656:"Grenztemperatur ":0,4,f
+141011:"Temperatursensor (Motor|Drossel|Extern): Warngrenze Åberschritten":F50657:F60000
+F50657:"Temperatur ":0,4,f
+141031:"Sperrschicht-Temperaturmodell: Warngrenze Åberschritten":F50658:F60000
+F50658:"Sperrschichttemperatur ":0,4,f
+141041:"Bremswiderstand-Temperaturmodell: Warngrenze Åberschritten":F50659:F60000
+F50659:"Bremswiderstandtemperatur ":0,4,f
+141051:"ACOPOS-Spitzenstrom: Warngrenze Åberschritten":F50660:F60000
+F50660:"Spitzenstromauslastung ":0,4,f
+141061:"ACOPOS-Dauerstrom: Warngrenze Åberschritten":F50661:F60000
+F50661:"Dauerstromauslastung ":0,4,f
+141070:"Motor-Temperaturmodell: Warngrenze Åberschritten":F50662:F60000
+F50662:"Modellierte Motortemperatur ":0,4,f
 141075:"ACOPOS-Dauerleistung: Warngrenze Åberschritten":F60000
-141078:"Leistungsteil: Temperatursensor 1: Warngrenze Åberschritten":F50659:F60000
-F50659:"Temperatur ":0,4,f
-141080:"Vorladewiderstand-Temperaturmodell: Warngrenze Åberschritten":F50660:F60000
-F50660:"Grenztemperatur ":0,4,f
-141081:"Leistungsteil-Temperaturmodell: Warngrenze Åberschritten":F50661:F60000
-F50661:"Temperatur ":0,4,f
-141083:"Leistungsteil: Temperatursensor 2: Warngrenze Åberschritten":F50662:F60000
-F50662:"Temperatur ":0,4,f
-141085:"Leistungsteil: Temperatursensor 3: Warngrenze Åberschritten":F50663:F60000
+141078:"Leistungsteil: Temperatursensor 1: Warngrenze Åberschritten":F50663:F60000
 F50663:"Temperatur ":0,4,f
-141087:"Leistungsteil: Temperatursensor 4: Warngrenze Åberschritten":F50664:F60000
-F50664:"Temperatur ":0,4,f
-141089:"Motorgeber-Temperatursensor: Warngrenze Åberschritten":F50665:F60000
+141080:"Vorladewiderstand-Temperaturmodell: Warngrenze Åberschritten":F50664:F60000
+F50664:"Grenztemperatur ":0,4,f
+141081:"Leistungsteil-Temperaturmodell: Warngrenze Åberschritten":F50665:F60000
 F50665:"Temperatur ":0,4,f
-141090:"24V-Versorgung/Hauptrelais-Temperatursensor: Warngrenze Åberschritten":F60000
-141091:"Leistungsteil: Temperatursensor 5: Warngrenze Åberschritten":F50666:F60000
+141083:"Leistungsteil: Temperatursensor 2: Warngrenze Åberschritten":F50666:F60000
 F50666:"Temperatur ":0,4,f
-141092:"Gleichrichter-Temperaturmodell: Warngrenze Åberschritten":F50667:F60000
+141085:"Leistungsteil: Temperatursensor 3: Warngrenze Åberschritten":F50667:F60000
 F50667:"Temperatur ":0,4,f
-141093:"Zwischenkreisrelais-Temperaturmodell: Warngrenze Åberschritten":F50668:F60000
+141087:"Leistungsteil: Temperatursensor 4: Warngrenze Åberschritten":F50668:F60000
 F50668:"Temperatur ":0,4,f
-141094:"Zwischenkreiskondensator-Temperaturmodell: Warngrenze Åberschritten":F50669:F60000
+141089:"Motorgeber-Temperatursensor: Warngrenze Åberschritten":F50669:F60000
 F50669:"Temperatur ":0,4,f
-141095:"Zwischenkreis: Dauersummenleistung: Warngrenze Åberschritten":F50670:F60000
-F50670:"Grenzlast ":0,4,f
-141096:"Zwischenkreis: Spitzensummenleistung: Warngrenze Åberschritten":F50671:F60000
-F50671:"Grenzlast ":0,4,f
-141097:"DC-Anschluss-Temperaturmodell: Warngrenze Åberschritten":F50672:F60000
+141090:"24V-Versorgung/Hauptrelais-Temperatursensor: Warngrenze Åberschritten":F60000
+141091:"Leistungsteil: Temperatursensor 5: Warngrenze Åberschritten":F50670:F60000
+F50670:"Temperatur ":0,4,f
+141092:"Gleichrichter-Temperaturmodell: Warngrenze Åberschritten":F50671:F60000
+F50671:"Temperatur ":0,4,f
+141093:"Zwischenkreisrelais-Temperaturmodell: Warngrenze Åberschritten":F50672:F60000
 F50672:"Temperatur ":0,4,f
-141098:"Leistungsteil: Temperatursensor: Warngrenze Åberschritten":F50673:F60000
-F50673:"Sensor ":0,2,u
+141094:"Zwischenkreiskondensator-Temperaturmodell: Warngrenze Åberschritten":F50673:F60000
+F50673:"Temperatur ":0,4,f
+141095:"Zwischenkreis: Dauersummenleistung: Warngrenze Åberschritten":F50674:F60000
+F50674:"Grenzlast ":0,4,f
+141096:"Zwischenkreis: Spitzensummenleistung: Warngrenze Åberschritten":F50675:F60000
+F50675:"Grenzlast ":0,4,f
+141097:"DC-Anschluss-Temperaturmodell: Warngrenze Åberschritten":F50676:F60000
+F50676:"Temperatur ":0,4,f
+141098:"Leistungsteil: Temperatursensor: Warngrenze Åberschritten":F50677:F60000
+F50677:"Sensor ":0,2,u
 164002:"Wartezeit vor SW-Reset (Netzwerk mit aufsteigenden Knotennummern ?)":F60000
 164003:"Wartezeit vor NC-System-Start (Netzwerk mit aufsteigenden Knotennummern ?)":F60000
 164004:"Der folgende Hochlauf-Fehler kînnte hier mit Verzîgerung eingetragen sein":F60000
-164005:"Timeout fÅr Parameter-Freigabe nach Start des Betriebssystemes":F50674:F60000
-F50674:"Status (Bits mit falschem Wert fÅr Parameter-Freigabe sind gesetzt) ":0,4,u
-164006:"Antrieb wurde nicht synchron zum Netzwerk-Master":F50675:F60000
-F50675:"Timeout [s] ":0,4,u
-164007:"Timeout fÅr Freigabe der azyklischen Netzwerk Kommunikation":F50676:F60000
-F50676:"Timeout [s] ":0,4,u
-164008:"Timeout fÅr Freigabe der zyklischen Netzwerk Kommunikation":F50677:F60000
-F50677:"Timeout [s] ":0,4,u
-164009:"Acp10cfg enthÑlt ein POWERLINK Interface, fÅr das keine Achse definiert ist":F50678:F60000
-F50678:"Index des POWERLINK Interface in Acp10cfg (Name im Logger) ":0,2,u
+164005:"Timeout fÅr Parameter-Freigabe nach Start des Betriebssystemes":F50678:F60000
+F50678:"Status (Bits mit falschem Wert fÅr Parameter-Freigabe sind gesetzt) ":0,4,u
+164006:"Antrieb wurde nicht synchron zum Netzwerk-Master":F50679:F60000
+F50679:"Timeout [s] ":0,4,u
+164007:"Timeout fÅr Freigabe der azyklischen Netzwerk Kommunikation":F50680:F60000
+F50680:"Timeout [s] ":0,4,u
+164008:"Timeout fÅr Freigabe der zyklischen Netzwerk Kommunikation":F50681:F60000
+F50681:"Timeout [s] ":0,4,u
+164009:"Acp10cfg enthÑlt ein POWERLINK Interface, fÅr das keine Achse definiert ist":F50682:F60000
+F50682:"Index des POWERLINK Interface in Acp10cfg (Name im Logger) ":0,2,u
 164010:"NC Software Testversion (GÅltigkeitsperiode im Logger)":F60000
 164011:"Timeout fÅr Abschluss der Geber-Initialisierung":F60000
 164012:"acp10sys enthÑlt kein Betriebssystem fÅr diesen ACOPOS Hardware Typ":F60000

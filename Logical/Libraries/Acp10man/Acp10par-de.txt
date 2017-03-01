@@ -1044,10 +1044,10 @@
  1171: Bestellbezeichnung
  1172: Motor: Temperaturmodell: Grenztemperatur
  1173: Geber1: Kompensation: Modus
- 1174: Geber: Daten: Index
- 1175: Geber: Daten: Parameter A0
- 1176: Geber: Daten: Parameter A1
- 1177: Geber: Daten: Parameter A2
+ 1174: Geber1: Daten: Index
+ 1175: Geber1: Daten: Parameter A0
+ 1176: Geber1: Daten: Parameter A1
+ 1177: Geber1: Daten: Parameter A2
  1178: CTRL CR_OK: Abschaltschwelle
  1179: Bewegungsabbruch: Mindestzeit für zyklisches Bit 'Abbruch durch Antriebs-Ereignis'
  1180: CTRL Lageregler: Verzögerung in positive Richtung bei Aktivierung des Enable Eingangs
@@ -1140,7 +1140,6 @@
  1273: MAINSSIM_VOLTAGE
  1274: MAINSSIM_FREQUENCY
  1275: MAINSSIM_STATE
- 1276: CTRL Drehzahl: Reglerausgangswert
  1277: Motor: Magnetisches Ausprägungsverhältnis
  1278: CTRL Zwischenkreis: Spannungsoffset
  1279: Wechselrichter: Summenstrom: Grenzwert
@@ -1365,8 +1364,6 @@
  1504: Motor-Haltebremse: Lüftspannung
  1505: Motor-Haltebremse: Haltespannung
  1506: Motor-Haltebremse: Überspannungsgrenzwert
- 1507: Basis-Bewegungen: Sollwertgenerator Modus
- 1508: VAX Basis-Bewegungen: Sollwertgenerator Modus
  1509: Achsen Querverbindung: Geber2: Istposition
  1510: Spindelsteigungsfehler-Losekompensation: Modus
  1511: Spindelsteigungsfehler-Losekompensation: Kompensationszeit
@@ -1436,6 +1433,7 @@
  1580: Signalgenerator: Amplitude am Signalende
  1581: SafeMC: Korrektur Zählrichtung
  1582: SafeMC: ACPCOM Zustand
+ 1583: Systemverwaltung: Modus der Antriebs-Zykluszeit
  3072: FB LOGIC: Modus
  3080: FB LOGIC: Parameter-ID Eingang1
  3088: FB LOGIC: Parameter-ID Eingang2
@@ -1855,9 +1853,12 @@
 63492: LLM: Zwischenkreis: Mittenspannung
 63493: LLM: Shutlle: Initialposition
 63494: LLM: Shutlle: Index der Initialposition
-63495: ISC: Status
-63496: RESERVED63496
+63495: ISC: Zustand
+63496: ISC: Fehlertoleranz
 63497: LLM: IBN
+63498: ISC: interner Status
+63499: ISC: Fehlerzähler Low-Side
+63500: ISC: Fehlerzähler High-Side
 63501: LLM: gemessener Phasenstrom 1
 63502: LLM: gemessener Phasenstrom 2
 63503: LLM: gemessener Phasenstrom 3
@@ -2008,53 +2009,97 @@
 63648: RESERVED63648
 63649: RESERVED63649
 63650: Virtueller Geber: Istposition
-63651: Virtueller Geber: d_pos
+63651: Virtueller Geber: Positionsdifferenz in 200us
 63652: Sensor Map: aktiver Sensor
-63653: Sensor Map: Periode
-63654: Sensor Map: Gamma gueltiger Sensor
-63655: Sensor Map: absV gueltiger Sensor
-63670: test
-63671: test
-63672: test
-63673: test
-63674: test
-63675: test
-63676: test
-63677: test
-63678: test
-63679: test
-63680: test
-63681: test
-63682: test
-63683: test
-63684: test
-63685: test
-63686: test
-63687: test
-63688: test
-63689: test
-63690: test
-63691: test
-63692: test
-63693: test
-63694: test
-63695: test
-63696: test
-63697: test
-63698: test
-63699: test
-63700: test
-63701: test
-63702: test
-63703: test
-63704: test
-63705: test
-63706: test
-63707: test
-63708: test
-63709: test
-63710: test
+63653: Sensor Map: Periode aktiver Sensor
+63654: Sensor Map: Gamma aktiver Sensor
+63655: Sensor Map: Betrag aktiver Sensor
+63656: Sensor Map: Sinus aktiver Sensor
+63657: Sensor Map: Cosinus aktiver Sensor
+63711: Sinus Signal Magnetsensor 1
+63712: Cosinus Signal Magnetsensor 1
+63713: Sinus Signal Magnetsensor 2
+63714: Cosinus Signal Magnetsensor 2
+63715: Sinus Signal Magnetsensor 3
+63716: Cosinus Signal Magnetsensor 3
+63717: Sinus Signal Magnetsensor 4
+63718: Cosinus Signal Magnetsensor 4
+63719: Sinus Signal Magnetsensor 5
+63720: Cosinus Signal Magnetsensor 5
+63721: Sinus Signal Magnetsensor 6
+63722: Cosinus Signal Magnetsensor 6
+63723: Sinus Signal Magnetsensor 7
+63724: Cosinus Signal Magnetsensor 7
+63725: Sinus Signal Magnetsensor 8
+63726: Cosinus Signal Magnetsensor 8
+63727: Sinus Signal Magnetsensor 9
+63728: Cosinus Signal Magnetsensor 9
+63729: Sinus Signal Magnetsensor 10
+63730: Cosinus Signal Magnetsensor 10
+63731: Sinus Signal Magnetsensor 11
+63732: Cosinus Signal Magnetsensor 11
+63733: Sinus Signal Magnetsensor 12
+63734: Cosinus Signal Magnetsensor 12
+63735: Sinus Signal Magnetsensor 13
+63736: Cosinus Signal Magnetsensor 13
+63737: Sinus Signal Magnetsensor 14
+63738: Cosinus Signal Magnetsensor 14
+63739: Sinus Signal Magnetsensor 15
+63740: Cosinus Signal Magnetsensor 15
+63741: Sinus Signal Magnetsensor 16
+63742: Cosinus Signal Magnetsensor 16
+63743: Sinus Signal Magnetsensor 17
+63744: Cosinus Signal Magnetsensor 17
+63745: Sinus Signal Magnetsensor 18
+63746: Cosinus Signal Magnetsensor 18
+63747: Sinus Signal Magnetsensor 19
+63748: Cosinus Signal Magnetsensor 19
+63749: Sinus Signal Magnetsensor 20
+63750: Cosinus Signal Magnetsensor 20
+63751: Sinus Signal Magnetsensor 21
+63752: Cosinus Signal Magnetsensor 21
+63753: Sinus Signal Magnetsensor 22
+63754: Cosinus Signal Magnetsensor 22
+63755: Sinus Signal Magnetsensor 23
+63756: Cosinus Signal Magnetsensor 23
+63757: Sinus Signal Magnetsensor 24
+63758: Cosinus Signal Magnetsensor 24
+63759: Sinus Signal Magnetsensor 25
+63760: Cosinus Signal Magnetsensor 25
+63761: Sinus Signal Magnetsensor 26
+63762: Cosinus Signal Magnetsensor 26
+63763: Sinus Signal Magnetsensor 27
+63764: Cosinus Signal Magnetsensor 27
+63765: Sinus Signal Magnetsensor 28
+63766: Cosinus Signal Magnetsensor 28
+63767: Sinus Signal Magnetsensor 29
+63768: Cosinus Signal Magnetsensor 29
+63769: Sinus Signal Magnetsensor 30
+63770: Cosinus Signal Magnetsensor 30
+63771: Sinus Signal Magnetsensor 31
+63772: Cosinus Signal Magnetsensor 31
+63773: Sinus Signal Magnetsensor 32
+63774: Cosinus Signal Magnetsensor 32
+63775: Sinus Signal Magnetsensor 33
+63776: Cosinus Signal Magnetsensor 33
+63777: Sinus Signal Magnetsensor 34
+63778: Cosinus Signal Magnetsensor 34
+63779: Sinus Signal Magnetsensor 35
+63780: Cosinus Signal Magnetsensor 35
+63781: Sinus Signal Magnetsensor 36
+63782: Cosinus Signal Magnetsensor 36
+63783: Sinus Signal Magnetsensor 37
+63784: Cosinus Signal Magnetsensor 37
+63785: Sinus Signal Magnetsensor 38
+63786: Cosinus Signal Magnetsensor 38
+63787: Sinus Signal Magnetsensor 39
+63788: Cosinus Signal Magnetsensor 39
+63789: Sinus Signal Magnetsensor 40
+63790: Cosinus Signal Magnetsensor 40
+63791: Sinus Signal Magnetsensor 41
+63792: Cosinus Signal Magnetsensor 41
 63800: LLM: Weichen-Auslöse-Strom
+63879: LLM: Konfiguration: Index eines Parametersatzes
 63880: LLM: Lageregler: Istposition
 63881: LLM: Test R8
 63882: LLM: Zyklischer Sollwert

@@ -581,8 +581,10 @@ F5133:2:" data_modul2"
 7204:"WS error. Self-collision":F7146:F7209:F7210
 7205:"WS Error. Inter-channel collision":F7212
 7206:"WS Error. Inter-channel collision":F7146:F7209:F7210
+7207:"WS Error. External interchannel collision":F7213
+7208:"WS Error. External interchannel collision":F7146:F7209:F7210
 7226:"Programmed axis is not ready for operation":F7115:F7116:F7145
-7232:"No input data for active movement (change of NC records too fast)":F7146:F7147:F7148
+7232:"path generator - no input data (e.g. short NC blocks, high speed)":F7146:F7147:F7148
 7233:"T_max exceeded at controlling the 'In-Position-Tolerance' (Accuracy Hold)":F7115:F7116:F7145
 7234:"Wrong NC init program name specified at 'RESTART'":F7129
 7235:"Wrong start position (type or position)"
@@ -764,9 +766,10 @@ F7208:"TRF_generic() return status (bgen)":4,4,d
 F7209:"Address of collision info":4,4,d
 F7210:"Blocknummer N":8,4,d
 F7211:"Reason":0,1,d
-F7212:"channel name":0,12,s
-F7212:0:"Line pointer queue OFF"
-F7212:1:"Bad single step mode"
+F7211:0:"Line pointer queue OFF"
+F7211:1:"Bad single step mode"
+F7212:"Channel name":0,12,s
+F7213:"Wire-frame model index":0,4,d
 8000:" CNC Dynamic Calculation "
 8101:"Only one tangential axis possible"
 8102:"No feed rate (F...) for NC block (Linear Interpolation)":F8101:F8113:F8114
@@ -2701,7 +2704,9 @@ F14116:"Ncalloc-Status":0,2,d
 15926:"Program date or time different at RESTART":F15108
 15927:"Inline attribute ignored due to multiple usage of argument reference":F15100:F15101
 15928:"Bad execution context":F15100:F15101
-15929:"Last error code (never issued)"
+15929:"Assignment to the return value of a string type must be the last statement":F15100:F15101
+15930:"Invalid axis name":F15100:F15101
+15931:"Last error code (never issued)"
 F15100:"File Name":4,8,s
 F15101:"Line Number":0,4,d
 F15102:"Operation":4,8,s
@@ -3803,7 +3808,6 @@ F50014:"minimal version ":0,2,u
 101001:"Error-FIFO overflow":F60000
 101002:"Parameter outside the valid range":F60000
 101003:"Parameter cannot be written while loop control is active":F60000
-101004:"Timeout in network life sign monitor":F60000
 101005:"Parameter cannot be written while a movement is active":F60000
 101006:"Invalid parameter for trigger event (digital input + edge)":F60000
 101008:"Master for network coupling deactivated - Encoder error":F50015:F60000
@@ -3883,13 +3887,10 @@ F50025:"Acceleration ":0,4,f
 105038:"Homing procedure mode not possible: Restore data invalid":F50026:F60000
 F50026:"Detail ":0,2,u
 105039:"Function not possible: Encoder error":F60000
-105040:"Jolt limiter: Too many changes in acceleration - Movement stopped":F60000
-105041:"Jolt limiter: Command not allowed":F60000
-105042:"Jolt limiter: Too many changes in acceleration - Command not possible":F60000
 105043:"Homing procedure mode not possible: Compensation active":F60000
-105101:"Cam profile compensation gears: Limit values exceeded":F50027:F60000
+105101:"Compensation gear: Limit values exceeded":F50027:F60000
 F50027:"State index ":0,1,u
-105102:"Too many changes of cam profile per cycle (master period too short)":F50028:F60000
+105102:"Too many changes of cam per cycle (master period too short)":F50028:F60000
 F50028:"State index ":0,1,u
 105107:"Cam coupling cannot be started: Parameter outside the valid range":F50029:F60000
 F50029:"Parameter ID ":0,2,d
@@ -3903,14 +3904,14 @@ F50031:"State index ":0,1,u
 105301:"Start cam automat linkage not possible: Parameter outside the valid range":F50032:F60000
 F50032:"Parameter ID ":0,2,d
 105302:"Parameter cannot be written: Cam automat active":F60000
-105303:"Cam profile data not available at index":F60000
-105304:"Format error in cam profile data":F50033:F60000
+105303:"Cam data not available at index":F60000
+105304:"Format error in cam data":F50033:F60000
 F50033:"Detail ":0,2,u
 105311:"Cam automat: Event leads to non initialized state":F60000
-105315:"Download error: Cam profile data in use by cam automat or function block":F60000
+105315:"Download error: Cam data in use by cam automat or function block":F60000
 105316:"Event type is not possible for entry in compensation gears":F60000
-105319:"Cam profile data not allowed for state 0":F60000
-105329:"No valid cam profile data":F60000
+105319:"Cam data not allowed for state 0":F60000
+105329:"No valid cam data":F60000
 106000:"Master sampling time is not a multiple of position controller sampling time":F60000
 106002:"Sync controller: Error tolerance of system time difference exceeded":F60000
 106008:"Controller is already active":F60000
@@ -3985,7 +3986,7 @@ F50052:"Limit value ":0,4,f
 107012:"Encoder: Hiperface error bit":F50053:F60000
 F50053:"Slot ":0,1,u
 107013:"Encoder: Status message":F50054:F60000
-F50054:"Status code ":0,1,u
+F50054:"Status code ":0,4,u
 107014:"Encoder: CRC error during parameter transfer":F50055:F60000
 F50055:"Slot ":0,1,u
 107015:"Encoder: Timeout error during parameter transfer":F50056:F60000
@@ -4095,66 +4096,66 @@ F50107:"Slot ":0,1,u
 107078:"Encoder: Intersegment communication failure":F60000
 107079:"Encoder: Internal Error":F50108:F60000
 F50108:"- ":0,4,u
+107080:"Encoder: Error in the encoder communication":F50109:F60000
+F50109:"Slot ":0,1,u
 107100:"Parameter function not supported. (Module ?)":F60000
-107103:"Not supported interface":F50109:F60000
-F50109:"Interface ":0,4,u
+107103:"Not supported interface":F50110:F60000
+F50110:"Interface ":0,4,u
 107200:"DC bus: Overvoltage":F60000
 107210:"DC bus: Pre-charging: Voltage unstable ":F60000
-107211:"DC bus: Voltage dip":F50110:F60000
-F50110:"Low voltage limit ":0,4,f
-107212:"DC bus: Large voltage dip":F50111:F60000
+107211:"DC bus: Voltage dip":F50111:F60000
 F50111:"Low voltage limit ":0,4,f
+107212:"DC bus: Large voltage dip":F50112:F60000
+F50112:"Low voltage limit ":0,4,f
 107214:"DC bus: Pre-charging resistor hot (too many power line fails)":F60000
 107215:"Power mains: At least one phase of the power line failed":F60000
-107217:"DC bus: Nominal voltage detection: Voltage too high":F50112:F60000
-F50112:"Maximum DC bus voltage ":0,4,f
-107218:"DC bus: Nominal voltage detection: Voltage too low":F50113:F60000
-F50113:"Minimum required DC bus voltage ":0,4,f
-107219:"DC bus: Pre-charging: Voltage too low":F50114:F60000
+107217:"DC bus: Nominal voltage detection: Voltage too high":F50113:F60000
+F50113:"Maximum DC bus voltage ":0,4,f
+107218:"DC bus: Nominal voltage detection: Voltage too low":F50114:F60000
 F50114:"Minimum required DC bus voltage ":0,4,f
-107220:"DC bus: Nominal voltage detection: Voltage not allowed":F50115:F60000
-F50115:"DC bus voltage ":0,4,f
-107221:"Mains: Failure":F50116:F60000
-F50116:"Line frequency ":0,4,f
-107222:"Inverter: Output: Summation current: Overcurrent (Ground fault)":F50117:F60000
-F50117:"Limit ":0,4,f
+107219:"DC bus: Pre-charging: Voltage too low":F50115:F60000
+F50115:"Minimum required DC bus voltage ":0,4,f
+107220:"DC bus: Nominal voltage detection: Voltage not allowed":F50116:F60000
+F50116:"DC bus voltage ":0,4,f
+107221:"Mains: Failure":F50117:F60000
+F50117:"Line frequency ":0,4,f
+107222:"Inverter: Output: Summation current: Overcurrent (Ground fault)":F50118:F60000
+F50118:"Limit ":0,4,f
 107223:"DC bus: Overvoltage DC-GND":F60000
 107224:"Connector to back plane: 24V-GND contact monitoring: Voltage too low":F60000
 107225:"DC bus: Overvoltage":F60000
 107226:"DC bus: Overcurrent":F60000
-107227:"Bleeder: Overcurrent":F50118:F60000
-F50118:"Limit ":0,4,f
-107228:"DC bus: Nominal voltage detection: High inrush current":F50119:F60000
-F50119:"Voltage boost factor ":0,4,f
+107227:"Bleeder: Overcurrent":F50119:F60000
+F50119:"Limit ":0,4,f
+107228:"DC bus: Nominal voltage detection: High inrush current":F50120:F60000
+F50120:"Voltage boost factor ":0,4,f
 107229:"Chopper: Overcurrent":F60000
 107230:"DC bus: measurement site 2 out of bounds":F60000
-107300:"Digital IO: IO Configuration invalid":F50120:F60000
-F50120:"Slot ":0,2,u
+107300:"Digital IO: IO Configuration invalid":F50121:F60000
+F50121:"Slot ":0,2,u
 107401:"Parameter position exceeds maximum data length":F60000
-107402:"Processing of parameter sequence aborted: Write error":F50121:F60000
-F50121:"Index of parameter ":0,2,u
+107402:"Processing of parameter sequence aborted: Write error":F50122:F60000
+F50122:"Index of parameter ":0,2,u
 107403:"Processing of parameter sequence is still active":F60000
 107404:"Parameter sequence not available at index":F60000
 108001:"EEPROM select not valid ":F60000
 108003:"Table index not valid ":F60000
 108004:"EEPROM variable type not valid ":F60000
 108005:"EEPROM type not valid ":F60000
-108006:"Value of EEPROM parameter is zero":F50122:F60000
-F50122:"EEPROM Parameter ID ":0,2,u
-108007:"Value of EEPROM parameter is not valid":F50123:F60000
+108006:"Value of EEPROM parameter is zero":F50123:F60000
 F50123:"EEPROM Parameter ID ":0,2,u
-108011:"EPROM: Data not valid":F50124:F60000
-F50124:"CODE ":0,4,u
-108012:"EPROM: Controller-ID not valid":F50125:F60000
-F50125:"CODE ":0,1,u
-108013:"EPROM: CRC error":F50126:F60000
+108007:"Value of EEPROM parameter is not valid":F50124:F60000
+F50124:"EEPROM Parameter ID ":0,2,u
+108011:"EPROM: Data not valid":F50125:F60000
+F50125:"CODE ":0,4,u
+108012:"EPROM: Controller-ID not valid":F50126:F60000
 F50126:"CODE ":0,1,u
+108013:"EPROM: CRC error":F50127:F60000
+F50127:"CODE ":0,1,u
 108020:"Invalid switch frequency ":F60000
-109000:"Heatsink temperature sensor: Stop limit exceeded":F50127:F60000
-F50127:"Temperature limit ":0,4,f
-109001:"Heatsink temperature sensor: Switch off limit exceeded":F50128:F60000
+109000:"Heatsink temperature sensor: Stop limit exceeded":F50128:F60000
 F50128:"Temperature limit ":0,4,f
-109002:"Heatsink temperature sensor: Not connected or damaged":F50129:F60000
+109001:"Heatsink temperature sensor: Switch off limit exceeded":F50129:F60000
 F50129:"Temperature limit ":0,4,f
 109003:"Heatsink temperature sensor: Not connected or destroyed":F50130:F60000
 F50130:"Temperature limit ":0,4,f
@@ -5372,11 +5373,11 @@ F50550:"State index ":0,1,u
 F50551:"State index ":0,1,u
 137108:"Calculated compensation distance of master axis limited to minimum":F50552:F60000
 F50552:"State index ":0,1,u
-137111:"Cam profile data: Difference between polynomial value y(xn) and slave period":F50553:F60000
+137111:"Cam data: Difference between polynomial value y(xn) and slave period":F50553:F60000
 F50553:"Difference ":0,4,f
-137112:"Polynomial within cam profile data exceeds limit value":F50554:F60000
+137112:"Polynomial within cam data exceeds limit value":F50554:F60000
 F50554:"Detail ":0,2,u
-137113:"Cam profile compensation gears: Limit values exceeded":F50555:F60000
+137113:"Compensation gear: Limit values exceeded":F50555:F60000
 F50555:"State index ":0,1,u
 138000:"Current controller: Motor speed is too high during switching on":F60000
 138001:"Torque limiter: Limit value higher than maximum value":F50556:F60000
@@ -5499,141 +5500,149 @@ F50611:"Slot ":0,1,u
 F50612:"Slot ":0,1,u
 139056:"Encoder: Incremental signal amplitude too large":F50613:F60000
 F50613:"Slot ":0,1,u
-139301:"Digital IO: 24V power supply fail":F50614:F60000
-F50614:"Slot ":0,2,u
-139302:"Digital IO 1-4: Diagnose bit active (current, 24V supply)":F50615:F60000
-F50615:"Slot ":0,2,u
-139303:"Digital IO 5-8: Diagnose bit active (current, 24V supply)":F50616:F60000
-F50616:"Slot ":0,2,u
-139305:"Digital IO 10: Diagnose bit active (current, temperature)":F50617:F60000
+139059:"Encoder: Status message":F50614:F60000
+F50614:"Status code ":0,4,u
+139060:"Encoder: Sync bit error":F50615:F60000
+F50615:"Slot ":0,1,u
+139061:"Encoder: UART Transmission error":F50616:F60000
+F50616:"Slot ":0,1,u
+139301:"Digital IO: 24V power supply fail":F50617:F60000
 F50617:"Slot ":0,2,u
-139306:"Digital IO 9: Diagnose bit active (current, temperature)":F50618:F60000
+139302:"Digital IO 1-4: Diagnose bit active (current, 24V supply)":F50618:F60000
 F50618:"Slot ":0,2,u
-139307:"Digital IO: outputs deactivated by output mask after network error":F50619:F60000
+139303:"Digital IO 5-8: Diagnose bit active (current, 24V supply)":F50619:F60000
 F50619:"Slot ":0,2,u
-139500:"Encoder: HIPERFACE: Status: Incorrect alignment data (01h)":F50620:F60000
-F50620:"Slot ":0,1,u
-139501:"Encoder: HIPERFACE: Status: Sensor not adjusted or in adjustment mode (20h)":F50621:F60000
-F50621:"Slot ":0,1,u
-139502:"Encoder: HIPERFACE: Status: Distance measure/sensor too high (21h)":F50622:F60000
-F50622:"Slot ":0,1,u
-139504:"Encoder: HIPERFACE: Status: Linear position fault (23h)":F50623:F60000
+139305:"Digital IO 10: Diagnose bit active (current, temperature)":F50620:F60000
+F50620:"Slot ":0,2,u
+139306:"Digital IO 9: Diagnose bit active (current, temperature)":F50621:F60000
+F50621:"Slot ":0,2,u
+139307:"Digital IO: outputs deactivated by output mask after network error":F50622:F60000
+F50622:"Slot ":0,2,u
+139500:"Encoder: HIPERFACE: Status: Incorrect alignment data (01h)":F50623:F60000
 F50623:"Slot ":0,1,u
-139510:"Encoder: HIPERFACE: Status: The encoder has not detected any faults (00h)":F50624:F60000
+139501:"Encoder: HIPERFACE: Status: Sensor not adjusted or in adjustment mode (20h)":F50624:F60000
 F50624:"Slot ":0,1,u
-139511:"Encoder: HIPERFACE: Status: Analog signals outside specification (01h)":F50625:F60000
+139502:"Encoder: HIPERFACE: Status: Distance measure/sensor too high (21h)":F50625:F60000
 F50625:"Slot ":0,1,u
-139512:"Encoder: HIPERFACE: Status: Incorrect internal angular offset (02h)":F50626:F60000
+139504:"Encoder: HIPERFACE: Status: Linear position fault (23h)":F50626:F60000
 F50626:"Slot ":0,1,u
-139513:"Encoder: HIPERFACE: Status: Data field partitioning table destroyed (03h)":F50627:F60000
+139510:"Encoder: HIPERFACE: Status: The encoder has not detected any faults (00h)":F50627:F60000
 F50627:"Slot ":0,1,u
-139514:"Encoder: HIPERFACE: Status: Analog limit values not available (04h)":F50628:F60000
+139511:"Encoder: HIPERFACE: Status: Analog signals outside specification (01h)":F50628:F60000
 F50628:"Slot ":0,1,u
-139515:"Encoder: HIPERFACE: Status: Internal I²C bus not operational (05h)":F50629:F60000
+139512:"Encoder: HIPERFACE: Status: Incorrect internal angular offset (02h)":F50629:F60000
 F50629:"Slot ":0,1,u
-139516:"Encoder: HIPERFACE: Status: Internal checksum error (06h)":F50630:F60000
+139513:"Encoder: HIPERFACE: Status: Data field partitioning table destroyed (03h)":F50630:F60000
 F50630:"Slot ":0,1,u
-139517:"Encoder: HIPERFACE: Status: Program watchdog fault (07h)":F50631:F60000
+139514:"Encoder: HIPERFACE: Status: Analog limit values not available (04h)":F50631:F60000
 F50631:"Slot ":0,1,u
-139518:"Encoder: HIPERFACE: Status: Counter overflow (08h)":F50632:F60000
+139515:"Encoder: HIPERFACE: Status: Internal I²C bus not operational (05h)":F50632:F60000
 F50632:"Slot ":0,1,u
-139519:"Encoder: HIPERFACE: Status: Parity error (09h)":F50633:F60000
+139516:"Encoder: HIPERFACE: Status: Internal checksum error (06h)":F50633:F60000
 F50633:"Slot ":0,1,u
-139520:"Encoder: HIPERFACE: Status: Checksum error (0Ah)":F50634:F60000
+139517:"Encoder: HIPERFACE: Status: Program watchdog fault (07h)":F50634:F60000
 F50634:"Slot ":0,1,u
-139521:"Encoder: HIPERFACE: Status: Unknown command (0Bh)":F50635:F60000
+139518:"Encoder: HIPERFACE: Status: Counter overflow (08h)":F50635:F60000
 F50635:"Slot ":0,1,u
-139522:"Encoder: HIPERFACE: Status: Wrong command length (0Ch)":F50636:F60000
+139519:"Encoder: HIPERFACE: Status: Parity error (09h)":F50636:F60000
 F50636:"Slot ":0,1,u
-139523:"Encoder: HIPERFACE: Status: Wrong command argument (0Dh)":F50637:F60000
+139520:"Encoder: HIPERFACE: Status: Checksum error (0Ah)":F50637:F60000
 F50637:"Slot ":0,1,u
-139524:"Encoder: HIPERFACE: Status: Read-only data field (0Eh)":F50638:F60000
+139521:"Encoder: HIPERFACE: Status: Unknown command (0Bh)":F50638:F60000
 F50638:"Slot ":0,1,u
-139525:"Encoder: HIPERFACE: Status: Incorrect access code (0Fh)":F50639:F60000
+139522:"Encoder: HIPERFACE: Status: Wrong command length (0Ch)":F50639:F60000
 F50639:"Slot ":0,1,u
-139526:"Encoder: HIPERFACE: Status: Out of memory fault (10h)":F50640:F60000
+139523:"Encoder: HIPERFACE: Status: Wrong command argument (0Dh)":F50640:F60000
 F50640:"Slot ":0,1,u
-139527:"Encoder: HIPERFACE: Status: Wrong data field offset (11h)":F50641:F60000
+139524:"Encoder: HIPERFACE: Status: Read-only data field (0Eh)":F50641:F60000
 F50641:"Slot ":0,1,u
-139528:"Encoder: HIPERFACE: Status: Wrong data field number (12h)":F50642:F60000
+139525:"Encoder: HIPERFACE: Status: Incorrect access code (0Fh)":F50642:F60000
 F50642:"Slot ":0,1,u
-139538:"Encoder: HIPERFACE: Status: Value monitoring analog signals (1Ch)":F50643:F60000
+139526:"Encoder: HIPERFACE: Status: Out of memory fault (10h)":F50643:F60000
 F50643:"Slot ":0,1,u
-139539:"Encoder: HIPERFACE: Status: Transmitter current critical (1Dh)":F50644:F60000
+139527:"Encoder: HIPERFACE: Status: Wrong data field offset (11h)":F50644:F60000
 F50644:"Slot ":0,1,u
-139540:"Encoder: HIPERFACE: Status: Encoder temperature critical (1Eh)":F50645:F60000
+139528:"Encoder: HIPERFACE: Status: Wrong data field number (12h)":F50645:F60000
 F50645:"Slot ":0,1,u
-139541:"Encoder: HIPERFACE: Status: Speed too high (1Fh)":F50646:F60000
+139538:"Encoder: HIPERFACE: Status: Value monitoring analog signals (1Ch)":F50646:F60000
 F50646:"Slot ":0,1,u
-139542:"Encoder: HIPERFACE: Status: Singleturn position unreliable (20h)":F50647:F60000
+139539:"Encoder: HIPERFACE: Status: Transmitter current critical (1Dh)":F50647:F60000
 F50647:"Slot ":0,1,u
-139543:"Encoder: HIPERFACE: Status: Multiturn amplitude fault (21h)":F50648:F60000
+139540:"Encoder: HIPERFACE: Status: Encoder temperature critical (1Eh)":F50648:F60000
 F50648:"Slot ":0,1,u
-139544:"Encoder: HIPERFACE: Status: Multiturn sync fault (22h)":F50649:F60000
+139541:"Encoder: HIPERFACE: Status: Speed too high (1Fh)":F50649:F60000
 F50649:"Slot ":0,1,u
-139545:"Encoder: HIPERFACE: Status: Multiturn vectorlength fault (23h)":F50650:F60000
+139542:"Encoder: HIPERFACE: Status: Singleturn position unreliable (20h)":F50650:F60000
 F50650:"Slot ":0,1,u
-139546:"Encoder: HIPERFACE: Status: Multiturn counter fault (24h)":F50651:F60000
+139543:"Encoder: HIPERFACE: Status: Multiturn amplitude fault (21h)":F50651:F60000
 F50651:"Slot ":0,1,u
-141001:"Heatsink temperature sensor: Warning limit exceeded":F50652:F60000
-F50652:"Heatsink temperature ":0,4,f
-141011:"Temperature sensor (Motor|Choke|External): Warning limit exceeded":F50653:F60000
-F50653:"Temperature ":0,4,f
-141031:"Junction temperature model: Warning limit exceeded":F50654:F60000
-F50654:"Junction temperature ":0,4,f
-141041:"Bleeder temperature model: Warning limit exceeded":F50655:F60000
-F50655:"Bleeder temperature ":0,4,f
-141051:"ACOPOS peak current: Warning limit exceeded":F50656:F60000
-F50656:"Peak current load ":0,4,f
-141061:"ACOPOS continuous current: Warning limit exceeded":F50657:F60000
-F50657:"Continuous current load ":0,4,f
-141070:"Motor temperature model: Warning limit exceeded":F50658:F60000
-F50658:"Calculated motor temperature ":0,4,f
+139544:"Encoder: HIPERFACE: Status: Multiturn sync fault (22h)":F50652:F60000
+F50652:"Slot ":0,1,u
+139545:"Encoder: HIPERFACE: Status: Multiturn vectorlength fault (23h)":F50653:F60000
+F50653:"Slot ":0,1,u
+139546:"Encoder: HIPERFACE: Status: Multiturn counter fault (24h)":F50654:F60000
+F50654:"Slot ":0,1,u
+141001:"Heatsink temperature sensor: Warning limit exceeded":F50655:F60000
+F50655:"Heatsink temperature ":0,4,f
+141002:"Heatsink temperature sensor: Not connected or damaged":F50656:F60000
+F50656:"Temperature limit ":0,4,f
+141011:"Temperature sensor (Motor|Choke|External): Warning limit exceeded":F50657:F60000
+F50657:"Temperature ":0,4,f
+141031:"Junction temperature model: Warning limit exceeded":F50658:F60000
+F50658:"Junction temperature ":0,4,f
+141041:"Bleeder temperature model: Warning limit exceeded":F50659:F60000
+F50659:"Bleeder temperature ":0,4,f
+141051:"ACOPOS peak current: Warning limit exceeded":F50660:F60000
+F50660:"Peak current load ":0,4,f
+141061:"ACOPOS continuous current: Warning limit exceeded":F50661:F60000
+F50661:"Continuous current load ":0,4,f
+141070:"Motor temperature model: Warning limit exceeded":F50662:F60000
+F50662:"Calculated motor temperature ":0,4,f
 141075:"ACOPOS continuous power: Warning limit exceeded":F60000
-141078:"Power stage: Temperature sensor 1: Warning limit exceeded":F50659:F60000
-F50659:"Temperature ":0,4,f
-141080:"Pre-charging resistor temperature model: Warning limit exceeded":F50660:F60000
-F50660:"Temperature limit ":0,4,f
-141081:"Power stage temperature model: Warning limit exceeded":F50661:F60000
-F50661:"Temperature ":0,4,f
-141083:"Power stage: Temperature sensor 2: Warning limit exceeded":F50662:F60000
-F50662:"Temperature ":0,4,f
-141085:"Power stage: Temperature sensor 3: Warning limit exceeded":F50663:F60000
+141078:"Power stage: Temperature sensor 1: Warning limit exceeded":F50663:F60000
 F50663:"Temperature ":0,4,f
-141087:"Power stage: Temperature sensor 4: Warning limit exceeded":F50664:F60000
-F50664:"Temperature ":0,4,f
-141089:"Motor encoder temperature sensor: Warning limit exceeded":F50665:F60000
+141080:"Pre-charging resistor temperature model: Warning limit exceeded":F50664:F60000
+F50664:"Temperature limit ":0,4,f
+141081:"Power stage temperature model: Warning limit exceeded":F50665:F60000
 F50665:"Temperature ":0,4,f
-141090:"24V Supply/Main relay temperature sensor: Warning limit exceeded":F60000
-141091:"Power stage: Temperature sensor 5: Warning limit exceeded":F50666:F60000
+141083:"Power stage: Temperature sensor 2: Warning limit exceeded":F50666:F60000
 F50666:"Temperature ":0,4,f
-141092:"Rectifier temperature model: Warning limit exceeded":F50667:F60000
+141085:"Power stage: Temperature sensor 3: Warning limit exceeded":F50667:F60000
 F50667:"Temperature ":0,4,f
-141093:"DC bus relay temperature model: Warning limit exceeded":F50668:F60000
+141087:"Power stage: Temperature sensor 4: Warning limit exceeded":F50668:F60000
 F50668:"Temperature ":0,4,f
-141094:"DC bus capacitor temperature model: Warning limit exceeded":F50669:F60000
+141089:"Motor encoder temperature sensor: Warning limit exceeded":F50669:F60000
 F50669:"Temperature ":0,4,f
-141095:"DC bus: Continuous total power: Warning limit exceeded":F50670:F60000
-F50670:"Load limit ":0,4,f
-141096:"DC bus: Peak total power: Warning limit exceeded":F50671:F60000
-F50671:"Load limit ":0,4,f
-141097:"DC connector temperature model: Warning limit exceeded":F50672:F60000
+141090:"24V Supply/Main relay temperature sensor: Warning limit exceeded":F60000
+141091:"Power stage: Temperature sensor 5: Warning limit exceeded":F50670:F60000
+F50670:"Temperature ":0,4,f
+141092:"Rectifier temperature model: Warning limit exceeded":F50671:F60000
+F50671:"Temperature ":0,4,f
+141093:"DC bus relay temperature model: Warning limit exceeded":F50672:F60000
 F50672:"Temperature ":0,4,f
-141098:"Power stage: Temperature sensor: Warning limit exceeded":F50673:F60000
-F50673:"sensor ":0,2,u
+141094:"DC bus capacitor temperature model: Warning limit exceeded":F50673:F60000
+F50673:"Temperature ":0,4,f
+141095:"DC bus: Continuous total power: Warning limit exceeded":F50674:F60000
+F50674:"Load limit ":0,4,f
+141096:"DC bus: Peak total power: Warning limit exceeded":F50675:F60000
+F50675:"Load limit ":0,4,f
+141097:"DC connector temperature model: Warning limit exceeded":F50676:F60000
+F50676:"Temperature ":0,4,f
+141098:"Power stage: Temperature sensor: Warning limit exceeded":F50677:F60000
+F50677:"sensor ":0,2,u
 164002:"Delay before SW Reset (network with ascending node numbers ?)":F60000
 164003:"Delay before NC System Start (network with ascending node numbers ?)":F60000
 164004:"The following boot error could be entered here with a delay":F60000
-164005:"Timeout for parameter enable after start of operating system":F50674:F60000
-F50674:"Status (bits with wrong value for parameter enable) ":0,4,u
-164006:"Drive did not become synchronous with network master":F50675:F60000
-F50675:"Timeout [sec] ":0,4,u
-164007:"Timeout for enable of acyclic network communication":F50676:F60000
-F50676:"Timeout [sec] ":0,4,u
-164008:"Timeout for enable of cyclic network communication":F50677:F60000
-F50677:"Timeout [sec] ":0,4,u
-164009:"Acp10cfg contains a POWERLINK interface, for which no axis is defined":F50678:F60000
-F50678:"Index of POWERLINK interface in Acp10cfg (name in Logger) ":0,2,u
+164005:"Timeout for parameter enable after start of operating system":F50678:F60000
+F50678:"Status (bits with wrong value for parameter enable) ":0,4,u
+164006:"Drive did not become synchronous with network master":F50679:F60000
+F50679:"Timeout [sec] ":0,4,u
+164007:"Timeout for enable of acyclic network communication":F50680:F60000
+F50680:"Timeout [sec] ":0,4,u
+164008:"Timeout for enable of cyclic network communication":F50681:F60000
+F50681:"Timeout [sec] ":0,4,u
+164009:"Acp10cfg contains a POWERLINK interface, for which no axis is defined":F50682:F60000
+F50682:"Index of POWERLINK interface in Acp10cfg (name in Logger) ":0,2,u
 164010:"NC software test version (validity period in Logger)":F60000
 164011:"Timeout for completion of encoder initialization":F60000
 164012:"acp10sys does not contain an operating system for this ACOPOS hardware type":F60000

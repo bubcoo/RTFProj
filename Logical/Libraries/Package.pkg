@@ -16,15 +16,6 @@
     <Object Type="Library" Language="Binary" Description="The AsArProf library is used to operate the AR Profiler from an application.">AsArProf</Object>
     <Object Type="Library" Language="Binary" Description="The AsMem library makes it possible to manage memory blocks located in large memory areas (memory partitions).">AsMem</Object>
     <Object Type="Library" Language="Binary" Description="The BRSystem library provides the user with a number of system functions for e.g. handling permanent memory, accessing exception information, etc.">brsystem</Object>
-    <Object Type="Library" Language="Binary" Description="Motion Control Manager">Acp10man</Object>
-    <Object Type="Library" Language="Binary" Description="ACOPOS Parameters">Acp10par</Object>
-    <Object Type="Library" Language="Binary" Description="Global NC functions">NcGlobal</Object>
-    <Object Type="Library" Language="Binary" Description="CNC Manager">Arnc0man</Object>
-    <Object Type="Library" Language="Binary" Description="PLCopen Motion Control function blocks">Acp10_MC</Object>
-    <Object Type="Library" Language="Binary" Description="ACOPOS Simulation">Acp10sim</Object>
-    <Object Type="Library" Language="Binary" Description="MpCom Library">MpCom</Object>
-    <Object Type="Library" Language="Binary" Description="Single and multi axes control">MpAxis</Object>
-    <Object Type="Library" Language="Binary" Description="Advanced alarm management">MpAlarmX</Object>
     <Object Type="Library" Language="Binary" Description="This library contains standard function blocks and functions for IEC 61131-3.">standard</Object>
     <Object Type="Package" Description="Roman Parák Library">rp_library</Object>
     <Object Type="Package" Description="Lubomir Bubenik's Library for camera.">LB_Camera</Object>
@@ -34,5 +25,14 @@
     <Object Type="Library" Language="IEC">IecCheck</Object>
     <Object Type="Library" Language="Binary" Description="This mechatronics library contains basic control function blocks.">MTBasics</Object>
     <Object Type="Library" Language="Binary" Description="This mechatronics library contains different system datatypes and general error numbers.">MTTypes</Object>
+    <Object Type="Library" Language="Binary" Description="Motion Control Manager">Acp10man</Object>
+    <Object Type="Library" Language="Binary" Description="ACOPOS Parameters">Acp10par</Object>
+    <Object Type="Library" Language="Binary" Description="Global NC functions">NcGlobal</Object>
+    <Object Type="Library" Language="Binary" Description="CNC Manager">Arnc0man</Object>
+    <Object Type="Library" Language="Binary" Description="ACOPOS Simulation">Acp10sim</Object>
+    <Object Type="Library" Language="Binary" Description="PLCopen Motion Control function blocks">Acp10_MC</Object>
+    <Object Type="Library" Language="Binary" Description="MpCom Library">MpCom</Object>
+    <Object Type="Library" Language="Binary" Description="Single and multi axes control">MpAxis</Object>
+    <Object Type="Library" Language="Binary" Description="Advanced alarm management">MpAlarmX</Object>
   </Objects>
 </Package>

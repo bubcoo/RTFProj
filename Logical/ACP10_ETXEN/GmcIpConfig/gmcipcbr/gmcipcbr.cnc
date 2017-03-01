@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?ARNC0 Version="3.15.1"?>
+<?ARNC0 Version="3.16.1"?>
 <Root LangModule="ailgcode" Version="1.0">
   <AxesSpec>
     <!-- recommend configuring long names first -->
@@ -93,6 +93,7 @@
     <WS_ExclOff type="ENUM" EnumType="STRING" Value1="EXCL_OFF" />
     <WS_CyclicOn type="ENUM" EnumType="STRING" Value1="CYCLIC_ON" />
     <WS_InterChannelOn type="ENUM" EnumType="STRING" Value1="INTERCHANNEL_ON" />
+    <WS_ExternalInterChannelOn type="ENUM" EnumType="STRING" Value1="EXTERNAL_INTERCHANNEL_ON" />
     <WS_Shape type="ENUM" EnumType="STRING" Value1="CUBOID" Value2="CYLINDER_IN_Z" Value3="CYLINDER2_IN_Z" />
     <FreeExtData type="ENUM" EnumType="STRING" Value1="FREE_EXT_DATA" />
     <FuncBeforeRounding type="ENUM" EnumType="STRING" Value1="FUNC_BEFORE_ROUNDING" />
@@ -1420,7 +1421,7 @@
     </G17>
     <!--G17_1 GNum="17.1" Alias="MAPPING_MODE"-->
     <G17_1 GNum="17.1" Alias="MAPPING_MODE|$MAPPING_MODE" AliasIsPattern="Yes">
-      <Arg DataType="EqString" ref="eq" MinCount="0" MaxCount="1" />
+      <Arg DataType="EqString" ref="eq" MinCount="0" MaxCount="2" />
       <Arg DataType="Long" ref="mapping_mode" />
       #next_motion.Command = MPCMD_MAPPING_MODE;
       #next_motion.Data.I4_value = ${mapping_mode};
@@ -2712,6 +2713,7 @@
       <Arg DataType="WS_ExclOff" ref="excl_off" MinCount="0" MaxCount="1" />
       <Arg DataType="WS_CyclicOn" ref="cyclic_on" MinCount="0" MaxCount="1" />
       <Arg DataType="WS_InterChannelOn" ref="inter_channel_on" MinCount="0" MaxCount="1" />
+      <Arg DataType="WS_ExternalInterChannelOn" ref="external_inter_channel_on" MinCount="0" MaxCount="1" />
       #next_motion.Command = MPCMD_WS_CTRL_ON;
       if(Defined(:${sco}:))
         <!-- noop -->
@@ -2728,6 +2730,9 @@
       endif
       if(Defined(:${inter_channel_on}:))
         #next_motion.Data.WS_Ctrl.interchannel_collision = 1;
+      endif
+      if(Defined(:${external_inter_channel_on}:))
+        #next_motion.Data.WS_Ctrl.external_interchannel_collision = 1;
       endif
       PushPacket(::);
       </G320.2>

@@ -2,7 +2,7 @@
 *                    B & R   P O S I T I O N I N G                          *
 *****************************************************************************
 *                                                                           *
-*            Header File for Library ACP10MAN (Version 3151)                * 
+*            Header File for Library ACP10MAN (Version 3161)                * 
 *                                                                           *
 **************************** COPYRIGHT (C) **********************************
 *     THIS SOFTWARE IS THE PROPERTY OF B&R AUSTRIA: ALL RIGHTS RESERVED.    *
@@ -11,7 +11,7 @@
 ****************************************************************************/
 
 #ifndef ACP10MAN_H_VERSION 
-#define ACP10MAN_H_VERSION 0x3151 
+#define ACP10MAN_H_VERSION 0x3161 
 
 #include <ncglobal.h>
 #include <acp10par.h>
@@ -893,6 +893,7 @@ typedef struct ACP10NGNTR_typ {               /* Network Trace */
    USINT              ring_startidx_auto;     /* The start index of the ring buffer was saved automatically */
    USINT              ring_startidx_action;   /* The start index of the ring buffer was saved via NC action */
    ACP10TROBJ_typ     datobj;                 /* Data object */
+   USINT              NOT_USE_1[8];
 } ACP10NGNTR_typ;
 
 typedef struct ACP10NETGL_typ {               /* Network global (for all network interfaces) */

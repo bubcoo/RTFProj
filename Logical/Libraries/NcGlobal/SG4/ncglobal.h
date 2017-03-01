@@ -2,7 +2,7 @@
 *                    B & R   P O S I T I O N I N G                          *
 *****************************************************************************
 *                                                                           *
-*            Header File for Library NCGLOBAL (Version 3151)                * 
+*            Header File for Library NCGLOBAL (Version 3161)                * 
 *                                                                           *
 **************************** COPYRIGHT (C) **********************************
 *     THIS SOFTWARE IS THE PROPERTY OF B&R AUSTRIA: ALL RIGHTS RESERVED.    *

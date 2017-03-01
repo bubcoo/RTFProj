@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?ARNC0 Version="3.15.1"?>
+<?ARNC0 Version="3.16.1"?>
 <Root LangModule="ailgcode" Version="1.0">
   <AxesSpec>
     <!-- specify empty axes section to avoid warning -->
@@ -18,7 +18,7 @@
         #next_motion.Data.R8_value = ${EXPR};
       </SET>
     </DR8_G211>
-    
+
     <!-- LINEAR POSITION DATA -->
     <Dlp><REF>#next_motion.Data.LinMovement.Position</REF></Dlp>
     <Dli>
@@ -83,10 +83,14 @@
         #next_motion.Data.CircMovement.Mode = ${EXPR};
       </SET>
     </Dcm>
-    
+
     <Dtp><REF>#next_motion.Data.ToolAxOrient.Parameter</REF></Dtp>
     <Dts><REF>#next_motion.Data.ToolAxOrient.Sign</REF></Dts>
+
+    <!-- ZERO POINT OFFSET DATA -->
     <Daz><REF>#next_motion.Data.AbsZeroPtShift.ZpRecIdx</REF></Daz>
+    <Das><REF>#next_motion.Data.AbsZeroPtShift.SetCS</REF></Das>
+
     <!-- PROGRAMMED ZERO POINT OFFSET DATA -->
     <Dpt>
       <SET>
@@ -103,7 +107,7 @@
       </SET>
     </Dpm>
     <Dpa>   <REF>#next_motion.Data.ProgZeroPtShift.AxShift</REF></Dpa>
-    
+
     <!-- OPTMOTPAR DATA -->
     <Dovpathdef> <REF>#next_motion.Data.OptMotPar.path_definition</REF></Dovpathdef>
     <Dovpathdefd><REF>#next_motion.Data.OptMotPar.path_definition_def</REF></Dovpathdefd>
@@ -113,7 +117,7 @@
     <Dolimd>     <REF>#next_motion.Data.OptMotPar.limits_idx_def</REF></Dolimd>
     <Dolimfac>   <REF>#next_motion.Data.OptMotPar.limits_factor</REF></Dolimfac>
     <Dolimfacd>  <REF>#next_motion.Data.OptMotPar.limits_factor_def</REF></Dolimfacd>
-    
+
     <!-- FULL TOOL TRANSFORMATION DATA -->
     <Dfdx>  <REF>#next_motion.Data.FullTrfTool.Dx</REF></Dfdx>
     <Dfdy>  <REF>#next_motion.Data.FullTrfTool.Dy</REF></Dfdy>
@@ -121,24 +125,24 @@
     <Dfph>  <REF>#next_motion.Data.FullTrfTool.Phi</REF></Dfph>
     <Dft>   <REF>#next_motion.Data.FullTrfTool.Theta</REF></Dft>
     <Dfps>  <REF>#next_motion.Data.FullTrfTool.Psi</REF></Dfps>
-    
+
     <!-- latch configuration data -->
     <DPLDli><REF>#next_motion.Data.PosLatchDistance.LatchIdx</REF></DPLDli>
     <DPLDts><REF>#next_motion.Data.PosLatchDistance.TriggSource</REF></DPLDts>
     <DPLDe> <REF>#next_motion.Data.PosLatchDistance.Edge</REF></DPLDe>
     <DPLDti><REF>#next_motion.Data.PosLatchDistance.HwTrigIdx</REF></DPLDti>
     <DPLDd> <REF>#next_motion.Data.PosLatchDistance.Distance</REF></DPLDd>
-    
+
     <DPLli> <REF>#next_motion.Data.PosLatch.LatchIdx</REF></DPLli>
     <DPLts> <REF>#next_motion.Data.PosLatch.TriggSource</REF></DPLts>
     <DPLe>  <REF>#next_motion.Data.PosLatch.Edge</REF></DPLe>
     <DPLti> <REF>#next_motion.Data.PosLatch.HwTrigIdx</REF></DPLti>
-    
+
     <!-- RADIUS FEED ADJUSTMENT DATA  -->
     <Drma>  <REF>#next_motion.Data.R_DependFeed.MaxRadius</REF></Drma>
     <Drmi>  <REF>#next_motion.Data.R_DependFeed.MinRadius</REF></Drmi>
     <Drr>   <REF>#next_motion.Data.R_DependFeed.Rate</REF></Drr>
-    
+
     <!-- V JUMP DATA -->
     <Dsvp>
       <SET>
@@ -148,7 +152,7 @@
       </SET>
     </Dsvp>
     <Dsvv>  <REF>#next_motion.Data.Set_v_jump.value</REF></Dsvv>
-    
+
     <!-- A JUMP DATA -->
     <Dsap>
       <SET>
@@ -168,13 +172,13 @@
       </SET>
     </Dsep>
     <Dser>  <REF>#next_motion.Data.SetAxLimit.RecordIdx</REF></Dser>
-    
+
     <!-- CAMWRAPPING DATA -->
     <Dcad>  <REF>#next_motion.Data.CamWrapping.Diameter</REF></Dcad>
     <Dcap>  <REF>#next_motion.Data.CamWrapping.ParameterP1</REF></Dcap>
 
     <Dsu><REF>#next_motion.Data.SetPathAccDec.UnitType</REF></Dsu>
-    
+
     <!-- ACC DEC DATA -->
     <Dsv108>
       <SET>
@@ -186,7 +190,7 @@
         endif
       </SET>
     </Dsv108>
-    
+
     <Dsv109>
       <SET>
         #next_motion.Data.SetPathAccDec.value = ${EXPR};
@@ -210,7 +214,7 @@
         endif
       </SET>
     </Dsv110>
-    
+
     <Dsma>  <REF>#next_motion.Data.SetTransSpeed.MaxAngle</REF></Dsma>
     <Dsmi>  <REF>#next_motion.Data.SetTransSpeed.MinAngle</REF></Dsmi>
     <Dsr>   <REF>#next_motion.Data.SetTransSpeed.RedFactor</REF></Dsr>
@@ -223,38 +227,39 @@
     <Dbl>   <REF>#next_motion.Data.BezierSpline.LinProgrammed</REF></Dbl>
     <Dbsf>  <REF>#next_motion.Data.BezierSpline.scalingFactor</REF></Dbsf>
     <Dbsfd> <REF>#next_motion.Data.BezierSpline.scalingFactor_def</REF></Dbsfd>
-    
+
     <Dao>   <REF>#next_motion.Data.AutomTangentialAx.Offset</REF></Dao>
     <Daa>   <REF>#next_motion.Data.AutomTangentialAx.AxIdx</REF></Daa>
-    
+
     <!-- AXIS MAPPING DATA -->
     <DAMa>  <REF>#next_motion.Data.AxisMapping.AxIdx</REF></DAMa>
     <DAMf>  <REF>#next_motion.Data.AxisMapping.factor</REF></DAMf>
     <DAMp>  <REF>#next_motion.Data.AxisMapping.ParameterP1</REF></DAMp>
-    
+
     <!-- SIGNAL PATH END DATA -->
-    <DSPEt>  <REF>#next_motion.Data.SignalPathEnd.Time</REF></DSPEt> 
+    <DSPEt>  <REF>#next_motion.Data.SignalPathEnd.Time</REF></DSPEt>
     <DSPEst> <REF>#next_motion.Data.SignalPathEnd.SignalType</REF></DSPEst>
     <DSPEsi> <REF>#next_motion.Data.SignalPathEnd.SignalIdx</REF></DSPEsi>
     <DSPEsd> <REF>#next_motion.Data.SignalPathEnd.SourceData</REF></DSPEsd>
     <DSPEd>  <REF>#next_motion.Data.SignalPathEnd.DataLength </REF></DSPEd>
-    <DSPEp>  
+    <DSPEp>
       <SET>
         #next_motion.Data.SignalPathEnd.pDestination = \#sys_vars.EXF[0];
       </SET>
     </DSPEp>
-    
+
     <!-- SIGNAL PATH END DISTDATA -->
+    <DSPEDd><REF>#next_motion.Data.SignalPathEndDist.Distance</REF></DSPEDd>
     <DSPEDst><REF>#next_motion.Data.SignalPathEndDist.SignalType</REF></DSPEDst>
     <DSPEDsi><REF>#next_motion.Data.SignalPathEndDist.SignalIdx</REF></DSPEDsi>
     <DSPEDsd><REF>#next_motion.Data.SignalPathEndDist.SourceData</REF></DSPEDsd>
-    <DSPEDd> <REF>#next_motion.Data.SignalPathEndDist.DataLength </REF></DSPEDd>
-    <DSPEDp>  
+    <DSPEDdl> <REF>#next_motion.Data.SignalPathEndDist.DataLength </REF></DSPEDdl>
+    <DSPEDp>
       <SET>
         #next_motion.Data.SignalPathEndDist.pDestination = \#sys_vars.EXF[0];
       </SET>
     </DSPEDp>
-        
+
     <!-- SIGNAL PREDICT DATA -->
     <DSPo><REF>#next_motion.Data.SignalPredict.Override</REF></DSPo>
     <DSPop><REF>#next_motion.Data.SignalPredict.OvrProgrammed</REF></DSPop>
@@ -270,23 +275,27 @@
     <DWCy2>  <REF>#next_motion.Data.WS_Ctrl.z2</REF></DWCy2>
     <DWCi>   <REF>#next_motion.Data.WS_Ctrl.index</REF></DWCi>
     <DWCc>   <REF>#next_motion.Data.WS_Ctrl.coord</REF></DWCc>
-    <DWCp>   <REF>#next_motion.Data.WS_Ctrl.pplane</REF></DWCp>
+    <DWCpl>   <REF>#next_motion.Data.WS_Ctrl.pplane</REF></DWCpl>
     <DWCo>   <REF>#next_motion.Data.WS_Ctrl.orient</REF></DWCo>
     <DWCs>   <REF>#next_motion.Data.WS_Ctrl.shape</REF></DWCs>
+    <DWCca>   <REF>#next_motion.Data.WS_Ctrl.clear_all</REF></DWCca>
+    <DWCp1>   <REF>#next_motion.Data.WS_Ctrl.point1</REF></DWCp1>
+    <DWCp2>   <REF>#next_motion.Data.WS_Ctrl.point2</REF></DWCp2>
+    <DWCen>   <REF>#next_motion.Data.WS_Ctrl.enable</REF></DWCen>
 
     <DWCa>
       <SET>
         #next_motion.Data.WS_Ctrl.arm_diameter[0] = ArrayRep(:(:ncOFF:):);
         #next_motion.Data.WS_Ctrl.arm_diameter = ${EXPR};
-      </SET>      
+      </SET>
     </DWCa>
-    
-    <!-- TOOL DATA RECORD DATA -->    
+
+    <!-- TOOL DATA RECORD DATA -->
     <DTDRt>  <REF>#next_motion.Data.ToolDataRecord.ToolIdx</REF></DTDRt>
-    
+
     <!-- SYS VARS -->
     <Sz>     <REF>#sys_vars.ZP</REF></Sz>
-    
+
     <!-- SPINDLE SPEED DATA -->
     <DSSi>   <REF>#next_motion.Data.SpindleSpeed.Idx</REF></DSSi>
     <DSSs>   <REF>#next_motion.Data.SpindleSpeed.speed</REF></DSSs>
@@ -298,12 +307,12 @@
       <SET>
         #next_motion.Data.C2_SplineStart.BCProgrammed[0] = ArrayRep(:(:ncOFF:):);
         #next_motion.Data.C2_SplineStart.BCProgrammed = ${EXPR};
-      </SET>      
+      </SET>
     </DCSSp>
     <DCSSsp>  <REF>#next_motion.Data.C2_SplineStart.SegmentParameter</REF></DCSSsp>
     <DCSSst>  <REF>#next_motion.Data.C2_SplineStart.SegmentType</REF></DCSSst>
 
-    <!-- C2_SPLINE_END DATA -->    
+    <!-- C2_SPLINE_END DATA -->
     <DCSEt>  <REF>#next_motion.Data.C2_SplineEnd.BCType</REF></DCSEt>
     <DCSEv>  <REF>#next_motion.Data.C2_SplineEnd.BCValue</REF></DCSEv>
     <DCSEp>
@@ -312,9 +321,12 @@
         #next_motion.Data.C2_SplineEnd.BCProgrammed = ${EXPR};
       </SET>
     </DCSEp>
-    <DFd>    <REF>#next_motion.Data.Frame.Data</REF></DFd>
     
-    <!-- SYSTEM VARIABLE DATA -->    
+    <!-- FRAME Data -->
+    <DFd>    <REF>#next_motion.Data.Frame.Data</REF></DFd>
+    <DFcs>   <REF>#next_motion.Data.Frame.SetCS</REF></DFcs>
+
+    <!-- SYSTEM VARIABLE DATA -->
     <DSVs>   <REF>#next_motion.Data.SystemVariable.SysVarIdx</REF></DSVs>
     <DSVa>   <REF>#next_motion.Data.SystemVariable.AxIdx</REF></DSVa>
     <DSVd>   <REF>#next_motion.Data.SystemVariable.Data.R8_value</REF></DSVd>
@@ -333,8 +345,8 @@
     <MXFPz> <REF>#next_motion.Data.MXFrame.Pos.z</REF> </MXFPz>
     <MXFOt> <REF>#next_motion.Data.MXFrame.Orient.Type</REF> </MXFOt>
     <MXFOa> <REF>#next_motion.Data.MXFrame.Orient.Angle</REF> </MXFOa>
-    
-    <!-- MPCMD_MX_TOOL -->    
+
+    <!-- MPCMD_MX_TOOL -->
     <MXTFPx> <REF>#next_motion.Data.MXTool.Frame.Pos.x</REF> </MXTFPx>
     <MXTFPy> <REF>#next_motion.Data.MXTool.Frame.Pos.y</REF> </MXTFPy>
     <MXTFPz> <REF>#next_motion.Data.MXTool.Frame.Pos.z</REF> </MXTFPz>
@@ -342,7 +354,7 @@
     <MXTFOa> <REF>#next_motion.Data.MXTool.Frame.Orient.Angle</REF> </MXTFOa>
     <MXTr> <REF>#next_motion.Data.MXTool.Radius</REF> </MXTr>
     <MXTi> <REF>#next_motion.Data.MXTool.Index</REF> </MXTi>
-    
+
     <!-- MPCMD_MX_POINT, MPCMD_MX_CIRCLE_POINT -->
     <MXPPx> <REF>#next_motion.Data.MXPoint.Pos.x</REF> </MXPPx>
     <MXPPy> <REF>#next_motion.Data.MXPoint.Pos.y</REF> </MXPPy>
@@ -429,7 +441,7 @@
 
     <!-- MPCMD_SERVICE_DATA,  MPCMD_PLOT_BUFFER_DATA -->
     <GENd> <REF>#next_motion.Data.GenericData.Data</REF> </GENd>
-    
+
     <!-- MPCMD_SET_GMC_AX_LIMIT -->
     <SGALda><REF>#next_motion.Data.SetGmcAxisLimit.DestinationAxis</REF></SGALda>
     <SGALdp><REF>#next_motion.Data.SetGmcAxisLimit.DestinationPath</REF></SGALdp>
@@ -451,7 +463,43 @@
     <!-- MPCMD_MX_PARAMETER_R8 -->
     <PR8v><REF>#next_motion.Data.R8_param.Value</REF></PR8v>
     <PR8i><REF>#next_motion.Data.R8_param.Id</REF></PR8i>
+    
+    <!-- MPCMD_SET_TOOL_PAR -->
+    <STPi><REF>#next_motion.Data.ToolPar.Id</REF></STPi>
+    <STPR8><REF>#next_motion.Data.ToolPar.R8_value</REF></STPR8>
+    <STPI4><REF>#next_motion.Data.ToolPar.I4_value</REF></STPI4>
 
+    <!-- MPCMD_GMC_FRAME -->
+    <GFof><REF>#next_motion.Data.GmcFrame.Offset</REF></GFof>
+    <GFmo>
+      <SET>
+        <!-- data members need to be initialized to -1 -->
+        #next_motion.Data.GmcFrame.Mode[0] = ArrayRep(:(:-1:):);
+        #next_motion.Data.GmcFrame.Mode = ${EXPR};
+      </SET>
+    </GFmo>
+    <GFai>
+      <SET>
+        <!-- data members need to be initialized to -1 -->
+        #next_motion.Data.GmcFrame.AxIdx[0] = ArrayRep(:(:-1:):);
+        #next_motion.Data.GmcFrame.AxIdx = ${EXPR};
+      </SET>
+    </GFai>
+    <GFor><REF>#next_motion.Data.GmcFrame.Orientation</REF></GFor>
+    <GFori>
+      <SET>
+        <!-- data members need to be initialized to -1 -->
+        #next_motion.Data.GmcFrame.OrientationIdx[0] = ArrayRep(:(:-1:):);
+        #next_motion.Data.GmcFrame.OrientationIdx = ${EXPR};
+      </SET>
+    </GFori>
+    <GFort><REF>#next_motion.Data.GmcFrame.OrientationType</REF></GFort>
+    <GFsc><REF>#next_motion.Data.GmcFrame.SetCS</REF></GFsc>
+    <GFtfc><REF>#next_motion.Data.GmcFrame.TCPFromCS</REF></GFtfc>
+    <GFttc><REF>#next_motion.Data.GmcFrame.TCPToCS</REF></GFttc>
+    <GFcc><REF>#next_motion.Data.GmcFrame.ClearCS</REF></GFcc>
+    <GFne><REF>#next_motion.Data.GmcFrame.Negative</REF></GFne>
+    <GFut><REF>#next_motion.Data.GmcFrame.UseTCP</REF></GFut>
   </PVMacros>
   <Constants>
     <PathBusy     type="STRING">BUSY</PathBusy>
@@ -551,7 +599,7 @@
       Error(:id:10003,msg:"LogAbort":);
     </M10003>
     <M1000000 Value="1000000" Alias=";" AliasIsPattern="Yes" Inline="Yes" IgnoreIfGroups="220">
-      <!-- PushPacket call --> 
+      <!-- PushPacket call -->
       <ARG ref="VALUE" DataType="FLOAT" RequireLiteral="Yes" />
       PushPacket(::);
     </M1000000>
