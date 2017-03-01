@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.7.54 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="File">game_playground.png</Object>
+    <Object Type="File">br_automation.png</Object>
+    <Object Type="File">hum_no1.png</Object>
+    <Object Type="File">hum_no2.png</Object>
+  </Objects>
+</Package>
