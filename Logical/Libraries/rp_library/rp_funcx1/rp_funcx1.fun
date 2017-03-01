@@ -54,10 +54,7 @@ FUNCTION_BLOCK calculation_posDummiesOpponent (*TODO: Add your comment here*) (*
 		displacement_HUMAN : ARRAY[0..3] OF REAL;
 	END_VAR
 	VAR_OUTPUT
-		gk_posD : REAL;
-		df_posD : ARRAY[0..1] OF REAL;
-		md_posD : ARRAY[0..4] OF REAL;
-		fw_posD : ARRAY[0..2] OF REAL;
+		actual_positionsOfDummies : ARRAY[0..10] OF REAL;
 		real_displacement : ARRAY[0..3] OF REAL;
 	END_VAR
 END_FUNCTION_BLOCK
@@ -110,9 +107,9 @@ FUNCTION_BLOCK calculation_crossingBall (*TODO: Add your comment here*) (*$GROUP
 		second_reflection_y : REAL;
 		time_B2B : REAL;
 		tilted : BOOL;
-		count_axesIntersection : ARRAY[0..1] OF USINT;
 	END_VAR
 	VAR_OUTPUT
+		count_axesIntersection : ARRAY[0..1] OF USINT;
 		act_posOfAxesX : ARRAY[0..3] OF REAL;
 		act_posOfAxesY : ARRAY[0..3] OF REAL;
 		overall_velocity : REAL;
@@ -189,5 +186,28 @@ FUNCTION_BLOCK calculete_min
 	VAR_OUTPUT
 		index : USINT;
 		number : REAL;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK measurement_ofScore (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		start_measurement : BOOL;
+		exit_game : BOOL;
+		restart_measurement : BOOL;
+		sens_wicket_CPU : BOOL;
+		sens_wicket_HUM : BOOL;
+		PLAYER1_NAME : STRING[30];
+		PLAYER2_NAME : STRING[30];
+	END_VAR
+	VAR_OUTPUT
+		Error : BOOL;
+		count_goals_CPU : USINT;
+		match_informations : match_info;
+		team_nameCPU : STRING[30];
+		team_nameHUM : STRING[30];
+		count_goals_HUM : USINT;
+	END_VAR
+	VAR
+		Internal : internal_machtInfo;
 	END_VAR
 END_FUNCTION_BLOCK

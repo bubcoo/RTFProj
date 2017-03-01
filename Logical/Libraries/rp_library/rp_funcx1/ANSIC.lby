@@ -9,6 +9,7 @@
     <File>calculation_posDummiesOpponent.c</File>
     <File>calculation_crossingBall.c</File>
     <File>calculation_displacementOfAxes.c</File>
+    <File>measurement_ofScore.c</File>
   </Files>
   <Dependencies>
     <Dependency ObjectName="MpAlarmX" />

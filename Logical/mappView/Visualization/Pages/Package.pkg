@@ -6,5 +6,6 @@
     <Object Type="Package">MainPage</Object>
     <Object Type="Package">CameraPage</Object>
     <Object Type="Package">SDMPage</Object>
+    <Object Type="Package">GamePage</Object>
   </Objects>
 </Package>

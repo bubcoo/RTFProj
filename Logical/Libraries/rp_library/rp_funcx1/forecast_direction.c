@@ -51,6 +51,7 @@ void forecast_direction(struct forecast_direction* f_d)
 				f_d->second_reflectionX = sqrt(-1);
 				f_d->second_reflectionY = sqrt(-1);
 				f_d->tilted       		= 0;
+            
 				auxiliary_str = (UDINT) strcpy(f_d->specific_direction,"straight");		
 			}
 			break;
@@ -58,7 +59,7 @@ void forecast_direction(struct forecast_direction* f_d)
 			{
 				if(f_d->ball1_y == f_d->ball2_y){
 					f_d->tilted = 0;
-					
+                    
 					if(f_d->ball1_x > f_d->ball2_x){
 						auxiliary_str = (UDINT) strcpy(f_d->specific_direction,"straight-backward");
 						
@@ -66,6 +67,7 @@ void forecast_direction(struct forecast_direction* f_d)
 						f_d->first_reflectionY  = f_d->ball2_y;
 						f_d->second_reflectionX = sqrt(-1);
 						f_d->second_reflectionY = sqrt(-1);
+                        
 					}else if(f_d->ball1_x < f_d->ball2_x){
 						auxiliary_str = (UDINT) strcpy(f_d->specific_direction,"straight-forward");
 						
@@ -73,6 +75,7 @@ void forecast_direction(struct forecast_direction* f_d)
 						f_d->first_reflectionY  = f_d->ball2_y;
 						f_d->second_reflectionX = sqrt(-1);
 						f_d->second_reflectionY = sqrt(-1);
+                        
 					}else if(f_d->ball1_x == f_d->ball2_x){
 						
 						auxiliary_str = (UDINT) strcpy(f_d->specific_direction,"stopped");
@@ -94,6 +97,7 @@ void forecast_direction(struct forecast_direction* f_d)
 						f_d->first_reflectionY  = f_d->ball1_y;
 						f_d->second_reflectionX = f_d->ball2_x;
 						f_d->second_reflectionY = f_d->ball2_y;
+                        
 					}else{
 						f_d->tilted = 1;
 						// input parameters into the function block calculate direction of tilt

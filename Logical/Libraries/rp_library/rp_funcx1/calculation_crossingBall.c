@@ -1,4 +1,18 @@
+/*********************************************************************************************
+* B&R Automation - Perfection in Automation (https://www.br-automation.com)
+    ******************************************************************************************
+    * Program 	    : Master's Thesis - Soccer Table (Simulation)
+    * Author  	    : Roman Parak
+    * Created 	    : date ... 
+	* University    : Brno University of Technology(BUT)
+	* Faculty       : Faculty of Mechanical Engineering(FME)
+	* Study Program : Applied Computer Science and Control
+	* Institute     : Institute of Automation and Computer Science
+**********************************************************************************************
+* Implementation OF PROGRAM simulation(rp_library/rp_funcx1/calculation_crossingBall.c)
+**********************************************************************************************/
 
+/************************************* LIBRARIES *********************************************/
 #include <bur/plctypes.h>
 #include <stdio.h>
 #include <stdlib.h>

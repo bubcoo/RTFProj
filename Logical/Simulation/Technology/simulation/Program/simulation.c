@@ -15,6 +15,7 @@
 /*************************** LIBRARIES *********************************/
 #include <bur/plc.h>
 #include <bur/plctypes.h>
+#include <astime.h>
 #include <math.h>
 
 #include "rp_funcx1.h"
@@ -27,30 +28,35 @@
 #endif
 
 /*************************** DEFINITIONS *******************************/
-#define EACH_FORMATION 1;
+#define EACH_FORMATION 4;
 
 /************************ LOCAL VARIABLES ******************************/
-_LOCAL struct forecast_direction fD;
-_LOCAL struct calculation_posDummiesOpponent cppd;
+
+// struct - rp_funcx1
+_LOCAL struct forecast_direction f_d;
+_LOCAL struct calculation_posDummiesOpponent c_ppd;
+_LOCAL struct calculation_crossingBall c_cb[2];
+_LOCAL struct calculation_displacementOfAxes c_doa;
 // struct - MpAlarmX
 _LOCAL MpAlarmXListUIConnectType AlarmListUI_ConnectType;
 _LOCAL MpAlarmXHistoryUIConnectType AlarmHistoryUI_ConnectType;
 // udint
-_LOCAL UDINT alarm_device_address;
-// bool
-_LOCAL BOOL start_forecast;
-_LOCAL BOOL start;
-_LOCAL BOOL stop;
+_LOCAL UDINT alarm_device_address, specific_directionOfBall;
 // usint
 _LOCAL USINT max_numberOfFormation;
 _LOCAL USINT i_axisNum;
+_LOCAL USINT i_ppd, i_ccd, i_ccdCPU, i_ccdHUM, i_cdoa1, i_cdoa2, i_cdoa3;
+// real
+_LOCAL REAL x_posOfCPU[4];
+_LOCAL REAL x_posOfHUM[4];
+// OUPTUT from the SENSOR & CAMERA
+_LOCAL REAL ball1[2], ball2[2], time_B2B;
+_LOCAL REAL optical_sensor[4];
+_LOCAL REAL reflex_sensor[4];
 // state machine
-_LOCAL rp_MainSteps simulation_step;
-// lreal
-_LOCAL LREAL testNAN;
-_LOCAL REAL pp[4];
-_LOCAL REAL pp_N[4];
-_LOCAL INT i_pp;
+_LOCAL soccer_table_ENUM SOCCER_TABLE_STEP;
+
+
 /**********************************************************************************************************/
 /********************************************** INIT PROGRAM **********************************************/
 /**********************************************************************************************************/
@@ -128,36 +134,112 @@ void _INIT ProgramInit(void)
 		// temperature - rotary
 		mp_Axis.param_axisRotary[i_axisNum].CyclicRead.MotorTempMode = mpAXIS_READ_POLLING_5s;
     }
-	// variables
-	start = 0;
-	start_forecast = 0;
-	// state machine
-	simulation_step = STEP_INITIALIZATION1;
-	
-	testNAN = sqrt(-1);
-}
+    // initialization switch
+    SOCCER_TABLE_STEP = RST_EMPTY;
+    // initialization x axes for CPU
+    x_posOfCPU[0] = 800;
+    x_posOfCPU[1] = 2300;
+    x_posOfCPU[2] = 5300;
+    x_posOfCPU[3] = 8300;
+    // initialization x axes for HUMAN
+    x_posOfHUM[0] = 3800;
+    x_posOfHUM[1] = 6800;
+    x_posOfHUM[2] = 9800;
+    x_posOfHUM[3] = 11300;
+    // OUPTUT from the SENSOR & CAMERA
+    // CAMERA
+    ball1[0] = 0;
+    ball1[1] = 0;
+    ball2[0] = 0;
+    ball2[1] = 0;
+    time_B2B = 0;
+    // SENSOR
+    optical_sensor[0] = 0;
+    optical_sensor[1] = 0;
+    optical_sensor[2] = 0;
+    optical_sensor[3] = 0;
+    
+    reflex_sensor[0] = 1;
+    reflex_sensor[1] = 1;
+    reflex_sensor[2] = 1;
+    reflex_sensor[3] = 1;
+    
+}// end _INIT
 
 /**********************************************************************************************************/
 /********************************************** MAIN PROGRAM **********************************************/
 /**********************************************************************************************************/
 void _CYCLIC ProgramCyclic(void)
 {  
-	/*
-	pp[0] = 1;
-	pp[1] = 8;
-	pp[2] = 11;
-	pp[3] = 4;
-	qsort(pp,(sizeof(pp)/sizeof(pp[0])),sizeof(REAL),cmpfunc);
-	
-	for(i_pp = 0; i_pp <= (int)(sizeof(pp)/sizeof(pp[0])); i_pp++) // done
-		pp_N[i_pp] = pp[i_pp];
-	*/
-	//grp.actual_position = 118529697;
-	//grp.define_position = 118520697;
-	//get_rotationalPostition(&grp); // done
-	//forecast_direction(&fD); // done
-	//calculation_posDummiesOpponent(&cppd); // done
-	// calculation crossing ball -> done
+    switch(SOCCER_TABLE_STEP){
+        case RST_EMPTY:
+            {
+            }
+            break;
+        case RST_CALCULATION:
+            {
+                // calculation forecast direction
+                f_d.ball1_x = ball1[0];
+                f_d.ball1_y = ball1[1];
+                f_d.ball2_x = ball2[0];
+                f_d.ball2_y = ball2[1];
+                forecast_direction(&f_d);
+                // calculation pos dummies opponent
+                for(i_ppd = 0; i_ppd < (int)(sizeof(optical_sensor)/sizeof(optical_sensor[0])); i_ppd++){
+                    c_ppd.displacement_HUMAN[i_ppd] = optical_sensor[i_ppd];
+                }
+
+                calculation_posDummiesOpponent(&c_ppd);
+                // calculation crossing ball
+                for(i_ccd = 0; i_ccd < (int)(sizeof(ball1)/sizeof(ball1[0])); i_ccd++){
+                    c_cb[i_ccd].ball1_x = ball1[0];
+                    c_cb[i_ccd].ball1_y = ball1[1];
+                    c_cb[i_ccd].ball2_x = ball2[0];
+                    c_cb[i_ccd].ball2_y = ball2[1];
+                    c_cb[i_ccd].first_reflection_x  = f_d.first_reflectionX;
+                    c_cb[i_ccd].first_reflection_y  = f_d.first_reflectionY;
+                    c_cb[i_ccd].second_reflection_x = f_d.second_reflectionX;
+                    c_cb[i_ccd].second_reflection_y = f_d.second_reflectionY;
+                    c_cb[i_ccd].tilted   = f_d.tilted;
+                    c_cb[i_ccd].time_B2B = time_B2B;
+                    
+                    if(i_ccd == 0){
+                        for(i_ccdCPU = 0; i_ccdCPU < (int)(sizeof(x_posOfCPU)/sizeof(x_posOfCPU[0])); i_ccdCPU++){
+                            c_cb[i_ccd].x_positions[i_ccdCPU] = x_posOfCPU[i_ccdCPU];
+                        }
+                    }else if(i_ccd == 1){
+                        for(i_ccdHUM = 0; i_ccdHUM < (int)(sizeof(x_posOfHUM)/sizeof(x_posOfHUM[0])); i_ccdHUM++){
+                            c_cb[i_ccd].x_positions[i_ccdHUM] = x_posOfHUM[i_ccdHUM];
+                        }
+                    }              
+                    calculation_crossingBall(&c_cb[i_ccd]);
+                }
+                // calculation displacement
+                c_doa.tilted             = f_d.tilted;
+                specific_directionOfBall = (UDINT) strcpy(c_doa.specific_direction,f_d.specific_direction);
+                for(i_cdoa1 = 0; i_cdoa1 < (int)(sizeof(c_cb[1].count_axesIntersection)/sizeof(c_cb[1].count_axesIntersection[0])); i_cdoa1++){
+                    c_doa.count_axesIntersectionHUM[i_cdoa1] = c_cb[1].count_axesIntersection[i_cdoa1];
+                }
+                for(i_cdoa2 = 0; i_cdoa2 < (int)(sizeof(c_cb[0].act_posOfAxesY)/sizeof(c_cb[0].act_posOfAxesY[0])); i_cdoa2++){
+                    c_doa.act_posOfAxesCPU_Y[i_cdoa2]    = c_cb[0].act_posOfAxesY[i_cdoa2];
+                    c_doa.time_axisIntersection[i_cdoa2] = c_cb[0].time_axisIntersection[i_cdoa2] * 0.2;
+                    c_doa.act_displacementCPU[i_cdoa2]   = 0; // actual displacement
+                    c_doa.reversed_HUM[i_cdoa2]          = reflex_sensor[i_cdoa2];
+                }
+                c_doa.act_posOfAxesHUM_Y[0] = c_cb[1].act_posOfAxesY[3];
+                c_doa.act_posOfAxesHUM_Y[1] = c_cb[1].act_posOfAxesY[2];
+                c_doa.act_posOfAxesHUM_Y[2] = c_cb[1].act_posOfAxesY[1];
+                c_doa.act_posOfAxesHUM_Y[3] = c_cb[1].act_posOfAxesY[0];
+                for(i_cdoa3 = 0; i_cdoa3 < (int)(sizeof(c_ppd.actual_positionsOfDummies)/sizeof(c_ppd.actual_positionsOfDummies[0])); i_cdoa3++){
+                    c_doa.act_posOfDummiesH[i_cdoa3] = c_ppd.actual_positionsOfDummies[i_cdoa3];
+                }
+                c_doa.x_posOfBall[0] = ball1[0];
+                c_doa.x_posOfBall[1] = ball2[0];
+                calculation_displacementOfAxes(&c_doa);
+            }
+            break;
+    }// end switch
+    
     /************************** call function & function blocks **************************/
     // AlarmX
     MpAlarmXCore(&mp_alarmX.mp_core);
@@ -166,8 +248,9 @@ void _CYCLIC ProgramCyclic(void)
     MpAlarmXHistoryUI(&mp_alarmX.mp_historyUI);
     // Active AxisBasic & AxisCyclicSet -> through the individual functions
     start_axesBasic(max_numberOfFormation,&mp_Axis.mp_axisLinear,&mp_Axis.mp_axisRotary);
-    start_axesCyclic(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);	
-}
+    start_axesCyclic(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
+    
+}// end _CYCLIC
 
 
 

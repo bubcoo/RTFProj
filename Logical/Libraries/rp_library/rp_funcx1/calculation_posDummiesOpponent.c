@@ -97,19 +97,19 @@ void calculation_posDummiesOpponent(struct calculation_posDummiesOpponent* c_pD)
 	
 	/**************************************** output real parameters ****************************************/
 	// goalkeeper
-	c_pD->gk_posD    = actual_positions[0][0];
+	c_pD->actual_positionsOfDummies[0]  = actual_positions[0][0];
 	// defender
-	c_pD->df_posD[0] = actual_positions[1][0];
-	c_pD->df_posD[1] = actual_positions[1][1];
+	c_pD->actual_positionsOfDummies[1]  = actual_positions[1][0];
+	c_pD->actual_positionsOfDummies[2]  = actual_positions[1][1];
 	// midfielder
-	c_pD->md_posD[0] = actual_positions[2][0];
-	c_pD->md_posD[1] = actual_positions[2][1];
-	c_pD->md_posD[2] = actual_positions[2][2];
-	c_pD->md_posD[3] = actual_positions[2][3];
-	c_pD->md_posD[4] = actual_positions[2][4];
+	c_pD->actual_positionsOfDummies[3]  = actual_positions[2][0];
+	c_pD->actual_positionsOfDummies[4]  = actual_positions[2][1];
+	c_pD->actual_positionsOfDummies[5]  = actual_positions[2][2];
+	c_pD->actual_positionsOfDummies[6]  = actual_positions[2][3];
+	c_pD->actual_positionsOfDummies[7]  = actual_positions[2][4];
 	// forward
-	c_pD->fw_posD[0] = actual_positions[3][0];
-	c_pD->fw_posD[1] = actual_positions[3][1];
-	c_pD->fw_posD[2] = actual_positions[3][2];
+	c_pD->actual_positionsOfDummies[8]  = actual_positions[3][0];
+	c_pD->actual_positionsOfDummies[9]  = actual_positions[3][1];
+	c_pD->actual_positionsOfDummies[10] = actual_positions[3][2];
 	
 }// end function

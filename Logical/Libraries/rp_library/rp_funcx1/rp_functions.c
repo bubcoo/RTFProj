@@ -58,7 +58,7 @@ void get_rotationalPostition(struct get_rotationalPostition* g_rP)
 			g_rP->result[i] = 0;
 		}else{		
 			if(fabs((g_rP->actual_position[i] - g_rP->define_position[i])) > 3600){
-				x 		= fabs((g_rP->actual_position[i] - g_rP->define_position[i]))/3600;
+				x       = fabs((g_rP->actual_position[i] - g_rP->define_position[i]))/3600;
 				mod_pos = modf(x,&lrealPart);
 			
 				if((g_rP->actual_position[i] - g_rP->define_position[i]) > 0){

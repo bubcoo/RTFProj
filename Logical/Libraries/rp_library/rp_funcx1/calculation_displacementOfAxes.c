@@ -1,4 +1,18 @@
+/*********************************************************************************************
+* B&R Automation - Perfection in Automation (https://www.br-automation.com)
+    ******************************************************************************************
+    * Program 	    : Master's Thesis - Soccer Table (Simulation)
+    * Author  	    : Roman Parak
+    * Created 	    : date ... 
+	* University    : Brno University of Technology(BUT)
+	* Faculty       : Faculty of Mechanical Engineering(FME)
+	* Study Program : Applied Computer Science and Control
+	* Institute     : Institute of Automation and Computer Science
+**********************************************************************************************
+* Implementation OF PROGRAM simulation(rp_library/rp_funcx1/rp_functions.c)
+**********************************************************************************************/
 
+/************************************* LIBRARIES *********************************************/
 #include <bur/plctypes.h>
 #include <math.h>
 #include <string.h>
@@ -99,7 +113,7 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 				
 			real_disp[i] = ch_rightD.actual_displacement;
 		}
-	}
+	}// end for{i}
 	
 	c_dOA->displacement[0] = real_disp[0];
 	c_dOA->displacement[1] = real_disp[1];
@@ -120,9 +134,9 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 		c_dOA->velocity[i_out] 	   = velocity[i_out];
 		c_dOA->acceleration[i_out] = acceleration[i_out];
 		c_dOA->deceleration[i_out] = deceleration[i_out];
-	}
+	}// end for{i_out}
 	
-}
+}// end function
 
 void calculation_realCrossing(struct calculation_realCrossing* c_rC)
 {
@@ -170,15 +184,15 @@ void calculation_realCrossing(struct calculation_realCrossing* c_rC)
 	}
 	
 	if(count_calcH < 5){
-		for(j = 0; j < number_ofD[count_calcH]; j++){
-			if(c_rC->reversed_HUM[count_calcH] == 0){
-				if(((matrix_posOfHUM[count_calcH][j] <= c_rC->act_posOfAxesHUM_Y[count_calcH] + 100) && (matrix_posOfHUM[count_calcH][j] >= c_rC->act_posOfAxesHUM_Y[count_calcH])) && (matrix_posOfHUM[count_calcH][j] != c_rC->act_posOfAxesHUM_Y[count_calcH])){
+		for(j = 0; j < number_ofD[count_calcH - 1]; j++){
+			if(c_rC->reversed_HUM[count_calcH - 1] == 0){
+				if(((matrix_posOfHUM[count_calcH - 1][j] <= c_rC->act_posOfAxesHUM_Y[count_calcH - 1] + 100) && (matrix_posOfHUM[count_calcH - 1][j] >= c_rC->act_posOfAxesHUM_Y[count_calcH - 1])) && (matrix_posOfHUM[count_calcH - 1][j] != c_rC->act_posOfAxesHUM_Y[count_calcH - 1])){
 					matrix_crossH_Iter[0][j] = count_calcH;
-					matrix_crossH_Pos[0][j]  = fabs(fabs(matrix_posOfHUM[count_calcH][j]) - fabs(c_rC->act_posOfAxesHUM_Y[count_calcH]));
-				}else if(((matrix_posOfHUM[count_calcH][j] >= c_rC->act_posOfAxesHUM_Y[count_calcH] - 100) && (matrix_posOfHUM[count_calcH][j] <= c_rC->act_posOfAxesHUM_Y[count_calcH])) && (matrix_posOfHUM[count_calcH][j] != c_rC->act_posOfAxesHUM_Y[count_calcH])){
+					matrix_crossH_Pos[0][j]  = fabs(fabs(matrix_posOfHUM[count_calcH - 1][j]) - fabs(c_rC->act_posOfAxesHUM_Y[count_calcH - 1]));
+				}else if(((matrix_posOfHUM[count_calcH - 1][j] >= c_rC->act_posOfAxesHUM_Y[count_calcH - 1] - 100) && (matrix_posOfHUM[count_calcH - 1][j] <= c_rC->act_posOfAxesHUM_Y[count_calcH - 1])) && (matrix_posOfHUM[count_calcH - 1][j] != c_rC->act_posOfAxesHUM_Y[count_calcH - 1])){
 					matrix_crossH_Iter[0][j] = count_calcH;
-					matrix_crossH_Pos[0][j]  = (-1)*fabs(fabs(matrix_posOfHUM[count_calcH][j]) - fabs(c_rC->act_posOfAxesHUM_Y[count_calcH]));					
-				}else if(matrix_posOfHUM[count_calcH][j] == c_rC->act_posOfAxesHUM_Y[count_calcH]){
+					matrix_crossH_Pos[0][j]  = (-1)*fabs(fabs(matrix_posOfHUM[count_calcH - 1][j]) - fabs(c_rC->act_posOfAxesHUM_Y[count_calcH - 1]));					
+				}else if(matrix_posOfHUM[count_calcH - 1][j] == c_rC->act_posOfAxesHUM_Y[count_calcH - 1]){
 					matrix_crossH_Iter[0][j] = count_calcH;
 					matrix_crossH_Pos[0][j]  = 0;
 				}else{
@@ -191,10 +205,10 @@ void calculation_realCrossing(struct calculation_realCrossing* c_rC)
 			}
 		}
 		
-		for(j_null = 0; j_null < number_ofD[count_calcH]; j_null++){
+		for(j_null = 0; j_null < number_ofD[count_calcH - 1]; j_null++){
 			if(matrix_crossH_Iter[0][j_null] != 0){
 				auxiliary_bool 		= 1;
-				predicted_pos  		= count_calcH;
+				predicted_pos  		= matrix_crossH_Pos[0][j_null];
 				iteration_positionH = matrix_crossH_Iter[0][j_null];
 			}
 		}
@@ -221,7 +235,7 @@ void calculation_realCrossing(struct calculation_realCrossing* c_rC)
 				c_rC->real_cross[i_yC] = c_rC->act_posOfAxesCPU_Y[i_yC];
 			}
 		}
-	}
+	}// end : if(count_calcH < 5)
 	
 	if(auxiliary_boolNo2 != 1){
 		auxiliary_str = (UDINT) strcpy(calc_newC.specific_direction,c_rC->specific_direction);
@@ -238,8 +252,8 @@ void calculation_realCrossing(struct calculation_realCrossing* c_rC)
 		for(i_out = 0; i_out < (int)(sizeof(c_rC->act_posOfAxesCPU_Y)/sizeof(c_rC->act_posOfAxesCPU_Y[0])); i_out++){
 			c_rC->real_cross[i_out] = calc_newC.new_cross[i_out];
 		}
-	}
-}
+	}// end if(auxiliary_boolNo2 != 1)
+}// end function
 
 void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 {
@@ -287,7 +301,7 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 			break;
 		case 2:
 			{
-				if(c_nC->x_posOfBall[0] > 9800){
+				if(c_nC->x_posOfBall[0] >= 9800){
 					y_crossFW = c_nC->act_posOfAxesHUM_Y[iteration] - c_nC->predicted_position;
 					y_crossMD = y_crossFW + value;
 					y_crossDF = y_crossMD + value;
@@ -343,17 +357,18 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 				y_crossFW = c_nC->act_posOfAxesCPU_Y[3] - c_nC->predicted_position;
 				y_crossMD = c_nC->act_posOfAxesCPU_Y[2] - c_nC->predicted_position;
 				y_crossDF = c_nC->act_posOfAxesCPU_Y[1] - c_nC->predicted_position;
-				
+                y_crossGK = y_crossFW + value;
+            
 				if(fabs(y_crossGK) > fabs(y_crossFW)){
 					y_crossGK = y_crossFW - value;
 				}
 				
-				if(c_nC->x_posOfBall[0] < 2300){
+				if(c_nC->x_posOfBall[0] <= 2300){
 					y_crossGK = c_nC->act_posOfAxesCPU_Y[0];
 				}
 			}
 			break;
-	}
+	}// end switch
 	
 	if(y_crossGK > gk_max){
 		y_crossGK = y_crossDF - 200;
@@ -366,7 +381,7 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 	c_nC->new_cross[2] = y_crossMD;
 	c_nC->new_cross[3] = y_crossFW;
 	
-}
+}// end function
 
 void choosing_rightDummy(struct choosing_rightDummy* ch_rD)
 {
@@ -424,7 +439,7 @@ void choosing_rightDummy(struct choosing_rightDummy* ch_rD)
 				}
 			}
 			break;
-	}
+	}// end switch
 	
 	if(ch_rD->index != 0){
 		calculete_min(&calc_m);
@@ -443,7 +458,7 @@ void choosing_rightDummy(struct choosing_rightDummy* ch_rD)
 			ch_rD->actual_displacement = (-1)*real_cross;
 		}
 	}
-}
+}// end function
 
 void calculete_min(struct calculete_min* c_m)
 {
@@ -460,4 +475,4 @@ void calculete_min(struct calculete_min* c_m)
 	
 	c_m->index  = idx;
 	c_m->number = min;
-}
+}// end function

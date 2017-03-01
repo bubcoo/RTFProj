@@ -1,10 +1,44 @@
 (*Enumerations*)
 
 TYPE
-	min_number : 	STRUCT 
-		index : USINT;
-		number : REAL;
+	internal_machtInfo : 	STRUCT 
+		length : UDINT;
+		write_matchInfo : BOOL;
+		auxiliary_str : ARRAY[0..10]OF UDINT;
+		counter : USINT;
+		results : ARRAY[0..1]OF DINT;
+		UtcDTStructureGetTime_1 : UtcDTStructureGetTime;
+		e_r_str : ARRAY[0..3]OF UDINT;
+		DTStruct : DTStructure;
+		state : USINT;
+		string : ARRAY[0..8]OF STRING[25];
 	END_STRUCT;
+	match_info : 	STRUCT 
+		team_name_CPU : ARRAY[0..50]OF STRING[10];
+		team_name_HUM : ARRAY[0..50]OF STRING[20];
+		score_HUM : ARRAY[0..50]OF USINT;
+		score_CPU : ARRAY[0..50]OF USINT;
+		date : ARRAY[0..50]OF STRING[25];
+	END_STRUCT;
+	soccer_table_ENUM : 
+		(
+		RST_EMPTY := -1,
+		RST_INITIALIZATION_1 := 1,
+		RST_INITIALIZATION_2 := 2,
+		RST_INITIALIZATION_3 := 3,
+		RST_INITIALIZATION_4 := 4,
+		RST_INITIALIZATION_5 := 5,
+		RST_CALCULATION := 10,
+		RST_RUN1 := 100,
+		RST_RUN2 := 101,
+		RST_RUN3 := 102,
+		RST_RUN4 := 103,
+		RST_RUN5 := 104,
+		RST_SERVICE := 200,
+		RST_STOP := 300,
+		RST_SAFETY := 400,
+		RST_ERROR := 500
+		);
 	rp_MainSteps : 
 		(
 		STEP_INITIALIZATION0 := 0,

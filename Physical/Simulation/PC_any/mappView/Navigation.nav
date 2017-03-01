@@ -3,18 +3,27 @@
   <NavigationPaths>
     <NavigationPath refId="MainPage">
       <Destination refId="MainPage" index="0" />
-      <Destination refId="CameraPage" index="1" />
-	  <Destination refId="SDMPage" index="2" />
+      <Destination refId="GamePage" index="1" />    
+      <Destination refId="CameraPage" index="2" />
+	  <Destination refId="SDMPage" index="3" />
+    </NavigationPath>
+    <NavigationPath refId="GamePage">
+        <Destination refId="MainPage" index="0" />
+        <Destination refId="GamePage" index="1" />
+        <Destination refId="CameraPage" index="2" />
+        <Destination refId="SDMPage" index="3" />
     </NavigationPath>
 	<NavigationPath refId="CameraPage">
 		<Destination refId="MainPage" index="0" />
-		<Destination refId="CameraPage" index="1" />
-		<Destination refId="SDMPage" index="2" />
+        <Destination refId="GamePage" index="1" />
+		<Destination refId="CameraPage" index="2" />
+		<Destination refId="SDMPage" index="3" />
 	</NavigationPath>
 	<NavigationPath refId="SDMPage">
 		<Destination refId="MainPage" index="0" />
-		<Destination refId="CameraPage" index="1" />
-		<Destination refId="SDMPage" index="2" />
+        <Destination refId="GamePage" index="1" />
+		<Destination refId="CameraPage" index="2" />
+		<Destination refId="SDMPage" index="3" />
 	</NavigationPath>
   </NavigationPaths>
 </ndef:Navigation>
