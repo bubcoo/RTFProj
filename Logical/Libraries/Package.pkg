@@ -34,5 +34,7 @@
     <Object Type="Library" Language="Binary" Description="MpCom Library">MpCom</Object>
     <Object Type="Library" Language="Binary" Description="Single and multi axes control">MpAxis</Object>
     <Object Type="Library" Language="Binary" Description="Advanced alarm management">MpAlarmX</Object>
+    <Object Type="Library" Language="Binary" Description="The AsSafety library provides function blocks for the safety system.">AsSafety</Object>
+    <Object Type="Library" Language="Binary" Description="The AsXml library supports reading and writing of XML files.">AsXml</Object>
   </Objects>
 </Package>
