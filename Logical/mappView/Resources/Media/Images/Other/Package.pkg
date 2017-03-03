@@ -6,6 +6,9 @@
     <Object Type="File">br_automation.png</Object>
     <Object Type="File">hum_no1.png</Object>
     <Object Type="File">hum_no2.png</Object>
+<<<<<<< HEAD
     <Object Type="File">vers.png</Object>
+=======
+>>>>>>> 85e8705b1bc3d8d1aac6633523b7611cc8129316
   </Objects>
 </Package>

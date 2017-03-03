@@ -3,6 +3,7 @@
   <Widgets>
     <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox1" top="12" left="11" width="1145" height="645" zIndex="0" text="Game" borderWidth="0px" cornerRadius="8px 8px 0px 0px" backColor="rgba(255, 255, 255, 1)" headerGradient="linear-gradient(to bottom,#F7F7F7 10%,#C6C6C6 90%)" borderColor="rgba(190, 190, 190, 0.75)" fontSize="14px">
       <Widgets>
+<<<<<<< HEAD
         <Widget xsi:type="widgets.brease.Image" id="Image1" top="13" left="9" width="1125" height="590" zIndex="0" image="Media/Images/Other/game_playground.png" />
         <Widget xsi:type="widgets.brease.Image" id="Image2" top="384" left="368" width="152" height="213" zIndex="1" image="Media/Images/Other/hum_no1.png" borderWidth="0px" borderColor="transparent" opacity="0.8" />
         <Widget xsi:type="widgets.brease.Image" id="Image3" top="384" left="280" width="168" height="213" zIndex="2" image="Media/Images/Other/hum_no2.png" borderWidth="0px" borderColor="transparent" opacity="0.8" />
@@ -19,6 +20,12 @@
         <Widget xsi:type="widgets.brease.ProgressBar" id="ProgressBar2" top="274" left="629" width="429" height="25" zIndex="13" labelPosition="center" value="50" opacity="0.8" shadow="none" barBorderColor="rgba(245, 245, 245, 1)" barCornerRadius="5px" barBackColor="rgba(245, 245, 245, 1)" barColor="rgba(255, 128, 0, 1)" borderColor="rgba(245, 245, 245, 1)" backColor="rgba(255, 255, 255, 0)" fontName="Arial" fontSize="15px" fontColor="rgba(192, 64, 0, 1)" bold="true" />
         <Widget xsi:type="widgets.brease.Label" id="Label2" top="245" left="77" width="251" height="30" zIndex="14" text="The probability of winning :" textColor="rgba(245, 245, 245, 1)" opacity="0.8" />
         <Widget xsi:type="widgets.brease.Label" id="Label3" top="245" left="624" width="251" height="30" zIndex="15" text="The probability of winning :" textColor="rgba(245, 245, 245, 1)" opacity="0.8" />
+=======
+        <Widget xsi:type="widgets.brease.Image" id="Image1" top="10" left="10" width="1125" height="590" zIndex="0" image="Media/Images/Other/game_playground.png" />
+        <Widget xsi:type="widgets.brease.Image" id="Image2" top="384" left="368" width="152" height="213" zIndex="1" image="Media/Images/Other/hum_no1.png" borderWidth="0px" borderColor="transparent" opacity="0.8" />
+        <Widget xsi:type="widgets.brease.Image" id="Image3" top="384" left="280" width="168" height="213" zIndex="2" image="Media/Images/Other/hum_no2.png" borderWidth="0px" borderColor="transparent" opacity="0.8" />
+        <Widget xsi:type="widgets.brease.Image" id="Image4" top="459" left="680" width="202" height="121" zIndex="3" image="Media/Images/Other/br_automation.png" borderWidth="0px" borderColor="transparent" opacity="0.8" />
+>>>>>>> 85e8705b1bc3d8d1aac6633523b7611cc8129316
       </Widgets>
     </Widget>
   </Widgets>
