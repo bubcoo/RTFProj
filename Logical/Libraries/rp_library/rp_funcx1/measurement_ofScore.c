@@ -40,11 +40,8 @@ void measurement_ofScore(struct measurement_ofScore* m_oS)
                     m_oS->Internal.auxiliary_str[7] = (UDINT) strcpy(m_oS->team_nameCPU,"B&R ROBOT");
                     // HUMAN NAME
                     strcpy(m_oS->Internal.string[5],m_oS->PLAYER1_NAME);
-<<<<<<< HEAD
                     strcpy(m_oS->Internal.string[6],"\n \t& \n");
-=======
                     strcpy(m_oS->Internal.string[6],"&");
->>>>>>> 85e8705b1bc3d8d1aac6633523b7611cc8129316
                     strcpy(m_oS->Internal.string[7], m_oS->Internal.string[5]);
                     strcpy(m_oS->Internal.string[8], m_oS->PLAYER2_NAME);
                     m_oS->Internal.auxiliary_str[8] = (UDINT) strcat(m_oS->Internal.string[5], m_oS->Internal.string[6]);
@@ -63,18 +60,12 @@ void measurement_ofScore(struct measurement_ofScore* m_oS)
             {
                 if(m_oS->sens_wicket_CPU == 1){
                     m_oS->count_goals_CPU++;
-<<<<<<< HEAD
                     m_oS->sens_wicket_CPU = 0;
-=======
->>>>>>> 85e8705b1bc3d8d1aac6633523b7611cc8129316
                 }
                 
                 if(m_oS->sens_wicket_HUM == 1){
                     m_oS->count_goals_HUM++;
-<<<<<<< HEAD
                     m_oS->sens_wicket_HUM = 0;
-=======
->>>>>>> 85e8705b1bc3d8d1aac6633523b7611cc8129316
                 }
                 
                 if(((m_oS->count_goals_CPU + m_oS->count_goals_HUM) == 10) && m_oS->Error == 0){
