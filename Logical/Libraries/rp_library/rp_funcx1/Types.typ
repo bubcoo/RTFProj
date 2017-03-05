@@ -11,6 +11,7 @@ TYPE
 		e_r_str : ARRAY[0..3]OF UDINT;
 		DTStruct : DTStructure;
 		state : USINT;
+		after_state : USINT;
 		string : ARRAY[0..8]OF STRING[25];
 	END_STRUCT;
 	match_info : 	STRUCT 

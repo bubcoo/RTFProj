@@ -193,6 +193,7 @@ FUNCTION_BLOCK measurement_ofScore (*TODO: Add your comment here*) (*$GROUP=User
 	VAR_INPUT
 		start_measurement : BOOL;
 		exit_game : BOOL;
+		pause : BOOL;
 		restart_measurement : BOOL;
 		sens_wicket_CPU : BOOL;
 		sens_wicket_HUM : BOOL;
@@ -201,6 +202,8 @@ FUNCTION_BLOCK measurement_ofScore (*TODO: Add your comment here*) (*$GROUP=User
 	END_VAR
 	VAR_OUTPUT
 		Error : BOOL;
+		probability_CPU : USINT;
+		probability_HUM : USINT;
 		count_goals_CPU : USINT;
 		match_informations : match_info;
 		team_nameCPU : STRING[30];

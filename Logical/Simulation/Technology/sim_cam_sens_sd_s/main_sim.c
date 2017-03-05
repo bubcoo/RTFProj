@@ -19,7 +19,7 @@
 	#include <AsDefault.h>
 #endif
 
-_LOCAL struct measurement_ofScore measurement_ofScore_0;
+_LOCAL struct measurement_ofScore measurement_ofScore_1;
 
 void _INIT ProgramInit(void)
 {
@@ -28,7 +28,7 @@ void _INIT ProgramInit(void)
 
 void _CYCLIC ProgramCyclic(void)
 {
-    measurement_ofScore(&measurement_ofScore_0); 
+    measurement_ofScore(&measurement_ofScore_1);
 }
 
 
