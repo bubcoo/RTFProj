@@ -2,28 +2,24 @@
 <ndef:Navigation id="MainNavigation" xmlns:ndef="http://www.br-automation.com/iat2015/navigationDefinition/v2">
   <NavigationPaths>
     <NavigationPath refId="GamePage">
-      <Destination refId="GamePage" index="0" />
-      <Destination refId="MatchPage" index="1" />    
-      <Destination refId="CameraPage" index="2" />
-	  <Destination refId="SDMPage" index="3" />
+      <Destination refId="GamePage" index="0" />    
+      <Destination refId="CameraPage" index="1" />
+	  <Destination refId="SDMPage" index="2" />
     </NavigationPath>
     <NavigationPath refId="MatchPage">
         <Destination refId="GamePage" index="0" />
-        <Destination refId="MatchPage" index="1" />
-        <Destination refId="CameraPage" index="2" />
-        <Destination refId="SDMPage" index="3" />
+        <Destination refId="CameraPage" index="1" />
+        <Destination refId="SDMPage" index="2" />
     </NavigationPath>
 	<NavigationPath refId="CameraPage">
 		<Destination refId="GamePage" index="0" />
-        <Destination refId="MatchPage" index="1" />
-		<Destination refId="CameraPage" index="2" />
-		<Destination refId="SDMPage" index="3" />
+		<Destination refId="CameraPage" index="1" />
+		<Destination refId="SDMPage" index="2" />
 	</NavigationPath>
 	<NavigationPath refId="SDMPage">
 		<Destination refId="GamePage" index="0" />
-        <Destination refId="MatchPage" index="1" />
-		<Destination refId="CameraPage" index="2" />
-		<Destination refId="SDMPage" index="3" />
+		<Destination refId="CameraPage" index="1" />
+		<Destination refId="SDMPage" index="2" />
 	</NavigationPath>
   </NavigationPaths>
 </ndef:Navigation>
