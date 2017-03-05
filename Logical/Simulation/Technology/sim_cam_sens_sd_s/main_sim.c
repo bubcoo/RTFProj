@@ -14,12 +14,14 @@
 #include <string.h>
 #include <math.h>
 #include "rp_funcx1.h"
+#include "ro_sensors.h"
 
 #ifdef _DEFAULT_INCLUDES
 	#include <AsDefault.h>
 #endif
 
 _LOCAL struct measurement_ofScore measurement_ofScore_1;
+_LOCAL struct FB_DetectionPosition fb_dp;
 
 void _INIT ProgramInit(void)
 {
@@ -28,7 +30,8 @@ void _INIT ProgramInit(void)
 
 void _CYCLIC ProgramCyclic(void)
 {
-    measurement_ofScore(&measurement_ofScore_1);
+    FB_DetectionPosition(&fb_dp);
+    //measurement_ofScore(&measurement_ofScore_1);
 }
 
 
