@@ -44,11 +44,14 @@ FUNCTION_BLOCK FB_DetectionPosition
             // CALCULATION STATE       
             FOR Internal.index[0] := 0 TO 3 DO
                 IF Distance_Error[Internal.index[0]] = FALSE AND Internal.auxiliary_pos[Internal.index[0]] <> -9999 THEN
-                    Actual_Positions[Internal.index[0]] := Positions_FromTheSensors[Internal.index[0]];
+                    Internal.auxiliary_pos[Internal.index[0]] := 0;
+                    Actual_Positions[Internal.index[0]]       := Positions_FromTheSensors[Internal.index[0]];
                 ELSIF Distance_Error[Internal.index[0]] = TRUE AND Internal.auxiliary_pos[Internal.index[0]] <> -9999 THEN
-                    Actual_Positions[Internal.index[0]] := -1000;
+                    Internal.auxiliary_pos[Internal.index[0]] := 0;
+                    Actual_Positions[Internal.index[0]]       := -1000;
                 ELSE
-                    Actual_Positions[Internal.index[0]] := Internal.auxiliary_pos[Internal.index[0]];
+                    Actual_Positions[Internal.index[0]]       := Internal.auxiliary_pos[Internal.index[0]];
+                    Internal.auxiliary_pos[Internal.index[0]] := 0;
                 END_IF
                 
             END_FOR
