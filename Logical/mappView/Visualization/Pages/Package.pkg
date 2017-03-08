@@ -7,5 +7,6 @@
     <Object Type="Package">CameraPage</Object>
     <Object Type="Package">SDMPage</Object>
     <Object Type="Package">MatchPage</Object>
+    <Object Type="Package">HomePage</Object>
   </Objects>
 </Package>

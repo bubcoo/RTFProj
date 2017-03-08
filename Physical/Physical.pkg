@@ -5,5 +5,6 @@
     <Object Type="Configuration">REAL_GAME_ST</Object>
     <Object Type="Configuration">Lubo</Object>
     <Object Type="Configuration">Simulation</Object>
+    <Object Type="Configuration">Robotic_Soccer_Table_REAL</Object>
   </Objects>
 </Physical>

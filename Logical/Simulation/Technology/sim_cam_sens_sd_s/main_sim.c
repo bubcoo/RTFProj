@@ -9,7 +9,7 @@
 **********************************************************************************************
 * Implementation OF PROGRAM sim_cam_sens_sd_s(Simulation/Technology/sim_cam_sens_sd_s/main_sim.c)
 **********************************************************************************************/
-
+    
 #include <bur/plctypes.h>
 #include <string.h>
 #include <math.h>
@@ -21,7 +21,6 @@
 #endif
 
 _LOCAL struct measurement_ofScore measurement_ofScore_1;
-_LOCAL struct FB_DetectionPosition fb_dp;
 
 void _INIT ProgramInit(void)
 {
@@ -30,8 +29,7 @@ void _INIT ProgramInit(void)
 
 void _CYCLIC ProgramCyclic(void)
 {
-    FB_DetectionPosition(&fb_dp);
-    //measurement_ofScore(&measurement_ofScore_1);
+    measurement_ofScore(&measurement_ofScore_1);
 }
 
 
