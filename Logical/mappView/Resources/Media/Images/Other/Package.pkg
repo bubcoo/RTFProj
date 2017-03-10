@@ -6,5 +6,8 @@
     <Object Type="File">br_automation.png</Object>
     <Object Type="File">hum_no1.png</Object>
     <Object Type="File">hum_no2.png</Object>
+    <Object Type="File">chart_pie2.png</Object>
+    <Object Type="File">fme.png</Object>
+    <Object Type="File">feec.png</Object>
   </Objects>
 </Package>

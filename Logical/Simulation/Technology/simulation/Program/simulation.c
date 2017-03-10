@@ -176,7 +176,7 @@ void _CYCLIC ProgramCyclic(void)
             {
             }
             break;
-        case RST_CALCULATION:
+        case RST_CALCULATION_DEFENSE:
             {
                 // calculation forecast direction
                 f_d.ball1_x = ball1[0];

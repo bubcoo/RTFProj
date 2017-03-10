@@ -11,6 +11,7 @@ TYPE
 		e_r_str : ARRAY[0..3]OF UDINT;
 		DTStruct : DTStructure;
 		state : USINT;
+		after_state : USINT;
 		string : ARRAY[0..8]OF STRING[25];
 	END_STRUCT;
 	match_info : 	STRUCT 
@@ -28,7 +29,7 @@ TYPE
 		RST_INITIALIZATION_3 := 3,
 		RST_INITIALIZATION_4 := 4,
 		RST_INITIALIZATION_5 := 5,
-		RST_CALCULATION := 10,
+		RST_CALCULATION_DEFENSE := 10,
 		RST_RUN1 := 100,
 		RST_RUN2 := 101,
 		RST_RUN3 := 102,
