@@ -7,20 +7,18 @@
 #include <AsDefault.h>
 #endif
 
-void resetFB(struct Light *inst);
-void PWMControl(struct Light *inst);
-void BlinkControl(struct Light *inst);
+void resetFB(struct Light *inst);												//Reset basic variables
+void PWMControl(struct Light *inst);											//Controls Light in PWM Mode
+void BlinkControl(struct Light *inst);											//Allows Blinking of Light
 
 void Light(struct Light *inst)
 {
-	if ((!inst->Enable) && (inst->internal.MainControlBarLight != INIT_BARLIGHT))
-	{
-		inst->internal.MainControlBarLight = DISABLED_BARLIGHT;
-	}
+	if ((!inst->Enable) && (inst->internal.MainControlBarLight != INIT_BARLIGHT))//If FB not allowed and switch is not in init state
+		inst->internal.MainControlBarLight = DISABLED_BARLIGHT;					//Change state to DISABLED
 	
-	switch (inst->internal.MainControlBarLight)
+	switch (inst->internal.MainControlBarLight)									//Main switch controls whole FB
 	{
-		case INIT_BARLIGHT:
+		case INIT_BARLIGHT:														//Check parameter for PWM
 			inst->internal.TaskClass.RTInfo_0.enable = 1;
 			RTInfo(&inst->internal.TaskClass.RTInfo_0);
 			if (!(inst->internal.TaskClass.RTInfo_0.status) && (inst->internal.TaskClass.RTInfo_0.cycle_time > 0))

@@ -3,7 +3,7 @@
   <Widgets>
     <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox1" top="10" left="10" width="1145" height="645" zIndex="0" text="Camera" borderWidth="0px" cornerRadius="8px 8px 0px 0px" backColor="rgba(255, 255, 255, 1)" headerGradient="linear-gradient(to bottom,#F7F7F7 10%,#C6C6C6 90%)" borderColor="rgba(190, 190, 190, 0.75)" fontSize="14px">
       <Widgets>
-        <Widget xsi:type="widgets.brease.Image" id="Image1" top="226" left="565" width="150" height="100" zIndex="0" image="/FileDevice:PHOTO/Temp/photo/BR.png" />
+        <Widget xsi:type="widgets.brease.Image" id="Image1" top="226" left="565" width="150" height="100" zIndex="0" image="/FileDevice:USERDISK/BR.png" />
         <Widget xsi:type="widgets.brease.Ellipse" id="Ellipse1" top="246" left="410" width="100" height="100" zIndex="1" />
       </Widgets>
     </Widget>

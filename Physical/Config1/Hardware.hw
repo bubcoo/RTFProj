@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.7.54 SP?>
+<Hardware xmlns="http://br-automation.co.at/AS/Hardware">
+  <Module Name="5ACCIF01.FPSC-000" Type="5ACCIF01.FPSC-000" Version="1.2.1.0">
+    <Connection Connector="SL" TargetModule="5PPC2100_BY44_000" TargetConnector="SL1" />
+  </Module>
+  <Module Name="5AP933.156B-00" Type="5AP933.156B-00" Version="1.4.0.1" />
+  <Module Name="5PPC2100_BY44_000" Type="5PPC2100.BY44-000" Version="1.0.0.0">
+    <Connection Connector="SY" TargetModule="5AP933.156B-00" TargetConnector="SY1" />
+    <Parameter ID="AutomationRuntime" Value="AR010" />
+    <Parameter ID="ConfigurationID" Value="RTFProj_Config1" />
+    <Parameter ID="RebootReset" Value="4" />
+    <Parameter ID="TaskClassIdleTime" Value="1000" />
+    <Parameter ID="Cyclic1Duration" Value="10000" />
+    <Parameter ID="Cyclic1Tolerance" Value="10000" />
+    <Parameter ID="Cyclic2Duration" Value="20000" />
+    <Parameter ID="Cyclic2Tolerance" Value="20000" />
+    <Parameter ID="Cyclic3Duration" Value="50000" />
+    <Parameter ID="Cyclic3Tolerance" Value="50000" />
+    <Parameter ID="Cyclic4Duration" Value="100000" />
+    <Parameter ID="Cyclic4Tolerance" Value="100000" />
+    <Parameter ID="Cyclic5Duration" Value="200000" />
+    <Parameter ID="Cyclic5Tolerance" Value="200000" />
+    <Parameter ID="Cyclic6Duration" Value="500000" />
+    <Parameter ID="Cyclic6Tolerance" Value="500000" />
+    <Parameter ID="Cyclic7Duration" Value="1000000" />
+    <Parameter ID="Cyclic7Tolerance" Value="1000000" />
+    <Parameter ID="Cyclic8Duration" Value="10000" />
+    <Parameter ID="Cyclic8Tolerance" Value="30000000" />
+  </Module>
+</Hardware>

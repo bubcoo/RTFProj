@@ -4,7 +4,7 @@
     <Module Name="4PPC70_0573_22B" Type="4PPC70.0573-22B" X="100" Y="100" />
     <Module Name="80VD100PD.C000-01" Type="80VD100PD.C000-01" X="336" Y="256" />
     <Module Name="80VD100PD.C188-01" Type="80VD100PD.C188-01" X="242" Y="256" />
-    <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" X="442" Y="277.5" />
+    <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" X="442" Y="277" />
   </Modules>
   <Links>
     <Link From="4PPC70_0573_22B" To="80VD100PD.C188-01" FromPort="IF1" ToPort="PLK1" IsRoutedByUser="False">
@@ -30,14 +30,14 @@
       <Point X="291" Y="330" />
       <Point X="291" Y="330" />
     </Link>
-    <Link From="In-Sight" To="80VD100PD.C000-01" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
-      <Point X="475" Y="316.5" />
-      <Point X="475" Y="316.5" />
-      <Point X="475" Y="323.5" />
-      <Point X="475" Y="330" />
+    <Link From="80VD100PD.C000-01" To="In-Sight" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
+      <Point X="385" Y="330" />
+      <Point X="385" Y="330" />
       <Point X="394" Y="330" />
-      <Point X="385" Y="330" />
-      <Point X="385" Y="330" />
+      <Point X="475" Y="330" />
+      <Point X="475" Y="323" />
+      <Point X="475" Y="316" />
+      <Point X="475" Y="316" />
     </Link>
   </Links>
   <InfoElements />
