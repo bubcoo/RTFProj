@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <vdef:Visualization id="RoboticST" xmlns:vdef="http://www.br-automation.com/iat2015/visualizationDefinition/v2">
-  <StartPage pageRefId="MainPage" />
+<!--  <StartPage pageRefId="MainPage" />
   <Pages>
     <Page refId="MainPage"/>
 	<Page refId="CameraPage"/>
@@ -13,23 +13,23 @@
     <BindingsSet refId="binding_0" />
   </BindingsSets>
   <EventBindingsSets>
-    <!--<EventBindingsSet refId="" />-->
-  </EventBindingsSets>
+    <!<EventBindingsSet refId="" />-->
+ <!-- </EventBindingsSets>
   <Dialogs>
     <!--<Dialog refId="" />-->
-  </Dialogs>
+ <!-- </Dialogs>
   <Contents>
     <!--<Content refId="" />-->
-  </Contents>
+ <!-- </Contents>
   <SnippetsSets>
     <!--<SnippetsSet refId=""/>-->
-  </SnippetsSets>
+ <!-- </SnippetsSets>
   <ExpressionsSets>
     <!--<ExpressionsSet refId=""/>-->
-  </ExpressionsSets>
+ <!-- </ExpressionsSets>
   <VariablesSets>
     <!--<VariablesSet refId="" />-->
-  </VariablesSets>
+ <!-- </VariablesSets>
   <StartTheme themeRefId="BuRTheme1" />
   <Themes>
     <Theme refId="BuRTheme1"/>
@@ -37,4 +37,4 @@
   <Configurations>
     <Configuration key="activityCount" value="false" />
   </Configurations>
-</vdef:Visualization>
+</vdef:Visualization> -->

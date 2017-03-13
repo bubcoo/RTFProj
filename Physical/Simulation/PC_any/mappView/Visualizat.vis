@@ -3,10 +3,10 @@
   <StartPage pageRefId="HomePage" />
   <Pages>
     <Page refId="HomePage"/>    
-    <Page refId="GamePage"/>
+    <!--<Page refId="GamePage"/>-->
 	<Page refId="CameraPage"/>
-	<Page refId="SDMPage"/>
-    <Page refId="MatchPage"/>
+	<Page refId="SDMPage"/>-->
+    <!--<Page refId="MatchPage"/>-->
   </Pages>
   <Navigations>
     <Navigation refId="MainNavigation" />
