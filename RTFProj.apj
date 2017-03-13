@@ -10,5 +10,6 @@
   <TechnologyPackages>
     <mapp Version="1.60.0" />
     <mappView Version="1.2.1" mvLoader="1.0.0" />
+    <TextSystem udbdef="0.1.0" />
   </TechnologyPackages>
 </Project>
