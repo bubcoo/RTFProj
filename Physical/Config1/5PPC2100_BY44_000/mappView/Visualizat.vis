@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<vdef:Visualization id="RoboticST" xmlns:vdef="http://www.br-automation.com/iat2015/visualizationDefinition/v2">
-  <StartPage pageRefId="MainPage" />
-  <Pages>
-    <Page refId="MainPage"/>
+<vdef:Visualization id="RSTPROJR" xmlns:vdef="http://www.br-automation.com/iat2015/visualizationDefinition/v2">
+  <StartPage pageRefId="HomePage" />
+  <Pages>   
+    <Page refId="GamePage"/>
 	<Page refId="CameraPage"/>
 	<Page refId="SDMPage"/>
+    <Page refId="MatchPage"/>
+	<Page refId="HomePage"/> 
   </Pages>
   <Navigations>
     <Navigation refId="MainNavigation" />
   </Navigations>  
   <BindingsSets>
-    <BindingsSet refId="binding_0" />
+    <!--<BindingsSet refId="" />-->
   </BindingsSets>
   <EventBindingsSets>
     <!--<EventBindingsSet refId="" />-->

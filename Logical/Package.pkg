@@ -9,7 +9,5 @@
     <Object Type="Package">Simulation</Object>
     <Object Type="Package">Real_Game</Object>
     <Object Type="Package">mappView</Object>
-    <Object Type="Package">GmcIpConfig</Object>
-    <Object Type="Package">GmcIpUserConfig</Object>
   </Objects>
 </Package>

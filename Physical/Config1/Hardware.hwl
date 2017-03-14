@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<BR.AS.HardwareTopology Version="0.0.0.1">
+  <Modules>
+    <Module Name="5AP933.156B-00" Type="5AP933.156B-00" X="100" Y="100" />
+    <Module Name="5PPC2100_BY44_000" Type="5PPC2100.BY44-000" X="357.8" Y="110" />
+    <Module Name="5ACCIF01.FPSC-000" Type="5ACCIF01.FPSC-000" X="362.8" Y="123" />
+    <Module Name="X20BB80" Type="X20BB80" X="459" Y="332" />
+    <Module Name="X20BM11" Type="X20BM11" X="497" Y="332" />
+    <Module Name="X20DI9371" Type="X20DI9371" X="497" Y="332" />
+    <Module Name="X20TB12a" Type="X20TB12" X="497" Y="359" />
+    <Module Name="X20BM11a" Type="X20BM11" X="510" Y="332" />
+    <Module Name="X20DO9322" Type="X20DO9322" X="510" Y="332" />
+    <Module Name="X20TB12b" Type="X20TB12" X="510" Y="359" />
+    <Module Name="X20BM11b" Type="X20BM11" X="523" Y="332" />
+    <Module Name="X20AI2622" Type="X20AI2622" X="523" Y="332" />
+    <Module Name="X20TB12c" Type="X20TB12" X="523" Y="359" />
+    <Module Name="X20PS9400" Type="X20PS9400" X="484" Y="332" />
+    <Module Name="X20TB12" Type="X20TB12" X="484" Y="359" />
+    <Module Name="X20BC0083" Type="X20BC0083" X="459" Y="332" />
+  </Modules>
+  <Links>
+    <Link From="5ACCIF01.FPSC-000" To="X20BC0083" FromPort="IF1" ToPort="PLK1" IsRoutedByUser="False">
+      <Point X="403.8" Y="131" />
+      <Point X="403.8" Y="131" />
+      <Point X="413.8" Y="131" />
+      <Point X="425" Y="131" />
+      <Point X="425" Y="407" />
+      <Point X="458" Y="407" />
+      <Point X="473" Y="407" />
+      <Point X="473" Y="407" />
+    </Link>
+  </Links>
+  <InfoElements />
+</BR.AS.HardwareTopology>
