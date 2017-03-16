@@ -2,6 +2,11 @@
 <?AutomationStudio Version=4.2.7.54 SP?>
 <Hardware xmlns="http://br-automation.co.at/AS/Hardware">
   <Module Name="4PPC70_0573_22B" Type="4PPC70.0573-22B" Version="1.4.0.0">
+    <Connector Name="IF1">
+      <Parameter ID="AsyncTimeout" Value="100000" />
+      <Parameter ID="AsyncSlotsPerCycle" Value="7" />
+      <Parameter ID="TransferOnlyActive" Value="on" />
+    </Connector>
     <Connector Name="IF2">
       <Parameter ID="ActivateDevice" Value="1" />
       <Parameter ID="Mode" Value="Manual" />
@@ -9,7 +14,6 @@
       <Parameter ID="SubnetMask" Value="255.255.255.0" />
     </Connector>
     <Parameter ID="ConfigurationID" Value="RTFProj_4PPC70_0573_22B" />
-    <Parameter ID="Simulation" Value="1" />
     <Parameter ID="TimerDeviceType" Value="SWIOTIMER" />
     <Parameter ID="Cyclic1Duration" Value="10000" />
     <Parameter ID="Cyclic1Tolerance" Value="10000" />
@@ -29,7 +33,7 @@
     <Parameter ID="Cyclic8Tolerance" Value="30000000" />
     <Group ID="FileDevice1" />
     <Parameter ID="FileDeviceName1" Value="USER_DISK" />
-    <Parameter ID="FileDevicePath1" Value="F:/" />
+    <Parameter ID="FileDevicePath1" Value="F:\" />
     <Parameter ID="KeyMappingFile" Value="VC\4PPC70_0573_22B.dis" />
   </Module>
   <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" Version="4.8.0" OrderNumber="In-Sight">

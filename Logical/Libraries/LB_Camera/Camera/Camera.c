@@ -53,14 +53,12 @@ void FBCamera(struct FBCamera *inst)
 			else {
 				unsigned int status;
 				if ((status = FTPConnect(inst,DEVLINK)) == ERR_OK){
-					if (inst->Internal.FTP.Status ){
-						inst->isCameraReady = 1;									//Bit for user that Camera is working
-						inst->Internal.MainSwitch = RUN;							//Change state to RUN
-						inst->Status = ERR_OK;										//No error in enable case
-					}
-					else if(status != ERR_FUB_BUSY)
-						setError(inst,status);
+					inst->isCameraReady = 1;									//Bit for user that Camera is working
+					inst->Internal.MainSwitch = RUN;							//Change state to RUN
+					inst->Status = ERR_OK;										//No error in enable case
 				}
+				else if(status != ERR_FUB_BUSY)
+					setError(inst,status);
 			}
 			break;
 	
@@ -68,6 +66,14 @@ void FBCamera(struct FBCamera *inst)
 			if (!(inst->InSight.ModuleOk))									//if camera is disconnected change state to ENABLE where waiting for connect
 				inst->Internal.MainSwitch = ENABLED;
 			
+			if (inst->MappView.LoadImage){
+				unsigned int status;
+				if ((status = (FTPConnect(inst,FILECOPY))) == ERR_OK)
+					inst->MappView.LoadImage = 0;
+				else if (status != ERR_FUB_BUSY)
+					setError(inst,status);
+			}
+				
 			else if(inst->Search){
 				inst->isSearching = 1;										//FB is Searching ball
 				if (!inst->Internal.Search_tmp)								//Needed to change to camera trigger loop but only once
@@ -227,7 +233,7 @@ unsigned int FTPConnect(struct FBCamera *inst,FTPSwitch_enum action) {
 				case ERR_OK:
 					inst->Internal.FTP.handle = inst->Internal.FTP.DevLink_0.handle;
 					inst->Internal.FTP.Status = 0;
-					inst->Internal.FTP.Status = ERR_OK;
+					return (ERR_OK);
 					break;
 				case fiERR_DEVICE_ALREADY_EXIST:
 					if (inst->Internal.FTP.handle != 0){
@@ -279,15 +285,16 @@ unsigned int FTPConnect(struct FBCamera *inst,FTPSwitch_enum action) {
 			break;
 		
 		case FILECOPY:
-			strcpy(inst->Internal.FTP.pDest,"image.jpg");
-			strcpy(inst->Internal.FTP.FileCopy_0.pDestDev,"USER_DISK");
-			strcpy(inst->Internal.FTP.pSrc,"image.jpg");
+			strcpy(inst->Internal.FTP.pDest,"image4.bmp");
+			strcpy(inst->Internal.FTP.pDestDev,"USER_DISK");
+			strcpy(inst->Internal.FTP.pSrc,"image.bmp");
 			inst->Internal.FTP.FileCopy_0.enable = 1;
 			inst->Internal.FTP.FileCopy_0.option = fiOVERWRITE;
 			inst->Internal.FTP.FileCopy_0.pDest = (UDINT)&inst->Internal.FTP.pDest;
 			inst->Internal.FTP.FileCopy_0.pDestDev = (UDINT)&inst->Internal.FTP.pDestDev;
 			inst->Internal.FTP.FileCopy_0.pSrc = (UDINT)&inst->Internal.FTP.pSrc;
 			inst->Internal.FTP.FileCopy_0.pSrcDev = (UDINT)&(inst->Internal.FTP.pDevice);
+			FileCopy(&inst->Internal.FTP.FileCopy_0);
 			switch (inst->Internal.FTP.FileCopy_0.status){
 				case ERR_OK:
 					return (ERR_OK);
