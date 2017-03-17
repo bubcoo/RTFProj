@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio Version=4.2.7.54 SP?>
+<?AutomationStudio Version=4.2.8.54 SP?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
     <Object Type="File">SDM.png</Object>
@@ -11,5 +11,9 @@
     <Object Type="File">Temperature.png</Object>
     <Object Type="File">About.png</Object>
     <Object Type="File">Safety.png</Object>
+    <Object Type="File">SDM.svg</Object>
+    <Object Type="File">Camera.svg</Object>
+    <Object Type="File">Options.svg</Object>
+    <Object Type="File">Home.svg</Object>
   </Objects>
 </Package>

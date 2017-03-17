@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OpcUaSource FileVersion="3">
+  <DefaultView>
+    <Module>
+      <GlobalVariables Name="Global PV">
+        <Variable Name="FBCamera_0" Enable="True">
+          <Variable Name="Results" Enable="True">
+            <Variable Name="AxisX" Enable="True" />
+            <Variable Name="AxisY" Enable="True" />
+          </Variable>
+        </Variable>
+      </GlobalVariables>
+    </Module>
+  </DefaultView>
+</OpcUaSource>

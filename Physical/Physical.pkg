@@ -5,6 +5,5 @@
     <Object Type="Configuration">Lubo</Object>
     <Object Type="Configuration">Simulation</Object>
     <Object Type="Configuration">Config1</Object>
-    <Object Type="Configuration">Config2Lubo</Object>
   </Objects>
 </Physical>

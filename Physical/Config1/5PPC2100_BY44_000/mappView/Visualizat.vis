@@ -12,7 +12,8 @@
     <Navigation refId="MainNavigation" />
   </Navigations>  
   <BindingsSets>
-    <!--<BindingsSet refId="" />-->
+    <BindingsSet refId="CameraBinding" />
+	<!--<BindingsSet refId="" />-->
   </BindingsSets>
   <EventBindingsSets>
     <!--<EventBindingsSet refId="" />-->

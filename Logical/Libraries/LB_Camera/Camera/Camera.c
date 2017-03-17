@@ -1,4 +1,5 @@
 #include <bur/plctypes.h>
+#include <math.h>
 
 #ifdef _DEFAULT_INCLUDES
 #include <AsDefault.h>
@@ -10,7 +11,6 @@ void resetFB(struct FBCamera *inst);
 void getRealAxes(struct FBCamera *inst);
 void cleanFB(struct FBCamera *inst);
 unsigned int FTPConnect(struct FBCamera *inst,FTPSwitch_enum action);
-
 
 void FBCamera(struct FBCamera *inst)
 {	
@@ -52,6 +52,7 @@ void FBCamera(struct FBCamera *inst)
 			}
 			else {
 				unsigned int status;
+				inst->Internal.NaN = sqrt(-1);
 				if ((status = FTPConnect(inst,DEVLINK)) == ERR_OK){
 					inst->isCameraReady = 1;									//Bit for user that Camera is working
 					inst->Internal.MainSwitch = RUN;							//Change state to RUN
@@ -88,7 +89,7 @@ void FBCamera(struct FBCamera *inst)
 				inst->Internal.Search_tmp = inst->isSearching = 0;			//if not searching reset variables
 				inst->Internal.CameraControl.ControlSwitch = WAIT_CMD;
 			}
-			
+			getRealAxes(inst);
 			switch (inst->Internal.CameraControl.ControlSwitch){ 			//Camera trigger switch, process to get position of ball
 	
 				case WAIT_CMD:												//Searching for ball is stoped	
@@ -198,17 +199,19 @@ void cleanFB(struct FBCamera *inst)
 
 void getRealAxes(struct FBCamera *inst)
 {
-	if (inst->isBallFound)
-	{
-		inst->Results.AxisX = inst->InSight.InspectionResults_I2011_S01*1.066666667;
-		inst->Results.AxisY = inst->InSight.InspectionResults_I2011_S02;
+	if (!inst->InSight.InspectionResults_I2011_S01 || !inst->InSight.InspectionResults_I2011_S02)
+		inst->Results.AxisY = inst->Results.AxisX = inst->Internal.NaN;
+	else{ 
+		if ((inst->Results.AxisXOld != inst->Results.AxisX) || (inst->Results.AxisYOld != inst->Results.AxisY)){
+			inst->Results.AxisXOld = inst->Results.AxisX;
+			inst->Results.AxisYOld = inst->Results.AxisY;
+			memcpy((UDINT)&inst->Results.ActTimeOld,(UDINT)&inst->Results.ActTime,sizeof(inst->Results.ActTime));
+		}
+		inst->Results.AxisX = 12100-(inst->InSight.InspectionResults_I2011_S02*(11.81040625));
+		inst->Results.AxisY = ((inst->InSight.InspectionResults_I2011_S01*(-9.373088685))+4705.29051987);
 		RTC_gettime(&inst->Results.ActTime);
-	}
-	else 
-	{
-		inst->Results.AxisX = -1;
-		inst->Results.AxisY = -1;
-		memset(&inst->Results.ActTime,0,sizeof(inst->Results.ActTime));
+		
+		 
 	}
 }
 

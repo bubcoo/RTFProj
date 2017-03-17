@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio Version=4.2.7.54 SP?>
+<?AutomationStudio Version=4.2.8.54 SP?>
 <Hardware xmlns="http://br-automation.co.at/AS/Hardware">
   <Module Name="5ACCIF01.FPSC-000" Type="5ACCIF01.FPSC-000" Version="1.2.1.0">
     <Connection Connector="SL" TargetModule="5PPC2100_BY44_000" TargetConnector="SL1" />
@@ -10,7 +10,7 @@
     </Connector>
   </Module>
   <Module Name="5AP933.156B-00" Type="5AP933.156B-00" Version="1.4.0.1" />
-  <Module Name="5PPC2100_BY44_000" Type="5PPC2100.BY44-000" Version="1.2.3.0">
+  <Module Name="5PPC2100_BY44_000" Type="5PPC2100.BY44-000" Version="1.2.4.0">
     <Connection Connector="SY" TargetModule="5AP933.156B-00" TargetConnector="SY1" />
     <Connector Name="IF3">
       <Parameter ID="ActivateDevice" Value="1" />
@@ -37,6 +37,8 @@
     <Parameter ID="Cyclic7Tolerance" Value="1000000" />
     <Parameter ID="Cyclic8Duration" Value="10000" />
     <Parameter ID="Cyclic8Tolerance" Value="30000000" />
+    <Parameter ID="ActivateOpcUa" Value="1" />
+    <Parameter ID="OpcUa_Security_SoftwareCertificates" Value="" />
   </Module>
   <Module Name="80VD100PD.C000-01" Type="80VD100PD.C000-01" Version="2.0.1.0">
     <Connection Connector="PLK1" TargetModule="X20BC0083" TargetConnector="PLK2" NodeNumber="2" />
@@ -72,6 +74,17 @@
   </Module>
   <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" Version="4.8.0" OrderNumber="In-Sight">
     <Connection Connector="PLK1" TargetModule="80VD100PD.C188-01a" TargetConnector="PLK2" NodeNumber="6" />
+    <Parameter ID="Supervision" Value="off" />
+    <Parameter ID="p2000s01_direction" Value="wo" />
+    <Parameter ID="p2000s02_direction" Value="wo" />
+    <Parameter ID="p2001s01_direction" Value="ro" />
+    <Parameter ID="p2001s02_direction" Value="ro" />
+    <Parameter ID="p2010s02_direction" Value="ro" />
+    <Parameter ID="p2011s01_direction" Value="ro" />
+    <Parameter ID="p2011s02_direction" Value="ro" />
+    <Parameter ID="p2011s03_direction" Value="ro" />
+    <Parameter ID="p2021s01_direction" Value="wo" />
+    <Parameter ID="p2021s02_direction" Value="wo" />
   </Module>
   <Module Name="X20AI2622" Type="X20AI2622" Version="1.0.3.1">
     <Connection Connector="SS1" TargetModule="X20TB12c" TargetConnector="SS" />
@@ -81,7 +94,7 @@
     <Parameter ID="ChannelType02" Value="4 to 20mA" />
   </Module>
   <Module Name="X20BB80" Type="X20BB80" Version="1.0.0.2" />
-  <Module Name="X20BC0083" Type="X20BC0083" Version="2.5.0.0">
+  <Module Name="X20BC0083" Type="X20BC0083" Version="2.5.2.0">
     <Connection Connector="PLK1" TargetModule="5ACCIF01.FPSC-000" TargetConnector="IF1" NodeNumber="1" />
     <Connection Connector="PLK2" TargetModule="80VD100PD.C000-01" TargetConnector="PLK1" NodeNumber="1" />
     <Connection Connector="SL" TargetModule="X20BB80" TargetConnector="SL1" />

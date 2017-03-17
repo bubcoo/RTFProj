@@ -29,6 +29,7 @@ TYPE
 		InspectionResults_I2011_S01 : UDINT;
 	END_STRUCT;
 	Internal_type : 	STRUCT 
+		NaN : REAL;
 		CameraControl : CameraControl_type;
 		MainSwitch : MainSwitch_enum;
 		FTP : FTP_type;
@@ -36,9 +37,12 @@ TYPE
 		Search_tmp : BOOL;
 	END_STRUCT;
 	Results_type : 	STRUCT 
-		ActTime : RTCtime_typ;
 		AxisX : REAL;
 		AxisY : REAL;
+		ActTime : RTCtime_typ;
+		AxisXOld : REAL;
+		AxisYOld : REAL;
+		ActTimeOld : RTCtime_typ;
 	END_STRUCT;
 	CameraControl_type : 	STRUCT 
 		ControlSwitch : ControlSwitch_enum;
