@@ -581,10 +581,8 @@ F5133:2:" data_modul2"
 7204:"WS error. Self-collision":F7146:F7209:F7210
 7205:"WS Error. Inter-channel collision":F7212
 7206:"WS Error. Inter-channel collision":F7146:F7209:F7210
-7207:"WS Error. External interchannel collision":F7213
-7208:"WS Error. External interchannel collision":F7146:F7209:F7210
 7226:"Programmed axis is not ready for operation":F7115:F7116:F7145
-7232:"path generator - no input data (e.g. short NC blocks, high speed)":F7146:F7147:F7148
+7232:"No input data for active movement (change of NC records too fast)":F7146:F7147:F7148
 7233:"T_max exceeded at controlling the 'In-Position-Tolerance' (Accuracy Hold)":F7115:F7116:F7145
 7234:"Wrong NC init program name specified at 'RESTART'":F7129
 7235:"Wrong start position (type or position)"
@@ -766,10 +764,9 @@ F7208:"TRF_generic() return status (bgen)":4,4,d
 F7209:"Address of collision info":4,4,d
 F7210:"Blocknummer N":8,4,d
 F7211:"Reason":0,1,d
-F7211:0:"Line pointer queue OFF"
-F7211:1:"Bad single step mode"
-F7212:"Channel name":0,12,s
-F7213:"Wire-frame model index":0,4,d
+F7212:"channel name":0,12,s
+F7212:0:"Line pointer queue OFF"
+F7212:1:"Bad single step mode"
 8000:" CNC Dynamic Calculation "
 8101:"Only one tangential axis possible"
 8102:"No feed rate (F...) for NC block (Linear Interpolation)":F8101:F8113:F8114
@@ -900,13 +897,12 @@ F7213:"Wire-frame model index":0,4,d
 8267:"Position on the Circle < Negative SW End":F8100:F8101:F8115
 8268:"Plot buffer - read or write pointer outside allowed range"
 8269:"Plot buffer - buffer full (write pointer has read pointer obtained)"
-8270:"Programmed axis limit value too high, reduced to init value":F8100:F8101:F8115
-8271:"Programmed path limit value too high, reduced to init value":F8100:F8101:F8115
-8272:"Programmed axis limit value out of range":F8100:F8101:F8115
-8273:"Programmed path limit value out of range":F8100:F8101:F8115
+8270:"programmed axis limit value to high, reduced to init value":F8100:F8101:F8115
+8271:"programmed path limit value to high, reduced to init value":F8100:F8101:F8115
+8272:"programmed axis limit value out of range":F8100:F8101:F8115
+8273:"programmed path limit value out of range":F8100:F8101:F8115
 8274:"G126 suspended, block to short":F8116:F8120:F8115
 8275:"Plot buffer - invalid data format"
-8276:"G141 active - G172 following a G00 not allowed":F8116:F8120:F8115
 F8100:"Axis Index":0,4,d
 F8101:"Program Number":4,4,d
 F8102:"Position in NC Program":8,4,d
@@ -1350,7 +1346,7 @@ F9113:"Block Number":8,4,d
 10448:"G141 With two cartesian contour axis only G17 is allowed"
 10449:"G141 Rotation/Shift (G16/G53/G92/G159/Dxx) plane must match the plane for G141"
 10450:"G140 with active CDC not allowed"
-10451:"G39; CDC compensating movement only allowed in CDC mode Transition arcs":F10110:F10111:F10124
+10451:"G39 disabling of CDC backward motion detection not allowed":F10110:F10111:F10124
 10452:"Polar coordinate machine - programmed rotation/shift plane not allowed"
 10453:"NC program start; block number (start position) not found":F10124
 10454:"NC program start; error when opening module (NC program)":F10102:F10103
@@ -2207,7 +2203,7 @@ F14116:"Ncalloc-Status":0,2,d
 15429:"Config Error - Bad memory config settings"
 15430:"Config Error - No languages configured":F15100:F15101
 15431:"Config Error - ICF Root structure not CONFIG":F15106
-15432:"Config Error - Bad Constant definition":F15100:F15101
+15432:"Config Error - Bad Constant definition"
 15433:"Config Error - XML file contains invalid data"
 15434:"Config Error - Unrecognised attribute ignored":F15100:F15101
 15435:"Config Error - Bad file device name (Loading XML)":F15193:F15192
@@ -2697,16 +2693,7 @@ F14116:"Ncalloc-Status":0,2,d
 15919:"External execution section does not exist"
 15920:"External execution error - time limit exceeded"
 15921:"Program error":F15110:F15111:F15112
-15922:"Unknown restart point"
-15923:"Lang Config Error - Possible ambiguous converting GNum value from string":F15100:F15101
-15924:"Invalid variable redeclaration with different restart settings":F15100:F15101
-15925:"Program length different at RESTART":F15108
-15926:"Program date or time different at RESTART":F15108
-15927:"Inline attribute ignored due to multiple usage of argument reference":F15100:F15101
-15928:"Bad execution context":F15100:F15101
-15929:"Assignment to the return value of a string type must be the last statement":F15100:F15101
-15930:"Invalid axis name":F15100:F15101
-15931:"Last error code (never issued)"
+15922:"Last error code (never issued)"
 F15100:"File Name":4,8,s
 F15101:"Line Number":0,4,d
 F15102:"Operation":4,8,s
@@ -3340,18 +3327,6 @@ F15204:"Path":0,12,s
 17856:"Required important point is not a valid point of this mechanical system":F17100:F17101
 17857:"Required variant of dynamic model is not supported for this mechanical system":F17100:F17101
 17858:"Invalid (zero) address of some parameter in a dynamic model call":F17100:F17101
-17860:"Out of mathematical workspace":F17100:F17101
-17861:"Invalid deviation of position or orientation in TCP":F17100:F17101
-17862:"Maximum number of numerical iterations exceeded":F17100:F17101
-17870:"Out of mathematical workspace":F17100:F17101
-17871:"The TCP cannot be reached with a real mechanical system":F17100:F17101
-17872:"The input quaternion is not a unit quaternion (up to float precision epsilon)":F17100:F17101
-17873:"The input quaternion is zero quaternion (up to float precision epsilon)":F17100:F17101
-17874:"Out of mathematical workspace":F17100:F17101
-17875:"Out of mathematical workspace":F17100:F17101
-17876:"Out of mathematical workspace":F17100:F17101
-17877:"The TCP cannot be reached with a real mechanical system":F17100:F17101
-17878:"Out of mathematical workspace":F17100:F17101
 F17100:"Robot Id":0,4,d
 F17100:0:"User-defined mechanical system"
 F17100:1:"Rod mechanical system"
@@ -3390,12 +3365,6 @@ F17100:33:"Palletizer(B) Mechanical System"
 F17100:34:"Rack YCZX Mechanical System"
 F17100:35:"Delta2 Mechanical System"
 F17100:36:"Serial XYZABC Mechanical System"
-F17100:38:"6ax (E) Mechanical System"
-F17100:39:"Serial XZC Mechanical System"
-F17100:40:"Serial XZCC Mechanical System"
-F17100:41:"Serial XYZC Mechanical System"
-F17100:42:"Palletizer (C) Mechanical System"
-F17100:43:"Serial CZXA Mechanical System"
 F17101:"Method Id":4,4,d
 F17101:1:"TRF_generic() function"
 F17101:2:"TRF_direct() function"
@@ -3808,6 +3777,7 @@ F50014:"minimal version ":0,2,u
 101001:"Error-FIFO overflow":F60000
 101002:"Parameter outside the valid range":F60000
 101003:"Parameter cannot be written while loop control is active":F60000
+101004:"Timeout in network life sign monitor":F60000
 101005:"Parameter cannot be written while a movement is active":F60000
 101006:"Invalid parameter for trigger event (digital input + edge)":F60000
 101008:"Master for network coupling deactivated - Encoder error":F50015:F60000
@@ -3887,10 +3857,13 @@ F50025:"Acceleration ":0,4,f
 105038:"Homing procedure mode not possible: Restore data invalid":F50026:F60000
 F50026:"Detail ":0,2,u
 105039:"Function not possible: Encoder error":F60000
+105040:"Jolt limiter: Too many changes in acceleration - Movement stopped":F60000
+105041:"Jolt limiter: Command not allowed":F60000
+105042:"Jolt limiter: Too many changes in acceleration - Command not possible":F60000
 105043:"Homing procedure mode not possible: Compensation active":F60000
-105101:"Compensation gear: Limit values exceeded":F50027:F60000
+105101:"Cam profile compensation gears: Limit values exceeded":F50027:F60000
 F50027:"State index ":0,1,u
-105102:"Too many changes of cam per cycle (master period too short)":F50028:F60000
+105102:"Too many changes of cam profile per cycle (master period too short)":F50028:F60000
 F50028:"State index ":0,1,u
 105107:"Cam coupling cannot be started: Parameter outside the valid range":F50029:F60000
 F50029:"Parameter ID ":0,2,d
@@ -3904,14 +3877,14 @@ F50031:"State index ":0,1,u
 105301:"Start cam automat linkage not possible: Parameter outside the valid range":F50032:F60000
 F50032:"Parameter ID ":0,2,d
 105302:"Parameter cannot be written: Cam automat active":F60000
-105303:"Cam data not available at index":F60000
-105304:"Format error in cam data":F50033:F60000
+105303:"Cam profile data not available at index":F60000
+105304:"Format error in cam profile data":F50033:F60000
 F50033:"Detail ":0,2,u
 105311:"Cam automat: Event leads to non initialized state":F60000
-105315:"Download error: Cam data in use by cam automat or function block":F60000
+105315:"Download error: Cam profile data in use by cam automat or function block":F60000
 105316:"Event type is not possible for entry in compensation gears":F60000
-105319:"Cam data not allowed for state 0":F60000
-105329:"No valid cam data":F60000
+105319:"Cam profile data not allowed for state 0":F60000
+105329:"No valid cam profile data":F60000
 106000:"Master sampling time is not a multiple of position controller sampling time":F60000
 106002:"Sync controller: Error tolerance of system time difference exceeded":F60000
 106008:"Controller is already active":F60000
@@ -3986,7 +3959,7 @@ F50052:"Limit value ":0,4,f
 107012:"Encoder: Hiperface error bit":F50053:F60000
 F50053:"Slot ":0,1,u
 107013:"Encoder: Status message":F50054:F60000
-F50054:"Status code ":0,4,u
+F50054:"Status code ":0,1,u
 107014:"Encoder: CRC error during parameter transfer":F50055:F60000
 F50055:"Slot ":0,1,u
 107015:"Encoder: Timeout error during parameter transfer":F50056:F60000
@@ -4051,426 +4024,407 @@ F50084:"Slot ":0,1,u
 F50085:"Slot ":0,1,u
 107055:"Encoder: Invalid content type 'frame end'":F50086:F60000
 F50086:"Slot ":0,1,u
-107057:"Encoder: Register read/write forbidden or not implemented":F50087:F60000
+107056:"Encoder: Register read forbidden or not implemented":F50087:F60000
 F50087:"Slot ":0,1,u
-107058:"Encoder: Alarm bit is set":F50088:F60000
+107057:"Encoder: Register write forbidden or not implemented":F50088:F60000
 F50088:"Slot ":0,1,u
-107059:"Virtual Encoder: Error state":F50089:F60000
-F50089:"PARID_ENCOD0_STATUS ":0,4,u
-107060:"Virtual Encoder: Transition error":F50090:F60000
+107058:"Encoder: Alarm bit is set":F50089:F60000
+F50089:"Slot ":0,1,u
+107059:"Virtual Encoder: Error state":F50090:F60000
 F50090:"PARID_ENCOD0_STATUS ":0,4,u
-107061:"Virtual Encoder: stall detection":F50091:F60000
+107060:"Virtual Encoder: Transition error":F50091:F60000
 F50091:"PARID_ENCOD0_STATUS ":0,4,u
-107062:"Encoder: SMC module not ready":F50092:F60000
-F50092:"Slot ":0,1,u
-107063:"Encoder: Error in the UART communication":F50093:F60000
+107061:"Virtual Encoder: stall detection":F50092:F60000
+F50092:"PARID_ENCOD0_STATUS ":0,4,u
+107062:"Encoder: SMC module not ready":F50093:F60000
 F50093:"Slot ":0,1,u
-107064:"Encoder: Error in the SMC communication":F50094:F60000
+107063:"Encoder: Error in the UART communication":F50094:F60000
 F50094:"Slot ":0,1,u
-107065:"Encoder: Encod type invalid":F50095:F60000
+107064:"Encoder: Error in the SMC communication":F50095:F60000
 F50095:"Slot ":0,1,u
-107066:"Encoder: Encoder not ready":F50096:F60000
+107065:"Encoder: Encod type invalid":F50096:F60000
 F50096:"Slot ":0,1,u
-107067:"EnDat encoder: SMC modul not in operational state":F50097:F60000
+107066:"Encoder: Encoder not ready":F50097:F60000
 F50097:"Slot ":0,1,u
-107068:"Encoder: Maximum cycle time exceeded":F50098:F60000
+107067:"EnDat encoder: SMC modul not in operational state":F50098:F60000
 F50098:"Slot ":0,1,u
-107069:"Encoder: encoder error filter activ":F50099:F60000
+107068:"Encoder: Maximum cycle time exceeded":F50099:F60000
 F50099:"Slot ":0,1,u
-107070:"Encoder: Lag error stop limit exceeded":F50100:F60000
-F50100:"Current lag error ":0,4,f
-107071:"Encoder: Limit speed error exceeded":F50101:F60000
-F50101:"Speed error ":0,4,f
-107072:"Encoder: Transfer time position exceeded":F50102:F60000
-F50102:"Slot ":0,1,u
-107073:"Encoder: Multiturn failure":F50103:F60000
+107069:"Encoder: encoder error filter activ":F50100:F60000
+F50100:"Slot ":0,1,u
+107070:"Encoder: Lag error stop limit exceeded":F50101:F60000
+F50101:"Current lag error ":0,4,f
+107071:"Encoder: Limit speed error exceeded":F50102:F60000
+F50102:"Speed error ":0,4,f
+107072:"Encoder: Transfer time position exceeded":F50103:F60000
 F50103:"Slot ":0,1,u
-107074:"Encoder: SafeMOTION error":F50104:F60000
-F50104:"Slot ":0,1,u
-107075:"Encoder: Incorrect configuration encoder type":F50105:F60000
-F50105:"Slot ":0,1,u
-107076:"Encoder: Data transfer active":F50106:F60000
-F50106:"Motor: Dataset index ":0,2,u
-107077:"Encoder: Encoder evaluation blocked by the SafeMOTION configuration":F50107:F60000
-F50107:"Slot ":0,1,u
-107078:"Encoder: Intersegment communication failure":F60000
-107079:"Encoder: Internal Error":F50108:F60000
-F50108:"- ":0,4,u
-107080:"Encoder: Error in the encoder communication":F50109:F60000
-F50109:"Slot ":0,1,u
 107100:"Parameter function not supported. (Module ?)":F60000
-107103:"Not supported interface":F50110:F60000
-F50110:"Interface ":0,4,u
 107200:"DC bus: Overvoltage":F60000
 107210:"DC bus: Pre-charging: Voltage unstable ":F60000
-107211:"DC bus: Voltage dip":F50111:F60000
-F50111:"Low voltage limit ":0,4,f
-107212:"DC bus: Large voltage dip":F50112:F60000
-F50112:"Low voltage limit ":0,4,f
+107211:"DC bus: Voltage dip":F50104:F60000
+F50104:"Low voltage limit ":0,4,f
+107212:"DC bus: Large voltage dip":F50105:F60000
+F50105:"Low voltage limit ":0,4,f
 107214:"DC bus: Pre-charging resistor hot (too many power line fails)":F60000
 107215:"Power mains: At least one phase of the power line failed":F60000
-107217:"DC bus: Nominal voltage detection: Voltage too high":F50113:F60000
-F50113:"Maximum DC bus voltage ":0,4,f
-107218:"DC bus: Nominal voltage detection: Voltage too low":F50114:F60000
-F50114:"Minimum required DC bus voltage ":0,4,f
-107219:"DC bus: Pre-charging: Voltage too low":F50115:F60000
-F50115:"Minimum required DC bus voltage ":0,4,f
-107220:"DC bus: Nominal voltage detection: Voltage not allowed":F50116:F60000
-F50116:"DC bus voltage ":0,4,f
-107221:"Mains: Failure":F50117:F60000
-F50117:"Line frequency ":0,4,f
-107222:"Inverter: Output: Summation current: Overcurrent (Ground fault)":F50118:F60000
-F50118:"Limit ":0,4,f
+107217:"DC bus: Nominal voltage detection: Voltage too high":F50106:F60000
+F50106:"Maximum DC bus voltage ":0,4,f
+107218:"DC bus: Nominal voltage detection: Voltage too low":F50107:F60000
+F50107:"Minimum required DC bus voltage ":0,4,f
+107219:"DC bus: Pre-charging: Voltage too low":F50108:F60000
+F50108:"Minimum required DC bus voltage ":0,4,f
+107220:"DC bus: Nominal voltage detection: Voltage not allowed":F50109:F60000
+F50109:"DC bus voltage ":0,4,f
+107221:"Mains: Failure":F50110:F60000
+F50110:"Line frequency ":0,4,f
+107222:"Inverter: Output: Summation current: Overcurrent (Ground fault)":F50111:F60000
+F50111:"Limit ":0,4,f
 107223:"DC bus: Overvoltage DC-GND":F60000
 107224:"Connector to back plane: 24V-GND contact monitoring: Voltage too low":F60000
 107225:"DC bus: Overvoltage":F60000
 107226:"DC bus: Overcurrent":F60000
-107227:"Bleeder: Overcurrent":F50119:F60000
-F50119:"Limit ":0,4,f
-107228:"DC bus: Nominal voltage detection: High inrush current":F50120:F60000
-F50120:"Voltage boost factor ":0,4,f
+107227:"Bleeder: Overcurrent":F50112:F60000
+F50112:"Limit ":0,4,f
+107228:"DC bus: Nominal voltage detection: High inrush current":F50113:F60000
+F50113:"Voltage boost factor ":0,4,f
 107229:"Chopper: Overcurrent":F60000
-107230:"DC bus: measurement site 2 out of bounds":F60000
-107300:"Digital IO: IO Configuration invalid":F50121:F60000
-F50121:"Slot ":0,2,u
+107300:"Digital IO: IO Configuration invalid":F50114:F60000
+F50114:"Slot ":0,2,u
 107401:"Parameter position exceeds maximum data length":F60000
-107402:"Processing of parameter sequence aborted: Write error":F50122:F60000
-F50122:"Index of parameter ":0,2,u
+107402:"Processing of parameter sequence aborted: Write error":F50115:F60000
+F50115:"Index of parameter ":0,2,u
 107403:"Processing of parameter sequence is still active":F60000
 107404:"Parameter sequence not available at index":F60000
 108001:"EEPROM select not valid ":F60000
 108003:"Table index not valid ":F60000
 108004:"EEPROM variable type not valid ":F60000
 108005:"EEPROM type not valid ":F60000
-108006:"Value of EEPROM parameter is zero":F50123:F60000
-F50123:"EEPROM Parameter ID ":0,2,u
-108007:"Value of EEPROM parameter is not valid":F50124:F60000
-F50124:"EEPROM Parameter ID ":0,2,u
-108011:"EPROM: Data not valid":F50125:F60000
-F50125:"CODE ":0,4,u
-108012:"EPROM: Controller-ID not valid":F50126:F60000
-F50126:"CODE ":0,1,u
-108013:"EPROM: CRC error":F50127:F60000
-F50127:"CODE ":0,1,u
+108006:"Value of EEPROM parameter is zero":F50116:F60000
+F50116:"EEPROM Parameter ID ":0,2,u
+108007:"Value of EEPROM parameter is not valid":F50117:F60000
+F50117:"EEPROM Parameter ID ":0,2,u
+108011:"EPROM: Data not valid":F60000
+108012:"EPROM: Controller-ID not valid":F50118:F60000
+F50118:"CODE ":0,1,u
+108013:"EPROM: CRC error":F50119:F60000
+F50119:"CODE ":0,1,u
 108020:"Invalid switch frequency ":F60000
-109000:"Heatsink temperature sensor: Stop limit exceeded":F50128:F60000
+109000:"Heatsink temperature sensor: Stop limit exceeded":F50120:F60000
+F50120:"Temperature limit ":0,4,f
+109001:"Heatsink temperature sensor: Switch off limit exceeded":F50121:F60000
+F50121:"Temperature limit ":0,4,f
+109002:"Heatsink temperature sensor: Not connected or damaged":F50122:F60000
+F50122:"Temperature limit ":0,4,f
+109003:"Heatsink temperature sensor: Not connected or destroyed":F50123:F60000
+F50123:"Temperature limit ":0,4,f
+109010:"Temperature sensor (Motor|Choke|External): Stop limit exceeded":F50124:F60000
+F50124:"Temperature limit ":0,4,f
+109011:"Temperature sensor (Motor|Choke|External): Switch off limit exceeded":F50125:F60000
+F50125:"Temperature limit ":0,4,f
+109012:"Temperature sensor (Motor|Choke|External): Not connected or destroyed":F50126:F60000
+F50126:"Temperature ":0,4,f
+109013:"Temperature sensor (Motor|Choke|External): Short circuit":F50127:F60000
+F50127:"Temperature ":0,4,f
+109030:"Junction temperature model: Stop limit exceeded":F50128:F60000
 F50128:"Temperature limit ":0,4,f
-109001:"Heatsink temperature sensor: Switch off limit exceeded":F50129:F60000
+109031:"Junction temperature model: Switch off limit exceeded":F50129:F60000
 F50129:"Temperature limit ":0,4,f
-109003:"Heatsink temperature sensor: Not connected or destroyed":F50130:F60000
+109040:"Bleeder temperature model: Stop limit exceeded":F50130:F60000
 F50130:"Temperature limit ":0,4,f
-109010:"Temperature sensor (Motor|Choke|External): Stop limit exceeded":F50131:F60000
+109041:"Bleeder temperature model: Switch off limit exceeded":F50131:F60000
 F50131:"Temperature limit ":0,4,f
-109011:"Temperature sensor (Motor|Choke|External): Switch off limit exceeded":F50132:F60000
-F50132:"Temperature limit ":0,4,f
-109012:"Temperature sensor (Motor|Choke|External): Not connected or destroyed":F50133:F60000
-F50133:"Temperature ":0,4,f
-109013:"Temperature sensor (Motor|Choke|External): Short circuit":F50134:F60000
-F50134:"Temperature ":0,4,f
-109030:"Junction temperature model: Stop limit exceeded":F50135:F60000
-F50135:"Temperature limit ":0,4,f
-109031:"Junction temperature model: Switch off limit exceeded":F50136:F60000
-F50136:"Temperature limit ":0,4,f
-109040:"Bleeder temperature model: Stop limit exceeded":F50137:F60000
-F50137:"Temperature limit ":0,4,f
-109041:"Bleeder temperature model: Switch off limit exceeded":F50138:F60000
-F50138:"Temperature limit ":0,4,f
-109050:"ACOPOS peak current: Stop limit exceeded":F50139:F60000
+109050:"ACOPOS peak current: Stop limit exceeded":F50132:F60000
+F50132:"Load limit ":0,4,f
+109051:"ACOPOS peak current: Switch off limit exceeded":F50133:F60000
+F50133:"Load limit ":0,4,f
+109060:"ACOPOS continuous current: Stop limit exceeded":F50134:F60000
+F50134:"Load limit ":0,4,f
+109061:"ACOPOS continuous current: Switch off limit exceeded":F50135:F60000
+F50135:"Load limit ":0,4,f
+109070:"Motor temperature model: Stop limit exceeded":F50136:F60000
+F50136:"Load limit ":0,4,f
+109071:"Motor temperature model: Switch off limit exceeded":F50137:F60000
+F50137:"Load limit ":0,4,f
+109075:"ACOPOS continuous power: Stop limit exceeded":F50138:F60000
+F50138:"Load limit ":0,4,f
+109076:"ACOPOS continuous power: Switch off limit exceeded":F50139:F60000
 F50139:"Load limit ":0,4,f
-109051:"ACOPOS peak current: Switch off limit exceeded":F50140:F60000
-F50140:"Load limit ":0,4,f
-109060:"ACOPOS continuous current: Stop limit exceeded":F50141:F60000
-F50141:"Load limit ":0,4,f
-109061:"ACOPOS continuous current: Switch off limit exceeded":F50142:F60000
-F50142:"Load limit ":0,4,f
-109070:"Motor temperature model: Stop limit exceeded":F50143:F60000
-F50143:"Load limit ":0,4,f
-109071:"Motor temperature model: Switch off limit exceeded":F50144:F60000
-F50144:"Load limit ":0,4,f
-109075:"ACOPOS continuous power: Stop limit exceeded":F50145:F60000
-F50145:"Load limit ":0,4,f
-109076:"ACOPOS continuous power: Switch off limit exceeded":F50146:F60000
-F50146:"Load limit ":0,4,f
-109078:"Power stage: Temperature sensor 1: Stop limit exceeded":F50147:F60000
+109078:"Power stage: Temperature sensor 1: Stop limit exceeded":F50140:F60000
+F50140:"Temperature ":0,4,f
+109079:"Power stage: Temperature sensor 1: Switch off limit exceeded":F50141:F60000
+F50141:"Temperature ":0,4,f
+109080:"Pre-charging resistor temperature model: Stop limit exceeded":F50142:F60000
+F50142:"Temperature limit ":0,4,f
+109081:"Power stage temperature model: Stop limit exceeded":F50143:F60000
+F50143:"Temperature ":0,4,f
+109082:"Power stage temperature model: Switch off limit exceeded":F50144:F60000
+F50144:"Temperature ":0,4,f
+109083:"Power stage: Temperature sensor 2: Stop limit exceeded":F50145:F60000
+F50145:"Temperature ":0,4,f
+109084:"Power stage: Temperature sensor 2: Switch off limit exceeded":F50146:F60000
+F50146:"Temperature ":0,4,f
+109085:"Power stage: Temperature sensor 3: Stop limit exceeded":F50147:F60000
 F50147:"Temperature ":0,4,f
-109079:"Power stage: Temperature sensor 1: Switch off limit exceeded":F50148:F60000
+109086:"Power stage: Temperature sensor 3: Switch off limit exceeded":F50148:F60000
 F50148:"Temperature ":0,4,f
-109080:"Pre-charging resistor temperature model: Stop limit exceeded":F50149:F60000
-F50149:"Temperature limit ":0,4,f
-109081:"Power stage temperature model: Stop limit exceeded":F50150:F60000
+109087:"Power stage: Temperature sensor 4: Stop limit exceeded":F50149:F60000
+F50149:"Temperature ":0,4,f
+109088:"Power stage: Temperature sensor 4: Switch off limit exceeded":F50150:F60000
 F50150:"Temperature ":0,4,f
-109082:"Power stage temperature model: Switch off limit exceeded":F50151:F60000
+109089:"Motor encoder temperature sensor: Stop limit exceeded":F50151:F60000
 F50151:"Temperature ":0,4,f
-109083:"Power stage: Temperature sensor 2: Stop limit exceeded":F50152:F60000
-F50152:"Temperature ":0,4,f
-109084:"Power stage: Temperature sensor 2: Switch off limit exceeded":F50153:F60000
-F50153:"Temperature ":0,4,f
-109085:"Power stage: Temperature sensor 3: Stop limit exceeded":F50154:F60000
-F50154:"Temperature ":0,4,f
-109086:"Power stage: Temperature sensor 3: Switch off limit exceeded":F50155:F60000
-F50155:"Temperature ":0,4,f
-109087:"Power stage: Temperature sensor 4: Stop limit exceeded":F50156:F60000
-F50156:"Temperature ":0,4,f
-109088:"Power stage: Temperature sensor 4: Switch off limit exceeded":F50157:F60000
-F50157:"Temperature ":0,4,f
-109089:"Motor encoder temperature sensor: Stop limit exceeded":F50158:F60000
-F50158:"Temperature ":0,4,f
 109090:"Motor encoder temperature sensor: Temperature value not valid":F60000
 109091:"24V Supply/Main relay temperature sensor: Stop limit exceeded":F60000
-109092:"Power stage: Temperature sensor 5: Stop limit exceeded":F50159:F60000
+109092:"Power stage: Temperature sensor 5: Stop limit exceeded":F50152:F60000
+F50152:"Temperature ":0,4,f
+109093:"Power stage: Temperature sensor 5: Switch off limit exceeded":F50153:F60000
+F50153:"Temperature ":0,4,f
+109094:"Rectifier temperature model: Stop limit exceeded":F50154:F60000
+F50154:"Temperature ":0,4,f
+109095:"Rectifier temperature model: Switch off limit exceeded":F50155:F60000
+F50155:"Temperature ":0,4,f
+109096:"DC bus relay temperature model: Stop limit exceeded":F50156:F60000
+F50156:"Temperature ":0,4,f
+109097:"DC bus relay temperature model: Switch off limit exceeded":F50157:F60000
+F50157:"Temperature ":0,4,f
+109098:"DC bus capacitor temperature model: Stop limit exceeded":F50158:F60000
+F50158:"Temperature ":0,4,f
+109099:"DC bus capacitor temperature model: Switch off limit exceeded":F50159:F60000
 F50159:"Temperature ":0,4,f
-109093:"Power stage: Temperature sensor 5: Switch off limit exceeded":F50160:F60000
-F50160:"Temperature ":0,4,f
-109094:"Rectifier temperature model: Stop limit exceeded":F50161:F60000
-F50161:"Temperature ":0,4,f
-109095:"Rectifier temperature model: Switch off limit exceeded":F50162:F60000
-F50162:"Temperature ":0,4,f
-109096:"DC bus relay temperature model: Stop limit exceeded":F50163:F60000
-F50163:"Temperature ":0,4,f
-109097:"DC bus relay temperature model: Switch off limit exceeded":F50164:F60000
+109100:"DC bus: Continuous total power: Stop limit exceeded":F50160:F60000
+F50160:"Load limit ":0,4,f
+109101:"DC bus: Continuous total power: Switch off limit exceeded":F50161:F60000
+F50161:"Load limit ":0,4,f
+109102:"DC bus: Peak total power: Stop limit exceeded":F50162:F60000
+F50162:"Load limit ":0,4,f
+109103:"DC bus: Peak total power: Switch off limit exceeded":F50163:F60000
+F50163:"Load limit ":0,4,f
+109104:"DC connector temperature model: Stop limit exceeded":F50164:F60000
 F50164:"Temperature ":0,4,f
-109098:"DC bus capacitor temperature model: Stop limit exceeded":F50165:F60000
+109105:"DC connector temperature model: Switch off limit exceeded":F50165:F60000
 F50165:"Temperature ":0,4,f
-109099:"DC bus capacitor temperature model: Switch off limit exceeded":F50166:F60000
-F50166:"Temperature ":0,4,f
-109100:"DC bus: Continuous total power: Stop limit exceeded":F50167:F60000
-F50167:"Load limit ":0,4,f
-109101:"DC bus: Continuous total power: Switch off limit exceeded":F50168:F60000
-F50168:"Load limit ":0,4,f
-109102:"DC bus: Peak total power: Stop limit exceeded":F50169:F60000
-F50169:"Load limit ":0,4,f
-109103:"DC bus: Peak total power: Switch off limit exceeded":F50170:F60000
-F50170:"Load limit ":0,4,f
-109104:"DC connector temperature model: Stop limit exceeded":F50171:F60000
-F50171:"Temperature ":0,4,f
-109105:"DC connector temperature model: Switch off limit exceeded":F50172:F60000
-F50172:"Temperature ":0,4,f
-109106:"Power stage: Temperature sensor: Stop limit exceeded":F50173:F60000
-F50173:"sensor ":0,2,u
-109107:"Power stage: Temperature sensor: Stop limit exceeded":F50174:F60000
-F50174:"sensor ":0,2,u
-109300:"Current controller: Overcurrent":F50175:F60000
-F50175:"Limit ":0,4,f
+109300:"Current controller: Overcurrent":F50166:F60000
+F50166:"Limit ":0,4,f
 109302:"Current controller: Cycle time invalid":F60000
 110000:"Identification parameter(s) missing":F60000
 110001:"Parameter identification: Invalid sub-mode":F60000
 110100:"Parameter identification: Quality factor not fulfilled":F60000
 110101:"No ISQ-filter free":F60000
-110102:"No resonance-frequency for ISQ-filter (band-stop) found":F50176:F60000
-F50176:"Filter ":0,2,u
-110103:"Autotuning: Maximum lag error exceeded":F50177:F60000
-F50177:"Current lag error ":0,4,f
+110102:"No resonance-frequency for ISQ-filter (band-stop) found":F50167:F60000
+F50167:"Filter ":0,2,u
+110103:"Autotuning: Maximum lag error exceeded":F50168:F60000
+F50168:"Current lag error ":0,4,f
 110500:"Induction stop was terminated":F60000
-129200:"The axis object is invalid":F50178:F60000
+129200:"The axis object is invalid":F50169:F60000
+F50169:"PLCopen_FB ":0,2,u
+129203:"Drive is not ready":F50170:F60000
+F50170:"PLCopen_FB ":0,2,u
+129204:"Invalid parameter number":F50171:F60000
+F50171:"PLCopen_FB ":0,2,u
+129205:"The axis is not homed":F50172:F60000
+F50172:"PLCopen_FB ":0,2,u
+129206:"The controller is off":F50173:F60000
+F50173:"PLCopen_FB ":0,2,u
+129207:"This movement type is currently not allowed":F50174:F60000
+F50174:"PLCopen_FB ":0,2,u
+129208:"The axis object was changed since last FB call":F50175:F60000
+F50175:"PLCopen_FB ":0,2,u
+129209:"The drive is in error state":F50176:F60000
+F50176:"PLCopen_FB ":0,2,u
+129210:"Parameter initialization (Global-init) failed":F50177:F60000
+F50177:"PLCopen_FB ":0,2,u
+129211:"Holding brake cannot be switched. The controller is on":F50178:F60000
 F50178:"PLCopen_FB ":0,2,u
-129203:"Drive is not ready":F50179:F60000
+129214:"Homing procedure not possible":F50179:F60000
 F50179:"PLCopen_FB ":0,2,u
-129204:"Invalid parameter number":F50180:F60000
+129215:"Discrete movement not possible":F50180:F60000
 F50180:"PLCopen_FB ":0,2,u
-129205:"The axis is not homed":F50181:F60000
+129216:"Continuous movement not possible":F50181:F60000
 F50181:"PLCopen_FB ":0,2,u
-129206:"The controller is off":F50182:F60000
+129217:"Invalid input parameter":F50182:F60000
 F50182:"PLCopen_FB ":0,2,u
-129207:"This movement type is currently not allowed":F50183:F60000
+129218:"Unknown PLCopen axis state":F50183:F60000
 F50183:"PLCopen_FB ":0,2,u
-129208:"The axis object was changed since last FB call":F50184:F60000
+129219:"Invalid value for PLCopen parameter ":F50184:F60000
 F50184:"PLCopen_FB ":0,2,u
-129209:"The drive is in error state":F50185:F60000
+129221:"No cam name":F50185:F60000
 F50185:"PLCopen_FB ":0,2,u
-129210:"Parameter initialization (Global-init) failed":F50186:F60000
+129222:"Error at cam download":F50186:F60000
 F50186:"PLCopen_FB ":0,2,u
-129211:"Holding brake cannot be switched. The controller is on":F50187:F60000
+129225:"The target position is outside the axis period":F50187:F60000
 F50187:"PLCopen_FB ":0,2,u
-129214:"Homing procedure not possible":F50188:F60000
+129226:"Drive error. Call MC_(BR_)ReadAxisError for details":F50188:F60000
 F50188:"PLCopen_FB ":0,2,u
-129215:"Discrete movement not possible":F50189:F60000
+129227:"Drive unable to transmit additional master positions on network":F50189:F60000
 F50189:"PLCopen_FB ":0,2,u
-129216:"Continuous movement not possible":F50190:F60000
+129228:"This drive cannot read any more master positions from the network":F50190:F60000
 F50190:"PLCopen_FB ":0,2,u
-129217:"Invalid input parameter":F50191:F60000
+129229:"Synchronized movement not possible":F50191:F60000
 F50191:"PLCopen_FB ":0,2,u
-129218:"Unknown PLCopen axis state":F50192:F60000
+129230:"Internal error: Error transferring the parameter list ":F50192:F60000
 F50192:"PLCopen_FB ":0,2,u
-129219:"Invalid value for PLCopen parameter ":F50193:F60000
+129231:"The master velocity is invalid, 0 or negative":F50193:F60000
 F50193:"PLCopen_FB ":0,2,u
-129221:"No cam name":F50194:F60000
+129232:"Internal error: Invalid SPT resource type ":F50194:F60000
 F50194:"PLCopen_FB ":0,2,u
-129222:"Error at cam download":F50195:F60000
+129233:"SPT resources of required type not available":F50195:F60000
 F50195:"PLCopen_FB ":0,2,u
-129225:"The target position is outside the axis period":F50196:F60000
+129234:"Internal error: Number of requested SPT resources is not available":F50196:F60000
 F50196:"PLCopen_FB ":0,2,u
-129226:"Drive error. Call MC_(BR_)ReadAxisError for details":F50197:F60000
+129235:"Functionality not available for the current axis type":F50197:F60000
 F50197:"PLCopen_FB ":0,2,u
-129227:"Drive unable to transmit additional master positions on network":F50198:F60000
+129237:"Error in TriggerInput parameters":F50198:F60000
 F50198:"PLCopen_FB ":0,2,u
-129228:"This drive cannot read any more master positions from the network":F50199:F60000
+129238:"The FB cannot be used in the current state":F50199:F60000
 F50199:"PLCopen_FB ":0,2,u
-129229:"Synchronized movement not possible":F50200:F60000
+129239:"This functionality is not available on CAN-Bus":F50200:F60000
 F50200:"PLCopen_FB ":0,2,u
-129230:"Internal error: Error transferring the parameter list ":F50201:F60000
+129240:"The specified ParID cannot be used due to the data type size":F50201:F60000
 F50201:"PLCopen_FB ":0,2,u
-129231:"The master velocity is invalid, 0 or negative":F50202:F60000
+129241:"Wrong data type for specified ParID":F50202:F60000
 F50202:"PLCopen_FB ":0,2,u
-129232:"Internal error: Invalid SPT resource type ":F50203:F60000
+129242:"Cyclic read data full":F50203:F60000
 F50203:"PLCopen_FB ":0,2,u
-129233:"SPT resources of required type not available":F50204:F60000
+129244:"Internal error while configuring cyclic data ":F50204:F60000
 F50204:"PLCopen_FB ":0,2,u
-129234:"Internal error: Number of requested SPT resources is not available":F50205:F60000
+129246:"Invalid TouchProbe window ":F50205:F60000
 F50205:"PLCopen_FB ":0,2,u
-129235:"Functionality not available for the current axis type":F50206:F60000
+129247:"Master synchronous position cannot be reached":F50206:F60000
 F50206:"PLCopen_FB ":0,2,u
-129237:"Error in TriggerInput parameters":F50207:F60000
+129250:"Invalid CamTableID ":F50207:F60000
 F50207:"PLCopen_FB ":0,2,u
-129238:"The FB cannot be used in the current state":F50208:F60000
+129251:"Error downloading the ACOPOS parameter tables":F50208:F60000
 F50208:"PLCopen_FB ":0,2,u
-129239:"This functionality is not available on CAN-Bus":F50209:F60000
+129252:"Error initializing the parameter list":F50209:F60000
 F50209:"PLCopen_FB ":0,2,u
-129240:"The specified ParID cannot be used due to the data type size":F50210:F60000
+129253:"Error downloading the parameter sequence":F50210:F60000
 F50210:"PLCopen_FB ":0,2,u
-129241:"Wrong data type for specified ParID":F50211:F60000
+129254:"Error initializing the parameter sequence ":F50211:F60000
 F50211:"PLCopen_FB ":0,2,u
-129242:"Cyclic read data full":F50212:F60000
+129255:"Initialization not possible, axis coupling is active":F50212:F60000
 F50212:"PLCopen_FB ":0,2,u
-129244:"Internal error while configuring cyclic data ":F50213:F60000
+129256:"Multiple simultaneous commands not possible":F50213:F60000
 F50213:"PLCopen_FB ":0,2,u
-129246:"Invalid TouchProbe window ":F50214:F60000
+129257:"The specified data address is invalid":F50214:F60000
 F50214:"PLCopen_FB ":0,2,u
-129247:"Master synchronous position cannot be reached":F50215:F60000
+129260:"No data object name specified":F50215:F60000
 F50215:"PLCopen_FB ":0,2,u
-129250:"Invalid CamTableID ":F50216:F60000
+129261:"Invalid data object index":F50216:F60000
 F50216:"PLCopen_FB ":0,2,u
-129251:"Error downloading the ACOPOS parameter tables":F50217:F60000
+129262:"Master channel already in use":F50217:F60000
 F50217:"PLCopen_FB ":0,2,u
-129252:"Error initializing the parameter list":F50218:F60000
+129263:"Slave channel already in use":F50218:F60000
 F50218:"PLCopen_FB ":0,2,u
-129253:"Error downloading the parameter sequence":F50219:F60000
+129264:"Cyclic write data full":F50219:F60000
 F50219:"PLCopen_FB ":0,2,u
-129254:"Error initializing the parameter sequence ":F50220:F60000
+129265:"Loss of communication with the drive":F50220:F60000
 F50220:"PLCopen_FB ":0,2,u
-129255:"Initialization not possible, axis coupling is active":F50221:F60000
+129266:"The MasterParID has changed since last function block call ":F50221:F60000
 F50221:"PLCopen_FB ":0,2,u
-129256:"Multiple simultaneous commands not possible":F50222:F60000
+129267:"Invalid number of cam profile polynomials":F50222:F60000
 F50222:"PLCopen_FB ":0,2,u
-129257:"The specified data address is invalid":F50223:F60000
+129268:"Function block aborted by another function block":F50223:F60000
 F50223:"PLCopen_FB ":0,2,u
-129260:"No data object name specified":F50224:F60000
+129269:"Error saving NC-INIT parameter module":F50224:F60000
 F50224:"PLCopen_FB ":0,2,u
-129261:"Invalid data object index":F50225:F60000
+129270:"Error loading NC-INIT parameter module":F50225:F60000
 F50225:"PLCopen_FB ":0,2,u
-129262:"Master channel already in use":F50226:F60000
+129271:"The selected FB with the type MC_TouchProbe is not enabled":F50226:F60000
 F50226:"PLCopen_FB ":0,2,u
-129263:"Slave channel already in use":F50227:F60000
+129272:"Cam Profile Automat data not initialized":F50227:F60000
 F50227:"PLCopen_FB ":0,2,u
-129264:"Cyclic write data full":F50228:F60000
+129273:"The specified 'Subject' is invalid":F50228:F60000
 F50228:"PLCopen_FB ":0,2,u
-129265:"Loss of communication with the drive":F50229:F60000
+129274:"An error has occurred while initializing the data":F50229:F60000
 F50229:"PLCopen_FB ":0,2,u
-129266:"The MasterParID has changed since last function block call ":F50230:F60000
+129275:"At least one input value was changed while 'Enable = TRUE'":F50230:F60000
 F50230:"PLCopen_FB ":0,2,u
-129267:"Invalid number of cam profile polynomials":F50231:F60000
+129276:"A phase shift is already in progress":F50231:F60000
 F50231:"PLCopen_FB ":0,2,u
-129268:"Function block aborted by another function block":F50232:F60000
+129277:"A offset shift is already in progress":F50232:F60000
 F50232:"PLCopen_FB ":0,2,u
-129269:"Error saving NC-INIT parameter module":F50233:F60000
+129278:"No period for Axis, Master, Slave or FB input defined":F50233:F60000
 F50233:"PLCopen_FB ":0,2,u
-129270:"Error loading NC-INIT parameter module":F50234:F60000
+129279:"Output value cannot be calculated":F50234:F60000
 F50234:"PLCopen_FB ":0,2,u
-129271:"The selected FB with the type MC_TouchProbe is not enabled":F50235:F60000
+129280:"No valid master axis defined":F50235:F60000
 F50235:"PLCopen_FB ":0,2,u
-129272:"Cam Profile Automat data not initialized":F50236:F60000
+129281:"This functionality is not available for ACOPOSmulti":F50236:F60000
 F50236:"PLCopen_FB ":0,2,u
-129273:"The specified 'Subject' is invalid":F50237:F60000
+129282:"Command can't currently be executed":F50237:F60000
 F50237:"PLCopen_FB ":0,2,u
-129274:"An error has occurred while initializing the data":F50238:F60000
+129283:"Master or slave position of the first cam profile point not equal to 0":F50238:F60000
 F50238:"PLCopen_FB ":0,2,u
-129275:"At least one input value was changed while 'Enable = TRUE'":F50239:F60000
+129284:"Too few curve points":F50239:F60000
 F50239:"PLCopen_FB ":0,2,u
-129276:"A phase shift is already in progress":F50240:F60000
+129285:"Invalid type for cam profile section":F50240:F60000
 F50240:"PLCopen_FB ":0,2,u
-129277:"A offset shift is already in progress":F50241:F60000
+129286:"Invalid mode for the last cam profile point":F50241:F60000
 F50241:"PLCopen_FB ":0,2,u
-129278:"No period for Axis, Master, Slave or FB input defined":F50242:F60000
+129287:"Invalid master or slave position for last cam profile point":F50242:F60000
 F50242:"PLCopen_FB ":0,2,u
-129279:"Output value cannot be calculated":F50243:F60000
+129288:"Master positions are not strictly monotonic increasing":F50243:F60000
 F50243:"PLCopen_FB ":0,2,u
-129280:"No valid master axis defined":F50244:F60000
+129289:"Invalid boundary parameters":F50244:F60000
 F50244:"PLCopen_FB ":0,2,u
-129281:"This functionality is not available for ACOPOSmulti":F50245:F60000
+129290:"Too many cam profile polynomials":F50245:F60000
 F50245:"PLCopen_FB ":0,2,u
-129282:"Command can't currently be executed":F50246:F60000
+129291:"Turning point outside of cam profile section":F50246:F60000
 F50246:"PLCopen_FB ":0,2,u
-129283:"Master or slave position of the first cam profile point not equal to 0":F50247:F60000
+129292:"Identical slave boundary positions not permitted":F50247:F60000
 F50247:"PLCopen_FB ":0,2,u
-129284:"Too few curve points":F50248:F60000
+129293:"Specified data length is 0 or too low":F50248:F60000
 F50248:"PLCopen_FB ":0,2,u
-129285:"Invalid type for cam profile section":F50249:F60000
+129294:"Not able to determine error text. For details, see error text string ":F50249:F60000
 F50249:"PLCopen_FB ":0,2,u
-129286:"Invalid mode for the last cam profile point":F50250:F60000
+129295:"An error has occurred. For details, see 'ErrorRecord' output ":F50250:F60000
 F50250:"PLCopen_FB ":0,2,u
-129287:"Invalid master or slave position for last cam profile point":F50251:F60000
+129297:"Problem with variable in permanent memory":F50251:F60000
 F50251:"PLCopen_FB ":0,2,u
-129288:"Master positions are not strictly monotonic increasing":F50252:F60000
+129299:"Error occurred during the setup operation":F50252:F60000
 F50252:"PLCopen_FB ":0,2,u
-129289:"Invalid boundary parameters":F50253:F60000
+129300:"Invalid number of polynomials in cam profile":F50253:F60000
 F50253:"PLCopen_FB ":0,2,u
-129290:"Too many cam profile polynomials":F50254:F60000
+129301:"Unable to calculate cam profile value":F50254:F60000
 F50254:"PLCopen_FB ":0,2,u
-129291:"Turning point outside of cam profile section":F50255:F60000
+129302:"Instance of function block already active on this axis":F50255:F60000
 F50255:"PLCopen_FB ":0,2,u
-129292:"Identical slave boundary positions not permitted":F50256:F60000
+129303:"The specified IntervalTime is too small":F50256:F60000
 F50256:"PLCopen_FB ":0,2,u
-129293:"Specified data length is 0 or too low":F50257:F60000
+129305:"ParID cannot be read with the specified mode":F50257:F60000
 F50257:"PLCopen_FB ":0,2,u
-129294:"Not able to determine error text. For details, see error text string ":F50258:F60000
+129306:"Invalid interpolation mode":F50258:F60000
 F50258:"PLCopen_FB ":0,2,u
-129295:"An error has occurred. For details, see 'ErrorRecord' output ":F50259:F60000
+129307:"Master period is zero":F50259:F60000
 F50259:"PLCopen_FB ":0,2,u
-129297:"Problem with variable in permanent memory":F50260:F60000
+129308:"Internal calculation error":F50260:F60000
 F50260:"PLCopen_FB ":0,2,u
-129299:"Error occurred during the setup operation":F50261:F60000
+129309:"General internal error":F50261:F60000
 F50261:"PLCopen_FB ":0,2,u
-129300:"Invalid number of polynomials in cam profile":F50262:F60000
+129310:"Calculated compensation exceeds limit values":F50262:F60000
 F50262:"PLCopen_FB ":0,2,u
-129301:"Unable to calculate cam profile value":F50263:F60000
+129311:"The maximum time was exceeded ":F50263:F60000
 F50263:"PLCopen_FB ":0,2,u
-129302:"Instance of function block already active on this axis":F50264:F60000
+129312:"Error occurred during the holding brake test":F50264:F60000
 F50264:"PLCopen_FB ":0,2,u
-129303:"The specified IntervalTime is too small":F50265:F60000
+129313:"FIFO - Maximum amount of available elements exceeded":F50265:F60000
 F50265:"PLCopen_FB ":0,2,u
-129305:"ParID cannot be read with the specified mode":F50266:F60000
+129314:"The function block is called in a wrong task class":F50266:F60000
 F50266:"PLCopen_FB ":0,2,u
-129306:"Invalid interpolation mode":F50267:F60000
+129315:"Abortion of cyclic position transfer due to axis error":F50267:F60000
 F50267:"PLCopen_FB ":0,2,u
-129307:"Master period is zero":F50268:F60000
+129489:"Internal values in the axis structure are invalid":F50268:F60000
 F50268:"PLCopen_FB ":0,2,u
-129308:"Internal calculation error":F50269:F60000
+129490:"Internal initialization error (global init)":F50269:F60000
 F50269:"PLCopen_FB ":0,2,u
-129309:"General internal error":F50270:F60000
+129491:"Internal initialization error (SW limits)":F50270:F60000
 F50270:"PLCopen_FB ":0,2,u
-129310:"Calculated compensation exceeds limit values":F50271:F60000
+129492:"Internal initialization error (homing of virtual axis)":F50271:F60000
 F50271:"PLCopen_FB ":0,2,u
-129311:"The maximum time was exceeded ":F50272:F60000
+129498:"ACP10_MC library: Initialization aborted":F50272:F60000
 F50272:"PLCopen_FB ":0,2,u
-129312:"Error occurred during the holding brake test":F50273:F60000
+129499:"ACP10_MC library: Error with details in 'ASCII Data'":F50273:F60000
 F50273:"PLCopen_FB ":0,2,u
-129313:"FIFO - Maximum amount of available elements exceeded":F50274:F60000
-F50274:"PLCopen_FB ":0,2,u
-129314:"The function block is called in a wrong task class":F50275:F60000
-F50275:"PLCopen_FB ":0,2,u
-129315:"Abortion of cyclic position transfer due to axis error":F50276:F60000
-F50276:"PLCopen_FB ":0,2,u
-129489:"Internal values in the axis structure are invalid":F50277:F60000
-F50277:"PLCopen_FB ":0,2,u
-129490:"Internal initialization error (global init)":F50278:F60000
-F50278:"PLCopen_FB ":0,2,u
-129491:"Internal initialization error (SW limits)":F50279:F60000
-F50279:"PLCopen_FB ":0,2,u
-129492:"Internal initialization error (homing of virtual axis)":F50280:F60000
-F50280:"PLCopen_FB ":0,2,u
-129498:"ACP10_MC library: Initialization aborted":F50281:F60000
-F50281:"PLCopen_FB ":0,2,u
-129499:"ACP10_MC library: Error with details in 'ASCII Data'":F50282:F60000
-F50282:"PLCopen_FB ":0,2,u
 131000:"Nicht alle INIT-PARIDs initialisiert -> Einschalten Regler nicht möglich":F60000
 131001:"Regler ist ausgeschaltet -> Trace nicht möglich":F60000
 131002:"Shut-Down der Motorbrücke wurde ausgelöst":F60000
@@ -4496,101 +4450,101 @@ F50282:"PLCopen_FB ":0,2,u
 131022:"Parameter ungültig im Befehl Latch Enable":F60000
 131023:"Ein positiver Wert ist nicht zulässig.":F60000
 131201:"Di/Do Interface: Drive not ready":F60000
-131220:"Encoder error: Encoder not configured":F50283:F60000
-F50283:"EncIf Index ":0,2,u
-131221:"Encoder error: Cable disturbance or signal disturbance":F50284:F60000
-F50284:"EncIf Index ":0,2,u
-131224:"Encoder Interface: HW Module not OK":F50285:F60000
-F50285:"EncIf Index ":0,2,u
+131220:"Encoder error: Encoder not configured":F50274:F60000
+F50274:"EncIf Index ":0,2,u
+131221:"Encoder error: Cable disturbance or signal disturbance":F50275:F60000
+F50275:"EncIf Index ":0,2,u
+131224:"Encoder Interface: HW Module not OK":F50276:F60000
+F50276:"EncIf Index ":0,2,u
 131240:"Homing procedure mode not allowed with current HW Type":F60000
 131247:"Drive Interface: DrvOK not set from HW Module":F60000
-131248:"Trigger Interface: HW Module not OK":F50286:F60000
-F50286:"TrigIf Index ":0,2,u
+131248:"Trigger Interface: HW Module not OK":F50277:F60000
+F50277:"TrigIf Index ":0,2,u
 131249:"Drive Interface: HW Module not OK":F60000
 131250:"Di/Do Interface: HW Module not OK":F60000
 131260:"Current axis configuration only possible in simulation mode":F60000
 131261:"Change mode for servo drive adjustment not allowed":F60000
-132001:"Error calling CAN_xopen()":F50287:F60000
-F50287:"Status of CAN_xopen() ":0,2,u
-132002:"Error defining Write COB for Broadcast Command":F50288:F60000
-F50288:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132003:"Error defining Write COB for Parameter Read Request":F50289:F60000
-F50289:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132004:"Error defining Write COB for Parameter Write Request":F50290:F60000
-F50290:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132005:"Error defining Read COB for Parameter Read Response":F50291:F60000
-F50291:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132006:"Error defining Read COB for Parameter Write Response":F50292:F60000
-F50292:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132007:"Error defining Read COB for Monitor Data from the drive":F50293:F60000
-F50293:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132008:"Error sending Read Request (network error ?)":F50294:F60000
-F50294:"Status of CAN_sendCOB() ":0,2,u
-132009:"Error sending Write Request (network error ?)":F50295:F60000
-F50295:"Status of CAN_sendCOB() ":0,2,u
-132010:"Drive not responding to Read Request (is the drive in the network ?)":F50296:F60000
-F50296:"Timeout [usec] ":0,4,u
-132011:"Drive not responding to Write Request (is the drive in the network ?)":F50297:F60000
-F50297:"Timeout [usec] ":0,4,u
+132001:"Error calling CAN_xopen()":F50278:F60000
+F50278:"Status of CAN_xopen() ":0,2,u
+132002:"Error defining Write COB for Broadcast Command":F50279:F60000
+F50279:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132003:"Error defining Write COB for Parameter Read Request":F50280:F60000
+F50280:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132004:"Error defining Write COB for Parameter Write Request":F50281:F60000
+F50281:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132005:"Error defining Read COB for Parameter Read Response":F50282:F60000
+F50282:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132006:"Error defining Read COB for Parameter Write Response":F50283:F60000
+F50283:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132007:"Error defining Read COB for Monitor Data from the drive":F50284:F60000
+F50284:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132008:"Error sending Read Request (network error ?)":F50285:F60000
+F50285:"Status of CAN_sendCOB() ":0,2,u
+132009:"Error sending Write Request (network error ?)":F50286:F60000
+F50286:"Status of CAN_sendCOB() ":0,2,u
+132010:"Drive not responding to Read Request (is the drive in the network ?)":F50287:F60000
+F50287:"Timeout [usec] ":0,4,u
+132011:"Drive not responding to Write Request (is the drive in the network ?)":F50288:F60000
+F50288:"Timeout [usec] ":0,4,u
 132012:"Error reading module description of system module":F60000
 132013:"No operating system present on the drive":F60000
-132014:"Operating system version on the drive not compatible with NC manager version":F50298:F60000
-F50298:"Operating system version on the drive ":0,2,u
-132015:"Error creating message queue":F50299:F60000
-F50299:"Status of q_create() ":0,2,u
-132016:"Error sending an idle time command to the NC Manager Task":F50300:F60000
-F50300:"Status of q_send() ":0,2,u
-132017:"Wrong boot state after start of operating system":F50301:F60000
-F50301:"Boot state ":0,2,u
-132018:"Invalid Parameter ID in system module":F50302:F60000
-F50302:"Parameter-ID ":0,2,u
+132014:"Operating system version on the drive not compatible with NC manager version":F50289:F60000
+F50289:"Operating system version on the drive ":0,2,u
+132015:"Error creating message queue":F50290:F60000
+F50290:"Status of q_create() ":0,2,u
+132016:"Error sending an idle time command to the NC Manager Task":F50291:F60000
+F50291:"Status of q_send() ":0,2,u
+132017:"Wrong boot state after start of operating system":F50292:F60000
+F50292:"Boot state ":0,2,u
+132018:"Invalid Parameter ID in system module":F50293:F60000
+F50293:"Parameter-ID ":0,2,u
 132019:"Download of NC system module not allowed (the module is on the PLC)":F60000
 132020:"System module data could not be read from the drive during NC manager INIT":F60000
 132021:"System module data could not be read from the drive after download":F60000
 132022:"Error aborting data block access before download":F60000
 132023:"Error reading boot state before download":F60000
-132025:"Wrong boot state after SW Reset before download":F50303:F60000
-F50303:"Boot state ":0,2,u
+132025:"Wrong boot state after SW Reset before download":F50294:F60000
+F50294:"Boot state ":0,2,u
 132026:"Error during INIT of data block write access for download":F60000
 132027:"Error sending data segment for download":F60000
 132029:"Response error after sending data segment for download":F60000
 132030:"Error at command for system module burn after download":F60000
 132031:"Error reading status for system module burn after download":F60000
-132032:"Error while burning system module after download":F50304:F60000
-F50304:"Error status from burning system module ":0,1,u
-132033:"Timeout while burning system module after download":F50305:F60000
-F50305:"Last status from burning system module ":0,1,u
+132032:"Error while burning system module after download":F50295:F60000
+F50295:"Error status from burning system module ":0,1,u
+132033:"Timeout while burning system module after download":F50296:F60000
+F50296:"Last status from burning system module ":0,1,u
 132034:"Error at SW Reset before download":F60000
 132035:"Error at SW Reset after download":F60000
 132036:"Different system module data after download":F60000
 132037:"Error message(s) lost because of FIFO overflow (acknowledge errors)":F60000
-132040:"Version of INIT parameter module is not compatible to NC manager":F50306:F60000
-F50306:"Version of INIT parameter module ":0,2,u
+132040:"Version of INIT parameter module is not compatible to NC manager":F50297:F60000
+F50297:"Version of INIT parameter module ":0,2,u
 132041:"The module acp10cfg does not exist":F60000
 132042:"The module acp10cfg is not an NC data module":F60000
 132043:"The NC module type of the module acp10cfg is invalid":F60000
 132044:"The NC module type of the module acp10cfg cannot be read":F60000
 132045:"The data address in module acp10cfg cannot be read":F60000
-132046:"The data section of module acp10cfg is empty":F50307:F60000
-F50307:"Number of data section ":0,2,u
+132046:"The data section of module acp10cfg is empty":F50298:F60000
+F50298:"Number of data section ":0,2,u
 132047:"A CAN node number in module acp10cfg is invalid":F60000
 132048:"A CAN node number in module acp10cfg is used repeatedly":F60000
 132049:"This NC action is not allowed during Trace is active":F60000
 132050:"A Trace Data Upload is already active":F60000
-132053:"Error defining Write COB for Parameter Read Request 2":F50308:F60000
-F50308:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132054:"Error defining Write COB for Parameter Write Request 2":F50309:F60000
-F50309:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132055:"Error defining Read COB for Parameter Read Response 2":F50310:F60000
-F50310:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132056:"Error defining Read COB for Parameter Write Response 2":F50311:F60000
-F50311:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132057:"Error accessing HS task class table":F50312:F60000
-F50312:"Status of SS_get_entry() ":0,2,u
-132058:"Error accessing task class table":F50313:F60000
-F50313:"Status of SS_get_entry() ":0,2,u
-132059:"Parameter tk_no invalid for access to task class table":F50314:F60000
-F50314:"Value of tk_no ":0,2,u
+132053:"Error defining Write COB for Parameter Read Request 2":F50299:F60000
+F50299:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132054:"Error defining Write COB for Parameter Write Request 2":F50300:F60000
+F50300:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132055:"Error defining Read COB for Parameter Read Response 2":F50301:F60000
+F50301:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132056:"Error defining Read COB for Parameter Write Response 2":F50302:F60000
+F50302:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132057:"Error accessing HS task class table":F50303:F60000
+F50303:"Status of SS_get_entry() ":0,2,u
+132058:"Error accessing task class table":F50304:F60000
+F50304:"Status of SS_get_entry() ":0,2,u
+132059:"Parameter tk_no invalid for access to task class table":F50305:F60000
+F50305:"Value of tk_no ":0,2,u
 132060:"Timeout for cyclic data from drive - Indications invalid (network error ?)":F60000
 132061:"Timeout sending a Read Request telegram (network error ?)":F60000
 132062:"Timeout sending a Write Request telegram (network error ?)":F60000
@@ -4600,16 +4554,16 @@ F50314:"Value of tk_no ":0,2,u
 132066:"Parameter ID zero (set/read parameter via service interface)":F60000
 132067:"Parameter ID invalid (set/read parameter with option ncDATA_TEXT)":F60000
 132069:"The data address of the ACOPOS parameters in module acp10cfg cannot be read":F60000
-132070:"Drive for ACOPOS parameters in module acp10cfg not found":F50315:F60000
-F50315:"Interface index (in HB) and node number (in LB) of this drive ":0,2,u
+132070:"Drive for ACOPOS parameters in module acp10cfg not found":F50306:F60000
+F50306:"Interface index (in HB) and node number (in LB) of this drive ":0,2,u
 132071:"The ACOPOS parameters are invalid (an update of AutomationStudio is necessary)":F60000
-132072:"Wrong boot state after SW Reset":F50316:F60000
-F50316:"Boot state ":0,2,u
+132072:"Wrong boot state after SW Reset":F50307:F60000
+F50307:"Boot state ":0,2,u
 132073:"Download of NC system module: Error reading NC hardware version of BsLoader":F60000
-132074:"Incompatible NC hardware version: Download of BsLoader not possible":F50317:F60000
-F50317:"Version ID of NC system module (in HB) and version ID of ACOPOS (in LB) ":0,2,u
-132075:"Incompatible NC hardware version: Download of operating system not possible":F50318:F60000
-F50318:"Version ID of NC system module (in HB) and version ID of ACOPOS (in LB) ":0,2,u
+132074:"Incompatible NC hardware version: Download of BsLoader not possible":F50308:F60000
+F50308:"Version ID of NC system module (in HB) and version ID of ACOPOS (in LB) ":0,2,u
+132075:"Incompatible NC hardware version: Download of operating system not possible":F50309:F60000
+F50309:"Version ID of NC system module (in HB) and version ID of ACOPOS (in LB) ":0,2,u
 132076:"FIFO for messages with high priority to NC Manager Task is full":F60000
 132077:"A POWERLINK node number in module acp10cfg is invalid":F60000
 132078:"A POWERLINK node number in module acp10cfg is used repeatedly":F60000
@@ -4620,42 +4574,42 @@ F50318:"Version ID of NC system module (in HB) and version ID of ACOPOS (in LB) 
 132086:"With this variant no CAN interface is allowed in module acp10cfg":F60000
 132087:"With this variant no POWERLINK interface is allowed in module acp10cfg":F60000
 132088:"The INIT parameter module specified in the NC Mapping Table does not exist":F60000
-132089:"NC-HW-ID of INIT parameter module is not compatible to NC manager":F50319:F60000
-F50319:"NC-HW-ID of INIT parameter module ":0,2,u
-132090:"NC object type of INIT parameter module is not equal to NC object":F50320:F60000
-F50320:"NC object type of INIT parameter module ":0,2,u
-132091:"Invalid block data in INIT parameter module (data range exceeded)":F50321:F60000
-F50321:"Offset in data section of INIT parameter module ":0,4,u
-132092:"Error sending a command to the NC Idle Task":F50322:F60000
-F50322:"Status of send function ":0,2,u
+132089:"NC-HW-ID of INIT parameter module is not compatible to NC manager":F50310:F60000
+F50310:"NC-HW-ID of INIT parameter module ":0,2,u
+132090:"NC object type of INIT parameter module is not equal to NC object":F50311:F60000
+F50311:"NC object type of INIT parameter module ":0,2,u
+132091:"Invalid block data in INIT parameter module (data range exceeded)":F50312:F60000
+F50312:"Offset in data section of INIT parameter module ":0,4,u
+132092:"Error sending a command to the NC Idle Task":F50313:F60000
+F50313:"Status of send function ":0,2,u
 132093:"NcManCtrl is defined repeatedly with different values":F60000
 132094:"NetworkInit is defined repeatedly for ncMANAGER with different values":F60000
-132095:"Value of drive group in CAN-CFG-Module higher than maximum value":F50323:F60000
-F50323:"Maximum value ":0,2,u
+132095:"Value of drive group in CAN-CFG-Module higher than maximum value":F50314:F60000
+F50314:"Maximum value ":0,2,u
 132098:"Version of the module acp10cfg is not compatible with NC manager":F60000
-132099:"Length of data section of module acp10cfg is too small":F50324:F60000
-F50324:"Number of data section ":0,2,u
-132100:"Memory for NC error text management cannot be allocated":F50325:F60000
-F50325:"Status of SM_malloc() ":0,2,u
+132099:"Length of data section of module acp10cfg is too small":F50315:F60000
+F50315:"Number of data section ":0,2,u
+132100:"Memory for NC error text management cannot be allocated":F50316:F60000
+F50316:"Status of SM_malloc() ":0,2,u
 132102:"Version ID of error text module not equal to that of NC manager":F60000
-132103:"Data section of error text module cannot be read":F50326:F60000
-F50326:"Number of data section ":0,2,u
-132104:"Data section of error text module is empty":F50327:F60000
-F50327:"Number of data section ":0,2,u
-132105:"Length of data section of error text module is too small":F50328:F60000
-F50328:"Number of data section ":0,2,u
-132106:"Error list of error text module not equal with that of NC manager":F50329:F60000
-F50329:"First invalid error number ":0,2,u
-132107:"Parameter list of error text module not equal with that of NC manager":F50330:F60000
-F50330:"First invalid parameter ID ":0,2,u
+132103:"Data section of error text module cannot be read":F50317:F60000
+F50317:"Number of data section ":0,2,u
+132104:"Data section of error text module is empty":F50318:F60000
+F50318:"Number of data section ":0,2,u
+132105:"Length of data section of error text module is too small":F50319:F60000
+F50319:"Number of data section ":0,2,u
+132106:"Error list of error text module not equal with that of NC manager":F50320:F60000
+F50320:"First invalid error number ":0,2,u
+132107:"Parameter list of error text module not equal with that of NC manager":F50321:F60000
+F50321:"First invalid parameter ID ":0,2,u
 132108:"The last error number of error text module is not equal to 65535":F60000
 132109:"The last parameter ID of error text module is not equal to 65535":F60000
-132110:"Length of data section of CAN-CFG-Module cannot be read":F50331:F60000
-F50331:"Status of function MO_section_lng() ":0,2,u
-132111:"Length of data section of CAN-CFG-Module is too small":F50332:F60000
-F50332:"Expected length ":0,2,u
-132112:"The data address in the CAN-CFG-Module cannot be read":F50333:F60000
-F50333:"Status of function MO_read() ":0,2,u
+132110:"Length of data section of CAN-CFG-Module cannot be read":F50322:F60000
+F50322:"Status of function MO_section_lng() ":0,2,u
+132111:"Length of data section of CAN-CFG-Module is too small":F50323:F60000
+F50323:"Expected length ":0,2,u
+132112:"The data address in the CAN-CFG-Module cannot be read":F50324:F60000
+F50324:"Status of function MO_read() ":0,2,u
 132113:"The enable code in the CAN-CFG-Module is invalid":F60000
 132114:"Values not equal to zero in reserved area of CAN-CFG-Module":F60000
 132115:"The basis CAN ID for WR/RD channel1 in the CAN-CFG-Module is invalid":F60000
@@ -4666,43 +4620,43 @@ F50333:"Status of function MO_read() ":0,2,u
 132120:"Invalid basis CAN ID for cyclic data from the drive in CAN-CFG-Module":F60000
 132121:"The CAN ID for the SYNC telegram in the CAN-CFG-Module is invalid":F60000
 132122:"The CAN ID for the broadcast command in the CAN-CFG-Module is invalid":F60000
-132123:"Error defining Read COB for WR2 Request (external set position mode)":F50334:F60000
-F50334:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132124:"Error defining Read COB for WR2 Response (external set position mode)":F50335:F60000
-F50335:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132125:"Error defining Read COB for RD2 Request (external set position mode)":F50336:F60000
-F50336:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132126:"Error defining Read COB for RD2 Response (external set position mode)":F50337:F60000
-F50337:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132127:"Error deleting Write COB for Broadcast Command (external set position mode)":F50338:F60000
-F50338:"CAN-ID (in HB and MHB) and Status of CAN_deleteCOB() (in MLB and LB) ":0,4,u
-132128:"Error defining Read COB for Broadcast Command (external set position mode)":F50339:F60000
-F50339:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132129:"Error defining Read COB for cyclic user data from drive (ext. set pos. mode)":F50340:F60000
-F50340:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132130:"This external set position mode is only allowed with one CAN interface":F50341:F60000
-F50341:"Count of used CAN interfaces ":0,2,u
+132123:"Error defining Read COB for WR2 Request (external set position mode)":F50325:F60000
+F50325:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132124:"Error defining Read COB for WR2 Response (external set position mode)":F50326:F60000
+F50326:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132125:"Error defining Read COB for RD2 Request (external set position mode)":F50327:F60000
+F50327:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132126:"Error defining Read COB for RD2 Response (external set position mode)":F50328:F60000
+F50328:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132127:"Error deleting Write COB for Broadcast Command (external set position mode)":F50329:F60000
+F50329:"CAN-ID (in HB and MHB) and Status of CAN_deleteCOB() (in MLB and LB) ":0,4,u
+132128:"Error defining Read COB for Broadcast Command (external set position mode)":F50330:F60000
+F50330:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132129:"Error defining Read COB for cyclic user data from drive (ext. set pos. mode)":F50331:F60000
+F50331:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132130:"This external set position mode is only allowed with one CAN interface":F50332:F60000
+F50332:"Count of used CAN interfaces ":0,2,u
 132131:"The specified NC data module does not exist":F60000
 132132:"The specified module is not an NC data module":F60000
-132133:"The NC module type of the specified NC data module is invalid":F50342:F60000
-F50342:"Requested type (in HB) and type of NC data module (in LB) ":0,2,u
-132134:"The NC module type of the specified NC data module cannot be read":F50343:F60000
-F50343:"Status of function MO_read() ":0,2,u
-132135:"The data address of the specified NC data module cannot be read":F50344:F60000
-F50344:"Status of function MO_read() ":0,2,u
-132136:"The data section of the specified NC data module is empty":F50345:F60000
-F50345:"Number of data section ":0,2,u
+132133:"The NC module type of the specified NC data module is invalid":F50333:F60000
+F50333:"Requested type (in HB) and type of NC data module (in LB) ":0,2,u
+132134:"The NC module type of the specified NC data module cannot be read":F50334:F60000
+F50334:"Status of function MO_read() ":0,2,u
+132135:"The data address of the specified NC data module cannot be read":F50335:F60000
+F50335:"Status of function MO_read() ":0,2,u
+132136:"The data section of the specified NC data module is empty":F50336:F60000
+F50336:"Number of data section ":0,2,u
 132137:"Data address of structure for a data block operation is zero":F60000
 132138:"Data address zero (user data for data block operation)":F60000
 132139:"Data length zero (user data for data block operation)":F60000
 132140:"Data block operation: Data module name or data address must be zero":F60000
 132141:"Invalid data format in a parameter sequence":F60000
-132142:"ID or type of a parameter invalid in parameter sequence with text format":F50346:F60000
-F50346:"Index of this parameter in the parameter sequence ":0,4,u
-132143:"Data of a parameter in a parameter sequence longer than 6 bytes":F50347:F60000
-F50347:"Index of this parameter in the parameter sequence ":0,4,u
-132144:"Error for an ACOPOS parameter table specified in the NC Mapping Table":F50348:F60000
-F50348:"Index of this ACOPOS parameter table (name in Logger) ":0,2,u
+132142:"ID or type of a parameter invalid in parameter sequence with text format":F50337:F60000
+F50337:"Index of this parameter in the parameter sequence ":0,4,u
+132143:"Data of a parameter in a parameter sequence longer than 6 bytes":F50338:F60000
+F50338:"Index of this parameter in the parameter sequence ":0,4,u
+132144:"Error for an ACOPOS parameter table specified in the NC Mapping Table":F50339:F60000
+F50339:"Index of this ACOPOS parameter table (name in Logger) ":0,2,u
 132145:"The ACOPOS parameter table does not exist":F60000
 132146:"The ACOPOS parameter table is not an NC data module":F60000
 132147:"The NC module type of the ACOPOS parameter table is invalid":F60000
@@ -4713,16 +4667,16 @@ F50348:"Index of this ACOPOS parameter table (name in Logger) ":0,2,u
 132152:"No XML elements present in an ACOPOS parameter table":F60000
 132153:"The first XML element is invalid in the ACOPOS parameter table":F60000
 132154:"The ACOPOS parameter table does not contain any ACOPOS parameters":F60000
-132155:"Nesting depth for ACOPOS parameter groups exceeded":F50349:F60000
-F50349:"Maximum nesting depth ":0,2,u
-132156:"ID or type of an ACOPOS parameter invalid for text conversion":F50350:F60000
-F50350:"Parameter ID ":0,2,u
-132157:"Length of parameter data too large for ACOPOS parameter in XML data":F50351:F60000
-F50351:"Parameter ID ":0,2,u
-132158:"ACOPOS parameter: An attribute is not defined (ID)":F50352:F60000
-F50352:"Number of this Parameter in the ACOPOS parameter table ":0,2,u
-132159:"ACOPOS parameter: An attribute is not defined (Value)":F50353:F60000
-F50353:"Number of this Parameter in the ACOPOS parameter table ":0,2,u
+132155:"Nesting depth for ACOPOS parameter groups exceeded":F50340:F60000
+F50340:"Maximum nesting depth ":0,2,u
+132156:"ID or type of an ACOPOS parameter invalid for text conversion":F50341:F60000
+F50341:"Parameter ID ":0,2,u
+132157:"Length of parameter data too large for ACOPOS parameter in XML data":F50342:F60000
+F50342:"Parameter ID ":0,2,u
+132158:"ACOPOS parameter: An attribute is not defined (ID)":F50343:F60000
+F50343:"Number of this Parameter in the ACOPOS parameter table ":0,2,u
+132159:"ACOPOS parameter: An attribute is not defined (Value)":F50344:F60000
+F50344:"Number of this Parameter in the ACOPOS parameter table ":0,2,u
 132161:"ncNC_SYS_RESTART,ncACKNOWLEDGE is not allowed (network.init=ncFALSE)":F60000
 132163:"A system module download to all drives is not possible with SwNodeSelect":F60000
 132164:"The text defined with NetworkInit (global) is invalid":F60000
@@ -4730,96 +4684,96 @@ F50353:"Number of this Parameter in the ACOPOS parameter table ":0,2,u
 132166:"Network initialization not allowed during active network initialization":F60000
 132167:"The text defined with NetworkInit is invalid":F60000
 132168:"NodeNr_SwNodeSelect is defined repeatedly with different values":F60000
-132169:"The node number defined with NodeNr_SwNodeSelect is invalid":F50354:F60000
-F50354:"Node number ":0,2,u
+132169:"The node number defined with NodeNr_SwNodeSelect is invalid":F50345:F60000
+F50345:"Node number ":0,2,u
 132170:"A data module name has to be entered for this data block operation":F60000
 132171:"Index zero is not allowed (user data for data block operation)":F60000
-132172:"The specified data module name is not valid for a BR module":F50355:F60000
-F50355:"Status of conv_asc2brstr() ":0,2,u
-132173:"Memory for data module creation cannot be allocated":F50356:F60000
-F50356:"Data module length ":0,4,u
-132174:"Error with installation of data module into BR module table":F50357:F60000
-F50357:"Status of BrmFlushModuleMemory() ":0,2,u
-132175:"Error with installation of data module into BR module table":F50358:F60000
-F50358:"Status of BR_install() ":0,2,u
-132176:"Text for parameter data too large for parameter sequence with text format":F50359:F60000
-F50359:"Index of this parameter in the parameter sequence ":0,4,u
-132177:"Text for parameter data too large for parameter list with text format":F50360:F60000
-F50360:"Index of this parameter in the parameter list ":0,4,u
-132178:"This NC object is not enabled for this ACOPOS (channel number too high)":F50361:F60000
-F50361:"Maximum channel number ":0,2,u
-132179:"ID or type of a parameter invalid in parameter list with text format":F50362:F60000
-F50362:"Index of this parameter in the parameter list ":0,4,u
+132172:"The specified data module name is not valid for a BR module":F50346:F60000
+F50346:"Status of conv_asc2brstr() ":0,2,u
+132173:"Memory for data module creation cannot be allocated":F50347:F60000
+F50347:"Data module length ":0,4,u
+132174:"Error with installation of data module into BR module table":F50348:F60000
+F50348:"Status of BrmFlushModuleMemory() ":0,2,u
+132175:"Error with installation of data module into BR module table":F50349:F60000
+F50349:"Status of BR_install() ":0,2,u
+132176:"Text for parameter data too large for parameter sequence with text format":F50350:F60000
+F50350:"Index of this parameter in the parameter sequence ":0,4,u
+132177:"Text for parameter data too large for parameter list with text format":F50351:F60000
+F50351:"Index of this parameter in the parameter list ":0,4,u
+132178:"This NC object is not enabled for this ACOPOS (channel number too high)":F50352:F60000
+F50352:"Maximum channel number ":0,2,u
+132179:"ID or type of a parameter invalid in parameter list with text format":F50353:F60000
+F50353:"Index of this parameter in the parameter list ":0,4,u
 132180:"Data address of structure for a parameter list operation is zero":F60000
 132181:"Data address zero (user data for parameter list operation)":F60000
 132182:"Data length zero (user data for parameter list operation)":F60000
 132183:"Data length invalid (user data for parameter list operation)":F60000
 132184:"Invalid data format in a parameter list":F60000
-132185:"Data of a parameter in a parameter list longer than 6 bytes":F50363:F60000
-F50363:"Index of this parameter in the parameter list ":0,4,u
+132185:"Data of a parameter in a parameter list longer than 6 bytes":F50354:F60000
+F50354:"Index of this parameter in the parameter list ":0,4,u
 132186:"NetBasisInitNr is defined repeatedly for ncMANAGER with different values":F60000
 132187:"Error for synchronization of network initialization (details in Logger)":F60000
 132188:"This NC object is defined in hardware configuration and NC Mapping Table":F60000
-132189:"Timeout for cyclic data from drive - Indications invalid (network error ?)":F50364:F60000
-F50364:"Timeout [usec] ":0,4,u
-132190:"Error defining Write COB for selection of node number via software":F50365:F60000
-F50365:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
-132191:"This parameter ID is reserved for the PLCopen MC library":F50366:F60000
-F50366:"Command ID (0: SERVICE, 1: PAR_LIST, 2: PAR_SEQU, 3: ACP_PAR) ":0,4,u
+132189:"Timeout for cyclic data from drive - Indications invalid (network error ?)":F50355:F60000
+F50355:"Timeout [usec] ":0,4,u
+132190:"Error defining Write COB for selection of node number via software":F50356:F60000
+F50356:"CAN-ID (in HB and MHB) and Status of CAN_defineCOB() (in MLB and LB) ":0,4,u
+132191:"This parameter ID is reserved for the PLCopen MC library":F50357:F60000
+F50357:"Command ID (0: SERVICE, 1: PAR_LIST, 2: PAR_SEQU, 3: ACP_PAR) ":0,4,u
 132192:"The specified data module is not an INIT Parameter module":F60000
 132193:"For this NC object type no INIT parameter module is present":F60000
 132194:"This function is not implemented for this NC object type":F60000
-132195:"Error downloading BsLoader to ACOPOS":F50367:F60000
-F50367:"Node number of ACOPOS which caused the error (if not equal to zero) ":0,2,u
-132196:"Error downloading operating system to ACOPOS":F50368:F60000
-F50368:"Node number of ACOPOS which caused the error (if not equal to zero) ":0,2,u
+132195:"Error downloading BsLoader to ACOPOS":F50358:F60000
+F50358:"Node number of ACOPOS which caused the error (if not equal to zero) ":0,2,u
+132196:"Error downloading operating system to ACOPOS":F50359:F60000
+F50359:"Node number of ACOPOS which caused the error (if not equal to zero) ":0,2,u
 132197:"Error downloading BsLoader to ACOPOS (additional info in Logger)":F60000
 132198:"Error downloading operating system to ACOPOS (additional info in Logger)":F60000
-132200:"Error calling plAcycWrite() (read parameter)":F50369:F60000
-F50369:"Status of plAcycWrite() ":0,2,u
-132201:"Error calling plAcycWrite() (write parameter)":F50370:F60000
-F50370:"Status of plAcycWrite() ":0,2,u
-132202:"Error calling plAcycRead() (read parameter)":F50371:F60000
-F50371:"Status of plAcycRead() ":0,2,u
-132203:"Error calling plAcycRead() (write parameter)":F50372:F60000
-F50372:"Status of plAcycRead() ":0,2,u
-132204:"Timeout while reading par. via acyclic channel (is the drive in the network ?)":F50373:F60000
-F50373:"Timeout [usec] ":0,4,u
-132205:"Timeout while writing par. via acyclic channel (is the drive in the network ?)":F50374:F60000
-F50374:"Timeout [usec] ":0,4,u
+132200:"Error calling plAcycWrite() (read parameter)":F50360:F60000
+F50360:"Status of plAcycWrite() ":0,2,u
+132201:"Error calling plAcycWrite() (write parameter)":F50361:F60000
+F50361:"Status of plAcycWrite() ":0,2,u
+132202:"Error calling plAcycRead() (read parameter)":F50362:F60000
+F50362:"Status of plAcycRead() ":0,2,u
+132203:"Error calling plAcycRead() (write parameter)":F50363:F60000
+F50363:"Status of plAcycRead() ":0,2,u
+132204:"Timeout while reading par. via acyclic channel (is the drive in the network ?)":F50364:F60000
+F50364:"Timeout [usec] ":0,4,u
+132205:"Timeout while writing par. via acyclic channel (is the drive in the network ?)":F50365:F60000
+F50365:"Timeout [usec] ":0,4,u
 132206:"Cyclic channel: Read Request in spite of Wait for Response":F60000
 132207:"Cyclic channel: Write Request in spite of Wait for Response":F60000
-132208:"Error using plAction(DEVICE_TO_BUS_NR) (additional info in Logger)":F50375:F60000
-F50375:"Status of plAction() ":0,2,u
-132209:"Error using plAction(GET_IDENT) (additional info in Logger)":F50376:F60000
-F50376:"Status of plAction() ":0,2,u
-132210:"Wrong interface ident when calling plState() (additional info in Logger)":F50377:F60000
-F50377:"Interface ident ":0,4,u
+132208:"Error using plAction(DEVICE_TO_BUS_NR) (additional info in Logger)":F50366:F60000
+F50366:"Status of plAction() ":0,2,u
+132209:"Error using plAction(GET_IDENT) (additional info in Logger)":F50367:F60000
+F50367:"Status of plAction() ":0,2,u
+132210:"Wrong interface ident when calling plState() (additional info in Logger)":F50368:F60000
+F50368:"Interface ident ":0,4,u
 132211:"Interface not available when calling plState() (additional info in Logger)":F60000
 132212:"Fatal interface error when calling plState() (additional info in Logger)":F60000
 132213:"Timeout for POWERLINK interface (additional info in Logger)":F60000
-132214:"Error calling plAcycOpen() (additional info in Logger)":F50378:F60000
-F50378:"Status of plAcycOpen() ":0,2,u
-132215:"Error calling plCECreate() (additional info in Logger)":F50379:F60000
-F50379:"Status of plCECreate() ":0,2,u
-132216:"Error using plAction(GET_IF_PAR) (additional info in Logger)":F50380:F60000
-F50380:"Status of plAction() ":0,2,u
-132217:"Broadcast channel: Error calling plAcycWrite() (read parameter)":F50381:F60000
-F50381:"Status of plAcycWrite() ":0,2,u
-132218:"Broadcast channel: Error calling plAcycWrite() (write parameter)":F50382:F60000
-F50382:"Status of plAcycWrite() ":0,2,u
-132219:"Error using plAction(GET_IF_MUXPRESCALE) (additional info in Logger)":F50383:F60000
-F50383:"Status of plAction() ":0,2,u
-132220:"Error using plAction(GET_IF_CYCLE_TIME) (additional info in Logger)":F50384:F60000
-F50384:"Status of plAction() ":0,2,u
-132221:"Error using plAction(GET_IF_PRESCALE) (additional info in Logger)":F50385:F60000
-F50385:"Status of plAction() ":0,2,u
-132222:"Error using plAction(GET_STATIONFLAG) (additional info in Logger)":F50386:F60000
-F50386:"Status of plAction() ":0,2,u
-132223:"Error calling plGetNodeInfo() (additional info in Logger)":F50387:F60000
-F50387:"Status of plGetNodeInfo() ":0,2,u
-132224:"Error calling plAction(GET_PROTOCOL_VERSION) (additional info in Logger)":F50388:F60000
-F50388:"Status of plAction() ":0,2,u
+132214:"Error calling plAcycOpen() (additional info in Logger)":F50369:F60000
+F50369:"Status of plAcycOpen() ":0,2,u
+132215:"Error calling plCECreate() (additional info in Logger)":F50370:F60000
+F50370:"Status of plCECreate() ":0,2,u
+132216:"Error using plAction(GET_IF_PAR) (additional info in Logger)":F50371:F60000
+F50371:"Status of plAction() ":0,2,u
+132217:"Broadcast channel: Error calling plAcycWrite() (read parameter)":F50372:F60000
+F50372:"Status of plAcycWrite() ":0,2,u
+132218:"Broadcast channel: Error calling plAcycWrite() (write parameter)":F50373:F60000
+F50373:"Status of plAcycWrite() ":0,2,u
+132219:"Error using plAction(GET_IF_MUXPRESCALE) (additional info in Logger)":F50374:F60000
+F50374:"Status of plAction() ":0,2,u
+132220:"Error using plAction(GET_IF_CYCLE_TIME) (additional info in Logger)":F50375:F60000
+F50375:"Status of plAction() ":0,2,u
+132221:"Error using plAction(GET_IF_PRESCALE) (additional info in Logger)":F50376:F60000
+F50376:"Status of plAction() ":0,2,u
+132222:"Error using plAction(GET_STATIONFLAG) (additional info in Logger)":F50377:F60000
+F50377:"Status of plAction() ":0,2,u
+132223:"Error calling plGetNodeInfo() (additional info in Logger)":F50378:F60000
+F50378:"Status of plGetNodeInfo() ":0,2,u
+132224:"Error calling plAction(GET_PROTOCOL_VERSION) (additional info in Logger)":F50379:F60000
+F50379:"Status of plAction() ":0,2,u
 132225:"This ACOPOS POWERLINK node does not exist in the AR Configuration":F60000
 132226:"A SDC node number in module acp10cfg is invalid":F60000
 132227:"A SDC node number in module acp10cfg is used repeatedly":F60000
@@ -4830,58 +4784,58 @@ F50388:"Status of plAction() ":0,2,u
 132232:"The object acp10sim does not exist (necessary for ACOPOS simulation)":F60000
 132233:"The object acp10bsl contains no NC system module":F60000
 132234:"The object acp10sys contains no NC system module":F60000
-132235:"Data address zero for parameter in parameter sequence":F50389:F60000
-F50389:"Index of this parameter in the parameter sequence ":0,4,u
-132236:"Data address zero for parameter in parameter list":F50390:F60000
-F50390:"Index of this parameter in the parameter list ":0,4,u
-132237:"Channel index for ACOPOS parameters in module acp10cfg is invalid":F50391:F60000
-F50391:"Interface index (in HB) and node number (in LB) of this drive ":0,2,u
+132235:"Data address zero for parameter in parameter sequence":F50380:F60000
+F50380:"Index of this parameter in the parameter sequence ":0,4,u
+132236:"Data address zero for parameter in parameter list":F50381:F60000
+F50381:"Index of this parameter in the parameter list ":0,4,u
+132237:"Channel index for ACOPOS parameters in module acp10cfg is invalid":F50382:F60000
+F50382:"Interface index (in HB) and node number (in LB) of this drive ":0,2,u
 132238:"This function is not implemented at this time":F60000
-132239:"Basic memory for INIT parameter modules could not be allocated":F50392:F60000
-F50392:"Status of SM_malloc() ":0,2,u
+132239:"Basic memory for INIT parameter modules could not be allocated":F50383:F60000
+F50383:"Status of SM_malloc() ":0,2,u
 132240:"NC object data invalid (PV with INIT value in variable declaration ?) ":F60000
 132241:"Data block operation: Data module name must be zero":F60000
-132243:"Error using plAction(GET_PDO_INFO) (additional info in Logger)":F50393:F60000
-F50393:"Status of plAction() ":0,2,u
+132243:"Error using plAction(GET_PDO_INFO) (additional info in Logger)":F50384:F60000
+F50384:"Status of plAction() ":0,2,u
 132244:"No PDO defined in the cyclic frame for this channel: NC object is disabled":F60000
 132245:"The Memory for operating the broadcast channel cannot be allocated":F60000
 132246:"'Direction' of the POWERLINK broadcast channel is not 'Output'":F60000
-132247:"Error using plAction(GET_TC_INFO) (additional info in Logger)":F50394:F60000
-F50394:"Status of plAction() ":0,2,u
-132248:"Invalid ACOPOS parameter header in module acp10cfg (section exceeded)":F50395:F60000
-F50395:"Interface index (in HB) and node number (in LB) of this drive ":0,2,u
+132247:"Error using plAction(GET_TC_INFO) (additional info in Logger)":F50385:F60000
+F50385:"Status of plAction() ":0,2,u
+132248:"Invalid ACOPOS parameter header in module acp10cfg (section exceeded)":F50386:F60000
+F50386:"Interface index (in HB) and node number (in LB) of this drive ":0,2,u
 132249:"Invalid ACOPOS parameter descriptor in module acp10cfg (section exceeded)":F60000
-132250:"ACOPOS parameter in module acp10cfg: Length of parameter data too large":F50396:F60000
-F50396:"Maximum allowed length ":0,2,u
-132251:"NcNetCyc: Response timeout":F50397:F60000
-F50397:"Timeout [usec] ":0,4,u
+132250:"ACOPOS parameter in module acp10cfg: Length of parameter data too large":F50387:F60000
+F50387:"Maximum allowed length ":0,2,u
+132251:"NcNetCyc: Response timeout":F50388:F60000
+F50388:"Timeout [usec] ":0,4,u
 132252:"NcNetCyc: Unexpected Response (invalid counter value)":F60000
-132253:"The task class for POWERLINK output cycle trigger is invalid":F50398:F60000
-F50398:"Maximum task class number ":0,1,u
-132254:"No PDO mapping defined (PDO mapping is required for this ACOPOS ID)":F50399:F60000
-F50399:"ACOPOS ID ":0,1,u
+132253:"The task class for POWERLINK output cycle trigger is invalid":F50389:F60000
+F50389:"Maximum task class number ":0,1,u
+132254:"No PDO mapping defined (PDO mapping is required for this ACOPOS ID)":F50390:F60000
+F50390:"ACOPOS ID ":0,1,u
 132259:"There are currently no trace data to be saved":F60000
 132260:"Trace: No valid test data point is defined":F60000
 132261:"Trace trigger: The NC object is invalid":F60000
-132262:"Trace test data point: The NC object is invalid":F50400:F60000
-F50400:"Index of test data point ":0,2,u
+132262:"Trace test data point: The NC object is invalid":F50391:F60000
+F50391:"Index of test data point ":0,2,u
 132263:"Trace trigger: The NC object is not enabled for this ACOPOS":F60000
-132264:"Trace test data point: The NC object is not enabled for this ACOPOS":F50401:F60000
-F50401:"Index of test data point ":0,2,u
+132264:"Trace test data point: The NC object is not enabled for this ACOPOS":F50392:F60000
+F50392:"Index of test data point ":0,2,u
 132265:"Trace trigger: Trace for this NC object already active at trace start":F60000
-132266:"Trace test data point: Trace for this NC object already active at trace start":F50402:F60000
-F50402:"Index of test data point ":0,2,u
+132266:"Trace test data point: Trace for this NC object already active at trace start":F50393:F60000
+F50393:"Index of test data point ":0,2,u
 132267:"Trace trigger: The NC object is not enabled for trace commands":F60000
-132268:"Trace test data point: The NC object is not enabled for trace commands":F50403:F60000
-F50403:"Index of test data point ":0,2,u
-132269:"Trace: Too many test data points defined for one trace channel":F50404:F60000
-F50404:"Max. number of test data points ":0,2,u
-132270:"ACOPOS coupling: The channel number of the send data is invalid":F50405:F60000
-F50405:"Channel number of the send data ":0,1,u
-132271:"ACOPOS coupling: The channel number of the receive data is invalid":F50406:F60000
-F50406:"Channel number of the receive data ":0,1,u
-132272:"ACOPOS coupling: Send data with this channel number are not configured":F50407:F60000
-F50407:"Channel number of the send data (number of coupling object) ":0,1,u
+132268:"Trace test data point: The NC object is not enabled for trace commands":F50394:F60000
+F50394:"Index of test data point ":0,2,u
+132269:"Trace: Too many test data points defined for one trace channel":F50395:F60000
+F50395:"Max. number of test data points ":0,2,u
+132270:"ACOPOS coupling: The channel number of the send data is invalid":F50396:F60000
+F50396:"Channel number of the send data ":0,1,u
+132271:"ACOPOS coupling: The channel number of the receive data is invalid":F50397:F60000
+F50397:"Channel number of the receive data ":0,1,u
+132272:"ACOPOS coupling: Send data with this channel number are not configured":F50398:F60000
+F50398:"Channel number of the send data (number of coupling object) ":0,1,u
 132273:"ACOPOS coupling: The NC object of the send data is invalid":F60000
 132274:"Network coupling: The broadcast channel was not configured":F60000
 132275:"Network coupling: The broadcast channel was not successfully initialized":F60000
@@ -4889,25 +4843,25 @@ F50407:"Channel number of the send data (number of coupling object) ":0,1,u
 132277:"Network coupling: In the broadcast channel no more data record has place":F60000
 132278:"ACOPOS coupling: Zero as Parameter ID of the send data is not allowed":F60000
 132279:"Service interface: Data address zero":F60000
-132280:"Timeout for enable of acyclic network communication":F50408:F60000
-F50408:"Timeout [sec] ":0,4,u
+132280:"Timeout for enable of acyclic network communication":F50399:F60000
+F50399:"Timeout [sec] ":0,4,u
 132281:"Version of SafeMC lower than minimum version (see Logger)":F60000
 132282:"Network coupling: Incompatible cycle times (network interfaces, NC task class)":F60000
-132283:"INIT broadcast data point: Call of NC action only allowed in NC Manager TC":F50409:F60000
-F50409:"Number of NC Manager task class ":0,1,u
-132284:"Ext. coupling data: With this AR/NC version only for TC1 with synchr. output":F50410:F60000
-F50410:"Number of NC Manager task class ":0,1,u
-132285:"INIT broadcast data point: Incompatible cycle times (POWERLINK, NC manager)":F50411:F60000
-F50411:"Extended coupling data for ACP10_MC_BROADCAST (0/1: No/Yes) ":0,1,u
-132286:"Network coupling: Incompatible cycle times (network interfaces, NC task class)":F50412:F60000
-F50412:"Extended coupling data for ACP10_MC_BROADCAST (0/1: No/Yes) ":0,1,u
-132287:"Extended coupling data not possible (OutTime difference too large)":F50413:F60000
-F50413:"Difference between maxOutTime and minOutTime ":0,4,u
-132288:"Extended coupling data not possible (task class tolerance is not zero)":F50414:F60000
-F50414:"Number of NC Manager task class ":0,1,u
+132283:"INIT broadcast data point: Call of NC action only allowed in NC Manager TC":F50400:F60000
+F50400:"Number of NC Manager task class ":0,1,u
+132284:"Ext. coupling data: With this AR/NC version only for TC1 with synchr. output":F50401:F60000
+F50401:"Number of NC Manager task class ":0,1,u
+132285:"INIT broadcast data point: Incompatible cycle times (POWERLINK, NC manager)":F50402:F60000
+F50402:"Extended coupling data for ACP10_MC_BROADCAST (0/1: No/Yes) ":0,1,u
+132286:"Network coupling: Incompatible cycle times (network interfaces, NC task class)":F50403:F60000
+F50403:"Extended coupling data for ACP10_MC_BROADCAST (0/1: No/Yes) ":0,1,u
+132287:"Extended coupling data not possible (OutTime difference too large)":F50404:F60000
+F50404:"Difference between maxOutTime and minOutTime ":0,4,u
+132288:"Extended coupling data not possible (task class tolerance is not zero)":F50405:F60000
+F50405:"Number of NC Manager task class ":0,1,u
 132289:"Network coupling: SDC/SIM master and slave in different task classes":F60000
-132290:"INIT broadcast data point: Call of NC action only allowed in SDC task class":F50415:F60000
-F50415:"Task class number of the corresponding SDC interface ":0,1,u
+132290:"INIT broadcast data point: Call of NC action only allowed in SDC task class":F50406:F60000
+F50406:"Task class number of the corresponding SDC interface ":0,1,u
 132291:"INIT broadcast data point: "dp_data_bits" or "dp_task_class" is zero":F60000
 132302:"Start setup not possible: A setup operation is already active":F60000
 132322:"Data block upload/download: The data object name is zero":F60000
@@ -4917,28 +4871,28 @@ F50415:"Task class number of the corresponding SDC interface ":0,1,u
 132326:"Data block upload/download: Address of data buffer is zero":F60000
 132327:"Data block upload/download: Length of data buffer is zero":F60000
 132328:"Data block upload: Length of data buffer lower than length of data block":F60000
-132329:"Setup: Maximum number of initial ACOPOS parameters exceeded":F50416:F60000
-F50416:"Maximum number ":0,4,u
-132330:"Setup: Data of an ACOPOS parameter longer than 6 bytes":F50417:F60000
-F50417:"Parameter ID ":0,2,u
+132329:"Setup: Maximum number of initial ACOPOS parameters exceeded":F50407:F60000
+F50407:"Maximum number ":0,4,u
+132330:"Setup: Data of an ACOPOS parameter longer than 6 bytes":F50408:F60000
+F50408:"Parameter ID ":0,2,u
 132397:"NCSYS version on the target system is not compatible with NCMAN version":F60000
 132398:"acp10sys does not contain an operating system for this ACOPOS hardware type":F60000
 132399:"Manual ACOPOS restart (POWER-OFF/-ON) after NCSYS download necessary":F60000
-132400:"Memory cannot be allocated":F50418:F60000
-F50418:"Memory size ":0,4,u
+132400:"Memory cannot be allocated":F50409:F60000
+F50409:"Memory size ":0,4,u
 132401:"No data object name specified":F60000
 132402:"The specified file cannot be opened":F60000
 132403:"The specified file cannot be created":F60000
 132404:"Error at writing into a file":F60000
 132405:"Error at reading from a file":F60000
-132406:"The specified file cannot be created":F50419:F60000
-F50419:"Status of FileCreate() ":0,2,u
-132407:"Error at writing into a file":F50420:F60000
-F50420:"Status of FileWrite() ":0,2,u
-132408:"Error at closing a file":F50421:F60000
-F50421:"Status of FileClose() ":0,2,u
-132409:"The specified file cannot be deleted":F50422:F60000
-F50422:"Status of FileDelete() ":0,2,u
+132406:"The specified file cannot be created":F50410:F60000
+F50410:"Status of FileCreate() ":0,2,u
+132407:"Error at writing into a file":F50411:F60000
+F50411:"Status of FileWrite() ":0,2,u
+132408:"Error at closing a file":F50412:F60000
+F50412:"Status of FileClose() ":0,2,u
+132409:"The specified file cannot be deleted":F50413:F60000
+F50413:"Status of FileDelete() ":0,2,u
 132410:"The data object type is invalid":F60000
 132411:"The address of the data object structure is zero":F60000
 132412:"The name in the data object structure is zero":F60000
@@ -4946,8 +4900,8 @@ F50422:"Status of FileDelete() ":0,2,u
 132414:"The data length in the data object structure is zero":F60000
 132415:"No File Device specified":F60000
 132416:"The FileIO functions do not exist (is library FileIO existing ?)":F60000
-132417:"Error at writing into an NC data module":F50423:F60000
-F50423:"Status of ncda_wr() ":0,2,u
+132417:"Error at writing into an NC data module":F50414:F60000
+F50414:"Status of ncda_wr() ":0,2,u
 132418:"No XML elements present in MTC data":F60000
 132419:"MTC data: XML elements invalid or in wrong order":F60000
 132420:"The MTC data contain an invalid configuration":F60000
@@ -4959,47 +4913,47 @@ F50423:"Status of ncda_wr() ":0,2,u
 132426:"Trace trigger: The event is invalid":F60000
 132427:"Trace trigger: Parameter ID zero not allowed if event unequal to OFF":F60000
 132428:"The data object format is invalid":F60000
-132429:"MTC data: Maximum number of test data points exceeded":F50424:F60000
-F50424:"Maximum number ":0,2,u
+132429:"MTC data: Maximum number of test data points exceeded":F50415:F60000
+F50415:"Maximum number ":0,2,u
 132492:"ACOPOS Simulation: TC for cyclic PLCopen data not equal to NC Manager TC":F60000
-132494:"AcoposSimulation=Off for one channel although activated for the other channel":F50425:F60000
-F50425:"Channel number with AcoposSimulation=Off ":0,1,u
-132495:"AcoposSimulation: Different values defined for real and virtual axis":F50426:F60000
-F50426:"Channel number of NC objects ":0,1,u
+132494:"AcoposSimulation=Off for one channel although activated for the other channel":F50416:F60000
+F50416:"Channel number with AcoposSimulation=Off ":0,1,u
+132495:"AcoposSimulation: Different values defined for real and virtual axis":F50417:F60000
+F50417:"Channel number of NC objects ":0,1,u
 132496:"Error creating cyclic task for PLCopen MC (details in Logger)":F60000
-132497:"Task class for handling of cyclic data with PLCopen in acp10cfg is invalid":F50427:F60000
-F50427:"Maximum task class number ":0,1,u
-132498:"PLCopen_CyclicData_TaskClass is lower than zero or higher than maximum value":F50428:F60000
-F50428:"Maximum value ":0,1,u
-132499:"PLCopen_CyclicData_TaskClass: Values for real and virtual axis are not equal":F50429:F60000
-F50429:"Channel number of NC objects ":0,1,u
+132497:"Task class for handling of cyclic data with PLCopen in acp10cfg is invalid":F50418:F60000
+F50418:"Maximum task class number ":0,1,u
+132498:"PLCopen_CyclicData_TaskClass is lower than zero or higher than maximum value":F50419:F60000
+F50419:"Maximum value ":0,1,u
+132499:"PLCopen_CyclicData_TaskClass: Values for real and virtual axis are not equal":F50420:F60000
+F50420:"Channel number of NC objects ":0,1,u
 132500:"The Message FIFO already exists":F60000
-132501:"Error creating Message FIFO":F50430:F60000
-F50430:"Status of RtkCreateFifo() ":0,2,u
+132501:"Error creating Message FIFO":F50421:F60000
+F50421:"Status of RtkCreateFifo() ":0,2,u
 132502:"The Critical Section for Command Semaphore already exists":F60000
-132503:"Error creating Critical Section for Command Semaphore":F50431:F60000
-F50431:"Status of RtkCreateCriticalSection() ":0,2,u
+132503:"Error creating Critical Section for Command Semaphore":F50422:F60000
+F50422:"Status of RtkCreateCriticalSection() ":0,2,u
 132504:"The NC Manager Idle Task already exists":F60000
-132505:"Error creating NC Manager Idle Task":F50432:F60000
-F50432:"Status of RtkCreateTask() ":0,2,u
-132506:"Error reading Taskclass Cycle Time":F50433:F60000
-F50433:"Status of GetTaskclassCycleTime() ":0,2,u
-132507:"Error reading Taskclass Tolerance":F50434:F60000
-F50434:"Status of GetTaskclassMaxCycleTime() ":0,2,u
-132508:"Error sending an idle time command to the NC Manager Task":F50435:F60000
-F50435:"Status of RtkWriteFifo() ":0,2,u
+132505:"Error creating NC Manager Idle Task":F50423:F60000
+F50423:"Status of RtkCreateTask() ":0,2,u
+132506:"Error reading Taskclass Cycle Time":F50424:F60000
+F50424:"Status of GetTaskclassCycleTime() ":0,2,u
+132507:"Error reading Taskclass Tolerance":F50425:F60000
+F50425:"Status of GetTaskclassMaxCycleTime() ":0,2,u
+132508:"Error sending an idle time command to the NC Manager Task":F50426:F60000
+F50426:"Status of RtkWriteFifo() ":0,2,u
 132509:"The Critical Section for Network Command Trace already exists":F60000
-132510:"Error creating Critical Section for Network Command Trace":F50436:F60000
-F50436:"Status of RtkCreateCriticalSection() ":0,2,u
+132510:"Error creating Critical Section for Network Command Trace":F50427:F60000
+F50427:"Status of RtkCreateCriticalSection() ":0,2,u
 132511:"The Critical Section for messages with high priority already exists":F60000
-132512:"Error creating Critical Section for messages with high priority":F50437:F60000
-F50437:"Status of RtkCreateCriticalSection() ":0,2,u
+132512:"Error creating Critical Section for messages with high priority":F50428:F60000
+F50428:"Status of RtkCreateCriticalSection() ":0,2,u
 132513:"The Critical Section for global variables already exists":F60000
-132514:"Error creating Critical Section for global variables":F50438:F60000
-F50438:"Status of RtkCreateCriticalSection() ":0,2,u
+132514:"Error creating Critical Section for global variables":F50429:F60000
+F50429:"Status of RtkCreateCriticalSection() ":0,2,u
 132515:"The Critical Section for network coupling already exists":F60000
-132516:"Error creating Critical Section for network coupling":F50439:F60000
-F50439:"Status of RtkCreateCriticalSection() ":0,2,u
+132516:"Error creating Critical Section for network coupling":F50430:F60000
+F50430:"Status of RtkCreateCriticalSection() ":0,2,u
 132738:"Error writing into SDM Motion FIFO":F60000
 132739:"Error creating SDM Motion FIFO (see Logger)":F60000
 132740:"Error deleting SDM Motion FIFO (see Logger)":F60000
@@ -5030,619 +4984,586 @@ F50439:"Status of RtkCreateCriticalSection() ":0,2,u
 132765:"SDM_Motion_Action: Length of XML input data is zero":F60000
 132766:"SDM_Motion_Action: Pointer of XML input data is zero":F60000
 132767:"SDM_Motion_Action: Invalid actionID":F60000
-133002:"Floating-Point exception":F50440:F60000
-F50440:"EPC ":0,4,u
-133003:"Address error exception":F50441:F60000
-F50441:"EPC ":0,4,u
-133004:"Bus error exception":F50442:F60000
-F50442:"EPC ":0,4,u
-133005:"Exception":F50443:F60000
-F50443:"EPC ":0,4,u
-133006:"Access violation Exception":F50444:F60000
-F50444:"EPC ":0,4,u
-133007:"Violation address":F50445:F60000
-F50445:"ADDR ":0,4,u
-135000:"SMC FS: Internal error, Program flow":F50446:F60000
-F50446:"Switch ID ":0,4,u
-135001:"SMC FS: Internal error, NULL pointer access":F50447:F60000
-F50447:"Pointer ID ":0,4,u
-135002:"SMC FS: Internal error, SPI transfer":F50448:F60000
-F50448:"Additional info ":0,4,u
-135003:"SMC FS: Internal error, MFW NVM data memory":F60000
-135004:"SMC FS: Internal error, Communication EnDat Master":F50449:F60000
-F50449:"Additional info ":0,4,u
-135005:"SMC FS: Internal error, Communication ACOPOS":F50450:F60000
-F50450:"Additional info ":0,4,u
-135006:"SMC FS: Internal error, Communication Encoder":F50451:F60000
-F50451:"Additional info ":0,4,u
-135007:"SMC FS: Module/compensation data is incompatible!":F50452:F60000
-F50452:"Additional info ":0,4,u
-135008:"SMC FS: CRC of the module/compensation data is not correct!":F50453:F60000
+133002:"Floating-Point exception":F50431:F60000
+F50431:"EPC ":0,4,u
+133003:"Address error exception":F50432:F60000
+F50432:"EPC ":0,4,u
+133004:"Bus error exception":F50433:F60000
+F50433:"EPC ":0,4,u
+133005:"Exception":F50434:F60000
+F50434:"EPC ":0,4,u
+133006:"Access violation Exception":F50435:F60000
+F50435:"EPC ":0,4,u
+133007:"Violation address":F50436:F60000
+F50436:"ADDR ":0,4,u
+135000:"SMC Fail Safe: Internal error, Program flow":F50437:F60000
+F50437:"Switch ID ":0,4,u
+135001:"SMC Fail Safe: Internal error, NULL pointer access":F50438:F60000
+F50438:"Pointer ID ":0,4,u
+135002:"SMC Fail Safe: Internal error, SPI transfer":F50439:F60000
+F50439:"Additional info ":0,4,u
+135003:"SMC Fail Safe: Internal error, MFW NVM data memory":F60000
+135004:"SMC Fail Safe: Internal error, Communication EnDat Master":F50440:F60000
+F50440:"Additional info ":0,4,u
+135005:"SMC Fail Safe: Internal error, Communication ACOPOS":F50441:F60000
+F50441:"Additional info ":0,4,u
+135006:"SMC Fail Safe: Internal error, Communication Encoder":F50442:F60000
+F50442:"Additional info ":0,4,u
+135007:"SMC Fail Safe: Module/compensation data is incompatible!":F50443:F60000
+F50443:"Additional info ":0,4,u
+135008:"SMC Fail Safe: CRC of the module/compensation data is not correct!":F50444:F60000
+F50444:"Additional info ":0,4,u
+135009:"SMC Fail Safe: SOS and STO not connected but needed for RSP":F60000
+135016:"SMC Fail Safe: Internal error, Cross communication of checkpoints":F50445:F60000
+F50445:"Checkpoint ID ":0,4,u
+135017:"SMC Fail Safe: Internal error, Cross communication of status word":F50446:F60000
+F50446:"Statusword ":0,4,u
+135018:"SMC Fail Safe: Internal error, Cross communication of output state ":F50447:F60000
+F50447:"Output state ":0,4,u
+135019:"SMC Fail Safe: Internal error, Cross communication of EnDat position":F50448:F60000
+F50448:"EnDat position ":0,4,u
+135020:"SMC Fail Safe: Internal error, Cross communication of EnDat error register":F50449:F60000
+F50449:"EnDat error register ":0,4,u
+135021:"SMC Fail Safe: Internal error, Cross communication of Encoder state machine":F50450:F60000
+F50450:"EnDat state machine ":0,4,u
+135022:"SMC Fail Safe: Internal error, Cross communication of EnDat state machine":F50451:F60000
+F50451:"EnDat state machine ":0,4,u
+135023:"SMC Fail Safe: Internal error, Cross communication of EnDat state machine":F50452:F60000
+F50452:"EnDat state machine ":0,4,u
+135024:"SMC Fail Safe: Encoder configuration - Units per number of revolution invalid":F60000
+135025:"SMC Fail Safe: Encoder configuration - Normalized maximal speed invalid":F60000
+135026:"SMC Fail Safe: Encoder configuration - Encoder resolution too low":F60000
+135027:"SMC Fail Safe: Encoder configuration - Encoder resolution too high":F60000
+135028:"SMC Fail Safe: Encoder configuration - Units resolution too high":F60000
+135029:"SMC Fail Safe: Encoder configuration - One unit is shorter than one nm":F60000
+135030:"SMC Fail Safe: Encoder mismatch - Configuration data changed several times":F60000
+135031:"SMC Fail Safe: Encoder mismatch - Configuration data changed":F60000
+135032:"SMC Fail Safe: Wrong parameterization":F50453:F60000
 F50453:"Additional info ":0,4,u
-135009:"SMC FS: SOS and STO not connected but needed for RSP":F60000
-135010:"SMC FS: Internal error, Axis index out of range":F50454:F60000
-F50454:"Pointer ID ":0,4,u
-135011:"SMC FS: Internal error, Function parameter out of range":F50455:F60000
-F50455:" ":0,4,u
-135016:"SMC FS: Internal error, Cross communication of checkpoints":F50456:F60000
-F50456:"Checkpoint ID ":0,4,u
-135017:"SMC FS: Internal error, Cross communication of status word":F50457:F60000
-F50457:"Statusword ":0,4,u
-135018:"SMC FS: Internal error, Cross communication of output state ":F50458:F60000
-F50458:"Output state ":0,4,u
-135019:"SMC FS: Internal error, Cross communication of EnDat position":F50459:F60000
-F50459:"EnDat position ":0,4,u
-135020:"SMC FS: Internal error, Cross communication of EnDat error register":F50460:F60000
-F50460:"EnDat error register ":0,4,u
-135021:"SMC FS: Internal error, Cross communication of Encoder state machine":F50461:F60000
-F50461:"EnDat state machine ":0,4,u
-135022:"SMC FS: Internal error, Cross communication of EnDat state machine":F50462:F60000
-F50462:"EnDat state machine ":0,4,u
-135023:"SMC FS: Internal error, Cross communication of EnDat state machine":F50463:F60000
-F50463:"EnDat state machine ":0,4,u
-135024:"SMC FS: "EUS - Units per count of physical reference system" invalid":F60000
-135025:"SMC FS: "EUS - Maximum speed to normalize speed range" invalid":F60000
-135026:"SMC FS: EUS - Encoder resolution too low":F60000
-135027:"SMC FS: EUS - Encoder resolution too high":F60000
-135028:"SMC FS: EUS - Units resolution too high":F60000
-135029:"SMC FS: EUS - One unit is shorter than one nm":F60000
-135030:"SMC FS: Encoder mismatch - Configuration data changed several times":F60000
-135031:"SMC FS: Encoder mismatch - Configuration data changed":F60000
-135032:"SMC FS: Wrong parameterization":F50464:F60000
+135033:"SMC Fail Safe: Module cycle time is not valid ":F60000
+135034:"SMC Fail Safe: Parameterization - Deceleration ramp is too steep":F60000
+135035:"SMC Fail Safe: Internal state machine is in Fail Safe State":F60000
+135036:"SMC Fail Safe: Deactivated safety function was requested":F60000
+135037:"SMC Fail Safe: SMS - Speed limit is out of range":F60000
+135038:"SMC Fail Safe: SLS1 - Speed limit is out of range":F60000
+135039:"SMC Fail Safe: SLS2 - Speed limit is out of range":F60000
+135040:"SMC Fail Safe: SLS3 - Speed limit is out of range":F60000
+135041:"SMC Fail Safe: SLS4 - Speed limit is out of range":F60000
+135042:"SMC Fail Safe: Standstill speed limit is out of range":F60000
+135043:"SMC Fail Safe: SLS1 - Speed limit violates the configuration instruction":F60000
+135044:"SMC Fail Safe: SLS2 - Speed limit violates the configuration instruction":F60000
+135045:"SMC Fail Safe: SLS3 - Speed limit violates the configuration instruction":F60000
+135046:"SMC Fail Safe: SLS4 - Speed limit violates the configuration instruction":F60000
+135047:"SMC Fail Safe: Standstill Speed limit violates the configuration instruction":F60000
+135048:"SMC Fail Safe: Violation of parameter limits":F50454:F60000
+F50454:"Additional info ":0,4,u
+135049:"SMC Fail Safe: SMP is used but Homing was not configured":F60000
+135050:"SMC Fail Safe: SMP - Lower position limit is greater or equal than upper limit":F60000
+135051:"SMC Fail Safe: SLP is used but Homing was not configured":F60000
+135052:"SMC Fail Safe: SLP - Lower position limit is greater or equal than upper limit":F60000
+135053:"SMC Fail Safe: SLP - Position window outside SMP position window":F60000
+135054:"SMC Fail Safe: SMP - Tolerance is greater than SMP position window":F60000
+135055:"SMC Fail Safe: SLP - Tolerance is greater than SLP position window":F60000
+135056:"SMC Fail Safe: Value of Deceleration ramp is out of range":F60000
+135068:"SMC Fail Safe: Homing - Max. trigger speed is out of range ":F60000
+135069:"SMC Fail Safe: Homing - Ref Switch: No reference switch connected":F60000
+135070:"SMC Fail Safe: Homing - Home Offset: No absolute encoder connected":F60000
+135071:"SMC Fail Safe: Homing - Home Offset with Correction: SMP not configured":F60000
+135072:"SMC Fail Safe: Homing - SMP window is greater than safe absolute encoder range":F60000
+135073:"SMC Fail Safe: Homing - SLP window is greater than safe absolute encoder range":F60000
+135074:"SMC Fail Safe: Homing - Encoder doesn't support a safe reference pulse":F60000
+135075:"SMC Fail Safe: Homing - Speed tolerance is out of range":F60000
+135076:"SMC Fail Safe: Homing - reference pulse : Max. trigger speed is too big ":F60000
+135077:"SMC Fail Safe: Homing - Function is requested but not configured":F60000
+135078:"SMC Fail Safe: Homing - RefSwitch bit is set but not configured":F60000
+135079:"SMC Fail Safe: Homing - Position is out of SMP window":F60000
+135080:"SMC Fail Safe: Homing - Direct with reference pulse: Not supported":F60000
+135081:"SMC Fail Safe: Internal error, Cross communication of output signals":F50455:F60000
+F50455:"Output signals ":0,4,u
+135082:"SMC Fail Safe: Internal error, Cross communication of output state machine":F50456:F60000
+F50456:"Output state machine ":0,4,u
+135084:"SMC Fail Safe: Program error in PreOperational state":F50457:F60000
+F50457:"Checkpoint ":0,4,u
+135085:"SMC Fail Safe: Safe output - Stuck at high detected":F50458:F60000
+F50458:"Output signal ":0,4,u
+135086:"SMC Fail Safe: Safe output - Test state has changed":F50459:F60000
+F50459:"Output state ":0,4,u
+135087:"SMC Fail Safe: Encoder - Speed limit exceeded":F50460:F60000
+F50460:"Actual speed [inc/cycle] ":0,4,d
+135088:"SMC Fail Safe: Encoder - Acceleration limit exceeded":F50461:F60000
+F50461:"Actual acceleration [inc/cycle^2] ":0,4,d
+135091:"SMC Fail Safe: Encoder mismatch detected":F50462:F60000
+F50462:"Additional info ":0,4,u
+135092:"SMC Fail Safe: Internal error, Lockbit set":F50463:F60000
+F50463:"Lockbits ":0,4,u
+135093:"SMC Fail Safe: Velocity error tolerance too large":F60000
+135094:"SMC Fail Safe: Lag error tolerance too large":F60000
+135095:"SMC Fail Safe: Encoder - Configuration error":F50464:F60000
 F50464:"Additional info ":0,4,u
-135033:"SMC FS: Module cycle time is not valid ":F60000
-135034:"SMC FS: Parameterization - Deceleration ramp is too steep":F60000
-135035:"SMC FS: Internal state machine is in Fail Safe State":F60000
-135036:"SMC FS: Deactivated safety function was requested":F60000
-135037:"SMC FS: SMS - Speed limit is out of range":F60000
-135038:"SMC FS: SLS1 - Speed limit is out of range":F60000
-135039:"SMC FS: SLS2 - Speed limit is out of range":F60000
-135040:"SMC FS: SLS3 - Speed limit is out of range":F60000
-135041:"SMC FS: SLS4 - Speed limit is out of range":F60000
-135042:"SMC FS: Standstill speed limit is out of range":F60000
-135043:"SMC FS: SLS1 - Speed limit violates the configuration instruction":F60000
-135044:"SMC FS: SLS2 - Speed limit violates the configuration instruction":F60000
-135045:"SMC FS: SLS3 - Speed limit violates the configuration instruction":F60000
-135046:"SMC FS: SLS4 - Speed limit violates the configuration instruction":F60000
-135047:"SMC FS: Standstill Speed limit violates the configuration instruction":F60000
-135048:"SMC FS: Violation of parameter limits":F50465:F60000
+135096:"SMC Fail Safe: Homing - Configuration error":F50465:F60000
 F50465:"Additional info ":0,4,u
-135049:"SMC FS: SMP is used but Homing was not configured":F60000
-135050:"SMC FS: SMP - Lower position limit is greater or equal than upper limit":F60000
-135051:"SMC FS: SLP is used but Homing was not configured":F60000
-135052:"SMC FS: SLP - Lower position limit is greater or equal than upper limit":F60000
-135053:"SMC FS: SLP - Position window outside SMP position window":F60000
-135054:"SMC FS: SMP - Tolerance is greater than SMP position window":F60000
-135055:"SMC FS: SLP - Tolerance is greater than SLP position window":F60000
-135056:"SMC FS: Value of Deceleration ramp is out of range":F60000
-135068:"SMC FS: "Homing - Maximum trigger speed" is out of range ":F60000
-135069:"SMC FS: Homing - Ref Switch: No reference switch connected":F60000
-135070:"SMC FS: Homing - Home Offset: No absolute encoder connected":F60000
-135071:"SMC FS: Homing - Home Offset with Correction: SMP not configured":F60000
-135072:"SMC FS: Homing - SMP window is greater than safe absolute encoder range":F60000
-135073:"SMC FS: Homing - SLP window is greater than safe absolute encoder range":F60000
-135074:"SMC FS: Homing - Encoder doesn't support a safe reference pulse":F60000
-135075:"SMC FS: Homing - Speed tolerance is out of range":F60000
-135076:"SMC FS: Homing - reference pulse : Max. trigger speed is too big ":F60000
-135077:"SMC FS: Homing - Function is requested but not configured":F60000
-135078:"SMC FS: Homing - RefSwitch bit is set but not configured":F60000
-135079:"SMC FS: Homing - Position is out of SMP window":F60000
-135080:"SMC FS: Homing - Direct with reference pulse: Not supported":F60000
-135081:"SMC FS: Internal error, Cross communication of output signals":F50466:F60000
-F50466:"Output signals ":0,4,u
-135082:"SMC FS: Internal error, Cross communication of output state machine":F50467:F60000
-F50467:"Output state machine ":0,4,u
-135084:"SMC FS: Program error in PreOperational state":F50468:F60000
-F50468:"Checkpoint ":0,4,u
-135085:"SMC FS: Safe output - Stuck at high detected":F50469:F60000
-F50469:"Output signal ":0,4,u
-135086:"SMC FS: Safe output - Test state has changed":F50470:F60000
-F50470:"Output state ":0,4,u
-135087:"SMC FS: Encoder - Speed limit exceeded":F50471:F60000
-F50471:"Actual speed [inc/cycle] ":0,4,d
-135088:"SMC FS: Encoder - Acceleration limit exceeded":F50472:F60000
-F50472:"Actual acceleration [inc/cycle^2] ":0,4,d
-135091:"SMC FS: Encoder mismatch detected":F50473:F60000
+135097:"SMC Fail Safe: Internal error, Invalid current sensor resolution":F50466:F60000
+F50466:"Additional info ":0,4,u
+135098:"SMC Fail Safe: Internal error, Invalid current sensor measurement range":F60000
+135099:"SMC Fail Safe: Internal error, Current values sum not plausible":F60000
+135100:"SMC Fail Safe: Internal error, Cross communication of stator current vector":F50467:F60000
+F50467:"Additional info ":0,4,u
+135101:"SMC Fail Safe: Internal error, Cross communication of current vector angle":F50468:F60000
+F50468:"Additional info ":0,4,u
+135102:"SMC Fail Safe: Internal error, Cross communication of the status register IPWM":F50469:F60000
+F50469:"Additional info ":0,4,u
+135103:"SMC Fail Safe: Internal error, Cross communication FPGACom state machine":F50470:F60000
+F50470:"Additional info ":0,4,u
+135104:"SMC Fail Safe: Internal error, FPGA communication":F50471:F60000
+F50471:"Additional info ":0,4,u
+135105:"SMC Fail Safe: Internal error, FPGA SinCos - Reference voltage Channel A":F50472:F60000
+F50472:"Additional info ":0,4,u
+135106:"SMC Fail Safe: Internal error, FPGA SinCos - Reference voltage Channel B":F50473:F60000
 F50473:"Additional info ":0,4,u
-135092:"SMC FS: Internal error, Lockbit set":F50474:F60000
-F50474:"Lockbits ":0,4,u
-135093:"SMC FS: Velocity error tolerance too large":F60000
-135094:"SMC FS: Lag error tolerance too large":F60000
-135095:"SMC FS: Encoder - Configuration error":F50475:F60000
+135107:"SMC Fail Safe: Internal error, FPGA SinCos - Configuration":F50474:F60000
+F50474:"Additional info ":0,4,u
+135108:"SMC Fail Safe: Internal error, Hardware tests - Voltage monitoring":F50475:F60000
 F50475:"Additional info ":0,4,u
-135096:"SMC FS: Homing - Configuration error":F50476:F60000
+135109:"SMC Fail Safe: Internal error, ADC compensation data - Flash validation":F50476:F60000
 F50476:"Additional info ":0,4,u
-135097:"SMC FS: Internal error, Invalid current sensor resolution":F50477:F60000
+135110:"SMC Fail Safe: Internal error, FPGA current measurement - ADC processing":F50477:F60000
 F50477:"Additional info ":0,4,u
-135098:"SMC FS: Internal error, Invalid current sensor measurement range":F60000
-135099:"SMC FS: Internal error, Current values sum not plausible":F60000
-135100:"SMC FS: Internal error, Cross communication of stator current vector":F50478:F60000
+135111:"SMC Fail Safe: Internal error, FPGA current measurement - Reference monitoring":F50478:F60000
 F50478:"Additional info ":0,4,u
-135101:"SMC FS: Internal error, Cross communication of current vector angle":F50479:F60000
+135112:"SMC Fail Safe: Internal error, FPGA current measurement - Efficiency test":F50479:F60000
 F50479:"Additional info ":0,4,u
-135102:"SMC FS: Internal error, Cross communication of the status register IPWM":F50480:F60000
+135113:"SMC Fail Safe: Internal error, FPGA current measurement - Configuration":F50480:F60000
 F50480:"Additional info ":0,4,u
-135103:"SMC FS: Internal error, Cross communication FPGACom state machine":F50481:F60000
+135114:"SMC Fail Safe: Internal error, FPGA SinCos - Efficiency test":F50481:F60000
 F50481:"Additional info ":0,4,u
-135104:"SMC FS: Internal error, FPGA communication":F50482:F60000
+135115:"SMC Fail Safe: SBT Parameterization - Current threshold too high":F50482:F60000
 F50482:"Additional info ":0,4,u
-135105:"SMC FS: Internal error, FPGA SinCos - Reference voltage Channel A":F50483:F60000
+135116:"SMC Fail Safe: SBT Parameterization - External load greater than threshold":F60000
+135117:"SMC Fail Safe: SBT Parameterization - External load too small":F50483:F60000
 F50483:"Additional info ":0,4,u
-135106:"SMC FS: Internal error, FPGA SinCos - Reference voltage Channel B":F50484:F60000
+135119:"SMC Fail Safe: SBT Parameterization - External load too high":F50484:F60000
 F50484:"Additional info ":0,4,u
-135107:"SMC FS: Internal error, FPGA SinCos - Configuration":F50485:F60000
-F50485:"Additional info ":0,4,u
-135108:"SMC FS: Internal error, Hardware tests - Voltage monitoring":F50486:F60000
-F50486:"Additional info ":0,4,u
-135109:"SMC FS: Internal error, ADC compensation data - Flash validation":F50487:F60000
-F50487:"Additional info ":0,4,u
-135110:"SMC FS: Internal error, FPGA current measurement - ADC processing":F50488:F60000
-F50488:"Additional info ":0,4,u
-135111:"SMC FS: Internal error, FPGA current measurement - Reference monitoring":F50489:F60000
-F50489:"Additional info ":0,4,u
-135112:"SMC FS: Internal error, FPGA current measurement - Efficiency test":F50490:F60000
-F50490:"Additional info ":0,4,u
-135113:"SMC FS: Internal error, FPGA current measurement - Configuration":F50491:F60000
-F50491:"Additional info ":0,4,u
-135114:"SMC FS: Internal error, FPGA SinCos - Efficiency test":F50492:F60000
-F50492:"Additional info ":0,4,u
-135115:"SMC FS: SBT Parameterization - Current threshold too high":F50493:F60000
-F50493:"Additional info ":0,4,u
-135116:"SMC FS: SBT Parameterization - External load greater than threshold":F60000
-135117:"SMC FS: SBT Parameterization - External load too small":F50494:F60000
-F50494:"Additional info ":0,4,u
-135118:"SMC FS: Internal error, extended flashdata is wrong":F50495:F60000
-F50495:"Additional info ":0,4,u
-135119:"SMC FS: SBT Parameterization - External load too high":F50496:F60000
-F50496:"Additional info ":0,4,u
 135120:"SMC FS: Homing - S_SwitchHomingMode is set but not connected":F60000
 135121:"SMC FS: Homing - S_SwitchHomingMode is connected but ReqHoming not":F60000
 135122:"SMC FS: Homing - S_SwitchHomingMode connection and configuration not conform":F60000
-135123:"SMC FS: Internal error, Cross communication of RSP receive data frame":F50497:F60000
-F50497:"Additional info ":0,4,u
-135124:"SMC FS: Internal error, Cross communication of RSP send data frame":F50498:F60000
-F50498:"Additional info ":0,4,u
-135125:"SMC FS: RSP - Save operation failed":F50499:F60000
-F50499:"Additional info ":0,4,u
-135126:"SMC FS: RSP - Homing, SOS position tolerance too big":F60000
-135127:"SMC FS: Internal error, Invalid current sensor measurement offset":F60000
-135128:"SMC FS: Internal error, Sigma delta conversion is not plausible":F60000
-135129:"SMC FS: Internal error, gain and offset corrected current out of range":F60000
-135150:"SMC FS: Additional safety parameters: Disbld. function enable bit is set":F50500:F60000
-F50500:"Additional info ":0,4,u
-135151:"SMC FS: Additional safety parameters: Placeholder enable bit is set":F50501:F60000
-F50501:"Additional info ":0,4,u
-135152:"SMC FS: Additional safety parameters: Invalid payload size":F50502:F60000
-F50502:"Additional info ":0,4,u
+135123:"SMC Fail Safe: Internal error, Cross communication of RSP receive data frame":F50485:F60000
+F50485:"Additional info ":0,4,u
+135124:"SMC Fail Safe: Internal error, Cross communication of RSP send data frame":F50486:F60000
+F50486:"Additional info ":0,4,u
+135125:"SMC Fail Safe: RSP - Save operation failed":F50487:F60000
+F50487:"Additional info ":0,4,u
+135126:"SMC Fail Safe: RSP - Homing, SOS position tolerance too big":F60000
+135151:"SMC Fail Safe: Additional safety parameters: Placeholder enable bit is set":F50488:F60000
+F50488:"Additional info ":0,4,u
+135152:"SMC Fail Safe: Additional safety parameters: Invalid payload size":F50489:F60000
+F50489:"Additional info ":0,4,u
 135153:"SMC: Interner error, CUnit test":F60000
-135154:"SMC FS: Additional safety parameters: Invalid structure size":F50503:F60000
-F50503:"Additional info ":0,4,u
-135155:"SMC FS: Received data for additional safety parameters too big":F50504:F60000
-F50504:"Additional info ":0,4,u
-135156:"SMC FS: CRC chekc of the additional safety parameters failed":F50505:F60000
-F50505:"Additional info ":0,4,u
-135161:"SMC FS: Incompatible parameter structure":F50506:F60000
-F50506:"Additional info ":0,4,u
-135162:"SMC FS: Incompatible axis type":F50507:F60000
-F50507:"Additional info ":0,4,u
-135163:"SMC FS: Error in PreOperational function":F50508:F60000
-F50508:"Additional info ":0,4,u
-135164:"SMC FS: Cross communication SinCos status during FPGA boot phase":F50509:F60000
-F50509:"Additional info ":0,4,u
-135165:"SMC FS: Encoder not configured but needed for safety functions":F60000
-135166:"SMC FS: Squared vector length too large":F60000
-135167:"SMC FS: Cross communication vector control trigger counter":F50510:F60000
-F50510:"Additional info ":0,4,u
-135170:"SMC FS: SBT Current threshold too small":F50511:F60000
-F50511:"Additional info ":0,4,u
-135171:"SMC FS: Internal error while processing the additional paramters":F50512:F60000
-F50512:"Additional info ":0,4,u
-135172:"SMC FS: Homing - RefSwitch is connected but ReqHoming not":F60000
-135173:"SMC FS: Additional safety parameters: Invalid axis type ID":F50513:F60000
-F50513:"Additional info ":0,4,u
-135174:"SMC FS: Additional safety parameters: Invalid structure version":F60000
-135175:"SMC: Safely Limited Acceleration - Violation of the acceleration monitoring":F50514:F60000
-F50514:"Acceleration at the violation ":0,4,d
+135154:"SMC Fail Safe: Additional safety parameters: Invalid structure size":F50490:F60000
+F50490:"Additional info ":0,4,u
+135155:"SMC Fail Safe: Received data for additional safety parameters too big":F50491:F60000
+F50491:"Additional info ":0,4,u
+135156:"SMC Fail Safe: CRC chekc of the additional safety parameters failed":F50492:F60000
+F50492:"Additional info ":0,4,u
+135161:"SMC Fail Safe: Incompatible parameter structure":F50493:F60000
+F50493:"Additional info ":0,4,u
+135162:"SMC Fail Safe: Incompatible axis type":F50494:F60000
+F50494:"Additional info ":0,4,u
+135163:"SMC Fail Safe: Error in PreOperational function":F50495:F60000
+F50495:"Additional info ":0,4,u
+135164:"SMC Fail Safe: Cross communication SinCos status during FPGA boot phase":F50496:F60000
+F50496:"Additional info ":0,4,u
+135165:"SMC Fail Safe: Encoder not configured but needed for safety functions":F60000
+135166:"SMC Fail Safe: Squared vector length too large":F60000
+135167:"SMC Fail Safe: Cross communication vector control trigger counter":F50497:F60000
+F50497:"Additional info ":0,4,u
+135170:"SMC Fail Safe: SBT Current threshold too small":F50498:F60000
+F50498:"Additional info ":0,4,u
+135171:"SMC Fail Safe: Internal error while processing the additional paramters":F50499:F60000
+F50499:"Additional info ":0,4,u
+135172:"SMC Fail Safe: Homing - RefSwitch is connected but ReqHoming not":F60000
+135173:"SMC Fail Safe: Additional safety parameters: Invalid axis type ID":F50500:F60000
+F50500:"Additional info ":0,4,u
+135174:"SMC Fail Safe: Additional safety parameters: Invalid structure version":F60000
+135175:"SMC: Safely Limited Acceleration - Violation of the acceleration monitoring":F50501:F60000
+F50501:"Acceleration at the violation ":0,4,d
 135176:"SMC: Safe Brake Test - SBT: Timeout":F60000
 135177:"SMC: Safe Brake Test - SBT: SBC is active":F60000
-135178:"SMC: Safe Brake Test - Illegal sector change":F50515:F60000
-F50515:"Additional info ":0,4,u
-135179:"SMC: additional parameters - Error during download":F50516:F60000
-F50516:"Additional info ":0,4,u
-135180:"SMC FFS: RSP - Homing, stored position invalid":F50517:F60000
-F50517:"Additional info ":0,4,u
-135181:"SMC: Safe Brake Test - Rho has left the actual sector too early":F60000
-135182:"SMC: Safe Brake Test - Measured and parametrized external load differ":F50518:F60000
-F50518:"Square of the actual stator current vector ":0,4,u
-135183:"SMC: Safe Brake Test - Current fell below parametrized test current threshold":F50519:F60000
-F50519:"Square of the actual stator current vector ":0,4,u
-135184:"SMC FFS: Drift of raw positions between uP1 and uP2 to big":F50520:F60000
-F50520:"Additional info ":0,4,u
-135185:"SMC FFS: internal error":F60000
-135186:"SMC FFS: Encoder not ready":F60000
+135178:"SMC: Safe Brake Test - Illegal sector change":F50502:F60000
+F50502:"Additional info ":0,4,u
+135179:"SMC: additional parameters - Error during download":F50503:F60000
+F50503:"Additional info ":0,4,u
+135180:"SMC FFS: RSP - Homing, stored position invalid":F50504:F60000
+F50504:"Additional info ":0,4,u
+135181:"SMC: Safe Brake Test - Rho has left the actual sector too erly":F60000
+135182:"SMC: Safe Brake Test - Measured and parametrized external load differ":F50505:F60000
+F50505:"Square of the actual stator current vector ":0,4,u
+135183:"SMC: Safe Brake Test - Current fell below parametrized test current threshold":F50506:F60000
+F50506:"Square of the actual stator current vector ":0,4,u
+135184:"SMC Functional Fail Safe: Drift of raw positions between µP1 and µP2 to big":F50507:F60000
+F50507:"Additional info ":0,4,u
+135185:"SMC Functional Fail Safe: internal error":F60000
+135186:"SMC Functional Fail Safe: Encoder not ready":F60000
 135189:"SMC: Safe Brake Test - Violation of the position tolerance":F60000
-135190:"SMC FFS: Encoder error SinCos processing":F50521:F60000
-F50521:"Additional info ":0,4,u
+135190:"SMC Functional Fail Safe: Encoder error SinCos processing":F50508:F60000
+F50508:"Additional info ":0,4,u
 135191:"SMC: Safe Brake Test - Test interval elapsed, test required":F60000
-135192:"SMC: Current sum exeeded tolerance range":F50522:F60000
-F50522:"Actual current sum [uA] ":0,4,d
-135193:"SMC: Current sensor range exceeded phase U":F50523:F60000
-F50523:"Actual current [uA] ":0,4,d
-135194:"SMC: Current sensor range exceeded phase V":F50524:F60000
-F50524:"Actual current [uA] ":0,4,d
-135195:"SMC: Current sensor range exceeded phase W":F50525:F60000
-F50525:"Actual current [uA] ":0,4,d
-135196:"SMC: Compensation data incomplete":F50526:F60000
-F50526:"Detail information ":0,4,u
-135197:"SMC FFS: SS2, SOS Violation of standstill position tolerance":F60000
-135198:"SMC FFS: Encoder error was detected":F60000
-135199:"SMC FFS: SDI - Violations of the safe direction":F60000
-135200:"SMC FFS: SDI - Violation of the positive direction":F60000
-135201:"SMC FFS: SDI - Violation of the negative direction":F60000
-135202:"SMC FFS: SLI - Violation of standstill speed limit":F60000
-135203:"SMC FFS: SLI - Violation of position window (increments)":F60000
-135204:"SMC FFS: Violation of the actual speed limit":F60000
-135205:"SMC FFS: Violation of the deceleration ramp":F60000
-135206:"SMC FFS: SMS - Violation of the speed limit":F60000
-135207:"SMC FFS: SOS - Violation of the speed limit":F60000
-135208:"SMC FFS: SS2 - Violation of the speed limit":F60000
-135209:"SMC FFS: SLS1 - Violation of the speed limit":F60000
-135210:"SMC FFS: SLS2 - Violation of the speed limit":F60000
-135211:"SMC FFS: SLS3 - Violation of the speed limit":F60000
-135212:"SMC FFS: SLS4 - Violation of the speed limit":F60000
-135213:"SMC FFS: Alive test of set position was not executed":F60000
-135214:"SMC FFS: Warning on output was not acknowledged":F60000
-135215:"SMC FFS: Alive test - Monitoring timeout":F60000
-135216:"SMC FFS: SMP - Homing timeout exceeded":F60000
-135217:"SMC FFS: SMP - Violation of the deceleration ramp":F60000
-135218:"SMC FFS: SLP - Violation of the deceleration ramp":F60000
-135219:"SMC FFS: SMP - Violation of lower SMP limit":F60000
-135220:"SMC FFS: SMP - Violation of upper SMP limit":F60000
-135221:"SMC FFS: SLP - Violation of lower SLP limit":F60000
-135222:"SMC FFS: SLP - Violation of upper SLP limit":F60000
-135223:"SMC FFS: SMP - Movement in neg. direction outside SMP limit":F60000
-135224:"SMC FFS: SMP - Movement in pos. direction outside SMP limit":F60000
-135225:"SMC FFS: SLP requested, axis is not homed yet":F60000
-135226:"SMC FFS: SMP, SLP - Internal error":F60000
-135227:"SMC FFS: SMP, SLP - INT32 overflow of S_SafePosition":F60000
-135228:"SMC FFS: Homing - Timeout elapsed":F60000
-135229:"SMC FFS: Homing - Standstill Speed tolerance violated":F60000
-135230:"SMC FFS: Homing reference pulse - Max. trigger speed exceeded":F60000
-135231:"SMC FFS: Homing - Movement invalid":F60000
-135232:"SMC FFS: Homing offset - Position outside INT32 range":F60000
-135233:"SMC FFS: Homing offset - Violation of safe encoder range":F60000
+135192:"SMC: Current sum exeeded tolerance range":F50509:F60000
+F50509:"Actual current sum [uA] ":0,4,d
+135193:"SMC: Current sensor range exceeded phase U":F50510:F60000
+F50510:"Actual current [uA] ":0,4,d
+135194:"SMC: Current sensor range exceeded phase V":F50511:F60000
+F50511:"Actual current [uA] ":0,4,d
+135195:"SMC: Current sensor range exceeded phase W":F50512:F60000
+F50512:"Actual current [uA] ":0,4,d
+135196:"SMC: Compensation data incomplete":F50513:F60000
+F50513:"Detail information ":0,4,u
+135197:"SMC Functional Fail Safe: SS2, SOS Violation of standstill position tolerance":F60000
+135198:"SMC Functional Fail Safe: Encoder error was detected":F60000
+135199:"SMC Functional Fail Safe: SDI - Violations of the safe direction":F60000
+135200:"SMC Functional Fail Safe: SDI - Violation of the positive direction":F60000
+135201:"SMC Functional Fail Safe: SDI - Violation of the negative direction":F60000
+135202:"SMC Functional Fail Safe: SLI - Violation of standstill speed limit":F60000
+135203:"SMC Functional Fail Safe: SLI - Violation of position window (increments)":F60000
+135204:"SMC Functional Fail Safe: Violation of the actual speed limit":F60000
+135205:"SMC Functional Fail Safe: Violation of the deceleration ramp":F60000
+135206:"SMC Functional Fail Safe: SMS - Violation of the speed limit":F60000
+135207:"SMC Functional Fail Safe: SOS - Violation of the speed limit":F60000
+135208:"SMC Functional Fail Safe: SS2 - Violation of the speed limit":F60000
+135209:"SMC Functional Fail Safe: SLS1 - Violation of the speed limit":F60000
+135210:"SMC Functional Fail Safe: SLS2 - Violation of the speed limit":F60000
+135211:"SMC Functional Fail Safe: SLS3 - Violation of the speed limit":F60000
+135212:"SMC Functional Fail Safe: SLS4 - Violation of the speed limit":F60000
+135213:"SMC Functional Fail Safe: Alive test of set position was not executed":F60000
+135214:"SMC Functional Fail Safe: Warning on output was not acknowledged":F60000
+135215:"SMC Functional Fail Safe: Alive test - Monitoring timeout":F60000
+135216:"SMC Functional Fail Safe: SMP - Homing timeout exceeded":F60000
+135217:"SMC Functional Fail Safe: SMP - Violation of the deceleration ramp":F60000
+135218:"SMC Functional Fail Safe: SLP - Violation of the deceleration ramp":F60000
+135219:"SMC Functional Fail Safe: SMP - Violation of lower SMP limit":F60000
+135220:"SMC Functional Fail Safe: SMP - Violation of upper SMP limit":F60000
+135221:"SMC Functional Fail Safe: SLP - Violation of lower SLP limit":F60000
+135222:"SMC Functional Fail Safe: SLP - Violation of upper SLP limit":F60000
+135223:"SMC Functional Fail Safe: SMP - Movement in neg. direction outside SMP limit":F60000
+135224:"SMC Functional Fail Safe: SMP - Movement in pos. direction outside SMP limit":F60000
+135225:"SMC Functional Fail Safe: SLP requested, axis is not homed yet":F60000
+135226:"SMC Functional Fail Safe: SMP, SLP - Internal error":F60000
+135227:"SMC Functional Fail Safe: SMP, SLP - INT32 overflow of S_SafePosition":F60000
+135228:"SMC Functional Fail Safe: Homing - Timeout elapsed":F60000
+135229:"SMC Functional Fail Safe: Homing - Standstill Speed tolerance violated":F60000
+135230:"SMC Functional Fail Safe: Homing reference pulse - Max. trigger speed exceeded":F60000
+135231:"SMC Functional Fail Safe: Homing - Movement invalid":F60000
+135232:"SMC Functional Fail Safe: Homing offset - Position outside INT32 range":F60000
+135233:"SMC Functional Fail Safe: Homing offset - Violation of safe encoder range":F60000
 135234:"SMC: Encoder mismatch - Length of encoder configuration data changed ":F60000
 135235:"SMC: Encoder mismatch - Serial number of encoder changed ":F60000
 135236:"SMC: Encoder mismatch - Version changed or no encoder data stored":F60000
-135237:"SMC: Encoder mismatch - EnDat master data or encoder data changed":F50527:F60000
-F50527:"Additional info ":0,4,u
-135238:"SMC: Encoder - EnDat Master state error register is set":F50528:F60000
-F50528:"Status register ":0,4,u
-135239:"SMC FFS: Homing failed":F50529:F60000
-F50529:"Additional info ":0,4,u
-135240:"SMC FFS: Violation of safety function":F50530:F60000
-F50530:"Additional info ":0,4,u
-135241:"SMC FFS: Function block switched back into IDLE state":F50531:F60000
-F50531:"Additional info ":0,4,u
-135243:"SMC FFS: Safe output - Teststate has changed":F50532:F60000
-F50532:"Output state ":0,4,u
-135244:"SMC: Encoder - Received position not valid":F50533:F60000
-F50533:"Additional info ":0,4,u
-135245:"SMC: Encoder mismatch detected":F50534:F60000
-F50534:"Additional info ":0,4,u
-135246:"SMC: Encoder - Initialization error":F50535:F60000
-F50535:"Additional info ":0,4,u
-135247:"SMC: Encoder - Debug information":F50536:F60000
-F50536:"Additional info ":0,4,u
-135248:"SMC: Internal warning, Lockbit set":F50537:F60000
-F50537:"Lockbits ":0,4,u
+135237:"SMC: Encoder mismatch - EnDat master data or encoder data changed":F50514:F60000
+F50514:"Additional info ":0,4,u
+135238:"SMC: Encoder - EnDat Master state error register is set":F50515:F60000
+F50515:"Status register ":0,4,u
+135239:"SMC Functional Fail Safe: Homing failed":F50516:F60000
+F50516:"Additional info ":0,4,u
+135240:"SMC Functional Fail Safe: Violation of safety function":F50517:F60000
+F50517:"Additional info ":0,4,u
+135241:"SMC Functional Fail Safe: Function block switched back into IDLE state":F50518:F60000
+F50518:"Additional info ":0,4,u
+135243:"SMC Functional Fail Safe: Safe output - Teststate has changed":F50519:F60000
+F50519:"Output state ":0,4,u
+135244:"SMC: Encoder - Received position not valid":F50520:F60000
+F50520:"Additional info ":0,4,u
+135245:"SMC: Encoder mismatch detected":F50521:F60000
+F50521:"Additional info ":0,4,u
+135246:"SMC: Encoder - Initialization error":F50522:F60000
+F50522:"Additional info ":0,4,u
+135247:"SMC: Encoder - Debug information":F50523:F60000
+F50523:"Additional info ":0,4,u
+135248:"SMC: Internal warning, Lockbit set":F50524:F60000
+F50524:"Lockbits ":0,4,u
 135249:"SMC: Encoder - SafeSpeed exceeded INT16 range":F60000
-135250:"SMC: Encoder - EnDat Master encoder error register is set":F50538:F60000
-F50538:"Fehler register ":0,4,u
-135251:"SMC: Velocity error limit exceeded":F50539:F60000
-F50539:"Speed error [U/s*2^16] ":0,4,d
-135252:"SMC: Position lag error limit exceeded":F50540:F60000
-F50540:"Lag error [units] ":0,4,d
-135253:"SMC: Encoder - Rounding error due to parametrization":F50541:F60000
-F50541:"Additional info ":0,4,u
-135254:"SMC: Encoder - Length of physical reference system too large":F50542:F60000
-F50542:"Additional info ":0,4,u
-135255:"SMC FS: Encoder - Acceleration limit exceeded":F60000
-135504:"SMC FFS: RSP - Homing, INT32 overflow of S_SafePosition":F50543:F60000
-F50543:"Additional info ":0,4,u
-135506:"SMC FFS: RSP - Homing, Positional change during power off too big":F50544:F60000
-F50544:"Additional info ":0,4,u
-135507:"SMC FFS: RSP - Homing, Config changed":F50545:F60000
-F50545:"Additional info ":0,4,u
-135508:"SMC FFS: Internal error, FPGA communication":F50546:F60000
-F50546:"Additional info ":0,4,u
-135509:"SMC FFS: RSP - Homing, CRC error while receiving the remanent safe position":F50547:F60000
-F50547:"Additional info ":0,4,u
-135510:"SMC FFS: RSP - Homing, Homing already done without RSP":F50548:F60000
-F50548:"Additional info ":0,4,u
+135250:"SMC: Encoder - EnDat Master encoder error register is set":F50525:F60000
+F50525:"Fehler register ":0,4,u
+135251:"SMC: Velocity error limit exceeded":F50526:F60000
+F50526:"Speed error [U/s*2^16] ":0,4,d
+135252:"SMC: Position lag error limit exceeded":F50527:F60000
+F50527:"Lag error [units] ":0,4,d
+135253:"SMC: Encoder - Rounding error due to parametrization":F50528:F60000
+F50528:"Additional info ":0,4,u
+135254:"SMC: Encoder - Length of physical reference system too large":F50529:F60000
+F50529:"Additional info ":0,4,u
+135255:"SMC Fail Safe: Encoder - Acceleration limit exceeded":F60000
+135504:"SMC FFS: RSP - Homing, INT32 overflow of S_SafePosition":F50530:F60000
+F50530:"Additional info ":0,4,u
+135506:"SMC FFS: RSP - Homing, Positional change during power off too big":F50531:F60000
+F50531:"Additional info ":0,4,u
+135507:"SMC FFS: RSP - Homing, Config changed":F50532:F60000
+F50532:"Additional info ":0,4,u
+135509:"SMC FFS: RSP - Homing, CRC error while receiving the remanent safe position":F50533:F60000
+F50533:"Additional info ":0,4,u
+135510:"SMC FFS: RSP - Homing, Homing already done without RSP":F50534:F60000
+F50534:"Additional info ":0,4,u
 135511:"SMC: RSP - State RSP Valid changed during safe operation":F60000
 136001:"Parameter limited to valid range":F60000
 136002:"Total time for the position loop controller limited to prediction time":F60000
 136003:"Braking distance exceeds positive SW limit - Deceleration parameter increased":F60000
 136004:"Braking distance exceeds negative SW limit - Deceleration parameter increased":F60000
-136005:"Warning triggered by command":F50549:F60000
-F50549:"Command parameter ":0,2,u
-137101:"Calculated compensation distance on slave axis limited to maximum":F50550:F60000
-F50550:"State index ":0,1,u
-137102:"Calculated compensation distance on slave axis limited to minimum":F50551:F60000
-F50551:"State index ":0,1,u
-137108:"Calculated compensation distance of master axis limited to minimum":F50552:F60000
-F50552:"State index ":0,1,u
-137111:"Cam data: Difference between polynomial value y(xn) and slave period":F50553:F60000
-F50553:"Difference ":0,4,f
-137112:"Polynomial within cam data exceeds limit value":F50554:F60000
-F50554:"Detail ":0,2,u
-137113:"Compensation gear: Limit values exceeded":F50555:F60000
-F50555:"State index ":0,1,u
+136005:"Warning triggered by command":F50535:F60000
+F50535:"Command parameter ":0,2,u
+137101:"Calculated compensation distance on slave axis limited to maximum":F50536:F60000
+F50536:"State index ":0,1,u
+137102:"Calculated compensation distance on slave axis limited to minimum":F50537:F60000
+F50537:"State index ":0,1,u
+137108:"Calculated compensation distance of master axis limited to minimum":F50538:F60000
+F50538:"State index ":0,1,u
+137111:"Cam profile data: Difference between polynomial value y(xn) and slave period":F50539:F60000
+F50539:"Difference ":0,4,f
+137112:"Polynomial within cam profile data exceeds limit value":F50540:F60000
+F50540:"Detail ":0,2,u
+137113:"Cam profile compensation gears: Limit values exceeded":F50541:F60000
+F50541:"State index ":0,1,u
 138000:"Current controller: Motor speed is too high during switching on":F60000
-138001:"Torque limiter: Limit value higher than maximum value":F50556:F60000
-F50556:"Maximum value ":0,4,f
+138001:"Torque limiter: Limit value higher than maximum value":F50542:F60000
+F50542:"Maximum value ":0,4,f
 138003:"Motor holding brake: Test torque was limited":F60000
 138004:"Motor holding brake: Test torque less than load torque":F60000
-138005:"Motor test: Speed is too high during switch on":F50557:F60000
-F50557:"Speed limit ":0,4,f
+138005:"Motor test: Speed is too high during switch on":F50543:F60000
+F50543:"Speed limit ":0,4,f
 138006:"Current controller: Permissible current offset values exceeded":F60000
-138007:"System administration: BsLoader activ: Jumper plugged":F50558:F60000
-F50558:"BsLoader version ":0,2,u
+138007:"System administration: BsLoader activ: Jumper plugged":F50544:F60000
+F50544:"BsLoader version ":0,2,u
 138008:"Bleeder: No current flow":F60000
-139001:"Encoder: Position correction active":F50559:F60000
+139001:"Encoder: Position correction active":F50545:F60000
+F50545:"Slot ":0,1,u
+139002:"Resolver: Speed limit for 14 bit resolution exceeded":F50546:F60000
+F50546:"Slot ":0,1,u
+139003:"EnDat encoder: Alarm bit is set":F50547:F60000
+F50547:"Slot ":0,1,u
+139004:"EnDat encoder: Alarm bit - Lighting failure":F50548:F60000
+F50548:"Slot ":0,1,u
+139005:"EnDat encoder: Alarm bit - Signal amplitude too small":F50549:F60000
+F50549:"Slot ":0,1,u
+139006:"EnDat encoder: Alarm bit - Position value contains an error":F50550:F60000
+F50550:"Slot ":0,1,u
+139007:"EnDat encoder: Alarm bit - Overvoltage":F50551:F60000
+F50551:"Slot ":0,1,u
+139008:"EnDat encoder: Alarm bit - Undervoltage":F50552:F60000
+F50552:"Slot ":0,1,u
+139009:"EnDat encoder: Alarm bit - Overcurrent":F50553:F60000
+F50553:"Slot ":0,1,u
+139010:"EnDat encoder: Alarm bit - Battery change required":F50554:F60000
+F50554:"Slot ":0,1,u
+139011:"EnDat encoder: Warning bit - Frequency too high":F50555:F60000
+F50555:"Slot ":0,1,u
+139012:"EnDat encoder: Warning bit - Temperature too high":F50556:F60000
+F50556:"Slot ":0,1,u
+139013:"EnDat encoder: Warning bit - Lighting reserve reached":F50557:F60000
+F50557:"Slot ":0,1,u
+139014:"EnDat encoder: Warning bit - Battery charge too low":F50558:F60000
+F50558:"Slot ":0,1,u
+139015:"EnDat encoder: Warning bit - Reference point not reached":F50559:F60000
 F50559:"Slot ":0,1,u
-139002:"Resolver: Speed limit for 14 bit resolution exceeded":F50560:F60000
-F50560:"Slot ":0,1,u
-139003:"EnDat encoder: Alarm bit is set":F50561:F60000
+139016:"Incremental encoder emulation: Frequency too high":F50560:F60000
+F50560:"Slot ":0,2,u
+139017:"Encoder: CRC error while reading position":F50561:F60000
 F50561:"Slot ":0,1,u
-139004:"EnDat encoder: Alarm bit - Lighting failure":F50562:F60000
+139018:"Reference pulse monitoring: Faulty position, resolution, or reference pulse":F50562:F60000
 F50562:"Slot ":0,1,u
-139005:"EnDat encoder: Alarm bit - Signal amplitude too small":F50563:F60000
+139019:"Serial encoder interface: Stop bit error":F50563:F60000
 F50563:"Slot ":0,1,u
-139006:"EnDat encoder: Alarm bit - Position value contains an error":F50564:F60000
+139020:"Serial encoder interface: Receive data overrun":F50564:F60000
 F50564:"Slot ":0,1,u
-139007:"EnDat encoder: Alarm bit - Overvoltage":F50565:F60000
+139021:"Serial encoder interface: Send data error":F50565:F60000
 F50565:"Slot ":0,1,u
-139008:"EnDat encoder: Alarm bit - Undervoltage":F50566:F60000
+139022:"EnDat encoder: Warning bit is set":F50566:F60000
 F50566:"Slot ":0,1,u
-139009:"EnDat encoder: Alarm bit - Overcurrent":F50567:F60000
+139023:"EnDat encoder: CRC error while reading EnDat2.2 additional information":F50567:F60000
 F50567:"Slot ":0,1,u
-139010:"EnDat encoder: Alarm bit - Battery change required":F50568:F60000
+139024:"EnDat encoder: Operating status error sources: M ALL Power down ":F50568:F60000
 F50568:"Slot ":0,1,u
-139011:"EnDat encoder: Warning bit - Frequency too high":F50569:F60000
+139025:"EnDat encoder: Operating status error sources: M Overflow / Underflow":F50569:F60000
 F50569:"Slot ":0,1,u
-139012:"EnDat encoder: Warning bit - Temperature too high":F50570:F60000
+139026:"EnDat encoder: Type 3 error while reading EnDat2.2 additional information":F50570:F60000
 F50570:"Slot ":0,1,u
-139013:"EnDat encoder: Warning bit - Lighting reserve reached":F50571:F60000
-F50571:"Slot ":0,1,u
-139014:"EnDat encoder: Warning bit - Battery charge too low":F50572:F60000
+139027:"Encoder Emulation: 5V power supply fail":F50571:F60000
+F50571:"Slot ":0,2,u
+139028:"Encoder: Multiturn failure":F50572:F60000
 F50572:"Slot ":0,1,u
-139015:"EnDat encoder: Warning bit - Reference point not reached":F50573:F60000
+139029:"Encoder: Battery charge too low":F50573:F60000
 F50573:"Slot ":0,1,u
-139016:"Incremental encoder emulation: Frequency too high":F50574:F60000
-F50574:"Slot ":0,2,u
-139017:"Encoder: CRC error while reading position":F50575:F60000
+139030:"Encoder: Warning bit is set":F50574:F60000
+F50574:"Slot ":0,1,u
+139032:"EnDat encoder: Operating status error sources: Lighting":F50575:F60000
 F50575:"Slot ":0,1,u
-139018:"Reference pulse monitoring: Faulty position, resolution, or reference pulse":F50576:F60000
+139033:"EnDat encoder: Operating status error sources: Signal amplitude":F50576:F60000
 F50576:"Slot ":0,1,u
-139019:"Serial encoder interface: Stop bit error":F50577:F60000
+139034:"EnDat encoder: Operating status error sources: S Pos 1":F50577:F60000
 F50577:"Slot ":0,1,u
-139020:"Serial encoder interface: Receive data overrun":F50578:F60000
+139035:"EnDat encoder: Operating status error sources: Overvoltage":F50578:F60000
 F50578:"Slot ":0,1,u
-139021:"Serial encoder interface: Send data error":F50579:F60000
+139036:"EnDat encoder: Operating status error sources: Undervoltage":F50579:F60000
 F50579:"Slot ":0,1,u
-139022:"EnDat encoder: Warning bit is set":F50580:F60000
+139037:"EnDat encoder: Operating status error sources: over current":F50580:F60000
 F50580:"Slot ":0,1,u
-139023:"EnDat encoder: CRC error while reading EnDat2.2 additional information":F50581:F60000
+139038:"EnDat encoder: Operating status error sources: Temperature exceeded":F50581:F60000
 F50581:"Slot ":0,1,u
-139024:"EnDat encoder: Operating status error sources: M ALL Power down ":F50582:F60000
+139039:"EnDat encoder: Operating status error sources: S Pos ":F50582:F60000
 F50582:"Slot ":0,1,u
-139025:"EnDat encoder: Operating status error sources: M Overflow / Underflow":F50583:F60000
+139040:"EnDat encoder: Operating status error sources: S sytem":F50583:F60000
 F50583:"Slot ":0,1,u
-139026:"EnDat encoder: Type 3 error while reading EnDat2.2 additional information":F50584:F60000
+139041:"EnDat encoder: Operating status error sources: S ALL power down":F50584:F60000
 F50584:"Slot ":0,1,u
-139027:"Encoder Emulation: 5V power supply fail":F50585:F60000
-F50585:"Slot ":0,2,u
-139028:"Encoder: Multiturn failure":F50586:F60000
+139042:"EnDat encoder: Operating status error sources: M Pos 1":F50585:F60000
+F50585:"Slot ":0,1,u
+139043:"EnDat encoder: Operating status error sources: M Pos 2":F50586:F60000
 F50586:"Slot ":0,1,u
-139029:"Encoder: Battery charge too low":F50587:F60000
+139044:"EnDat encoder: Operating status error sources: M System":F50587:F60000
 F50587:"Slot ":0,1,u
-139030:"Encoder: Warning bit is set":F50588:F60000
+139045:"EnDat encoder: Operating status error sources: M battery":F50588:F60000
 F50588:"Slot ":0,1,u
-139032:"EnDat encoder: Operating status error sources: Lighting":F50589:F60000
+139046:"Encoder: Incorrect encoder address acknowledgment":F50589:F60000
 F50589:"Slot ":0,1,u
-139033:"EnDat encoder: Operating status error sources: Signal amplitude":F50590:F60000
+139047:"Encoder: Position value not synchronous with absolute value":F50590:F60000
 F50590:"Slot ":0,1,u
-139034:"EnDat encoder: Operating status error sources: S Pos 1":F50591:F60000
+139048:"Encoder: Incorrect command code acknowledgment":F50591:F60000
 F50591:"Slot ":0,1,u
-139035:"EnDat encoder: Operating status error sources: Overvoltage":F50592:F60000
+139049:"Encoder: Timeout during parameter transfer":F50592:F60000
 F50592:"Slot ":0,1,u
-139036:"EnDat encoder: Operating status error sources: Undervoltage":F50593:F60000
+139050:"Encoder: Parity":F50593:F60000
 F50593:"Slot ":0,1,u
-139037:"EnDat encoder: Operating status error sources: over current":F50594:F60000
+139051:"Encoder: Hiperface error bit":F50594:F60000
 F50594:"Slot ":0,1,u
-139038:"EnDat encoder: Operating status error sources: Temperature exceeded":F50595:F60000
-F50595:"Slot ":0,1,u
-139039:"EnDat encoder: Operating status error sources: S Pos ":F50596:F60000
-F50596:"Slot ":0,1,u
-139040:"EnDat encoder: Operating status error sources: S sytem":F50597:F60000
-F50597:"Slot ":0,1,u
-139041:"EnDat encoder: Operating status error sources: S ALL power down":F50598:F60000
-F50598:"Slot ":0,1,u
-139042:"EnDat encoder: Operating status error sources: M Pos 1":F50599:F60000
-F50599:"Slot ":0,1,u
-139043:"EnDat encoder: Operating status error sources: M Pos 2":F50600:F60000
-F50600:"Slot ":0,1,u
-139044:"EnDat encoder: Operating status error sources: M System":F50601:F60000
+139301:"Digital IO: 24V power supply fail":F50595:F60000
+F50595:"Slot ":0,2,u
+139302:"Digital IO 1-4: Diagnose bit active (current, 24V supply)":F50596:F60000
+F50596:"Slot ":0,2,u
+139303:"Digital IO 5-8: Diagnose bit active (current, 24V supply)":F50597:F60000
+F50597:"Slot ":0,2,u
+139305:"Digital IO 10: Diagnose bit active (current, temperature)":F50598:F60000
+F50598:"Slot ":0,2,u
+139306:"Digital IO 9: Diagnose bit active (current, temperature)":F50599:F60000
+F50599:"Slot ":0,2,u
+139307:"Digital IO: outputs deactivated by output mask after network error":F50600:F60000
+F50600:"Slot ":0,2,u
+139500:"Encoder: HIPERFACE: Status: Incorrect alignment data (01h)":F50601:F60000
 F50601:"Slot ":0,1,u
-139045:"EnDat encoder: Operating status error sources: M battery":F50602:F60000
+139501:"Encoder: HIPERFACE: Status: Sensor not adjusted or in adjustment mode (20h)":F50602:F60000
 F50602:"Slot ":0,1,u
-139046:"Encoder: Incorrect encoder address acknowledgment":F50603:F60000
+139502:"Encoder: HIPERFACE: Status: Distance measure/sensor too high (21h)":F50603:F60000
 F50603:"Slot ":0,1,u
-139047:"Encoder: Position value not synchronous with absolute value":F50604:F60000
+139504:"Encoder: HIPERFACE: Status: Linear position fault (23h)":F50604:F60000
 F50604:"Slot ":0,1,u
-139048:"Encoder: Incorrect command code acknowledgment":F50605:F60000
+139510:"Encoder: HIPERFACE: Status: The encoder has not detected any faults (00h)":F50605:F60000
 F50605:"Slot ":0,1,u
-139049:"Encoder: Timeout during parameter transfer":F50606:F60000
+139511:"Encoder: HIPERFACE: Status: Analog signals outside specification (01h)":F50606:F60000
 F50606:"Slot ":0,1,u
-139050:"Encoder: Parity":F50607:F60000
+139512:"Encoder: HIPERFACE: Status: Incorrect internal angular offset (02h)":F50607:F60000
 F50607:"Slot ":0,1,u
-139051:"Encoder: Hiperface error bit":F50608:F60000
+139513:"Encoder: HIPERFACE: Status: Data field partitioning table destroyed (03h)":F50608:F60000
 F50608:"Slot ":0,1,u
-139052:"Encoder: Measurement range exceeded":F50609:F60000
+139514:"Encoder: HIPERFACE: Status: Analog limit values not available (04h)":F50609:F60000
 F50609:"Slot ":0,1,u
-139053:"Encoder: Internal check of the encoder interface failed":F50610:F60000
+139515:"Encoder: HIPERFACE: Status: Internal I²C bus not operational (05h)":F50610:F60000
 F50610:"Slot ":0,1,u
-139054:"Encoder: Invalid supply voltage":F50611:F60000
+139516:"Encoder: HIPERFACE: Status: Internal checksum error (06h)":F50611:F60000
 F50611:"Slot ":0,1,u
-139055:"Encoder: Incremental signal amplitude too small":F50612:F60000
+139517:"Encoder: HIPERFACE: Status: Program watchdog fault (07h)":F50612:F60000
 F50612:"Slot ":0,1,u
-139056:"Encoder: Incremental signal amplitude too large":F50613:F60000
+139518:"Encoder: HIPERFACE: Status: Counter overflow (08h)":F50613:F60000
 F50613:"Slot ":0,1,u
-139059:"Encoder: Status message":F50614:F60000
-F50614:"Status code ":0,4,u
-139060:"Encoder: Sync bit error":F50615:F60000
+139519:"Encoder: HIPERFACE: Status: Parity error (09h)":F50614:F60000
+F50614:"Slot ":0,1,u
+139520:"Encoder: HIPERFACE: Status: Checksum error (0Ah)":F50615:F60000
 F50615:"Slot ":0,1,u
-139061:"Encoder: UART Transmission error":F50616:F60000
+139521:"Encoder: HIPERFACE: Status: Unknown command (0Bh)":F50616:F60000
 F50616:"Slot ":0,1,u
-139301:"Digital IO: 24V power supply fail":F50617:F60000
-F50617:"Slot ":0,2,u
-139302:"Digital IO 1-4: Diagnose bit active (current, 24V supply)":F50618:F60000
-F50618:"Slot ":0,2,u
-139303:"Digital IO 5-8: Diagnose bit active (current, 24V supply)":F50619:F60000
-F50619:"Slot ":0,2,u
-139305:"Digital IO 10: Diagnose bit active (current, temperature)":F50620:F60000
-F50620:"Slot ":0,2,u
-139306:"Digital IO 9: Diagnose bit active (current, temperature)":F50621:F60000
-F50621:"Slot ":0,2,u
-139307:"Digital IO: outputs deactivated by output mask after network error":F50622:F60000
-F50622:"Slot ":0,2,u
-139500:"Encoder: HIPERFACE: Status: Incorrect alignment data (01h)":F50623:F60000
+139522:"Encoder: HIPERFACE: Status: Wrong command length (0Ch)":F50617:F60000
+F50617:"Slot ":0,1,u
+139523:"Encoder: HIPERFACE: Status: Wrong command argument (0Dh)":F50618:F60000
+F50618:"Slot ":0,1,u
+139524:"Encoder: HIPERFACE: Status: Read-only data field (0Eh)":F50619:F60000
+F50619:"Slot ":0,1,u
+139525:"Encoder: HIPERFACE: Status: Incorrect access code (0Fh)":F50620:F60000
+F50620:"Slot ":0,1,u
+139526:"Encoder: HIPERFACE: Status: Out of memory fault (10h)":F50621:F60000
+F50621:"Slot ":0,1,u
+139527:"Encoder: HIPERFACE: Status: Wrong data field offset (11h)":F50622:F60000
+F50622:"Slot ":0,1,u
+139528:"Encoder: HIPERFACE: Status: Wrong data field number (12h)":F50623:F60000
 F50623:"Slot ":0,1,u
-139501:"Encoder: HIPERFACE: Status: Sensor not adjusted or in adjustment mode (20h)":F50624:F60000
+139538:"Encoder: HIPERFACE: Status: Value monitoring analog signals (1Ch)":F50624:F60000
 F50624:"Slot ":0,1,u
-139502:"Encoder: HIPERFACE: Status: Distance measure/sensor too high (21h)":F50625:F60000
+139539:"Encoder: HIPERFACE: Status: Transmitter current critical (1Dh)":F50625:F60000
 F50625:"Slot ":0,1,u
-139504:"Encoder: HIPERFACE: Status: Linear position fault (23h)":F50626:F60000
+139540:"Encoder: HIPERFACE: Status: Encoder temperature critical (1Eh)":F50626:F60000
 F50626:"Slot ":0,1,u
-139510:"Encoder: HIPERFACE: Status: The encoder has not detected any faults (00h)":F50627:F60000
+139541:"Encoder: HIPERFACE: Status: Speed too high (1Fh)":F50627:F60000
 F50627:"Slot ":0,1,u
-139511:"Encoder: HIPERFACE: Status: Analog signals outside specification (01h)":F50628:F60000
+139542:"Encoder: HIPERFACE: Status: Singleturn position unreliable (20h)":F50628:F60000
 F50628:"Slot ":0,1,u
-139512:"Encoder: HIPERFACE: Status: Incorrect internal angular offset (02h)":F50629:F60000
+139543:"Encoder: HIPERFACE: Status: Multiturn amplitude fault (21h)":F50629:F60000
 F50629:"Slot ":0,1,u
-139513:"Encoder: HIPERFACE: Status: Data field partitioning table destroyed (03h)":F50630:F60000
+139544:"Encoder: HIPERFACE: Status: Multiturn sync fault (22h)":F50630:F60000
 F50630:"Slot ":0,1,u
-139514:"Encoder: HIPERFACE: Status: Analog limit values not available (04h)":F50631:F60000
+139545:"Encoder: HIPERFACE: Status: Multiturn vectorlength fault (23h)":F50631:F60000
 F50631:"Slot ":0,1,u
-139515:"Encoder: HIPERFACE: Status: Internal I²C bus not operational (05h)":F50632:F60000
+139546:"Encoder: HIPERFACE: Status: Multiturn counter fault (24h)":F50632:F60000
 F50632:"Slot ":0,1,u
-139516:"Encoder: HIPERFACE: Status: Internal checksum error (06h)":F50633:F60000
-F50633:"Slot ":0,1,u
-139517:"Encoder: HIPERFACE: Status: Program watchdog fault (07h)":F50634:F60000
-F50634:"Slot ":0,1,u
-139518:"Encoder: HIPERFACE: Status: Counter overflow (08h)":F50635:F60000
-F50635:"Slot ":0,1,u
-139519:"Encoder: HIPERFACE: Status: Parity error (09h)":F50636:F60000
-F50636:"Slot ":0,1,u
-139520:"Encoder: HIPERFACE: Status: Checksum error (0Ah)":F50637:F60000
-F50637:"Slot ":0,1,u
-139521:"Encoder: HIPERFACE: Status: Unknown command (0Bh)":F50638:F60000
-F50638:"Slot ":0,1,u
-139522:"Encoder: HIPERFACE: Status: Wrong command length (0Ch)":F50639:F60000
-F50639:"Slot ":0,1,u
-139523:"Encoder: HIPERFACE: Status: Wrong command argument (0Dh)":F50640:F60000
-F50640:"Slot ":0,1,u
-139524:"Encoder: HIPERFACE: Status: Read-only data field (0Eh)":F50641:F60000
-F50641:"Slot ":0,1,u
-139525:"Encoder: HIPERFACE: Status: Incorrect access code (0Fh)":F50642:F60000
-F50642:"Slot ":0,1,u
-139526:"Encoder: HIPERFACE: Status: Out of memory fault (10h)":F50643:F60000
-F50643:"Slot ":0,1,u
-139527:"Encoder: HIPERFACE: Status: Wrong data field offset (11h)":F50644:F60000
-F50644:"Slot ":0,1,u
-139528:"Encoder: HIPERFACE: Status: Wrong data field number (12h)":F50645:F60000
-F50645:"Slot ":0,1,u
-139538:"Encoder: HIPERFACE: Status: Value monitoring analog signals (1Ch)":F50646:F60000
-F50646:"Slot ":0,1,u
-139539:"Encoder: HIPERFACE: Status: Transmitter current critical (1Dh)":F50647:F60000
-F50647:"Slot ":0,1,u
-139540:"Encoder: HIPERFACE: Status: Encoder temperature critical (1Eh)":F50648:F60000
-F50648:"Slot ":0,1,u
-139541:"Encoder: HIPERFACE: Status: Speed too high (1Fh)":F50649:F60000
-F50649:"Slot ":0,1,u
-139542:"Encoder: HIPERFACE: Status: Singleturn position unreliable (20h)":F50650:F60000
-F50650:"Slot ":0,1,u
-139543:"Encoder: HIPERFACE: Status: Multiturn amplitude fault (21h)":F50651:F60000
-F50651:"Slot ":0,1,u
-139544:"Encoder: HIPERFACE: Status: Multiturn sync fault (22h)":F50652:F60000
-F50652:"Slot ":0,1,u
-139545:"Encoder: HIPERFACE: Status: Multiturn vectorlength fault (23h)":F50653:F60000
-F50653:"Slot ":0,1,u
-139546:"Encoder: HIPERFACE: Status: Multiturn counter fault (24h)":F50654:F60000
-F50654:"Slot ":0,1,u
-141001:"Heatsink temperature sensor: Warning limit exceeded":F50655:F60000
-F50655:"Heatsink temperature ":0,4,f
-141002:"Heatsink temperature sensor: Not connected or damaged":F50656:F60000
-F50656:"Temperature limit ":0,4,f
-141011:"Temperature sensor (Motor|Choke|External): Warning limit exceeded":F50657:F60000
-F50657:"Temperature ":0,4,f
-141031:"Junction temperature model: Warning limit exceeded":F50658:F60000
-F50658:"Junction temperature ":0,4,f
-141041:"Bleeder temperature model: Warning limit exceeded":F50659:F60000
-F50659:"Bleeder temperature ":0,4,f
-141051:"ACOPOS peak current: Warning limit exceeded":F50660:F60000
-F50660:"Peak current load ":0,4,f
-141061:"ACOPOS continuous current: Warning limit exceeded":F50661:F60000
-F50661:"Continuous current load ":0,4,f
-141070:"Motor temperature model: Warning limit exceeded":F50662:F60000
-F50662:"Calculated motor temperature ":0,4,f
+141001:"Heatsink temperature sensor: Warning limit exceeded":F50633:F60000
+F50633:"Heatsink temperature ":0,4,f
+141011:"Temperature sensor (Motor|Choke|External): Warning limit exceeded":F50634:F60000
+F50634:"Temperature ":0,4,f
+141031:"Junction temperature model: Warning limit exceeded":F50635:F60000
+F50635:"Junction temperature ":0,4,f
+141041:"Bleeder temperature model: Warning limit exceeded":F50636:F60000
+F50636:"Bleeder temperature ":0,4,f
+141051:"ACOPOS peak current: Warning limit exceeded":F50637:F60000
+F50637:"Peak current load ":0,4,f
+141061:"ACOPOS continuous current: Warning limit exceeded":F50638:F60000
+F50638:"Continuous current load ":0,4,f
+141070:"Motor temperature model: Warning limit exceeded":F50639:F60000
+F50639:"Calculated motor temperature ":0,4,f
 141075:"ACOPOS continuous power: Warning limit exceeded":F60000
-141078:"Power stage: Temperature sensor 1: Warning limit exceeded":F50663:F60000
-F50663:"Temperature ":0,4,f
-141080:"Pre-charging resistor temperature model: Warning limit exceeded":F50664:F60000
-F50664:"Temperature limit ":0,4,f
-141081:"Power stage temperature model: Warning limit exceeded":F50665:F60000
-F50665:"Temperature ":0,4,f
-141083:"Power stage: Temperature sensor 2: Warning limit exceeded":F50666:F60000
-F50666:"Temperature ":0,4,f
-141085:"Power stage: Temperature sensor 3: Warning limit exceeded":F50667:F60000
-F50667:"Temperature ":0,4,f
-141087:"Power stage: Temperature sensor 4: Warning limit exceeded":F50668:F60000
-F50668:"Temperature ":0,4,f
-141089:"Motor encoder temperature sensor: Warning limit exceeded":F50669:F60000
-F50669:"Temperature ":0,4,f
+141078:"Power stage: Temperature sensor 1: Warning limit exceeded":F50640:F60000
+F50640:"Temperature ":0,4,f
+141080:"Pre-charging resistor temperature model: Warning limit exceeded":F50641:F60000
+F50641:"Temperature limit ":0,4,f
+141081:"Power stage temperature model: Warning limit exceeded":F50642:F60000
+F50642:"Temperature ":0,4,f
+141083:"Power stage: Temperature sensor 2: Warning limit exceeded":F50643:F60000
+F50643:"Temperature ":0,4,f
+141085:"Power stage: Temperature sensor 3: Warning limit exceeded":F50644:F60000
+F50644:"Temperature ":0,4,f
+141087:"Power stage: Temperature sensor 4: Warning limit exceeded":F50645:F60000
+F50645:"Temperature ":0,4,f
+141089:"Motor encoder temperature sensor: Warning limit exceeded":F50646:F60000
+F50646:"Temperature ":0,4,f
 141090:"24V Supply/Main relay temperature sensor: Warning limit exceeded":F60000
-141091:"Power stage: Temperature sensor 5: Warning limit exceeded":F50670:F60000
-F50670:"Temperature ":0,4,f
-141092:"Rectifier temperature model: Warning limit exceeded":F50671:F60000
-F50671:"Temperature ":0,4,f
-141093:"DC bus relay temperature model: Warning limit exceeded":F50672:F60000
-F50672:"Temperature ":0,4,f
-141094:"DC bus capacitor temperature model: Warning limit exceeded":F50673:F60000
-F50673:"Temperature ":0,4,f
-141095:"DC bus: Continuous total power: Warning limit exceeded":F50674:F60000
-F50674:"Load limit ":0,4,f
-141096:"DC bus: Peak total power: Warning limit exceeded":F50675:F60000
-F50675:"Load limit ":0,4,f
-141097:"DC connector temperature model: Warning limit exceeded":F50676:F60000
-F50676:"Temperature ":0,4,f
-141098:"Power stage: Temperature sensor: Warning limit exceeded":F50677:F60000
-F50677:"sensor ":0,2,u
+141091:"Power stage: Temperature sensor 5: Warning limit exceeded":F50647:F60000
+F50647:"Temperature ":0,4,f
+141092:"Rectifier temperature model: Warning limit exceeded":F50648:F60000
+F50648:"Temperature ":0,4,f
+141093:"DC bus relay temperature model: Warning limit exceeded":F50649:F60000
+F50649:"Temperature ":0,4,f
+141094:"DC bus capacitor temperature model: Warning limit exceeded":F50650:F60000
+F50650:"Temperature ":0,4,f
+141095:"DC bus: Continuous total power: Warning limit exceeded":F50651:F60000
+F50651:"Load limit ":0,4,f
+141096:"DC bus: Peak total power: Warning limit exceeded":F50652:F60000
+F50652:"Load limit ":0,4,f
+141097:"DC connector temperature model: Warning limit exceeded":F50653:F60000
+F50653:"Temperature ":0,4,f
 164002:"Delay before SW Reset (network with ascending node numbers ?)":F60000
 164003:"Delay before NC System Start (network with ascending node numbers ?)":F60000
 164004:"The following boot error could be entered here with a delay":F60000
-164005:"Timeout for parameter enable after start of operating system":F50678:F60000
-F50678:"Status (bits with wrong value for parameter enable) ":0,4,u
-164006:"Drive did not become synchronous with network master":F50679:F60000
-F50679:"Timeout [sec] ":0,4,u
-164007:"Timeout for enable of acyclic network communication":F50680:F60000
-F50680:"Timeout [sec] ":0,4,u
-164008:"Timeout for enable of cyclic network communication":F50681:F60000
-F50681:"Timeout [sec] ":0,4,u
-164009:"Acp10cfg contains a POWERLINK interface, for which no axis is defined":F50682:F60000
-F50682:"Index of POWERLINK interface in Acp10cfg (name in Logger) ":0,2,u
+164005:"Timeout for parameter enable after start of operating system":F50654:F60000
+F50654:"Status (bits with wrong value for parameter enable) ":0,4,u
+164006:"Drive did not become synchronous with network master":F50655:F60000
+F50655:"Timeout [sec] ":0,4,u
+164007:"Timeout for enable of acyclic network communication":F50656:F60000
+F50656:"Timeout [sec] ":0,4,u
+164008:"Timeout for enable of cyclic network communication":F50657:F60000
+F50657:"Timeout [sec] ":0,4,u
+164009:"Acp10cfg contains a POWERLINK interface, for which no axis is defined":F50658:F60000
+F50658:"Index of POWERLINK interface in Acp10cfg (name in Logger) ":0,2,u
 164010:"NC software test version (validity period in Logger)":F60000
 164011:"Timeout for completion of encoder initialization":F60000
 164012:"acp10sys does not contain an operating system for this ACOPOS hardware type":F60000

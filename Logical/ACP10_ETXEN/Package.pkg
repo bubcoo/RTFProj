@@ -6,5 +6,6 @@
     <Object Type="Package">GmcIpConfig</Object>
     <Object Type="Package">GmcIpUserConfig</Object>
     <Object Type="Package">ACP10_N</Object>
+    <Object Type="Package">ACP10_R</Object>
   </Objects>
 </Package>

@@ -767,7 +767,6 @@ ACP10NGNTR_typ : STRUCT                                     (* Network Trace *)
    ring_startidx_auto   : USINT ;                           (* The start index of the ring buffer was saved automatically *)
    ring_startidx_action : USINT ;                           (* The start index of the ring buffer was saved via NC action *)
    datobj               : ACP10TROBJ_typ ;                  (* Data object *)
-   NOT_USE_1            : ARRAY [0..7] OF USINT ;
 END_STRUCT;
 ACP10NETGL_typ : STRUCT                                     (* Network global (for all network interfaces) *)
    NOT_USE_1            : ARRAY [0..3] OF USINT ;

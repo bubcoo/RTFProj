@@ -15,7 +15,6 @@ TYPE
 		DataObjectIdentNeg : UINT; (*ident of data object for negative direction compensation*)
 		CamStartPosition : REAL; (*axis position the cams start at*)
         CalcDone : BOOL; (*calculation finished*)
-		Period : REAL; (*period of compensation cams*)
 	END_STRUCT;
 	MC_ADV_LIMITLOAD_REF :  STRUCT (*structure with parameters for torque limitation*)
 	    LoadPosAccelParID : UINT; (*ParID with torque limit for acceleration in positive direction*)
@@ -348,7 +347,6 @@ TYPE
 	    TimeConstant : REAL; (*time constant for exponential function for flank change*)
 	    NoiseLimit : REAL; (*noise limit*)
 	    Inertia : REAL; (*inertia in lose*)
-	    ConstantBacklash : REAL; (*constant mechanical backlash*)
 	END_STRUCT;
 	MC_MPDC_DIR_INDEPENDENT_REF :   STRUCT (*parameters for direction independent compensation*)
 	    CompData : MC_MPDC_COMP_DATA_REF; (*compensation data*)
@@ -359,7 +357,6 @@ TYPE
 	    PositionSource : UINT;  (*position source for mechanics position deviation compensation*)
 	    DirectionIndependent : MC_MPDC_DIR_INDEPENDENT_REF; (*parameters for direction independent compensation*)
 	    DirectionDependent : MC_MPDC_DIR_DEPENDENT_REF; (*parameters for direction dependent compensation*)
-	    Periodic : BOOL; (*interpret compensation parameters as periodic*)
 	END_STRUCT;
 	MC_POLYNOMIAL_DATA : 	STRUCT  (*structure with polynomial coefficient*)
 		a : REAL;
@@ -2046,7 +2043,7 @@ TYPE
 		ProcessAdrPositions : UDINT; (*internal variable*)
 		ProcessAdrDeviations : UDINT; (*internal variable*)
 		CamsToProcess : USINT; (*internal variable*)
-		BacklashOnly : BOOL; (*internal variable*)
-		VarIndex : UINT; (*internal variable*)
+		Reserve1 : USINT; (*internal variable*)
+		Reserve2 : UINT; (*internal variable*)
     END_STRUCT;
 END_TYPE

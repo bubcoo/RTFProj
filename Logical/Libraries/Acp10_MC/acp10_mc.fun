@@ -2620,29 +2620,6 @@ FUNCTION_BLOCK MC_BR_ReadParIDText (*reads a ParID from the specified axis in te
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK MC_BR_ReadParList (*read a parameter list*)
-	VAR_INPUT
-		Axis : UDINT; (*axis reference*)
-		Execute : BOOL; (*read parameter list at rising edge*)
-		DataAddress : UDINT; (*address of the parameter list*)
-	END_VAR
-	VAR_OUTPUT
-		Done : BOOL; (*transfer completed*)
-		Busy : BOOL; (*function block is not finished*)
-		Error : BOOL; (*error occurred in FB*)
-		ErrorID : UINT; (*error number*)
-	END_VAR
-	VAR
-		LockIDPar : USINT; (*internal variable*)
-		C_Error : BOOL; (*internal variable*)
-		C_ErrorID : UINT; (*internal variable*)
-		C_Axis : UDINT; (*internal variable*)
-		C_DataAddress : UDINT; (*internal variable*)
-		C_Done : BOOL; (*internal variable*)
-		state : USINT; (*internal variable*)
-	END_VAR
-END_FUNCTION_BLOCK
-
 FUNCTION_BLOCK MC_BR_ReadParTraceStatus (*determines the current status of the axis trace*)
 	VAR_INPUT
 		Enable : BOOL; (*the status of the axis trace is read as long as the input is enabled*)

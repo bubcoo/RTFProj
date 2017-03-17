@@ -160,6 +160,7 @@ TYPE
 		IntegrationPartPresetValue : REAL; (*Data for internal use.*)
 		SetIntegrationPart : BOOL; (*Data for internal use.*)
 		SetIntegrationPartOld : BOOL; (*Data for internal use.*)
+		EnableTrackingOld : BOOL; (*Data for internal use.*)
 		PID_StatusID : DINT; (*Data for internal use.*)
 		UpdateOld : BOOL; (*Data for internal use.*)
 		EnableOld : BOOL; (*Data for internal use.*)
@@ -324,7 +325,7 @@ TYPE
 		DelayCounter : UDINT; (*Data for internal use.*)
 		ActBufferIndex : UDINT; (*Data for internal use.*)
 		ActBufferElements : UDINT; (*Data for internal use.*)
-		OldBufferElements : {REDUND_UNREPLICABLE} UDINT; (*Data for internal use.*)
+		OldBufferElements : UDINT; (*Data for internal use.*)
 		DelayTimeAct : REAL; (*Data for internal use.*)
 		BufferPointer : REFERENCE TO REAL; (*Data for internal use.*)
 	END_STRUCT;
@@ -334,6 +335,6 @@ TYPE
 		ParametersValid : BOOL; (*Data for internal use.*)
 		InitialValue : REAL; (*Data for internal use.*)
 		EnableOld : BOOL; (*Data for internal use.*)
-		TimeDelayFcnPara : MTBasicsTimeDelayFcnParaType; (*Data for internal use.*)
+		TimeDelayFcnPara : {REDUND_UNREPLICABLE} MTBasicsTimeDelayFcnParaType; (*Data for internal use.*)
 	END_STRUCT;
 END_TYPE

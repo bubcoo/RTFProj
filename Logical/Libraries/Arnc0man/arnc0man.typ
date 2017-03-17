@@ -1022,7 +1022,7 @@ ARNC0NCAXCMP_typ : STRUCT                                   (* Compensation para
    matrix_el            : ARRAY [0..8] OF REAL ;            (* Element of compensation matrix *)
 END_STRUCT;
 ARNC0NCAXTRF_typ : STRUCT                                   (* Kinematic transformation parameters *)
-   name                 : ARRAY [0..99] OF USINT ;          (* Name of the NC data module *)
+   name                 : ARRAY [0..47] OF USINT ;          (* Name of object *)
    trf_full             : USINT ;                           (* Full kinematic transformation *)
    trf_type             : USINT ;                           (* Type of kinematic transformation *)
    reserve0             : ARRAY [0..1] OF USINT ;           (* Reserved *)
@@ -1127,8 +1127,7 @@ ARNC0NCMNS_typ : STRUCT                                     (* CNC monitor statu
    NOT_USE_1            : USINT ;
    block_mode           : USINT ;                           (* Blocks display mode *)
    line_nr_mode         : USINT ;                           (* Display line numbers *)
-   s_set_valid          : USINT ;                           (* Set positions valid in the CNC monitor *)
-   NOT_USE_2            : ARRAY [0..1] OF USINT ;
+   NOT_USE_2            : ARRAY [0..2] OF USINT ;
 END_STRUCT;
 ARNC0NCMON_typ : STRUCT                                     (* CNC monitor *)
    parameter            : ARNC0NCMNPAR_typ ;                (* Parameters *)
@@ -1566,12 +1565,6 @@ TYPE
         min_max                         : SINT;                                  (* Positive or negative range of the active limit *)
         index                           : USINT;                                 (* Index of the axis or path definition of the active limit *)
     END_STRUCT;
-    OPTMOT_UNFILTERED_MONITOR_typ : STRUCT 
-        s_joint                         : ARRAY [0..14] OF LREAL;                (* Cyclical joint position in CNC units *)
-        v_joint                         : ARRAY [0..14] OF LREAL;                (* Cyclical joint velocity in CNC units *)
-        a_joint                         : ARRAY [0..14] OF LREAL;                (* Cyclical joint acceleration in CNC units *)
-        j_joint                         : ARRAY [0..14] OF LREAL;                (* Cyclical joint jerk in CNC units *)
-    END_STRUCT;
     OPTMOT_MONITOR_typ : STRUCT 
         s_joint                         : ARRAY [0..14] OF LREAL;                (* Cyclical joint position in CNC units *)
         v_joint                         : ARRAY [0..14] OF LREAL;                (* Cyclical joint velocity in CNC units *)
@@ -1579,7 +1572,6 @@ TYPE
         j_joint                         : ARRAY [0..14] OF LREAL;                (* Cyclical joint jerk in CNC units *)
         feed_forward_torque             : ARRAY [0..14] OF LREAL;                (* Cyclical joint torque/force *)
         v_path                          : ARRAY [0..31] OF LREAL;                (* Cyclical path velocity in CNC units *)
-        unfiltered_monitor              : OPTMOT_UNFILTERED_MONITOR_typ;         (* Monitor data without filters and override *)
         active_limit                    : OPTMOT_ACTIVE_LIMIT_typ;               (* Structure of information about current limitation *)
         data_valid                      : UINT;                                  (* Feed forward data is valid *)
         fill_level_lookahead            : UINT;                                  (* Fill level of lookahead buffer *)
@@ -1625,7 +1617,6 @@ TYPE
         j_joint                         : ARRAY [0..14] OF LREAL;                (* Cyclical joint jerk in CNC units *)
         feed_forward_torque             : ARRAY [0..14] OF LREAL;                (* Cyclical joint torque/force *)
         v_path                          : ARRAY [0..31] OF LREAL;                (* Cyclical path velocity in CNC units *)
-        unfiltered_monitor              : OPTMOT_UNFILTERED_MONITOR_typ;         (* Monitor data without filters and override *)
         active_limit                    : OPTMOT_ACTIVE_LIMIT_typ;               (* Structure of information about current limitation *)
         data_valid                      : UINT;                                  (* Feed forward data is valid *)
         fill_level_lookahead            : UINT;                                  (* Fill level of lookahead buffer *)
@@ -1705,7 +1696,7 @@ TYPE
         radius                          : REAL;                                  (* Tool radius *)
         v_ncprog                        : REAL;                                  (* Programmed feedrate *)
         info                            : UDINT;                                 (* Info bits *)
-    END_STRUCT;	
+	END_STRUCT;	
     ARNC0PLDMOVE02_typ : STRUCT 
         ep                              : ARRAY [0..2] OF REAL;                  (* End point *)
         cp                              : ARRAY [0..2] OF REAL;                  (* Center point *)
@@ -1715,27 +1706,27 @@ TYPE
         s                               : REAL;                                  (* block length, interpolated axes *)
         s_all                           : REAL;                                  (* block length, all axes *)
         info                            : UDINT;                                 (* Info bits *)
-    END_STRUCT;
+	END_STRUCT;
     ARNC0PLDPROGEND_typ : STRUCT 
         t                               : REAL;                                  (* estimated runtime *)
         s                               : REAL;                                  (* path length, interpolated axes *)
         s_all                           : REAL;                                  (* path length, all axes *)
-    END_STRUCT;
+	END_STRUCT;
     ARNC0PLDPROGSTART_typ : STRUCT 
         ProgNumber                      : UDINT;                                 (* program number *)
-    END_STRUCT;
-    ARNC0PLDTOOL_typ : STRUCT 
+	END_STRUCT;
+	ARNC0PLDTOOL_typ : STRUCT 
         radius                          : REAL;                                  (* Tool radius *)
         length                          : REAL;                                  (* Tool length *)
         offset                          : ARRAY [0..2] OF REAL;                  (* Tool offset *)
         index                           : UINT;                                  (* Tool index, tool data number *)
         reserve                         : UINT;                                  (* don't use *)
-    END_STRUCT;	
+	END_STRUCT;	
     ARNC0PLDCSTRF_typ : STRUCT 
         matrix                          : ARRAY [0..8] OF REAL;                  (* Rotation matrix *)
         offset                          : ARRAY [0..2] OF REAL;                  (* Offset (cs + tool) *)
         info                            : UDINT;                                 (* Info bits *)		
-    END_STRUCT;	
+	END_STRUCT;	
     ARNC0PLDUSER_typ : STRUCT 
         data                            : ARRAY [0..51] OF USINT;                (* User data *)
     END_STRUCT;
@@ -1755,32 +1746,6 @@ TYPE
         s_set                           : ARRAY [0..14] OF LREAL;                (* set position *)
         s_ncprog                        : LREAL;                                 (* path position in current CNC program *)
     END_STRUCT;	
-    ARNC0WFM_typ : STRUCT 
-        data : ARRAY[0..329]OF UDINT;                                            (* internal data *)
-    END_STRUCT;
-    ARNC0WFM_BFS : STRUCT 
-        enable : UDINT;                                                          (* enable frame *)
-        dx : LREAL;                                                              (* x transition *)
-        dy : LREAL;                                                              (* y transition *)
-        dz : LREAL;                                                              (* z transition *)
-        phi : LREAL;                                                             (* angle in meaning of angles type *)
-        theta : LREAL;                                                           (* angle in meaning of angles type *)
-        psi : LREAL;                                                             (* angle in meaning of angles type *)
-        angles_type : UDINT;                                                     (* angles type *)
-    END_STRUCT;
-    ARNC0WFM_MON_typ : STRUCT 
-        valid_data : UDINT;                                                      (* number of calls with valid data *)
-        invalid_data : UDINT;                                                    (* number of calls with invalid data *)
-    END_STRUCT;
-    ARNC0WFM_EXT_typ : STRUCT 
-        p_wire_frame_model : REFERENCE TO ARNC0WFM_typ;                          (* reference to wire-frame model data *)
-        base_frame_shift : ARNC0WFM_BFS;                                         (* frame *)
-        monitor : ARNC0WFM_MON_typ;                                              (* monitor *)
-    END_STRUCT;
-    ARNC0INTERACTION_typ : STRUCT 
-        wire_frame_model : ARNC0WFM_typ;                                         (* wire-frame model data *)
-        wire_frame_models_to_check : ARRAY[0..23]OF ARNC0WFM_EXT_typ;            (* array of wire-frame models data *)
-    END_STRUCT;
 END_TYPE
 TYPE
   ARNC0IP_MON_typ : STRUCT

@@ -28,13 +28,16 @@
     <Object Type="Library" Language="Binary" Description="Single and multi axes control">MpAxis</Object>
     <Object Type="Library" Language="Binary" Description="Advanced alarm management">MpAlarmX</Object>
     <Object Type="Library" Language="Binary" Description="This mechatronics library contains basic control function blocks.">MTBasics</Object>
+    <Object Type="Library" Language="Binary" Description="The AsSafety library provides function blocks for the safety system.">AsSafety</Object>
+    <Object Type="Library" Language="Binary" Description="The AsXml library supports reading and writing of XML files.">AsXml</Object>
+    <Object Type="Library" Language="Binary" Description="GMC ARNC0 AxesGroup Implementation">GmcArncGrp</Object>
+    <Object Type="Library" Language="Binary" Description="CNC Manager">Arnc0man</Object>
+    <Object Type="Library" Language="Binary" Description="GMC Objects and Services Manager">GmcManager</Object>
+    <Object Type="Library" Language="Binary" Description="PLCopen Motion Control function blocks">Acp10_MC</Object>
     <Object Type="Library" Language="Binary" Description="Motion Control Manager">Acp10man</Object>
     <Object Type="Library" Language="Binary" Description="ACOPOS Parameters">Acp10par</Object>
     <Object Type="Library" Language="Binary" Description="Global NC functions">NcGlobal</Object>
-    <Object Type="Library" Language="Binary" Description="CNC Manager">Arnc0man</Object>
     <Object Type="Library" Language="Binary" Description="ACOPOS Simulation">Acp10sim</Object>
-    <Object Type="Library" Language="Binary" Description="PLCopen Motion Control function blocks">Acp10_MC</Object>
-    <Object Type="Library" Language="Binary" Description="The AsSafety library provides function blocks for the safety system.">AsSafety</Object>
-    <Object Type="Library" Language="Binary" Description="The AsXml library supports reading and writing of XML files.">AsXml</Object>
+    <Object Type="Library" Language="Binary" Description="GMC Axes Group API (PLCopen Part 4 FBs)">GmcGrpAPI</Object>
   </Objects>
 </Package>
