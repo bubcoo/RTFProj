@@ -4,7 +4,7 @@
   <Objects>
     <Object Type="File" Description="NC mapping">Acp10map.ncm</Object>
     <Object Type="File" Description="NC manager configuration">Acp10cfg.ncc</Object>
-    <Object Type="File" Description="NC operating system">Acp10sys.br</Object>
     <Object Type="File" Description="NC operating system" Reference="true">\Logical\Libraries\Arnc0man\SG4\Arnc0sys.br</Object>
+    <Object Type="File" Description="NC operating system">Acp10sys.br</Object>
   </Objects>
 </Package>

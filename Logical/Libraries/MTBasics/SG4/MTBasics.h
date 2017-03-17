@@ -10,8 +10,8 @@ extern "C"
 
 #include <bur/plctypes.h>
 
-#include <sys_lib.h>
 #include <brsystem.h>
+#include <sys_lib.h>
 #include <MTTypes.h>
 
 #ifndef _BUR_PUBLIC
@@ -308,6 +308,7 @@ typedef struct MTBasicsPIDInternalType
 	float IntegrationPartPresetValue;
 	plcbit SetIntegrationPart;
 	plcbit SetIntegrationPartOld;
+	plcbit EnableTrackingOld;
 	signed long PID_StatusID;
 	plcbit UpdateOld;
 	plcbit EnableOld;

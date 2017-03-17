@@ -7,5 +7,9 @@
     <Object Type="File">Camera.png</Object>
     <Object Type="File">Home.png</Object>
     <Object Type="File">Options.png</Object>
+    <Object Type="File">F_ball.png</Object>
+    <Object Type="File">Temperature.png</Object>
+    <Object Type="File">About.png</Object>
+    <Object Type="File">Safety.png</Object>
   </Objects>
 </Package>

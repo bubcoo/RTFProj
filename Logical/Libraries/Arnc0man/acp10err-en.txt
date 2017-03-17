@@ -48,6 +48,7 @@
  1001: Error-FIFO overflow
  1002: Parameter outside the valid range
  1003: Parameter cannot be written while loop control is active
+ 1004: Timeout in network life sign monitor
  1005: Parameter cannot be written while a movement is active
  1006: Invalid parameter for trigger event (digital input + edge)
  1008: Master for network coupling deactivated - Encoder error
@@ -127,10 +128,13 @@
  5038: Homing procedure mode not possible: Restore data invalid
        Info(UINT): Detail
  5039: Function not possible: Encoder error
+ 5040: Jolt limiter: Too many changes in acceleration - Movement stopped
+ 5041: Jolt limiter: Command not allowed
+ 5042: Jolt limiter: Too many changes in acceleration - Command not possible
  5043: Homing procedure mode not possible: Compensation active
- 5101: Compensation gear: Limit values exceeded
+ 5101: Cam profile compensation gears: Limit values exceeded
        Info(USINT): State index
- 5102: Too many changes of cam per cycle (master period too short)
+ 5102: Too many changes of cam profile per cycle (master period too short)
        Info(USINT): State index
  5107: Cam coupling cannot be started: Parameter outside the valid range
        Info('PARID'): Parameter ID
@@ -144,14 +148,14 @@
  5301: Start cam automat linkage not possible: Parameter outside the valid range
        Info('PARID'): Parameter ID
  5302: Parameter cannot be written: Cam automat active
- 5303: Cam data not available at index
- 5304: Format error in cam data
+ 5303: Cam profile data not available at index
+ 5304: Format error in cam profile data
        Info(UINT): Detail
  5311: Cam automat: Event leads to non initialized state
- 5315: Download error: Cam data in use by cam automat or function block
+ 5315: Download error: Cam profile data in use by cam automat or function block
  5316: Event type is not possible for entry in compensation gears
- 5319: Cam data not allowed for state 0
- 5329: No valid cam data
+ 5319: Cam profile data not allowed for state 0
+ 5329: No valid cam profile data
  6000: Master sampling time is not a multiple of position controller sampling time
  6002: Sync controller: Error tolerance of system time difference exceeded
  6008: Controller is already active
@@ -226,7 +230,7 @@
  7012: Encoder: Hiperface error bit
        Info(USINT): Slot
  7013: Encoder: Status message
-       Info(UDINT): Status code
+       Info(USINT): Status code
  7014: Encoder: CRC error during parameter transfer
        Info(USINT): Slot
  7015: Encoder: Timeout error during parameter transfer
@@ -291,7 +295,9 @@
        Info(USINT): Slot
  7055: Encoder: Invalid content type 'frame end'
        Info(USINT): Slot
- 7057: Encoder: Register read/write forbidden or not implemented
+ 7056: Encoder: Register read forbidden or not implemented
+       Info(USINT): Slot
+ 7057: Encoder: Register write forbidden or not implemented
        Info(USINT): Slot
  7058: Encoder: Alarm bit is set
        Info(USINT): Slot
@@ -323,24 +329,7 @@
        Info(REAL): Speed error
  7072: Encoder: Transfer time position exceeded
        Info(USINT): Slot
- 7073: Encoder: Multiturn failure
-       Info(USINT): Slot
- 7074: Encoder: SafeMOTION error
-       Info(USINT): Slot
- 7075: Encoder: Incorrect configuration encoder type
-       Info(USINT): Slot
- 7076: Encoder: Data transfer active
-       Info(UINT): Motor: Dataset index
- 7077: Encoder: Encoder evaluation blocked by the SafeMOTION configuration
-       Info(USINT): Slot
- 7078: Encoder: Intersegment communication failure
- 7079: Encoder: Internal Error
-       Info(UDINT): -
- 7080: Encoder: Error in the encoder communication
-       Info(USINT): Slot
  7100: Parameter function not supported. (Module ?)
- 7103: Not supported interface
-       Info(UDINT): Interface
  7200: DC bus: Overvoltage
  7210: DC bus: Pre-charging: Voltage unstable 
  7211: DC bus: Voltage dip
@@ -370,7 +359,6 @@
  7228: DC bus: Nominal voltage detection: High inrush current
        Info(REAL): Voltage boost factor
  7229: Chopper: Overcurrent
- 7230: DC bus: measurement site 2 out of bounds
  7300: Digital IO: IO Configuration invalid
        Info(UINT): Slot
  7401: Parameter position exceeds maximum data length
@@ -387,7 +375,6 @@
  8007: Value of EEPROM parameter is not valid
        Info(UINT): EEPROM Parameter ID
  8011: EPROM: Data not valid
-       Info(UDINT): CODE
  8012: EPROM: Controller-ID not valid
        Info(USINT): CODE
  8013: EPROM: CRC error
@@ -396,6 +383,8 @@
  9000: Heatsink temperature sensor: Stop limit exceeded
        Info(REAL): Temperature limit
  9001: Heatsink temperature sensor: Switch off limit exceeded
+       Info(REAL): Temperature limit
+ 9002: Heatsink temperature sensor: Not connected or damaged
        Info(REAL): Temperature limit
  9003: Heatsink temperature sensor: Not connected or destroyed
        Info(REAL): Temperature limit
@@ -485,10 +474,6 @@
        Info(REAL): Temperature
  9105: DC connector temperature model: Switch off limit exceeded
        Info(REAL): Temperature
- 9106: Power stage: Temperature sensor: Stop limit exceeded
-       Info(UINT): sensor
- 9107: Power stage: Temperature sensor: Stop limit exceeded
-       Info(UINT): sensor
  9300: Current controller: Overcurrent
        Info(REAL): Limit
  9302: Current controller: Cycle time invalid
@@ -1282,205 +1267,194 @@
        Info(UDINT): EPC
 33007: Violation address
        Info(UDINT): ADDR
-35000: SMC FS: Internal error, Program flow
+35000: SMC Fail Safe: Internal error, Program flow
        Info(UDINT): Switch ID
-35001: SMC FS: Internal error, NULL pointer access
+35001: SMC Fail Safe: Internal error, NULL pointer access
        Info(UDINT): Pointer ID
-35002: SMC FS: Internal error, SPI transfer
+35002: SMC Fail Safe: Internal error, SPI transfer
        Info(UDINT): Additional info
-35003: SMC FS: Internal error, MFW NVM data memory
-35004: SMC FS: Internal error, Communication EnDat Master
+35003: SMC Fail Safe: Internal error, MFW NVM data memory
+35004: SMC Fail Safe: Internal error, Communication EnDat Master
        Info(UDINT): Additional info
-35005: SMC FS: Internal error, Communication ACOPOS
+35005: SMC Fail Safe: Internal error, Communication ACOPOS
        Info(UDINT): Additional info
-35006: SMC FS: Internal error, Communication Encoder
+35006: SMC Fail Safe: Internal error, Communication Encoder
        Info(UDINT): Additional info
-35007: SMC FS: Module/compensation data is incompatible!
+35007: SMC Fail Safe: Module/compensation data is incompatible!
        Info(UDINT): Additional info
-35008: SMC FS: CRC of the module/compensation data is not correct!
+35008: SMC Fail Safe: CRC of the module/compensation data is not correct!
        Info(UDINT): Additional info
-35009: SMC FS: SOS and STO not connected but needed for RSP
-35010: SMC FS: Internal error, Axis index out of range
-       Info(UDINT): Pointer ID
-35011: SMC FS: Internal error, Function parameter out of range
-       Info(UDINT): 
-35016: SMC FS: Internal error, Cross communication of checkpoints
+35009: SMC Fail Safe: SOS and STO not connected but needed for RSP
+35016: SMC Fail Safe: Internal error, Cross communication of checkpoints
        Info(UDINT): Checkpoint ID
-35017: SMC FS: Internal error, Cross communication of status word
+35017: SMC Fail Safe: Internal error, Cross communication of status word
        Info(UDINT): Statusword
-35018: SMC FS: Internal error, Cross communication of output state 
+35018: SMC Fail Safe: Internal error, Cross communication of output state 
        Info(UDINT): Output state
-35019: SMC FS: Internal error, Cross communication of EnDat position
+35019: SMC Fail Safe: Internal error, Cross communication of EnDat position
        Info(UDINT): EnDat position
-35020: SMC FS: Internal error, Cross communication of EnDat error register
+35020: SMC Fail Safe: Internal error, Cross communication of EnDat error register
        Info(UDINT): EnDat error register
-35021: SMC FS: Internal error, Cross communication of Encoder state machine
+35021: SMC Fail Safe: Internal error, Cross communication of Encoder state machine
        Info(UDINT): EnDat state machine
-35022: SMC FS: Internal error, Cross communication of EnDat state machine
+35022: SMC Fail Safe: Internal error, Cross communication of EnDat state machine
        Info(UDINT): EnDat state machine
-35023: SMC FS: Internal error, Cross communication of EnDat state machine
+35023: SMC Fail Safe: Internal error, Cross communication of EnDat state machine
        Info(UDINT): EnDat state machine
-35024: SMC FS: "EUS - Units per count of physical reference system" invalid
-35025: SMC FS: "EUS - Maximum speed to normalize speed range" invalid
-35026: SMC FS: EUS - Encoder resolution too low
-35027: SMC FS: EUS - Encoder resolution too high
-35028: SMC FS: EUS - Units resolution too high
-35029: SMC FS: EUS - One unit is shorter than one nm
-35030: SMC FS: Encoder mismatch - Configuration data changed several times
-35031: SMC FS: Encoder mismatch - Configuration data changed
-35032: SMC FS: Wrong parameterization
+35024: SMC Fail Safe: Encoder configuration - Units per number of revolution invalid
+35025: SMC Fail Safe: Encoder configuration - Normalized maximal speed invalid
+35026: SMC Fail Safe: Encoder configuration - Encoder resolution too low
+35027: SMC Fail Safe: Encoder configuration - Encoder resolution too high
+35028: SMC Fail Safe: Encoder configuration - Units resolution too high
+35029: SMC Fail Safe: Encoder configuration - One unit is shorter than one nm
+35030: SMC Fail Safe: Encoder mismatch - Configuration data changed several times
+35031: SMC Fail Safe: Encoder mismatch - Configuration data changed
+35032: SMC Fail Safe: Wrong parameterization
        Info(UDINT): Additional info
-35033: SMC FS: Module cycle time is not valid 
-35034: SMC FS: Parameterization - Deceleration ramp is too steep
-35035: SMC FS: Internal state machine is in Fail Safe State
-35036: SMC FS: Deactivated safety function was requested
-35037: SMC FS: SMS - Speed limit is out of range
-35038: SMC FS: SLS1 - Speed limit is out of range
-35039: SMC FS: SLS2 - Speed limit is out of range
-35040: SMC FS: SLS3 - Speed limit is out of range
-35041: SMC FS: SLS4 - Speed limit is out of range
-35042: SMC FS: Standstill speed limit is out of range
-35043: SMC FS: SLS1 - Speed limit violates the configuration instruction
-35044: SMC FS: SLS2 - Speed limit violates the configuration instruction
-35045: SMC FS: SLS3 - Speed limit violates the configuration instruction
-35046: SMC FS: SLS4 - Speed limit violates the configuration instruction
-35047: SMC FS: Standstill Speed limit violates the configuration instruction
-35048: SMC FS: Violation of parameter limits
+35033: SMC Fail Safe: Module cycle time is not valid 
+35034: SMC Fail Safe: Parameterization - Deceleration ramp is too steep
+35035: SMC Fail Safe: Internal state machine is in Fail Safe State
+35036: SMC Fail Safe: Deactivated safety function was requested
+35037: SMC Fail Safe: SMS - Speed limit is out of range
+35038: SMC Fail Safe: SLS1 - Speed limit is out of range
+35039: SMC Fail Safe: SLS2 - Speed limit is out of range
+35040: SMC Fail Safe: SLS3 - Speed limit is out of range
+35041: SMC Fail Safe: SLS4 - Speed limit is out of range
+35042: SMC Fail Safe: Standstill speed limit is out of range
+35043: SMC Fail Safe: SLS1 - Speed limit violates the configuration instruction
+35044: SMC Fail Safe: SLS2 - Speed limit violates the configuration instruction
+35045: SMC Fail Safe: SLS3 - Speed limit violates the configuration instruction
+35046: SMC Fail Safe: SLS4 - Speed limit violates the configuration instruction
+35047: SMC Fail Safe: Standstill Speed limit violates the configuration instruction
+35048: SMC Fail Safe: Violation of parameter limits
        Info(UDINT): Additional info
-35049: SMC FS: SMP is used but Homing was not configured
-35050: SMC FS: SMP - Lower position limit is greater or equal than upper limit
-35051: SMC FS: SLP is used but Homing was not configured
-35052: SMC FS: SLP - Lower position limit is greater or equal than upper limit
-35053: SMC FS: SLP - Position window outside SMP position window
-35054: SMC FS: SMP - Tolerance is greater than SMP position window
-35055: SMC FS: SLP - Tolerance is greater than SLP position window
-35056: SMC FS: Value of Deceleration ramp is out of range
-35068: SMC FS: "Homing - Maximum trigger speed" is out of range 
-35069: SMC FS: Homing - Ref Switch: No reference switch connected
-35070: SMC FS: Homing - Home Offset: No absolute encoder connected
-35071: SMC FS: Homing - Home Offset with Correction: SMP not configured
-35072: SMC FS: Homing - SMP window is greater than safe absolute encoder range
-35073: SMC FS: Homing - SLP window is greater than safe absolute encoder range
-35074: SMC FS: Homing - Encoder doesn't support a safe reference pulse
-35075: SMC FS: Homing - Speed tolerance is out of range
-35076: SMC FS: Homing - reference pulse : Max. trigger speed is too big 
-35077: SMC FS: Homing - Function is requested but not configured
-35078: SMC FS: Homing - RefSwitch bit is set but not configured
-35079: SMC FS: Homing - Position is out of SMP window
-35080: SMC FS: Homing - Direct with reference pulse: Not supported
-35081: SMC FS: Internal error, Cross communication of output signals
+35049: SMC Fail Safe: SMP is used but Homing was not configured
+35050: SMC Fail Safe: SMP - Lower position limit is greater or equal than upper limit
+35051: SMC Fail Safe: SLP is used but Homing was not configured
+35052: SMC Fail Safe: SLP - Lower position limit is greater or equal than upper limit
+35053: SMC Fail Safe: SLP - Position window outside SMP position window
+35054: SMC Fail Safe: SMP - Tolerance is greater than SMP position window
+35055: SMC Fail Safe: SLP - Tolerance is greater than SLP position window
+35056: SMC Fail Safe: Value of Deceleration ramp is out of range
+35068: SMC Fail Safe: Homing - Max. trigger speed is out of range 
+35069: SMC Fail Safe: Homing - Ref Switch: No reference switch connected
+35070: SMC Fail Safe: Homing - Home Offset: No absolute encoder connected
+35071: SMC Fail Safe: Homing - Home Offset with Correction: SMP not configured
+35072: SMC Fail Safe: Homing - SMP window is greater than safe absolute encoder range
+35073: SMC Fail Safe: Homing - SLP window is greater than safe absolute encoder range
+35074: SMC Fail Safe: Homing - Encoder doesn't support a safe reference pulse
+35075: SMC Fail Safe: Homing - Speed tolerance is out of range
+35076: SMC Fail Safe: Homing - reference pulse : Max. trigger speed is too big 
+35077: SMC Fail Safe: Homing - Function is requested but not configured
+35078: SMC Fail Safe: Homing - RefSwitch bit is set but not configured
+35079: SMC Fail Safe: Homing - Position is out of SMP window
+35080: SMC Fail Safe: Homing - Direct with reference pulse: Not supported
+35081: SMC Fail Safe: Internal error, Cross communication of output signals
        Info(UDINT): Output signals
-35082: SMC FS: Internal error, Cross communication of output state machine
+35082: SMC Fail Safe: Internal error, Cross communication of output state machine
        Info(UDINT): Output state machine
-35084: SMC FS: Program error in PreOperational state
+35084: SMC Fail Safe: Program error in PreOperational state
        Info(UDINT): Checkpoint
-35085: SMC FS: Safe output - Stuck at high detected
+35085: SMC Fail Safe: Safe output - Stuck at high detected
        Info(UDINT): Output signal
-35086: SMC FS: Safe output - Test state has changed
+35086: SMC Fail Safe: Safe output - Test state has changed
        Info(UDINT): Output state
-35087: SMC FS: Encoder - Speed limit exceeded
+35087: SMC Fail Safe: Encoder - Speed limit exceeded
        Info(DINT): Actual speed [inc/cycle]
-35088: SMC FS: Encoder - Acceleration limit exceeded
+35088: SMC Fail Safe: Encoder - Acceleration limit exceeded
        Info(DINT): Actual acceleration [inc/cycle^2]
-35091: SMC FS: Encoder mismatch detected
+35091: SMC Fail Safe: Encoder mismatch detected
        Info(UDINT): Additional info
-35092: SMC FS: Internal error, Lockbit set
+35092: SMC Fail Safe: Internal error, Lockbit set
        Info(UDINT): Lockbits
-35093: SMC FS: Velocity error tolerance too large
-35094: SMC FS: Lag error tolerance too large
-35095: SMC FS: Encoder - Configuration error
+35093: SMC Fail Safe: Velocity error tolerance too large
+35094: SMC Fail Safe: Lag error tolerance too large
+35095: SMC Fail Safe: Encoder - Configuration error
        Info(UDINT): Additional info
-35096: SMC FS: Homing - Configuration error
+35096: SMC Fail Safe: Homing - Configuration error
        Info(UDINT): Additional info
-35097: SMC FS: Internal error, Invalid current sensor resolution
+35097: SMC Fail Safe: Internal error, Invalid current sensor resolution
        Info(UDINT): Additional info
-35098: SMC FS: Internal error, Invalid current sensor measurement range
-35099: SMC FS: Internal error, Current values sum not plausible
-35100: SMC FS: Internal error, Cross communication of stator current vector
+35098: SMC Fail Safe: Internal error, Invalid current sensor measurement range
+35099: SMC Fail Safe: Internal error, Current values sum not plausible
+35100: SMC Fail Safe: Internal error, Cross communication of stator current vector
        Info(UDINT): Additional info
-35101: SMC FS: Internal error, Cross communication of current vector angle
+35101: SMC Fail Safe: Internal error, Cross communication of current vector angle
        Info(UDINT): Additional info
-35102: SMC FS: Internal error, Cross communication of the status register IPWM
+35102: SMC Fail Safe: Internal error, Cross communication of the status register IPWM
        Info(UDINT): Additional info
-35103: SMC FS: Internal error, Cross communication FPGACom state machine
+35103: SMC Fail Safe: Internal error, Cross communication FPGACom state machine
        Info(UDINT): Additional info
-35104: SMC FS: Internal error, FPGA communication
+35104: SMC Fail Safe: Internal error, FPGA communication
        Info(UDINT): Additional info
-35105: SMC FS: Internal error, FPGA SinCos - Reference voltage Channel A
+35105: SMC Fail Safe: Internal error, FPGA SinCos - Reference voltage Channel A
        Info(UDINT): Additional info
-35106: SMC FS: Internal error, FPGA SinCos - Reference voltage Channel B
+35106: SMC Fail Safe: Internal error, FPGA SinCos - Reference voltage Channel B
        Info(UDINT): Additional info
-35107: SMC FS: Internal error, FPGA SinCos - Configuration
+35107: SMC Fail Safe: Internal error, FPGA SinCos - Configuration
        Info(UDINT): Additional info
-35108: SMC FS: Internal error, Hardware tests - Voltage monitoring
+35108: SMC Fail Safe: Internal error, Hardware tests - Voltage monitoring
        Info(UDINT): Additional info
-35109: SMC FS: Internal error, ADC compensation data - Flash validation
+35109: SMC Fail Safe: Internal error, ADC compensation data - Flash validation
        Info(UDINT): Additional info
-35110: SMC FS: Internal error, FPGA current measurement - ADC processing
+35110: SMC Fail Safe: Internal error, FPGA current measurement - ADC processing
        Info(UDINT): Additional info
-35111: SMC FS: Internal error, FPGA current measurement - Reference monitoring
+35111: SMC Fail Safe: Internal error, FPGA current measurement - Reference monitoring
        Info(UDINT): Additional info
-35112: SMC FS: Internal error, FPGA current measurement - Efficiency test
+35112: SMC Fail Safe: Internal error, FPGA current measurement - Efficiency test
        Info(UDINT): Additional info
-35113: SMC FS: Internal error, FPGA current measurement - Configuration
+35113: SMC Fail Safe: Internal error, FPGA current measurement - Configuration
        Info(UDINT): Additional info
-35114: SMC FS: Internal error, FPGA SinCos - Efficiency test
+35114: SMC Fail Safe: Internal error, FPGA SinCos - Efficiency test
        Info(UDINT): Additional info
-35115: SMC FS: SBT Parameterization - Current threshold too high
+35115: SMC Fail Safe: SBT Parameterization - Current threshold too high
        Info(UDINT): Additional info
-35116: SMC FS: SBT Parameterization - External load greater than threshold
-35117: SMC FS: SBT Parameterization - External load too small
+35116: SMC Fail Safe: SBT Parameterization - External load greater than threshold
+35117: SMC Fail Safe: SBT Parameterization - External load too small
        Info(UDINT): Additional info
-35118: SMC FS: Internal error, extended flashdata is wrong
-       Info(UDINT): Additional info
-35119: SMC FS: SBT Parameterization - External load too high
+35119: SMC Fail Safe: SBT Parameterization - External load too high
        Info(UDINT): Additional info
 35120: SMC FS: Homing - S_SwitchHomingMode is set but not connected
 35121: SMC FS: Homing - S_SwitchHomingMode is connected but ReqHoming not
 35122: SMC FS: Homing - S_SwitchHomingMode connection and configuration not conform
-35123: SMC FS: Internal error, Cross communication of RSP receive data frame
+35123: SMC Fail Safe: Internal error, Cross communication of RSP receive data frame
        Info(UDINT): Additional info
-35124: SMC FS: Internal error, Cross communication of RSP send data frame
+35124: SMC Fail Safe: Internal error, Cross communication of RSP send data frame
        Info(UDINT): Additional info
-35125: SMC FS: RSP - Save operation failed
+35125: SMC Fail Safe: RSP - Save operation failed
        Info(UDINT): Additional info
-35126: SMC FS: RSP - Homing, SOS position tolerance too big
-35127: SMC FS: Internal error, Invalid current sensor measurement offset
-35128: SMC FS: Internal error, Sigma delta conversion is not plausible
-35129: SMC FS: Internal error, gain and offset corrected current out of range
-35150: SMC FS: Additional safety parameters: Disbld. function enable bit is set
+35126: SMC Fail Safe: RSP - Homing, SOS position tolerance too big
+35151: SMC Fail Safe: Additional safety parameters: Placeholder enable bit is set
        Info(UDINT): Additional info
-35151: SMC FS: Additional safety parameters: Placeholder enable bit is set
-       Info(UDINT): Additional info
-35152: SMC FS: Additional safety parameters: Invalid payload size
+35152: SMC Fail Safe: Additional safety parameters: Invalid payload size
        Info(UDINT): Additional info
 35153: SMC: Interner error, CUnit test
-35154: SMC FS: Additional safety parameters: Invalid structure size
+35154: SMC Fail Safe: Additional safety parameters: Invalid structure size
        Info(UDINT): Additional info
-35155: SMC FS: Received data for additional safety parameters too big
+35155: SMC Fail Safe: Received data for additional safety parameters too big
        Info(UDINT): Additional info
-35156: SMC FS: CRC chekc of the additional safety parameters failed
+35156: SMC Fail Safe: CRC chekc of the additional safety parameters failed
        Info(UDINT): Additional info
-35161: SMC FS: Incompatible parameter structure
+35161: SMC Fail Safe: Incompatible parameter structure
        Info(UDINT): Additional info
-35162: SMC FS: Incompatible axis type
+35162: SMC Fail Safe: Incompatible axis type
        Info(UDINT): Additional info
-35163: SMC FS: Error in PreOperational function
+35163: SMC Fail Safe: Error in PreOperational function
        Info(UDINT): Additional info
-35164: SMC FS: Cross communication SinCos status during FPGA boot phase
+35164: SMC Fail Safe: Cross communication SinCos status during FPGA boot phase
        Info(UDINT): Additional info
-35165: SMC FS: Encoder not configured but needed for safety functions
-35166: SMC FS: Squared vector length too large
-35167: SMC FS: Cross communication vector control trigger counter
+35165: SMC Fail Safe: Encoder not configured but needed for safety functions
+35166: SMC Fail Safe: Squared vector length too large
+35167: SMC Fail Safe: Cross communication vector control trigger counter
        Info(UDINT): Additional info
-35170: SMC FS: SBT Current threshold too small
+35170: SMC Fail Safe: SBT Current threshold too small
        Info(UDINT): Additional info
-35171: SMC FS: Internal error while processing the additional paramters
+35171: SMC Fail Safe: Internal error while processing the additional paramters
        Info(UDINT): Additional info
-35172: SMC FS: Homing - RefSwitch is connected but ReqHoming not
-35173: SMC FS: Additional safety parameters: Invalid axis type ID
+35172: SMC Fail Safe: Homing - RefSwitch is connected but ReqHoming not
+35173: SMC Fail Safe: Additional safety parameters: Invalid axis type ID
        Info(UDINT): Additional info
-35174: SMC FS: Additional safety parameters: Invalid structure version
+35174: SMC Fail Safe: Additional safety parameters: Invalid structure version
 35175: SMC: Safely Limited Acceleration - Violation of the acceleration monitoring
        Info(DINT): Acceleration at the violation
 35176: SMC: Safe Brake Test - SBT: Timeout
@@ -1491,17 +1465,17 @@
        Info(UDINT): Additional info
 35180: SMC FFS: RSP - Homing, stored position invalid
        Info(UDINT): Additional info
-35181: SMC: Safe Brake Test - Rho has left the actual sector too early
+35181: SMC: Safe Brake Test - Rho has left the actual sector too erly
 35182: SMC: Safe Brake Test - Measured and parametrized external load differ
        Info(UDINT): Square of the actual stator current vector
 35183: SMC: Safe Brake Test - Current fell below parametrized test current threshold
        Info(UDINT): Square of the actual stator current vector
-35184: SMC FFS: Drift of raw positions between uP1 and uP2 to big
+35184: SMC Functional Fail Safe: Drift of raw positions between µP1 and µP2 to big
        Info(UDINT): Additional info
-35185: SMC FFS: internal error
-35186: SMC FFS: Encoder not ready
+35185: SMC Functional Fail Safe: internal error
+35186: SMC Functional Fail Safe: Encoder not ready
 35189: SMC: Safe Brake Test - Violation of the position tolerance
-35190: SMC FFS: Encoder error SinCos processing
+35190: SMC Functional Fail Safe: Encoder error SinCos processing
        Info(UDINT): Additional info
 35191: SMC: Safe Brake Test - Test interval elapsed, test required
 35192: SMC: Current sum exeeded tolerance range
@@ -1514,43 +1488,43 @@
        Info(DINT): Actual current [uA]
 35196: SMC: Compensation data incomplete
        Info(UDINT): Detail information
-35197: SMC FFS: SS2, SOS Violation of standstill position tolerance
-35198: SMC FFS: Encoder error was detected
-35199: SMC FFS: SDI - Violations of the safe direction
-35200: SMC FFS: SDI - Violation of the positive direction
-35201: SMC FFS: SDI - Violation of the negative direction
-35202: SMC FFS: SLI - Violation of standstill speed limit
-35203: SMC FFS: SLI - Violation of position window (increments)
-35204: SMC FFS: Violation of the actual speed limit
-35205: SMC FFS: Violation of the deceleration ramp
-35206: SMC FFS: SMS - Violation of the speed limit
-35207: SMC FFS: SOS - Violation of the speed limit
-35208: SMC FFS: SS2 - Violation of the speed limit
-35209: SMC FFS: SLS1 - Violation of the speed limit
-35210: SMC FFS: SLS2 - Violation of the speed limit
-35211: SMC FFS: SLS3 - Violation of the speed limit
-35212: SMC FFS: SLS4 - Violation of the speed limit
-35213: SMC FFS: Alive test of set position was not executed
-35214: SMC FFS: Warning on output was not acknowledged
-35215: SMC FFS: Alive test - Monitoring timeout
-35216: SMC FFS: SMP - Homing timeout exceeded
-35217: SMC FFS: SMP - Violation of the deceleration ramp
-35218: SMC FFS: SLP - Violation of the deceleration ramp
-35219: SMC FFS: SMP - Violation of lower SMP limit
-35220: SMC FFS: SMP - Violation of upper SMP limit
-35221: SMC FFS: SLP - Violation of lower SLP limit
-35222: SMC FFS: SLP - Violation of upper SLP limit
-35223: SMC FFS: SMP - Movement in neg. direction outside SMP limit
-35224: SMC FFS: SMP - Movement in pos. direction outside SMP limit
-35225: SMC FFS: SLP requested, axis is not homed yet
-35226: SMC FFS: SMP, SLP - Internal error
-35227: SMC FFS: SMP, SLP - INT32 overflow of S_SafePosition
-35228: SMC FFS: Homing - Timeout elapsed
-35229: SMC FFS: Homing - Standstill Speed tolerance violated
-35230: SMC FFS: Homing reference pulse - Max. trigger speed exceeded
-35231: SMC FFS: Homing - Movement invalid
-35232: SMC FFS: Homing offset - Position outside INT32 range
-35233: SMC FFS: Homing offset - Violation of safe encoder range
+35197: SMC Functional Fail Safe: SS2, SOS Violation of standstill position tolerance
+35198: SMC Functional Fail Safe: Encoder error was detected
+35199: SMC Functional Fail Safe: SDI - Violations of the safe direction
+35200: SMC Functional Fail Safe: SDI - Violation of the positive direction
+35201: SMC Functional Fail Safe: SDI - Violation of the negative direction
+35202: SMC Functional Fail Safe: SLI - Violation of standstill speed limit
+35203: SMC Functional Fail Safe: SLI - Violation of position window (increments)
+35204: SMC Functional Fail Safe: Violation of the actual speed limit
+35205: SMC Functional Fail Safe: Violation of the deceleration ramp
+35206: SMC Functional Fail Safe: SMS - Violation of the speed limit
+35207: SMC Functional Fail Safe: SOS - Violation of the speed limit
+35208: SMC Functional Fail Safe: SS2 - Violation of the speed limit
+35209: SMC Functional Fail Safe: SLS1 - Violation of the speed limit
+35210: SMC Functional Fail Safe: SLS2 - Violation of the speed limit
+35211: SMC Functional Fail Safe: SLS3 - Violation of the speed limit
+35212: SMC Functional Fail Safe: SLS4 - Violation of the speed limit
+35213: SMC Functional Fail Safe: Alive test of set position was not executed
+35214: SMC Functional Fail Safe: Warning on output was not acknowledged
+35215: SMC Functional Fail Safe: Alive test - Monitoring timeout
+35216: SMC Functional Fail Safe: SMP - Homing timeout exceeded
+35217: SMC Functional Fail Safe: SMP - Violation of the deceleration ramp
+35218: SMC Functional Fail Safe: SLP - Violation of the deceleration ramp
+35219: SMC Functional Fail Safe: SMP - Violation of lower SMP limit
+35220: SMC Functional Fail Safe: SMP - Violation of upper SMP limit
+35221: SMC Functional Fail Safe: SLP - Violation of lower SLP limit
+35222: SMC Functional Fail Safe: SLP - Violation of upper SLP limit
+35223: SMC Functional Fail Safe: SMP - Movement in neg. direction outside SMP limit
+35224: SMC Functional Fail Safe: SMP - Movement in pos. direction outside SMP limit
+35225: SMC Functional Fail Safe: SLP requested, axis is not homed yet
+35226: SMC Functional Fail Safe: SMP, SLP - Internal error
+35227: SMC Functional Fail Safe: SMP, SLP - INT32 overflow of S_SafePosition
+35228: SMC Functional Fail Safe: Homing - Timeout elapsed
+35229: SMC Functional Fail Safe: Homing - Standstill Speed tolerance violated
+35230: SMC Functional Fail Safe: Homing reference pulse - Max. trigger speed exceeded
+35231: SMC Functional Fail Safe: Homing - Movement invalid
+35232: SMC Functional Fail Safe: Homing offset - Position outside INT32 range
+35233: SMC Functional Fail Safe: Homing offset - Violation of safe encoder range
 35234: SMC: Encoder mismatch - Length of encoder configuration data changed 
 35235: SMC: Encoder mismatch - Serial number of encoder changed 
 35236: SMC: Encoder mismatch - Version changed or no encoder data stored
@@ -1558,13 +1532,13 @@
        Info(UDINT): Additional info
 35238: SMC: Encoder - EnDat Master state error register is set
        Info(UDINT): Status register
-35239: SMC FFS: Homing failed
+35239: SMC Functional Fail Safe: Homing failed
        Info(UDINT): Additional info
-35240: SMC FFS: Violation of safety function
+35240: SMC Functional Fail Safe: Violation of safety function
        Info(UDINT): Additional info
-35241: SMC FFS: Function block switched back into IDLE state
+35241: SMC Functional Fail Safe: Function block switched back into IDLE state
        Info(UDINT): Additional info
-35243: SMC FFS: Safe output - Teststate has changed
+35243: SMC Functional Fail Safe: Safe output - Teststate has changed
        Info(UDINT): Output state
 35244: SMC: Encoder - Received position not valid
        Info(UDINT): Additional info
@@ -1587,14 +1561,12 @@
        Info(UDINT): Additional info
 35254: SMC: Encoder - Length of physical reference system too large
        Info(UDINT): Additional info
-35255: SMC FS: Encoder - Acceleration limit exceeded
+35255: SMC Fail Safe: Encoder - Acceleration limit exceeded
 35504: SMC FFS: RSP - Homing, INT32 overflow of S_SafePosition
        Info(UDINT): Additional info
 35506: SMC FFS: RSP - Homing, Positional change during power off too big
        Info(UDINT): Additional info
 35507: SMC FFS: RSP - Homing, Config changed
-       Info(UDINT): Additional info
-35508: SMC FFS: Internal error, FPGA communication
        Info(UDINT): Additional info
 35509: SMC FFS: RSP - Homing, CRC error while receiving the remanent safe position
        Info(UDINT): Additional info
@@ -1613,11 +1585,11 @@
        Info(USINT): State index
 37108: Calculated compensation distance of master axis limited to minimum
        Info(USINT): State index
-37111: Cam data: Difference between polynomial value y(xn) and slave period
+37111: Cam profile data: Difference between polynomial value y(xn) and slave period
        Info(REAL): Difference
-37112: Polynomial within cam data exceeds limit value
+37112: Polynomial within cam profile data exceeds limit value
        Info(UINT): Detail
-37113: Compensation gear: Limit values exceeded
+37113: Cam profile compensation gears: Limit values exceeded
        Info(USINT): State index
 38000: Current controller: Motor speed is too high during switching on
 38001: Torque limiter: Limit value higher than maximum value
@@ -1730,22 +1702,6 @@
        Info(USINT): Slot
 39051: Encoder: Hiperface error bit
        Info(USINT): Slot
-39052: Encoder: Measurement range exceeded
-       Info(USINT): Slot
-39053: Encoder: Internal check of the encoder interface failed
-       Info(USINT): Slot
-39054: Encoder: Invalid supply voltage
-       Info(USINT): Slot
-39055: Encoder: Incremental signal amplitude too small
-       Info(USINT): Slot
-39056: Encoder: Incremental signal amplitude too large
-       Info(USINT): Slot
-39059: Encoder: Status message
-       Info(UDINT): Status code
-39060: Encoder: Sync bit error
-       Info(USINT): Slot
-39061: Encoder: UART Transmission error
-       Info(USINT): Slot
 39301: Digital IO: 24V power supply fail
        Info(UINT): Slot
 39302: Digital IO 1-4: Diagnose bit active (current, 24V supply)
@@ -1824,8 +1780,6 @@
        Info(USINT): Slot
 41001: Heatsink temperature sensor: Warning limit exceeded
        Info(REAL): Heatsink temperature
-41002: Heatsink temperature sensor: Not connected or damaged
-       Info(REAL): Temperature limit
 41011: Temperature sensor (Motor|Choke|External): Warning limit exceeded
        Info(REAL): Temperature
 41031: Junction temperature model: Warning limit exceeded
@@ -1868,8 +1822,6 @@
        Info(REAL): Load limit
 41097: DC connector temperature model: Warning limit exceeded
        Info(REAL): Temperature
-41098: Power stage: Temperature sensor: Warning limit exceeded
-       Info(UINT): sensor
 64002: Delay before SW Reset (network with ascending node numbers ?)
 64003: Delay before NC System Start (network with ascending node numbers ?)
 64004: The following boot error could be entered here with a delay

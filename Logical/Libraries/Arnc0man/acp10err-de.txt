@@ -48,6 +48,7 @@
  1001: Fehler-FIFO Überlauf
  1002: Parameter nicht im gültigen Wertebereich
  1003: Parameter schreiben bei aktiver Regelung nicht erlaubt
+ 1004: Timeout bei Netzwerk-Lebensüberwachung
  1005: Parameter schreiben bei aktiver Bewegung nicht erlaubt
  1006: Ungültiger Parameter für Trigger-Ereignis (Digital-Eingang + Flanke)
  1008: Master für Netzwerk-Kopplung deaktiviert - Geberfehler
@@ -127,8 +128,11 @@
  5038: Referenzier-Modus nicht möglich: Restore-Daten ungültig
        Info(UINT): Detail
  5039: Funktion nicht möglich: Geberfehler
+ 5040: Ruckbegrenzer: Zu viele Beschleunigungsänderungen - Bewegungs-Abbruch
+ 5041: Ruckbegrenzer: Kommando nicht erlaubt
+ 5042: Ruckbegrenzer: Zu viele Beschleunigungsänd. - Kommando nicht möglich
  5043: Referenzieren nicht möglich: Kompensation aktiv
- 5101: Ausgleichsgetriebe: Grenzwerte überschritten
+ 5101: Kurvenscheiben-Ausgleichsgetriebe: Grenzwerte überschritten
        Info(USINT): Zustands-Index
  5102: Zu viele Kurvenwechsel pro Zyklus (Masterperiode zu kurz)
        Info(USINT): Zustands-Index
@@ -226,7 +230,7 @@
  7012: Geber: Hiperface Error Bit
        Info(USINT): Slot
  7013: Geber: Statusmeldung
-       Info(UDINT): Statuscode
+       Info(USINT): Statuscode
  7014: Geber: CRC Fehler beim Parameter übertragen
        Info(USINT): Slot
  7015: Geber: Timeout Fehler beim Parameter übertragen
@@ -291,7 +295,9 @@
        Info(USINT): Slot
  7055: Geber: Ungueltiger Inhalttyp 'Frameende'
        Info(USINT): Slot
- 7057: Geber: Register Lese/Schreibzugriff nicht erlaubt/implementiert
+ 7056: Geber: Register Lesezugriff nicht erlaubt/implementiert
+       Info(USINT): Slot
+ 7057: Geber: Register Schreibzugriff nicht erlaubt/implementiert
        Info(USINT): Slot
  7058: Geber: Alarmbit ist gesetzt
        Info(USINT): Slot
@@ -323,24 +329,7 @@
        Info(REAL): Geschwindigkeitsfehler
  7072: Geber: Übertragungszeit für Position überschritten
        Info(USINT): Slot
- 7073: Geber: Multiturnfehler
-       Info(USINT): Slot
- 7074: Geber: SafeMOTION Fehler
-       Info(USINT): Slot
- 7075: Geber: Konfiguration Gebertyp fehlerhaft
-       Info(USINT): Slot
- 7076: Geber: Datenübertragung aktiv
-       Info(UINT): Motor: Datensatz-Index
- 7077: Geber: Geberauswertung durch SafeMOTION Konfiguration blockiert
-       Info(USINT): Slot
- 7078: Geber: Intersegmentkommunikation ausgefallen
- 7079: Geber: Interner Fehler
-       Info(UDINT): -
- 7080: Geber: Fehler in der Geberkommunikation
-       Info(USINT): Slot
  7100: Parameterfunktion wird nicht unterstützt. (Einsteckkarte ?)
- 7103: Nicht unterstützte Schnittstelle
-       Info(UDINT): Schnittstelle
  7200: Zwischenkreis: Überspannung
  7210: Zwischenkreis: Vorladen: Spannung instabil 
  7211: Zwischenkreis: Spannungseinbruch
@@ -370,7 +359,6 @@
  7228: Zwischenkreis: Nennspannungserkennung: Hoher Einschaltstrom
        Info(REAL): Spannungsanstiegsverhältnis
  7229: Chopper: Überstrom
- 7230: Zwischenkreis: Bereichsverletzung an Messstelle 2 
  7300: Digital IO: Ungültige IO Konfiguration
        Info(UINT): Slot
  7401: Parameterposition überschreitet maximale Datenlänge
@@ -387,7 +375,6 @@
  8007: Wert des EEPROM-Parameters ist ungültig 
        Info(UINT): EEPROM Parameter-ID
  8011: EPROM: Daten nicht gültig
-       Info(UDINT): CODE
  8012: EPROM: Controller-ID nicht gültig
        Info(USINT): CODE
  8013: EPROM: CRC Fehler
@@ -396,6 +383,8 @@
  9000: Kühler-Temperatursensor: Abbruchgrenze überschritten
        Info(REAL): Grenztemperatur
  9001: Kühler-Temperatursensor: Ausschaltgrenze überschritten
+       Info(REAL): Grenztemperatur
+ 9002: Kühler-Temperatursensor: Nicht angeschlossen oder zerstört
        Info(REAL): Grenztemperatur
  9003: Kühler-Temperatursensor: Nicht angeschlossen oder zerstört
        Info(REAL): Grenztemperatur
@@ -485,10 +474,6 @@
        Info(REAL): Temperatur
  9105: DC-Anschluss-Temperaturmodell: Ausschaltgrenze überschritten
        Info(REAL): Temperatur
- 9106: Leistungsteil: Temperatursensor: Abbruchgrenze überschritten
-       Info(UINT): Sensor
- 9107: Leistungsteil: Temperatursensor: Abbruchgrenze überschritten
-       Info(UINT): Sensor
  9300: Stromregler: Überstrom
        Info(REAL): Grenzwert
  9302: Stromregler: Zykluszeit ungültig
@@ -1282,205 +1267,194 @@
        Info(UDINT): EPC
 33007: Violation address
        Info(UDINT): ADDR
-35000: SMC FS: Interner Fehler, Progammablauf
+35000: SMC Fail Safe: Interner Fehler, Progammablauf
        Info(UDINT): Switch ID
-35001: SMC FS: Interner Fehler, NULL Pointerzugriff
+35001: SMC Fail Safe: Interner Fehler, NULL Pointerzugriff
        Info(UDINT): Pointer ID
-35002: SMC FS: Interner Fehler, SPI Übertragung
+35002: SMC Fail Safe: Interner Fehler, SPI Übertragung
        Info(UDINT): Zusatzinfo
-35003: SMC FS: Interner Fehler, MFW NVM Datenspeicher
-35004: SMC FS: Interner Fehler, Kommunikation EnDat Master
+35003: SMC Fail Safe: Interner Fehler, MFW NVM Datenspeicher
+35004: SMC Fail Safe: Interner Fehler, Kommunikation EnDat Master
        Info(UDINT): Zusatzinfo
-35005: SMC FS: Interner Fehler, Kommunikation ACOPOS
+35005: SMC Fail Safe: Interner Fehler, Kommunikation ACOPOS
        Info(UDINT): Zusatzinfo
-35006: SMC FS: Interner Fehler, Kommunikation Geber
+35006: SMC Fail Safe: Interner Fehler, Kommunikation Geber
        Info(UDINT): Zusatzinfo
-35007: SMC FS: Moduldaten/Abgleichdaten sind inkompatibel!
+35007: SMC Fail Safe: Moduldaten/Abgleichdaten sind inkompatibel!
        Info(UDINT): Zusatzinfo
-35008: SMC FS: Fehlerhafte CRC der Moduldaten/Abgleichdaten!
+35008: SMC Fail Safe: Fehlerhafte CRC der Moduldaten/Abgleichdaten!
        Info(UDINT): Zusatzinfo
-35009: SMC FS: SOS und STO nicht verbunden obwohl für RSP benötigt
-35010: SMC FS: Interner Fehler, Achsindex ausserhalb des erlaubten Bereichs
-       Info(UDINT): Pointer ID
-35011: SMC FS: Interner Fehler, Funkt.-Parameter ausserhalb des erlaubten Bereichs
-       Info(UDINT): 
-35016: SMC FS: Interner Fehler, Kreuzkommunikation der Prüfpunkte
+35009: SMC Fail Safe: SOS und STO nicht verbunden obwohl für RSP benötigt
+35016: SMC Fail Safe: Interner Fehler, Kreuzkommunikation der Prüfpunkte
        Info(UDINT): Prüfpunkt ID
-35017: SMC FS: Interner Fehler, Kreuzkommunikation des Statusworts
+35017: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des Statusworts
        Info(UDINT): Statuswort
-35018: SMC FS: Interner Fehler, Kreuzkommunikation des Ausgangszustands
+35018: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des Ausgangszustands
        Info(UDINT): Ausgangszustand
-35019: SMC FS: Interner Fehler, Kreuzkommunikation der EnDat Position
+35019: SMC Fail Safe: Interner Fehler, Kreuzkommunikation der EnDat Position
        Info(UDINT): EnDat Position
-35020: SMC FS: Interner Fehler, Kreuzkommunikation des EnDat Fehlerregisters
+35020: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des EnDat Fehlerregisters
        Info(UDINT): EnDat Fehlerregister
-35021: SMC FS: Interner Fehler, Kreuzkommunikation des Encoder SSW
+35021: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des Encoder SSW
        Info(UDINT): EnDat SSW
-35022: SMC FS: Interner Fehler, Kreuzkommunikation des EnDat SSW
+35022: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des EnDat SSW
        Info(UDINT): EnDat SSW
-35023: SMC FS: Interner Fehler, Kreuzkommunikation des EnDat SSW
+35023: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des EnDat SSW
        Info(UDINT): EnDat SSW
-35024: SMC FS: "EUS - Units per count of physical reference system" ungültig
-35025: SMC FS: "EUS - Maximum speed to normalize speed range" ungültig
-35026: SMC FS: EUS - Geberauflösung zu klein
-35027: SMC FS: EUS - Geberauflösung zu groß
-35028: SMC FS: EUS - Einheitenauflösung zu groß
-35029: SMC FS: EUS - Eine Einheit ist kürzer als ein nm
-35030: SMC FS: Gebertausch - Konfigurationsdaten wurden mehrmals geändert
-35031: SMC FS: Gebertausch - Konfigurationsdaten wurden geändert
-35032: SMC FS: Falsche Parametrierung
+35024: SMC Fail Safe: Geberkonfiguration - Einheiten pro Anzahl Umdrehungen ungültig
+35025: SMC Fail Safe: Geberkonfiguration - Normierte Maximalgeschwindigkeit ungültig
+35026: SMC Fail Safe: Geberkonfiguration - Geberauflösung zu klein
+35027: SMC Fail Safe: Geberkonfiguration - Geberauflösung zu groß
+35028: SMC Fail Safe: Geberkonfiguration - Einheitenauflösung zu groß
+35029: SMC Fail Safe: Geberkonfiguration - Eine Einheit ist kürzer als ein nm
+35030: SMC Fail Safe: Gebertausch - Konfigurationsdaten wurden mehrmals geändert
+35031: SMC Fail Safe: Gebertausch - Konfigurationsdaten wurden geändert
+35032: SMC Fail Safe: Falsche Parametrierung
        Info(UDINT): Zusatzinfo
-35033: SMC FS: Modul Zyklus Zeit ist ungültig
-35034: SMC FS: Parametrierung - Verzögerungsrampe ist zu steil
-35035: SMC FS: Interne Statemachine befindet sich im Zustand Fail Safe 
-35036: SMC FS: Deaktivierte Sicherheitsfunktion wurde angefordert
-35037: SMC FS: SMS - Geschwindigkeitsgrenze außerhalb des gültigen Bereichs
-35038: SMC FS: SLS1 - Geschwindigkeitsgrenze außerhalb des gültigen Bereichs
-35039: SMC FS: SLS2 - Geschwindigkeitsgrenze außerhalb des gültigen Bereichs
-35040: SMC FS: SLS3 - Geschwindigkeitsgrenze außerhalb des gültigen Bereichs
-35041: SMC FS: SLS4 - Geschwindigkeitsgrenze außerhalb des gültigen Bereichs
-35042: SMC FS: Stillstandsgeschw.-Grenze außerhalb des gültigen Bereichs
-35043: SMC FS: SLS1 - Geschwindigkeitsgrenze verletzt Konfigurationsvorschrift
-35044: SMC FS: SLS2 - Geschwindigkeitsgrenze verletzt Konfigurationsvorschrift
-35045: SMC FS: SLS3 - Geschwindigkeitsgrenze verletzt Konfigurationsvorschrift
-35046: SMC FS: SLS4 - Geschwindigkeitsgrenze verletzt Konfigurationsvorschrift
-35047: SMC FS: Stillstandsgeschw.-Grenze verletzt Konfigurationsvorschrift
-35048: SMC FS: Überschreitung von Parametergrenzwerten
+35033: SMC Fail Safe: Modul Zyklus Zeit ist ungültig
+35034: SMC Fail Safe: Parametrierung - Verzögerungsrampe ist zu steil
+35035: SMC Fail Safe: Interne Statemachine befindet sich im Zustand Fail Safe 
+35036: SMC Fail Safe: Deaktivierte Sicherheitsfunktion wurde angefordert
+35037: SMC Fail Safe: SMS - Geschwindigkeitsgrenze außerhalb des gültigen Bereichs
+35038: SMC Fail Safe: SLS1 - Geschwindigkeitsgrenze außerhalb des gültigen Bereichs
+35039: SMC Fail Safe: SLS2 - Geschwindigkeitsgrenze außerhalb des gültigen Bereichs
+35040: SMC Fail Safe: SLS3 - Geschwindigkeitsgrenze außerhalb des gültigen Bereichs
+35041: SMC Fail Safe: SLS4 - Geschwindigkeitsgrenze außerhalb des gültigen Bereichs
+35042: SMC Fail Safe: Stillstandsgeschw.-Grenze außerhalb des gültigen Bereichs
+35043: SMC Fail Safe: SLS1 - Geschwindigkeitsgrenze verletzt Konfigurationsvorschrift
+35044: SMC Fail Safe: SLS2 - Geschwindigkeitsgrenze verletzt Konfigurationsvorschrift
+35045: SMC Fail Safe: SLS3 - Geschwindigkeitsgrenze verletzt Konfigurationsvorschrift
+35046: SMC Fail Safe: SLS4 - Geschwindigkeitsgrenze verletzt Konfigurationsvorschrift
+35047: SMC Fail Safe: Stillstandsgeschw.-Grenze verletzt Konfigurationsvorschrift
+35048: SMC Fail Safe: Überschreitung von Parametergrenzwerten
        Info(UDINT): Zusatzinfo
-35049: SMC FS: SMP wird verwendet aber Referenzieren wurde nicht konfiguriert
-35050: SMC FS: SMP - Untere Positionsgrenze ist größer oder gleich der oberen
-35051: SMC FS: SLP wird verwendet aber Referenzieren wurde nicht konfiguriert
-35052: SMC FS: SLP - Untere Positionsgrenze ist größer oder gleich der oberen
-35053: SMC FS: SLP - Positionsfenster außerhalb des SMP Positionsfensters
-35054: SMC FS: SMP - Toleranz ist größer als SMP Positionsfenster
-35055: SMC FS: SLP - Toleranz ist größer als SLP Positionsfenster
-35056: SMC FS: Wert der Verzögerungsrampe ist außerhalb des gültigen Bereichs
-35068: SMC FS: "Homing - Maximum trigger speed" außerhalb des gültigen Bereichs
-35069: SMC FS: Homing - Ref Switch: Kein Referenzschalter angeschlossen
-35070: SMC FS: Homing - Home Offset: Kein Absolutgeber angeschlossen
-35071: SMC FS: Homing - Home Offset with Correction: SMP nicht konfiguriert
-35072: SMC FS: Homing - SMP Fenster größer als sicherer abs. Geberzählbereich
-35073: SMC FS: Homing - SLP Fenster größer als sicherer abs. Geberzählbereich
-35074: SMC FS: Homing - Geber unterstützt keinen sicheren Referenzimpuls
-35075: SMC FS: Homing - Geschw.-Toleranz ist außerhalb des gültigen Bereichs
-35076: SMC FS: Homing - Referenzimpuls: Max. Trigger Geschw. ist zu groß
-35077: SMC FS: Homing - Funktion wird angefordert aber nicht konfiguriert
-35078: SMC FS: Homing - RefSwitch bit ist gesetzt aber nicht konfiguriert
-35079: SMC FS: Homing - Position liegt ausserhalb des SMP Fensters
-35080: SMC FS: Homing - Direct with reference pulse: Wird nicht unterstützt
-35081: SMC FS: Interner Fehler, Kreuzkommunikation der Ausgangssignale
+35049: SMC Fail Safe: SMP wird verwendet aber Referenzieren wurde nicht konfiguriert
+35050: SMC Fail Safe: SMP - Untere Positionsgrenze ist größer oder gleich der oberen
+35051: SMC Fail Safe: SLP wird verwendet aber Referenzieren wurde nicht konfiguriert
+35052: SMC Fail Safe: SLP - Untere Positionsgrenze ist größer oder gleich der oberen
+35053: SMC Fail Safe: SLP - Positionsfenster außerhalb des SMP Positionsfensters
+35054: SMC Fail Safe: SMP - Toleranz ist größer als SMP Positionsfenster
+35055: SMC Fail Safe: SLP - Toleranz ist größer als SLP Positionsfenster
+35056: SMC Fail Safe: Wert der Verzögerungsrampe ist außerhalb des gültigen Bereichs
+35068: SMC Fail Safe: Homing - Max. Trigger Geschw. außerhalb des gültigen Bereichs
+35069: SMC Fail Safe: Homing - Ref Switch: Kein Referenzschalter angeschlossen
+35070: SMC Fail Safe: Homing - Home Offset: Kein Absolutgeber angeschlossen
+35071: SMC Fail Safe: Homing - Home Offset with Correction: SMP nicht konfiguriert
+35072: SMC Fail Safe: Homing - SMP Fenster größer als sicherer abs. Geberzählbereich
+35073: SMC Fail Safe: Homing - SLP Fenster größer als sicherer abs. Geberzählbereich
+35074: SMC Fail Safe: Homing - Geber unterstützt keinen sicheren Referenzimpuls
+35075: SMC Fail Safe: Homing - Geschw.-Toleranz ist außerhalb des gültigen Bereichs
+35076: SMC Fail Safe: Homing - Referenzimpuls: Max. Trigger Geschw. ist zu groß
+35077: SMC Fail Safe: Homing - Funktion wird angefordert aber nicht konfiguriert
+35078: SMC Fail Safe: Homing - RefSwitch bit ist gesetzt aber nicht konfiguriert
+35079: SMC Fail Safe: Homing - Position liegt ausserhalb des SMP Fensters
+35080: SMC Fail Safe: Homing - Direct with reference pulse: Wird nicht unterstützt
+35081: SMC Fail Safe: Interner Fehler, Kreuzkommunikation der Ausgangssignale
        Info(UDINT): Ausgangssignal
-35082: SMC FS: Interner Fehler, Kreuzkommunikation des Ausgangs-SSW
+35082: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des Ausgangs-SSW
        Info(UDINT): Ausgangs-SSW
-35084: SMC FS: Programmfehler im Zustand PreOperational
+35084: SMC Fail Safe: Programmfehler im Zustand PreOperational
        Info(UDINT): Prüfpunkt
-35085: SMC FS: Sichere Ausgänge - Schluss gegen 24V
+35085: SMC Fail Safe: Sichere Ausgänge - Schluss gegen 24V
        Info(UDINT): Ausgangssignal
-35086: SMC FS: Sichere Ausgänge - Teststatus hat sich verändert
+35086: SMC Fail Safe: Sichere Ausgänge - Teststatus hat sich verändert
        Info(UDINT): Ausgangszustand
-35087: SMC FS: Geber - Geschwindigkeitsgrenzwert wurde überschritten
+35087: SMC Fail Safe: Geber - Geschwindigkeitsgrenzwert wurde überschritten
        Info(DINT): Ist-Geschwindigkeit [ink/Zyklus]
-35088: SMC FS: Geber - Beschleunigungsgrenzwert wurde überschritten
+35088: SMC Fail Safe: Geber - Beschleunigungsgrenzwert wurde überschritten
        Info(DINT): Ist-Beschleunigung [ink/Zyklus^2]
-35091: SMC FS: Gebertausch festgestellt
+35091: SMC Fail Safe: Gebertausch festgestellt
        Info(UDINT): Zusatzinfo
-35092: SMC FS: Interner Fehler, Lockbit gesetzt
+35092: SMC Fail Safe: Interner Fehler, Lockbit gesetzt
        Info(UDINT): Lockbits
-35093: SMC FS: Geschwindigkeitsfehlergrenze zu groß
-35094: SMC FS: Positionsschleppfehlergrenze zu groß
-35095: SMC FS: Geber - Konfigurationfehler
+35093: SMC Fail Safe: Geschwindigkeitsfehlergrenze zu groß
+35094: SMC Fail Safe: Positionsschleppfehlergrenze zu groß
+35095: SMC Fail Safe: Geber - Konfigurationfehler
        Info(UDINT): Zusatzinfo
-35096: SMC FS: Homing - Konfigurationsfehler
+35096: SMC Fail Safe: Homing - Konfigurationsfehler
        Info(UDINT): Zusatzinfo
-35097: SMC FS: Interner Fehler, Ungültige Stromwandlerauflösung
+35097: SMC Fail Safe: Interner Fehler, Ungültige Stromwandlerauflösung
        Info(UDINT): Zusatzinfo
-35098: SMC FS: Interner Fehler, Ungültiger Stromwandlermessbereich
-35099: SMC FS: Interner Fehler, Stromwerte nicht plausibel
-35100: SMC FS: Interner Fehler, Kreuzkommunikation des Statorstromzeigers
+35098: SMC Fail Safe: Interner Fehler, Ungültiger Stromwandlermessbereich
+35099: SMC Fail Safe: Interner Fehler, Stromwerte nicht plausibel
+35100: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des Statorstromzeigers
        Info(UDINT): Zusatzinfo
-35101: SMC FS: Interner Fehler, Kreuzkommunikation des Stromzeigerwinkels
+35101: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des Stromzeigerwinkels
        Info(UDINT): Zusatzinfo
-35102: SMC FS: Interner Fehler, Kreuzkommunikation des Statusregisters IPWM
+35102: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des Statusregisters IPWM
        Info(UDINT): Zusatzinfo
-35103: SMC FS: Interner Fehler, Kreuzkommunikation des FPGACom SSW
+35103: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des FPGACom SSW
        Info(UDINT): Zusatzinfo
-35104: SMC FS: Interner Fehler, FPGA Kommunikation
+35104: SMC Fail Safe: Interner Fehler, FPGA Kommunikation
        Info(UDINT): Zusatzinfo
-35105: SMC FS: Interner Fehler, FPGA SinCos - Referenzspannung Kanal A
+35105: SMC Fail Safe: Interner Fehler, FPGA SinCos - Referenzspannung Kanal A
        Info(UDINT): Zusatzinfo
-35106: SMC FS: Interner Fehler, FPGA SinCos - Referenzspannung Kanal B
+35106: SMC Fail Safe: Interner Fehler, FPGA SinCos - Referenzspannung Kanal B
        Info(UDINT): Zusatzinfo
-35107: SMC FS: Interner Fehler, FPGA SinCos - Konfiguration
+35107: SMC Fail Safe: Interner Fehler, FPGA SinCos - Konfiguration
        Info(UDINT): Zusatzinfo
-35108: SMC FS: Interner Fehler, Hardware Tests - Spannungsüberwachung
+35108: SMC Fail Safe: Interner Fehler, Hardware Tests - Spannungsüberwachung
        Info(UDINT): Zusatzinfo
-35109: SMC FS: Interner Fehler, ADC Abgleichdaten - Flash Validierung
+35109: SMC Fail Safe: Interner Fehler, ADC Abgleichdaten - Flash Validierung
        Info(UDINT): Zusatzinfo
-35110: SMC FS: Interner Fehler, FPGA Strommessung - ADC Auswertung
+35110: SMC Fail Safe: Interner Fehler, FPGA Strommessung - ADC Auswertung
        Info(UDINT): Zusatzinfo
-35111: SMC FS: Interner Fehler, FPGA Strommessung - Referenzüberwachung
+35111: SMC Fail Safe: Interner Fehler, FPGA Strommessung - Referenzüberwachung
        Info(UDINT): Zusatzinfo
-35112: SMC FS: Interner Fehler, FPGA Strommessung - Wirksamkeitstest
+35112: SMC Fail Safe: Interner Fehler, FPGA Strommessung - Wirksamkeitstest
        Info(UDINT): Zusatzinfo
-35113: SMC FS: Interner Fehler, FPGA Strommessung - Konfiguration
+35113: SMC Fail Safe: Interner Fehler, FPGA Strommessung - Konfiguration
        Info(UDINT): Zusatzinfo
-35114: SMC FS: Interner Fehler, FPGA SinCos - Wirksamkeitstest
+35114: SMC Fail Safe: Interner Fehler, FPGA SinCos - Wirksamkeitstest
        Info(UDINT): Zusatzinfo
-35115: SMC FS: SBT Parametrierung - Schwellenwert des Prüfstroms zu groß
+35115: SMC Fail Safe: SBT Parametrierung - Schwellenwert des Prüfstroms zu groß
        Info(UDINT): Zusatzinfo
-35116: SMC FS: SBT Parametrierung - Externe Last größer als Prüfschwelle
-35117: SMC FS: SBT Parametrierung - Externe Last zu klein 
+35116: SMC Fail Safe: SBT Parametrierung - Externe Last größer als Prüfschwelle
+35117: SMC Fail Safe: SBT Parametrierung - Externe Last zu klein 
        Info(UDINT): Zusatzinfo
-35118: SMC FS: Interner Fehler, erweiterte Flashdaten sind fehlerhaft
-       Info(UDINT): Zusatzinfo
-35119: SMC FS: SBT Parametrierung - Externe Last zu groß 
+35119: SMC Fail Safe: SBT Parametrierung - Externe Last zu groß 
        Info(UDINT): Zusatzinfo
 35120: SMC FS: Homing - S_SwitchHomingMode ist gesetzt aber nicht verbunden
 35121: SMC FS: Homing - S_SwitchHomingMode ist verbunden, aber ReqHoming nicht
 35122: SMC FS: Homing - S_SwitchHomingMode Verdrahtung und Konfig. nicht konform
-35123: SMC FS: Interner Fehler, Kreuzkommunikation des RSP Empfangsdatenframes
+35123: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des RSP Empfangsdatenframes
        Info(UDINT): Zusatzinfo
-35124: SMC FS: Interner Fehler, Kreuzkommunikation des RSP Sendedatenframes
+35124: SMC Fail Safe: Interner Fehler, Kreuzkommunikation des RSP Sendedatenframes
        Info(UDINT): Zusatzinfo
-35125: SMC FS: RSP - Speichervorgang gescheitert
+35125: SMC Fail Safe: RSP - Speichervorgang gescheitert
        Info(UDINT): Zusatzinfo
-35126: SMC FS: RSP - Homing, SOS Positions Toleranz zu groß
-35127: SMC FS: Interner Fehler, Ungültiger Stromwandleroffset
-35128: SMC FS: Interner Fehler, Sigma delta Wandlung ist nicht plausibel
-35129: SMC FS: Interner Fehler, Gain/Offset korrigierte Stromwerte ungültig
-35150: SMC FS: Nachladbare Safety Parameter: Deakt. Funktion Enable Bit gesetzt
+35126: SMC Fail Safe: RSP - Homing, SOS Positions Toleranz zu groß
+35151: SMC Fail Safe: Nachladbare Safety Parameter: Platzhalter Enable Bit gesetzt
        Info(UDINT): Zusatzinfo
-35151: SMC FS: Nachladbare Safety Parameter: Platzhalter Enable Bit gesetzt
-       Info(UDINT): Zusatzinfo
-35152: SMC FS: Nachladbare Safety Parameter: Ungültige Datenblockgröße
+35152: SMC Fail Safe: Nachladbare Safety Parameter: Ungültige Datenblockgröße
        Info(UDINT): Zusatzinfo
 35153: SMC: Interner Fehler, CUnit Test
-35154: SMC FS: Nachladbare Safety Parameter: Ungültige Strukturgröße
+35154: SMC Fail Safe: Nachladbare Safety Parameter: Ungültige Strukturgröße
        Info(UDINT): Zusatzinfo
-35155: SMC FS: Empfangene Daten der nachladbaren Safety Parameter zu groß
+35155: SMC Fail Safe: Empfangene Daten der nachladbaren Safety Parameter zu groß
        Info(UDINT): Zusatzinfo
-35156: SMC FS: CRC Prüfung der nachladbaren Safety Parameter fehlgeschlagen
+35156: SMC Fail Safe: CRC Prüfung der nachladbaren Safety Parameter fehlgeschlagen
        Info(UDINT): Zusatzinfo
-35161: SMC FS: Inkompatible Parameter Struktur
+35161: SMC Fail Safe: Inkompatible Parameter Struktur
        Info(UDINT): Zusatzinfo
-35162: SMC FS: Inkompatibler Achstyp
+35162: SMC Fail Safe: Inkompatibler Achstyp
        Info(UDINT): Zusatzinfo
-35163: SMC FS: Fehler in der PreOperational Funktion
+35163: SMC Fail Safe: Fehler in der PreOperational Funktion
        Info(UDINT): Zusatzinfo
-35164: SMC FS: Kreuzkommunikation SinCos Status während des FPGA Hochlaufs
+35164: SMC Fail Safe: Kreuzkommunikation SinCos Status während des FPGA Hochlaufs
        Info(UDINT): Zusatzinfo
-35165: SMC FS: Geber nicht parametriert obwohl für Safety Funktionen benötigt
-35166: SMC FS: Quadrierte Zeigerlänge zu groß
-35167: SMC FS: Kreuzkommunikation Zeigerlängennachregelung Trigger Zähler
+35165: SMC Fail Safe: Geber nicht parametriert obwohl für Safety Funktionen benötigt
+35166: SMC Fail Safe: Quadrierte Zeigerlänge zu groß
+35167: SMC Fail Safe: Kreuzkommunikation Zeigerlängennachregelung Trigger Zähler
        Info(UDINT): Zusatzinfo
-35170: SMC FS: Der SBT Schwellwert ist zu klein
+35170: SMC Fail Safe: Der SBT Schwellwert ist zu klein
        Info(UDINT): Zusatzinfo
-35171: SMC FS: Interer Fehler bei der Verarbeitung der nachladbaren Parameter
+35171: SMC Fail Safe: Interer Fehler bei der Verarbeitung der nachladbaren Parameter
        Info(UDINT): Zusatzinfo
-35172: SMC FS: Homing - RefSwitch ist verbunden, aber ReqHoming nicht
-35173: SMC FS: Nachladbare Safety Parameter: Ungültige Achs-Typ ID
+35172: SMC Fail Safe: Homing - RefSwitch ist verbunden, aber ReqHoming nicht
+35173: SMC Fail Safe: Nachladbare Safety Parameter: Ungültige Achs-Typ ID
        Info(UDINT): Zusatzinfo
-35174: SMC FS: Nachladbare Safety Parameter: Ungültige Struktur Version
+35174: SMC Fail Safe: Nachladbare Safety Parameter: Ungültige Struktur Version
 35175: SMC: Safely Limited Acceleration - Verletzung der Beschleunigungsüberwachung
        Info(DINT): Beschleunigung zum Zeitpunkt der Verletzung
 35176: SMC: Safe Brake Test - SBT: Timeout
@@ -1496,12 +1470,12 @@
        Info(UDINT): Quadratischer Messwert des aktuellen Stromraumzeigers
 35183: SMC: Safe Brake Test - Parametrierte Teststromschwelle unterschritten
        Info(UDINT): Quadratischer Messwert des aktuellen Stromraumzeigers
-35184: SMC FFS: Differenz der Rohpositionen uP1 und uP2 zu groß
+35184: SMC Functional Fail Safe: Differenz der Rohpositionen µP1 und µP2 zu groß
        Info(UDINT): Zusatzinfo
-35185: SMC FFS: Interner Fehler
-35186: SMC FFS: Geber nicht bereit
+35185: SMC Functional Fail Safe: Interner Fehler
+35186: SMC Functional Fail Safe: Geber nicht bereit
 35189: SMC: Safe Brake Test - Verletzung der Positionstoleranz
-35190: SMC FFS: Geberfehler SinCos Auswertung
+35190: SMC Functional Fail Safe: Geberfehler SinCos Auswertung
        Info(UDINT): Zusatzinfo
 35191: SMC: Safe Brake Test - Testintervall abgelaufen, Testung erforderlich
 35192: SMC: Summenstrom außerhalb der Toleranz
@@ -1514,43 +1488,43 @@
        Info(DINT): Messwert des Stroms [uA]
 35196: SMC: Abgleichdaten unvollständig
        Info(UDINT): Detailinformation
-35197: SMC FFS: SS2, SOS Verletzung der Stillstandspositionstoleranz
-35198: SMC FFS: Geberfehler wurde erkannt
-35199: SMC FFS: SDI - Verletzung der sicheren Drehrichtung
-35200: SMC FFS: SDI - Verletzung der positiven Drehrichtung
-35201: SMC FFS: SDI - Verletzung der negativen Drehrichtung
-35202: SMC FFS: SLI - Verletzung der Stillstandsgeschw.grenze
-35203: SMC FFS: SLI - Verletzung des Positionsfensters (Inkremente)
-35204: SMC FFS: Verletzung der aktuellen Geschwindigkeitsgrenze
-35205: SMC FFS: Verletzung der Verzögerungsrampe
-35206: SMC FFS: SMS - Verletzung der Geschwindigkeitsgrenze
-35207: SMC FFS: SOS - Verletzung der Geschwindigkeitsgrenze
-35208: SMC FFS: SS2 - Verletzung der Geschwindigkeitsgrenze
-35209: SMC FFS: SLS1 - Verletzung der Geschwindigkeitsgrenze
-35210: SMC FFS: SLS2 - Verletzung der Geschwindigkeitsgrenze
-35211: SMC FFS: SLS3 - Verletzung der Geschwindigkeitsgrenze
-35212: SMC FFS: SLS4 - Verletzung der Geschwindigkeitsgrenze
-35213: SMC FFS: Alive-Test der Sollposition wurde nicht durchgeführt
-35214: SMC FFS: Warnung am Ausgang wurde nicht quittiert
-35215: SMC FFS: Alive-Test - Überwachungszeit abgelaufen
-35216: SMC FFS: SMP - Timeout für Referenzieren überschritten
-35217: SMC FFS: SMP - Verletzung der Verzögerungsrampe
-35218: SMC FFS: SLP - Verletzung der Verzögerungsrampe
-35219: SMC FFS: SMP - Verletzung der unteren SMP Grenze
-35220: SMC FFS: SMP - Verletzung der oberen SMP Grenze
-35221: SMC FFS: SLP - Verletzung der unteren SLP Grenze
-35222: SMC FFS: SLP - Verletzung der oberen SLP Grenze
-35223: SMC FFS: SMP - Bewegung in neg. Richtung außerhalb SMP Grenze
-35224: SMC FFS: SMP - Bewegung in pos. Richtung außerhalb SMP Grenze
-35225: SMC FFS: SLP angefordert, Achse ist noch nicht referenziert
-35226: SMC FFS: SMP, SLP - Interner Fehler
-35227: SMC FFS: SMP, SLP - INT32 Überlauf der S_SafePosition
-35228: SMC FFS: Homing - Überwachungszeit abgelaufen
-35229: SMC FFS: Homing - Stillstandsgeschwindigkeitsgrenze verletzt
-35230: SMC FFS: Homing Referenzimpuls - Max.Trigger Geschw. verletzt
-35231: SMC FFS: Homing - Bewegung unzulässig
-35232: SMC FFS: Homing Offset - Position außerhalb INT32 Bereichs
-35233: SMC FFS: Homing Offset - Verletzung sicherer Geberzählbereich
+35197: SMC Functional Fail Safe: SS2, SOS Verletzung der Stillstandspositionstoleranz
+35198: SMC Functional Fail Safe: Geberfehler wurde erkannt
+35199: SMC Functional Fail Safe: SDI - Verletzung der sicheren Drehrichtung
+35200: SMC Functional Fail Safe: SDI - Verletzung der positiven Drehrichtung
+35201: SMC Functional Fail Safe: SDI - Verletzung der negativen Drehrichtung
+35202: SMC Functional Fail Safe: SLI - Verletzung der Stillstandsgeschw.grenze
+35203: SMC Functional Fail Safe: SLI - Verletzung des Positionsfensters (Inkremente)
+35204: SMC Functional Fail Safe: Verletzung der aktuellen Geschwindigkeitsgrenze
+35205: SMC Functional Fail Safe: Verletzung der Verzögerungsrampe
+35206: SMC Functional Fail Safe: SMS - Verletzung der Geschwindigkeitsgrenze
+35207: SMC Functional Fail Safe: SOS - Verletzung der Geschwindigkeitsgrenze
+35208: SMC Functional Fail Safe: SS2 - Verletzung der Geschwindigkeitsgrenze
+35209: SMC Functional Fail Safe: SLS1 - Verletzung der Geschwindigkeitsgrenze
+35210: SMC Functional Fail Safe: SLS2 - Verletzung der Geschwindigkeitsgrenze
+35211: SMC Functional Fail Safe: SLS3 - Verletzung der Geschwindigkeitsgrenze
+35212: SMC Functional Fail Safe: SLS4 - Verletzung der Geschwindigkeitsgrenze
+35213: SMC Functional Fail Safe: Alive-Test der Sollposition wurde nicht durchgeführt
+35214: SMC Functional Fail Safe: Warnung am Ausgang wurde nicht quittiert
+35215: SMC Functional Fail Safe: Alive-Test - Überwachungszeit abgelaufen
+35216: SMC Functional Fail Safe: SMP - Timeout für Referenzieren überschritten
+35217: SMC Functional Fail Safe: SMP - Verletzung der Verzögerungsrampe
+35218: SMC Functional Fail Safe: SLP - Verletzung der Verzögerungsrampe
+35219: SMC Functional Fail Safe: SMP - Verletzung der unteren SMP Grenze
+35220: SMC Functional Fail Safe: SMP - Verletzung der oberen SMP Grenze
+35221: SMC Functional Fail Safe: SLP - Verletzung der unteren SLP Grenze
+35222: SMC Functional Fail Safe: SLP - Verletzung der oberen SLP Grenze
+35223: SMC Functional Fail Safe: SMP - Bewegung in neg. Richtung außerhalb SMP Grenze
+35224: SMC Functional Fail Safe: SMP - Bewegung in pos. Richtung außerhalb SMP Grenze
+35225: SMC Functional Fail Safe: SLP angefordert, Achse ist noch nicht referenziert
+35226: SMC Functional Fail Safe: SMP, SLP - Interner Fehler
+35227: SMC Functional Fail Safe: SMP, SLP - INT32 Überlauf der S_SafePosition
+35228: SMC Functional Fail Safe: Homing - Überwachungszeit abgelaufen
+35229: SMC Functional Fail Safe: Homing - Stillstandsgeschwindigkeitsgrenze verletzt
+35230: SMC Functional Fail Safe: Homing Referenzimpuls - Max.Trigger Geschw. verletzt
+35231: SMC Functional Fail Safe: Homing - Bewegung unzulässig
+35232: SMC Functional Fail Safe: Homing Offset - Position außerhalb INT32 Bereichs
+35233: SMC Functional Fail Safe: Homing Offset - Verletzung sicherer Geberzählbereich
 35234: SMC: Gebertausch - Die Länge der Konfigurationsdaten hat sich geändert
 35235: SMC: Gebertausch - Die Serialnummer des Encoders hat sich geändert
 35236: SMC: Gebertausch - Version geändert oder Daten nicht gespeichert
@@ -1558,13 +1532,13 @@
        Info(UDINT): Zusatzinfo
 35238: SMC: Geber - EnDat Master Status Register ist gesetzt
        Info(UDINT): Status Register
-35239: SMC FFS: Referenzieren fehlgeschlagen
+35239: SMC Functional Fail Safe: Referenzieren fehlgeschlagen
        Info(UDINT): Zusatzinfo
-35240: SMC FFS: Verletzung einer Sicherheitsfunktion
+35240: SMC Functional Fail Safe: Verletzung einer Sicherheitsfunktion
        Info(UDINT): Zusatzinfo
-35241: SMC FFS: Funktionsblock ist in Zustand IDLE zurückgefallen
+35241: SMC Functional Fail Safe: Funktionsblock ist in Zustand IDLE zurückgefallen
        Info(UDINT): Zusatzinfo
-35243: SMC FFS: Sichere Ausgänge - Teststatus hat sich verändert
+35243: SMC Functional Fail Safe: Sichere Ausgänge - Teststatus hat sich verändert
        Info(UDINT): Ausgangszustand
 35244: SMC: Geber - Empfangene Position ungültig
        Info(UDINT): Zustzinfo
@@ -1587,14 +1561,12 @@
        Info(UDINT): Zusatzinfo
 35254: SMC: Geber - Länge des physikalischen Referenzsystems zu groß
        Info(UDINT): Zusatzinfo
-35255: SMC FS: Geber - Die Beschleunigungsgrenze wurde überschritten
+35255: SMC Fail Safe: Geber - Die Beschleunigungsgrenze wurde überschritten
 35504: SMC FFS: RSP - Homing, INT32 Überlauf der S_SafePosition
        Info(UDINT): Zusatzinfo
 35506: SMC FFS: RSP - Homing, Positionsänderung im ausgeschalteten Zustand zu groß
        Info(UDINT): Zusatzinfo
 35507: SMC FFS: RSP - Homing, Konfigurationsänderung
-       Info(UDINT): Zusatzinfo
-35508: SMC FFS: Interner Fehler, FPGA Kommunikation
        Info(UDINT): Zusatzinfo
 35509: SMC FFS: RSP - Homing, CRC Fehler beim Empfang der remanenten Position
        Info(UDINT): Zusatzinfo
@@ -1617,7 +1589,7 @@
        Info(REAL): Differenz
 37112: Polynom in den Kurvenscheibendaten überschreitet Grenzwert
        Info(UINT): Detail
-37113: Ausgleichsgetriebe: Grenzwerte überschritten
+37113: Kurvenscheiben-Ausgleichsgetriebe: Grenzwerte überschritten
        Info(USINT): Zustands-Index
 38000: Stromregler: Während dem Einschalten ist Motordrehzahl zu hoch
 38001: Momentbegrenzer: Grenzwert größer als Maximalwert
@@ -1730,22 +1702,6 @@
        Info(USINT): Slot
 39051: Geber: Hiperface Error Bit
        Info(USINT): Slot
-39052: Geber: Messbereich überschritten
-       Info(USINT): Slot
-39053: Geber: Interne Überprüfung der Geberschnittstelle fehlgeschlagen
-       Info(USINT): Slot
-39054: Geber: Ungültige Versorgungspannung
-       Info(USINT): Slot
-39055: Geber: Inkremental-Signalamplitude zu klein
-       Info(USINT): Slot
-39056: Geber: Inkremental-Signalamplitude zu groß
-       Info(USINT): Slot
-39059: Geber: Statusmeldung
-       Info(UDINT): Statuscode
-39060: Geber: Sync-Bit Fehler
-       Info(USINT): Slot
-39061: Geber: UART Übertragungsfehler 
-       Info(USINT): Slot
 39301: Digital IO: 24V-Spannungsversorgung fehlerhaft
        Info(UINT): Slot
 39302: Digital IO 1-4: Diagnosebit aktiv (Strom, 24V Versorgung)
@@ -1824,8 +1780,6 @@
        Info(USINT): Slot
 41001: Kühler-Temperatursensor: Warngrenze überschritten
        Info(REAL): Kühlertemperatur
-41002: Kühler-Temperatursensor: Nicht angeschlossen oder zerstört
-       Info(REAL): Grenztemperatur
 41011: Temperatursensor (Motor|Drossel|Extern): Warngrenze überschritten
        Info(REAL): Temperatur
 41031: Sperrschicht-Temperaturmodell: Warngrenze überschritten
@@ -1868,8 +1822,6 @@
        Info(REAL): Grenzlast
 41097: DC-Anschluss-Temperaturmodell: Warngrenze überschritten
        Info(REAL): Temperatur
-41098: Leistungsteil: Temperatursensor: Warngrenze überschritten
-       Info(UINT): Sensor
 64002: Wartezeit vor SW-Reset (Netzwerk mit aufsteigenden Knotennummern ?)
 64003: Wartezeit vor NC-System-Start (Netzwerk mit aufsteigenden Knotennummern ?)
 64004: Der folgende Hochlauf-Fehler könnte hier mit Verzögerung eingetragen sein

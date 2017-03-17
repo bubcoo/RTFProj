@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=?>
+<NcMapping NcSwId="Acp10">
+  <NcObject Name="gkRotaryG" ModuleId="80VD100PD.C000-01" Type="ncAXIS" Channel="1" AcoposSimulation="Off" InitParameter="gkRotaryGi" AcoposParameter="gkRotaryGa" Disabled="FALSE" ModuleDisabled="FALSE" />
+  <NcObject Name="gkRotaryD" ModuleId="80VD100PD.C000-01" Type="ncAXIS" Channel="2" AcoposSimulation="Off" InitParameter="gkRotaryDi" AcoposParameter="gkRotaryDa" Disabled="FALSE" ModuleDisabled="FALSE" />
+  <NcObject Name="80VD100PD.C000-01_ncV_AXIS1" ModuleId="80VD100PD.C000-01" Type="ncV_AXIS" Channel="1" Disabled="TRUE" ModuleDisabled="FALSE" />
+  <NcObject Name="80VD100PD.C000-01_ncV_AXIS2" ModuleId="80VD100PD.C000-01" Type="ncV_AXIS" Channel="2" Disabled="TRUE" ModuleDisabled="FALSE" />
+  <NcObject Name="gkLinearG" ModuleId="80VD100PD.C188-01" Type="ncAXIS" Channel="1" AcoposSimulation="Off" InitParameter="gkLinearGi" AcoposParameter="gkLinearGa" Disabled="FALSE" ModuleDisabled="FALSE" />
+  <NcObject Name="gkLinearD" ModuleId="80VD100PD.C188-01" Type="ncAXIS" Channel="2" AcoposSimulation="Off" InitParameter="gkLinearDi" AcoposParameter="gkLinearDa" Disabled="FALSE" ModuleDisabled="FALSE" />
+  <NcObject Name="80VD100PD.C188-01_ncV_AXIS1" ModuleId="80VD100PD.C188-01" Type="ncV_AXIS" Channel="1" Disabled="TRUE" ModuleDisabled="FALSE" />
+  <NcObject Name="80VD100PD.C188-01_ncV_AXIS2" ModuleId="80VD100PD.C188-01" Type="ncV_AXIS" Channel="2" Disabled="TRUE" ModuleDisabled="FALSE" />
+  <NcObject Name="gkRotaryM" ModuleId="80VD100PD.C000-01a" Type="ncAXIS" Channel="1" AcoposSimulation="Off" InitParameter="gkRotaryMi" AcoposParameter="gkRotaryMa" Disabled="FALSE" ModuleDisabled="FALSE" />
+  <NcObject Name="gkRotaryF" ModuleId="80VD100PD.C000-01a" Type="ncAXIS" Channel="2" AcoposSimulation="Off" InitParameter="gkRotaryFi" AcoposParameter="gkRotaryFa" Disabled="FALSE" ModuleDisabled="FALSE" />
+  <NcObject Name="80VD100PD.C000-01a_ncV_AXIS1" ModuleId="80VD100PD.C000-01a" Type="ncV_AXIS" Channel="1" Disabled="TRUE" ModuleDisabled="FALSE" />
+  <NcObject Name="80VD100PD.C000-01a_ncV_AXIS2" ModuleId="80VD100PD.C000-01a" Type="ncV_AXIS" Channel="2" Disabled="TRUE" ModuleDisabled="FALSE" />
+  <NcObject Name="gkLinearM" ModuleId="80VD100PD.C188-01a" Type="ncAXIS" Channel="1" AcoposSimulation="Off" InitParameter="gkLinearMi" AcoposParameter="gkLinearMa" Disabled="FALSE" ModuleDisabled="FALSE" />
+  <NcObject Name="gkLinearF" ModuleId="80VD100PD.C188-01a" Type="ncAXIS" Channel="2" AcoposSimulation="Off" InitParameter="gkLinearFi" AcoposParameter="gkLinearFa" Disabled="FALSE" ModuleDisabled="FALSE" />
+  <NcObject Name="80VD100PD.C188-01a_ncV_AXIS1" ModuleId="80VD100PD.C188-01a" Type="ncV_AXIS" Channel="1" Disabled="TRUE" ModuleDisabled="FALSE" />
+  <NcObject Name="80VD100PD.C188-01a_ncV_AXIS2" ModuleId="80VD100PD.C188-01a" Type="ncV_AXIS" Channel="2" Disabled="TRUE" ModuleDisabled="FALSE" />
+</NcMapping>

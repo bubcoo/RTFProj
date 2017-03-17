@@ -2,7 +2,7 @@
 *                    B & R   P O S I T I O N I N G                          *
 *****************************************************************************
 *                                                                           *
-*            Header File for Library ARNC0man (Version 3161)                *
+*            Header File for Library ARNC0man (Version 3130)                *
 *                                                                           *
 **************************** COPYRIGHT (C) **********************************
 *     THIS SOFTWARE IS THE PROPERTY OF B&R AUSTRIA: ALL RIGHTS RESERVED.    *
@@ -10,7 +10,7 @@
 *              THE PRIOR WRITTEN PERMISSION OF B&R AUSTRIA.                 *
 ****************************************************************************/
 #ifndef ARNC0MAN_H_VERSION
-#define ARNC0MAN_H_VERSION 0x3161
+#define ARNC0MAN_H_VERSION 0x3130
 
 #include <ncglobal.h>
 #include <acp10par.h>
@@ -1178,7 +1178,7 @@ typedef struct ARNC0NCAXCMP_typ {             /* Compensation parameter for Cart
 } ARNC0NCAXCMP_typ;
 
 typedef struct ARNC0NCAXTRF_typ {             /* Kinematic transformation parameters */
-   USINT              name[100];              /* Name of the NC data module */
+   USINT              name[48];               /* Name of object */
    USINT              trf_full;               /* Full kinematic transformation */
    USINT              trf_type;               /* Type of kinematic transformation */
    USINT              reserve0[2];            /* Reserved */
@@ -1297,8 +1297,7 @@ typedef struct ARNC0NCMNS_typ {               /* CNC monitor status */
    USINT              NOT_USE_1;
    USINT              block_mode;             /* Blocks display mode */
    USINT              line_nr_mode;           /* Display line numbers */
-   USINT              s_set_valid;            /* Set positions valid in the CNC monitor */
-   USINT              NOT_USE_2[2];
+   USINT              NOT_USE_2[3];
 } ARNC0NCMNS_typ;
 
 typedef struct ARNC0NCMON_typ {               /* CNC monitor */
@@ -1792,13 +1791,6 @@ typedef struct OPTMOT_ACTIVE_LIMIT_typ
 	unsigned char index;
 } OPTMOT_ACTIVE_LIMIT_typ;
 
-typedef struct OPTMOT_UNFILTERED_MONITOR_typ
-{	double s_joint[15];
-	double v_joint[15];
-	double a_joint[15];
-	double j_joint[15];
-} OPTMOT_UNFILTERED_MONITOR_typ;
-
 typedef struct OPTMOT_MONITOR_typ
 {	double s_joint[15];
 	double v_joint[15];
@@ -1806,7 +1798,6 @@ typedef struct OPTMOT_MONITOR_typ
 	double j_joint[15];
 	double feed_forward_torque[15];
 	double v_path[32];
-	struct OPTMOT_UNFILTERED_MONITOR_typ unfiltered_monitor;
 	struct OPTMOT_ACTIVE_LIMIT_typ active_limit;
 	unsigned short data_valid;
 	unsigned short fill_level_lookahead;
@@ -1858,7 +1849,6 @@ typedef struct OPTMOT_MONITOR_ADVANCED_typ
 	double j_joint[15];
 	double feed_forward_torque[15];
 	double v_path[32];
-	struct OPTMOT_UNFILTERED_MONITOR_typ unfiltered_monitor;
 	struct OPTMOT_ACTIVE_LIMIT_typ active_limit;
 	unsigned short data_valid;
 	unsigned short fill_level_lookahead;
@@ -2009,37 +1999,6 @@ typedef struct ARNC0NCMON_EXT_typ
 {	double s_set[15];
 	double s_ncprog;
 } ARNC0NCMON_EXT_typ;
-
-typedef struct ARNC0WFM_typ
-{	unsigned long data[330];
-} ARNC0WFM_typ;
-
-typedef struct ARNC0WFM_BFS
-{	unsigned long enable;
-	double dx;
-	double dy;
-	double dz;
-	double phi;
-	double theta;
-	double psi;
-	unsigned long angles_type;
-} ARNC0WFM_BFS;
-
-typedef struct ARNC0WFM_MON_typ
-{	unsigned long valid_data;
-	unsigned long invalid_data;
-} ARNC0WFM_MON_typ;
-
-typedef struct ARNC0WFM_EXT_typ
-{	struct ARNC0WFM_typ* p_wire_frame_model;
-	struct ARNC0WFM_BFS base_frame_shift;
-	struct ARNC0WFM_MON_typ monitor;
-} ARNC0WFM_EXT_typ;
-
-typedef struct ARNC0INTERACTION_typ
-{	struct ARNC0WFM_typ wire_frame_model;
-	struct ARNC0WFM_EXT_typ wire_frame_models_to_check[24];
-} ARNC0INTERACTION_typ;
 
 
 

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio Version=3.0.0.0?>
-<Library xmlns="http://br-automation.co.at/AS/Library" Description="The AsSafety library provides function blocks for the safety system.">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.7.54 SP?>
+<Library Description="The AsSafety library provides function blocks for the safety system." xmlns="http://br-automation.co.at/AS/Library">
   <Files>
     <File>AsSafety.fun</File>
     <File>AsSafety.typ</File>

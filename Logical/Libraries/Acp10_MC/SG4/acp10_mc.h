@@ -248,8 +248,6 @@ extern "C"
  #define mcCMD_ERROR_V_STOP_CTRL_OFF 4U
  #define mcCMD_ERROR_STOP_CTRL_OFF 3U
  #define mcCMD_ERROR_STOP 2U
- #define mcCMD_ERROR_INDUCTION_HALT 6U
- #define mcCMD_ERROR_COAST_TO_STANDSTILL 5U
  #define mcCMD_ERROR 1U
  #define mcCLOSE 0U
  #define mcCHECK_HOMING_OFF 1U
@@ -526,8 +524,6 @@ extern "C"
  _GLOBAL_CONST unsigned short mcCMD_ERROR_V_STOP_CTRL_OFF;
  _GLOBAL_CONST unsigned short mcCMD_ERROR_STOP_CTRL_OFF;
  _GLOBAL_CONST unsigned short mcCMD_ERROR_STOP;
- _GLOBAL_CONST unsigned short mcCMD_ERROR_INDUCTION_HALT;
- _GLOBAL_CONST unsigned short mcCMD_ERROR_COAST_TO_STANDSTILL;
  _GLOBAL_CONST unsigned short mcCMD_ERROR;
  _GLOBAL_CONST unsigned char mcCLOSE;
  _GLOBAL_CONST unsigned char mcCHECK_HOMING_OFF;
@@ -590,7 +586,6 @@ typedef struct MC_ADV_INFO_MPDC_REF
 	unsigned short DataObjectIdentNeg;
 	float CamStartPosition;
 	plcbit CalcDone;
-	float Period;
 } MC_ADV_INFO_MPDC_REF;
 
 typedef struct MC_ADV_LIMITLOAD_REF
@@ -999,7 +994,6 @@ typedef struct MC_MPDC_DIR_DEPENDENT_REF
 	float TimeConstant;
 	float NoiseLimit;
 	float Inertia;
-	float ConstantBacklash;
 } MC_MPDC_DIR_DEPENDENT_REF;
 
 typedef struct MC_MPDC_DIR_INDEPENDENT_REF
@@ -1012,7 +1006,6 @@ typedef struct MC_MPDC_PARAM_REF
 	unsigned short PositionSource;
 	struct MC_MPDC_DIR_INDEPENDENT_REF DirectionIndependent;
 	struct MC_MPDC_DIR_DEPENDENT_REF DirectionDependent;
-	plcbit Periodic;
 } MC_MPDC_PARAM_REF;
 
 typedef struct MC_POWERDATA_REF
@@ -2767,8 +2760,8 @@ typedef struct MC_0147_IS_TYP
 	unsigned long ProcessAdrPositions;
 	unsigned long ProcessAdrDeviations;
 	unsigned char CamsToProcess;
-	plcbit BacklashOnly;
-	unsigned short VarIndex;
+	unsigned char Reserve1;
+	unsigned short Reserve2;
 } MC_0147_IS_TYP;
 
 typedef struct MC_AbortTrigger
@@ -5429,30 +5422,6 @@ typedef struct MC_BR_ReadParIDText
 	plcbit C_Error;
 } MC_BR_ReadParIDText_typ;
 
-typedef struct MC_BR_ReadParList
-{
-	/* VAR_INPUT (analog) */
-	unsigned long Axis;
-	unsigned long DataAddress;
-	/* VAR_OUTPUT (analog) */
-	unsigned short ErrorID;
-	/* VAR (analog) */
-	unsigned char LockIDPar;
-	unsigned short C_ErrorID;
-	unsigned long C_Axis;
-	unsigned long C_DataAddress;
-	unsigned char state;
-	/* VAR_INPUT (digital) */
-	plcbit Execute;
-	/* VAR_OUTPUT (digital) */
-	plcbit Done;
-	plcbit Busy;
-	plcbit Error;
-	/* VAR (digital) */
-	plcbit C_Error;
-	plcbit C_Done;
-} MC_BR_ReadParList_typ;
-
 typedef struct MC_BR_ReadParTraceStatus
 {
 	/* VAR_INPUT (analog) */
@@ -7016,7 +6985,6 @@ _BUR_PUBLIC void MC_BR_ReadDriveStatus(struct MC_BR_ReadDriveStatus* inst);
 _BUR_PUBLIC void MC_BR_ReadNetTraceStatus(struct MC_BR_ReadNetTraceStatus* inst);
 _BUR_PUBLIC void MC_BR_ReadParID(struct MC_BR_ReadParID* inst);
 _BUR_PUBLIC void MC_BR_ReadParIDText(struct MC_BR_ReadParIDText* inst);
-_BUR_PUBLIC void MC_BR_ReadParList(struct MC_BR_ReadParList* inst);
 _BUR_PUBLIC void MC_BR_ReadParTraceStatus(struct MC_BR_ReadParTraceStatus* inst);
 _BUR_PUBLIC void MC_BR_ReceiveParIDOnPLC(struct MC_BR_ReceiveParIDOnPLC* inst);
 _BUR_PUBLIC void MC_BR_ResetAutPar(struct MC_BR_ResetAutPar* inst);

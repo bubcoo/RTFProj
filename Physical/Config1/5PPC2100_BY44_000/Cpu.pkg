@@ -11,11 +11,14 @@
     <Object Type="Package">Connectivity</Object>
     <Object Type="Package">TextSystem</Object>
     <Object Type="Package">AccessAndSecurity</Object>
+    <Object Type="Package">Motion</Object>
   </Objects>
   <Configuration ModuleId="5PPC2100.BY44-000">
     <AutomationRuntime Version="A4.26" />
     <Build GccVersion="4.1.2" />
     <DefaultTargetMemory Tasks="UserROM" />
-    <Vc FirmwareVersion="not used" />
+    <Vc FirmwareVersion="V4.26.1" />
+    <Safety SafetyRelease="1.10" />
+    <OnlineConfiguration Name="5AP933.156B-00-AR010_5" DeviceType="TCPIP" DeviceParameters="/IF=tcpip /LOPO=11159 /SA=1" ConnectionParameters="/RT=1000 /AM=* /SDT=5 /DAIP=172.25.15.67 /REPO=11159 /ANSL=1 /PT=11169" Description="" />
   </Configuration>
 </Cpu>
