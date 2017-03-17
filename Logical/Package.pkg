@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio Version=4.2.7.54 SP?>
+<?AutomationStudio Version=4.2.8.54 SP?>
 <Package Version="1.00.0" xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
     <Object Type="File" Description="Global data types">Global.typ</Object>
@@ -9,7 +9,5 @@
     <Object Type="Package">Simulation</Object>
     <Object Type="Package">Real_Game</Object>
     <Object Type="Package">mappView</Object>
-    <Object Type="Package">GmcIpConfig</Object>
-    <Object Type="Package">GmcIpUserConfig</Object>
   </Objects>
 </Package>
