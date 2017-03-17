@@ -4,6 +4,7 @@
   <Objects>
     <Object Type="Configuration">Lubo</Object>
     <Object Type="Configuration">Simulation</Object>
+    <Object Type="Configuration">4PPC70_0573_22B</Object>
     <Object Type="Configuration">Config1</Object>
   </Objects>
 </Physical>
