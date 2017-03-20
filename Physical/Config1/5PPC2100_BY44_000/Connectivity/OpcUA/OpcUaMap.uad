@@ -4,6 +4,36 @@
     <Module>
       <GlobalVariables Name="Global PV">
         <Variable Name="FBCamera_0" Enable="True">
+          <Variable Name="MappView" Enable="True">
+            <Variable Name="Y" Enable="True">
+              <Property BrowseName="0:EngineeringUnits">
+                <Value>
+                  <Description>
+                    <Text>millimetre</Text>
+                  </Description>
+                  <DisplayName>
+                    <Text>mm</Text>
+                  </DisplayName>
+                  <UnitId>5066068</UnitId>
+                  <NamespaceUri>http://www.opcfoundation.org/UA/units/un/cefact</NamespaceUri>
+                </Value>
+              </Property>
+            </Variable>
+            <Variable Name="X" Enable="True">
+              <Property BrowseName="0:EngineeringUnits">
+                <Value>
+                  <Description>
+                    <Text>millimetre</Text>
+                  </Description>
+                  <DisplayName>
+                    <Text>mm</Text>
+                  </DisplayName>
+                  <UnitId>5066068</UnitId>
+                  <NamespaceUri>http://www.opcfoundation.org/UA/units/un/cefact</NamespaceUri>
+                </Value>
+              </Property>
+            </Variable>
+          </Variable>
           <Variable Name="Results" Enable="True">
             <Variable Name="AxisX" Enable="True" />
             <Variable Name="AxisY" Enable="True" />

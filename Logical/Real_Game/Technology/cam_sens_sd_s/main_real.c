@@ -22,14 +22,14 @@ _GLOBAL Light_typ Light_0;
  
 void _INIT ProgramInit(void)
 {
-	FBCamera_0.Enable = 1;
+	//FBCamera_0.Enable = 1;
 }
 
 void _CYCLIC ProgramCyclic(void)
 {
 	
-//	FBCamera(&FBCamera_0);
-//	Light(&Light_0);
+	FBCamera(&FBCamera_0);
+	Light(&Light_0);
 }
 
 void _EXIT ProgramExit(void)

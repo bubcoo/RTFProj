@@ -17,6 +17,7 @@
     </Connector>
     <Parameter ID="AutomationRuntime" Value="AR010" />
     <Parameter ID="ConfigurationID" Value="RTFProj_Config1" />
+    <Parameter ID="Simulation" Value="1" />
     <Parameter ID="RebootReset" Value="4" />
     <Parameter ID="TimerDeviceType" Value="EPLX2X" />
     <Parameter ID="TimerDevice" Value="5ACCIF01.FPSC-000.IF1" />
