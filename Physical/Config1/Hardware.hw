@@ -40,6 +40,8 @@
     <Parameter ID="Cyclic8Tolerance" Value="30000000" />
     <Parameter ID="ActivateOpcUa" Value="1" />
     <Parameter ID="OpcUa_Security_SoftwareCertificates" Value="" />
+    <Parameter ID="Temp.ProjectDirectory" Value="C:\projects\RTFProj\" />
+    <Parameter ID="Temp.ConfigurationName" Value="Config1" />
   </Module>
   <Module Name="80VD100PD.C000-01" Type="80VD100PD.C000-01" Version="2.0.1.0">
     <Connection Connector="PLK1" TargetModule="X20BC0083" TargetConnector="PLK2" NodeNumber="2" />
@@ -110,6 +112,9 @@
   <Module Name="X20BM11b" Type="X20BM11" Version="1.0.0.1">
     <Connection Connector="X2X1" TargetModule="X20BM11a" TargetConnector="X2X2" />
   </Module>
+  <Module Name="X20BM33" Type="X20BM33" Version="1.0.0.4">
+    <Connection Connector="X2X1" TargetModule="X20BM11b" TargetConnector="X2X2" />
+  </Module>
   <Module Name="X20DI9371" Type="X20DI9371" Version="1.0.1.3">
     <Connection Connector="SS1" TargetModule="X20TB12a" TargetConnector="SS" />
     <Connection Connector="SL" TargetModule="X20BM11" TargetConnector="SL1" />
@@ -125,8 +130,18 @@
     <Connection Connector="PS" TargetModule="X20BB80" TargetConnector="PS1" />
     <Parameter ID="Supervision" Value="off" />
   </Module>
+  <Module Name="X20SLX842" Type="X20SLX842" Version="1.10.1.2">
+    <Connection Connector="SS1" TargetModule="X20TB52" TargetConnector="SS" />
+    <Connection Connector="SS2" TargetModule="X20TB52a" TargetConnector="SS" />
+    <Connection Connector="SL" TargetModule="X20BM33" TargetConnector="SL1" />
+    <Parameter ID="Supervision" Value="off" />
+    <Parameter ID="SafeProject" Value="SafeLOGIC-1" />
+    <Parameter ID="SafeDesigner" Value="4.2.2.18" />
+  </Module>
   <Module Name="X20TB12" Type="X20TB12" Version="1.0.0.0" />
   <Module Name="X20TB12a" Type="X20TB12" Version="1.0.0.0" />
   <Module Name="X20TB12b" Type="X20TB12" Version="1.0.0.0" />
   <Module Name="X20TB12c" Type="X20TB12" Version="1.0.0.0" />
+  <Module Name="X20TB52" Type="X20TB52" Version="1.0.0.1" />
+  <Module Name="X20TB52a" Type="X20TB52" Version="1.0.0.1" />
 </Hardware>
