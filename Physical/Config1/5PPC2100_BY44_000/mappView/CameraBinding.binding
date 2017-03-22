@@ -13,5 +13,9 @@
 <Source xsi:type="opcUa" refId="::AsGlobalPV:FBCamera_0.MappView.Y" attribute="value" />
 <Target xsi:type="brease" contentRefId="ContentCameraPage" widgetRefId="LineChartGraph1" attribute="value" />
 </Binding>
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::AsGlobalPV:GoalKeeper_0.MappView.counter" attribute="value" />
+<Target xsi:type="brease" contentRefId="ContentCameraPage" widgetRefId="NumericOutput3" attribute="value" />
+</Binding>
 </Bindings>
 </BindingsSet>

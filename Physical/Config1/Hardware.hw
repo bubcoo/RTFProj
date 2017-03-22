@@ -19,10 +19,8 @@
     <Parameter ID="ConfigurationID" Value="RTFProj_Config1" />
     <Parameter ID="Simulation" Value="1" />
     <Parameter ID="RebootReset" Value="4" />
-    <Parameter ID="TimerDeviceType" Value="EPLX2X" />
-    <Parameter ID="TimerDevice" Value="5ACCIF01.FPSC-000.IF1" />
     <Parameter ID="TaskClassIdleTime" Value="2000" />
-    <Parameter ID="Cyclic1Duration" Value="10000" />
+    <Parameter ID="Cyclic1Duration" Value="1000" />
     <Parameter ID="Cyclic1Tolerance" Value="10000" />
     <Parameter ID="Cyclic2Duration" Value="20000" />
     <Parameter ID="Cyclic2Tolerance" Value="20000" />
@@ -40,8 +38,6 @@
     <Parameter ID="Cyclic8Tolerance" Value="30000000" />
     <Parameter ID="ActivateOpcUa" Value="1" />
     <Parameter ID="OpcUa_Security_SoftwareCertificates" Value="" />
-    <Parameter ID="Temp.ProjectDirectory" Value="C:\projects\RTFProj\" />
-    <Parameter ID="Temp.ConfigurationName" Value="Config1" />
   </Module>
   <Module Name="80VD100PD.C000-01" Type="80VD100PD.C000-01" Version="2.0.1.0">
     <Connection Connector="PLK1" TargetModule="X20BC0083" TargetConnector="PLK2" NodeNumber="2" />

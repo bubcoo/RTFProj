@@ -4,4 +4,6 @@ VAR_CONFIG
 	::FBCamera_0.InSight.Status_I2001_S01 AT %ID."In-Sight".Status_I2001_S01;
 	::FBCamera_0.InSight.InspectionResults_I2011_S01 AT %ID."In-Sight".InspectionResults_I2011_S01;
 	::FBCamera_0.InSight.InspectionResults_I2011_S02 AT %ID."In-Sight".InspectionResults_I2011_S02;
+	::GoalKeeper_0.DI9371.DigitalInput AT %IX."X20DI9371".DigitalInput05;
+	::GoalKeeper_0.DI9371.ModuleOk AT %IX."X20DI9371".ModuleOk;
 END_VAR

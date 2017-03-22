@@ -39,6 +39,11 @@
             <Variable Name="AxisY" Enable="True" />
           </Variable>
         </Variable>
+        <Variable Name="GoalKeeper_0" Enable="True">
+          <Variable Name="MappView" Enable="True">
+            <Variable Name="counter" Enable="True" />
+          </Variable>
+        </Variable>
       </GlobalVariables>
     </Module>
   </DefaultView>

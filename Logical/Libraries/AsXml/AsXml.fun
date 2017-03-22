@@ -8,7 +8,7 @@
  * Functions and function blocks of library AsXml
  ********************************************************************)
                                                                       
-FUNCTION_BLOCK xmlCreateMemoryReader	(*creates an xml memory reader*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlCreateMemoryReader	(*creates an xml memory reader*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		pXmlMemory		: UDINT;		(*pointer to the XML data*)
@@ -21,7 +21,7 @@ FUNCTION_BLOCK xmlCreateMemoryReader	(*creates an xml memory reader*)
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlCloseMemoryReader		(*closes the xml memory reader*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlCloseMemoryReader		(*closes the xml memory reader*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -32,7 +32,7 @@ FUNCTION_BLOCK xmlCloseMemoryReader		(*closes the xml memory reader*)
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlReadNextNode			(*reads the next XML node*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlReadNextNode			(*reads the next XML node*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -55,7 +55,7 @@ FUNCTION_BLOCK xmlReadNextNode			(*reads the next XML node*)
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlReadAttributeNr		(*reads the next attribute of the XML node*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlReadAttributeNr		(*reads the next attribute of the XML node*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -73,7 +73,7 @@ FUNCTION_BLOCK xmlReadAttributeNr		(*reads the next attribute of the XML node*)
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlCreateMemoryWriter	(*creates an xml memory writer*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlCreateMemoryWriter	(*creates an xml memory writer*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 	END_VAR
@@ -84,7 +84,7 @@ FUNCTION_BLOCK xmlCreateMemoryWriter	(*creates an xml memory writer*)
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlGetMemoryInfo			(*gets the pointer to and the size of the created XML data*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlGetMemoryInfo			(*gets the pointer to and the size of the created XML data*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -97,7 +97,7 @@ FUNCTION_BLOCK xmlGetMemoryInfo			(*gets the pointer to and the size of the crea
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlCloseMemoryWriter		(*closes the xml memory writer and releases the allocated memory*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlCloseMemoryWriter		(*closes the xml memory writer and releases the allocated memory*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -108,7 +108,7 @@ FUNCTION_BLOCK xmlCloseMemoryWriter		(*closes the xml memory writer and releases
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlWriteStartDocument	(*writes the version and the encoding of the document*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteStartDocument	(*writes the version and the encoding of the document*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -122,7 +122,22 @@ FUNCTION_BLOCK xmlWriteStartDocument	(*writes the version and the encoding of th
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlWriteEndDocument		(*finishes the document*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteStartDocEnc		(*writes the version and the encoding of the document and sets the input encoding*)
+	VAR_INPUT							
+		enable			: BOOL;			(*enables execution*)
+		ident			: UDINT;		(*identifier*)
+		pVersion		: UDINT;		(*pointer to the version*)
+		pInputEncoding	: UDINT;		(*pointer to the input encoding e.g. "ISO-8859-1"*)
+		pOutputEncoding	: UDINT;		(*pointer to the output encoding e.g. "UTF-8"*)
+		pStandalone		: UDINT;		(*pointer to the standalone text*)
+	END_VAR
+
+	VAR_OUTPUT
+		status			: UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, ERR_FUB_BUSY, 0xXXXX = see help*)
+	END_VAR
+END_FUNCTION_BLOCK
+
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteEndDocument		(*finishes the document*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -133,7 +148,7 @@ FUNCTION_BLOCK xmlWriteEndDocument		(*finishes the document*)
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlWriteStartElement		(*starts a new XML element*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteStartElement		(*starts a new XML element*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -145,7 +160,7 @@ FUNCTION_BLOCK xmlWriteStartElement		(*starts a new XML element*)
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlWriteAttribute		(*adds an attribute to the current XML element*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteAttribute		(*adds an attribute to the current XML element*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -158,7 +173,7 @@ FUNCTION_BLOCK xmlWriteAttribute		(*adds an attribute to the current XML element
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlWriteElementText		(*writes an XML element text*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteElementText		(*writes an XML element text*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -170,7 +185,20 @@ FUNCTION_BLOCK xmlWriteElementText		(*writes an XML element text*)
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlWriteEndElement		(*closes the current XML element*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteElementTextEx	(*writes an XML element text*)
+	VAR_INPUT							
+		enable			: BOOL;			(*enables execution*)
+		ident			: UDINT;		(*identifier*)
+		pText			: UDINT;		(*pointer to the element text*)
+		textLen			: UDINT;		(*length of the element text*)
+	END_VAR
+
+	VAR_OUTPUT
+		status			: UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, ERR_FUB_BUSY, 0xXXXX = see help*)
+	END_VAR
+END_FUNCTION_BLOCK
+
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteEndElement		(*closes the current XML element*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -181,7 +209,7 @@ FUNCTION_BLOCK xmlWriteEndElement		(*closes the current XML element*)
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlWriteComment			(*writes an XML comment*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteComment			(*writes an XML comment*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -193,7 +221,20 @@ FUNCTION_BLOCK xmlWriteComment			(*writes an XML comment*)
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlWriteCData			(*writes an XML CDATA Section*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteCommentEx		(*writes an XML comment*)
+	VAR_INPUT							
+		enable			: BOOL;			(*enables execution*)
+		ident			: UDINT;		(*identifier*)
+		pText			: UDINT;		(*pointer to the comment text*)
+		textLen			: UDINT;		(*length of the comment text*)
+	END_VAR
+
+	VAR_OUTPUT
+		status			: UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, ERR_FUB_BUSY, 0xXXXX = see help*)
+	END_VAR
+END_FUNCTION_BLOCK
+
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteCData			(*writes an XML CDATA Section*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)
@@ -205,7 +246,20 @@ FUNCTION_BLOCK xmlWriteCData			(*writes an XML CDATA Section*)
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK xmlWritePI				(*writes an XML process instruction*)
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWriteCDataEx			(*writes an XML CDATA Section*)
+	VAR_INPUT							
+		enable			: BOOL;			(*enables execution*)
+		ident			: UDINT;		(*identifier*)
+		pCData			: UDINT;		(*pointer to the CDATA*)
+		cdataLen		: UDINT;		(*length of the CDATA*)
+	END_VAR
+
+	VAR_OUTPUT
+		status			: UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, ERR_FUB_BUSY, 0xXXXX = see help*)
+	END_VAR
+END_FUNCTION_BLOCK
+
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE}  FUNCTION_BLOCK xmlWritePI				(*writes an XML process instruction*)
 	VAR_INPUT							
 		enable			: BOOL;			(*enables execution*)
 		ident			: UDINT;		(*identifier*)

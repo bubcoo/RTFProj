@@ -42,6 +42,7 @@ TYPE
 		ActTime : RTCtime_typ;
 		AxisXOld : REAL;
 		AxisYOld : REAL;
+		TimeDiff : REAL;
 		ActTimeOld : RTCtime_typ;
 	END_STRUCT;
 	CameraControl_type : 	STRUCT 
