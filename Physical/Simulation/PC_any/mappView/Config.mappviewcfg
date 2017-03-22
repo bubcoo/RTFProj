@@ -5,8 +5,8 @@
       <Selector ID="WebServerProtocol" Value="1">
         <Property ID="WebServerPort" Value="81" />
       </Selector>
-      <Property ID="MaxClientConnections" Value="10" />
-      <Property ID="MaxBRClientConnections" Value="0" />
+      <Property ID="MaxClientConnections" Value="15" />
+      <Property ID="MaxBRClientConnections" Value="15" />
     </Group>
     <Group ID="OpcUa">
       <Group ID="SamplingRates">
