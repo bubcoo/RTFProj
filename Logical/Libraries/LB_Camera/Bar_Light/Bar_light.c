@@ -26,8 +26,9 @@ void Light(struct Light *inst)
 				if (inst->internal.TaskClass.RTInfo_0.cycle_time <= 1000)
 				{
 					inst->isPWMEnabled = inst->internal.PWM.PWMEnabled = 1;
+					inst->isPWMEnabled = inst->internal.PWM.PWM.Enable = 1;
 					inst->internal.PWM.PWM.MinPulseWidth = 0.001;						
-					inst->internal.PWM.PWM.Period = 0.1;								
+					inst->internal.PWM.PWM.Period = 0.01;								
 					inst->internal.PWM.PWM.Mode = mtBASICS_PULSE_BEGINNING;
 				}
 				else
@@ -93,6 +94,7 @@ void resetFB(struct Light *inst)
 
 void PWMControl(struct Light *inst)
 {
+	inst->internal.PWM.PWM.DutyCycle = inst->DutyCycle;
 	MTBasicsPWM(&inst->internal.PWM.PWM);
 	inst->DO9322.DigitalOutput = inst->internal.PWM.PWM.Out;
 }

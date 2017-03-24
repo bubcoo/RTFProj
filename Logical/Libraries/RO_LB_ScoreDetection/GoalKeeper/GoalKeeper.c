@@ -9,7 +9,7 @@ void GoalKeeper(struct GoalKeeper *inst){
 	
 	if (inst->enable){
 		if (!inst->Internal.init){
-			inst->Internal.DisableTimer.PT = 500;
+			inst->Internal.DisableTimer1.PT = inst->Internal.DisableTimer2.PT = 100;
 			inst->Internal.init = 1;
 		}
 	
@@ -19,19 +19,27 @@ void GoalKeeper(struct GoalKeeper *inst){
 		else
 			inst->status = ERR_OK;
 	
-		TON_10ms(&inst->Internal.DisableTimer);
+		TON_10ms(&inst->Internal.DisableTimer1);
 		
-		if ((inst->Internal.DisableTimer.IN == 1) && (inst->Internal.DisableTimer.Q)){
-			inst->Internal.DisableTimer.IN = 0;
-		}
-		else if ((!inst->DI9371.DigitalInput) && (!inst->isGoal) && (!inst->Internal.DisableTimer.IN)) {
-			inst->isGoal = 1;
-			inst->MappView.counter = inst->MappView.counter + 1;
-			inst->Internal.DisableTimer.IN = 1;
+		if ((inst->Internal.DisableTimer1.IN == 1) && (inst->Internal.DisableTimer1.Q))
+			inst->Internal.DisableTimer1.IN = 0;
+		else if ((!inst->DI9371.DigitalInput_1) && (!inst->isGoal1) && (!inst->Internal.DisableTimer1.IN)) {
+			inst->isGoal1 = 1;
+			inst->Internal.DisableTimer1.IN = 1;
 		}			
-		else{
-				inst->isGoal = 0;
-			}
+		else
+			inst->isGoal1 = 0;
+		
+		TON_10ms(&inst->Internal.DisableTimer2);
+		
+		if ((inst->Internal.DisableTimer2.IN == 1) && (inst->Internal.DisableTimer2.Q))
+			inst->Internal.DisableTimer2.IN = 0;
+		else if ((!inst->DI9371.DigitalInput_2) && (!inst->isGoal2) && (!inst->Internal.DisableTimer2.IN)) {
+			inst->isGoal2 = 1;
+			inst->Internal.DisableTimer2.IN = 1;
+		}			
+		else
+			inst->isGoal2 = 0;
 	}
 	else
 		inst->status = ERR_FUB_ENABLE_FALSE;

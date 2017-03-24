@@ -182,6 +182,8 @@ void initFB(struct FBCamera *inst)
 	inst->Internal.disableBit = 1;
 	inst->InSight.Control_I2000_S01 = 128;
 	memset(&inst->Results.ActTime,0,sizeof(inst->Results.ActTime));
+	inst->Results.AxisXOld = inst->Internal.NaN;
+	inst->Results.AxisYOld = inst->Internal.NaN;
 }
 
 void resetFB(struct FBCamera *inst)
@@ -199,18 +201,14 @@ void cleanFB(struct FBCamera *inst)
 
 void getRealAxes(struct FBCamera *inst)
 {
-	if (!inst->InSight.InspectionResults_I2011_S01 || !inst->InSight.InspectionResults_I2011_S02)
-		inst->Results.AxisY = inst->Results.AxisX = inst->Internal.NaN;
-	else{ 
-		if ((inst->Results.AxisXOld != inst->Results.AxisX) || (inst->Results.AxisYOld != inst->Results.AxisY)){
-			inst->Results.AxisXOld = inst->Results.AxisX;
-			inst->Results.AxisYOld = inst->Results.AxisY;
-			memcpy((UDINT)&inst->Results.ActTimeOld,(UDINT)&inst->Results.ActTime,sizeof(inst->Results.ActTime));
-			inst->Results.TimeDiff = (REAL)((inst->Results.ActTime.millisec + (inst->Results.ActTime.second*1000)) - (inst->Results.ActTimeOld.millisec +(inst->Results.ActTimeOld.second*1000)));
-		}
+	if (inst->InSight.InspectionResults_I2011_S01 && inst->InSight.InspectionResults_I2011_S02){ 
+		inst->Results.AxisXOld = inst->Results.AxisX;
+		inst->Results.AxisYOld = inst->Results.AxisY;
+		memcpy((UDINT)&inst->Results.ActTimeOld,(UDINT)&inst->Results.ActTime,sizeof(inst->Results.ActTime));
 		inst->Results.AxisX = ((inst->InSight.InspectionResults_I2011_S02*(-9.9917423616845582163501238645747))+12349.793559042113955408753096614);
 		inst->Results.AxisY = ((inst->InSight.InspectionResults_I2011_S01*(-10.049180327868852459016393442623))+5115.0327868852459016393442622951);
 		RTC_gettime(&inst->Results.ActTime);
+		inst->Results.TimeDiff = (REAL)((inst->Results.ActTime.millisec + (inst->Results.ActTime.second*1000)) - (inst->Results.ActTimeOld.millisec +(inst->Results.ActTimeOld.second*1000)));
 	}
 }
 

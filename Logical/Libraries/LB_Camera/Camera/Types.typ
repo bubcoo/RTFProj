@@ -50,8 +50,8 @@ TYPE
 	END_STRUCT;
 	MappView_type : 	STRUCT 
 		PicEnable : BOOL;
-		Y : ARRAY[0..4]OF INT;
-		X : ARRAY[0..4]OF INT := [11(5),0];
+		Y : ARRAY[0..1000]OF INT;
+		X : ARRAY[0..1000]OF INT := [11(5),0,996(0)];
 		LoadImage : BOOL;
 	END_STRUCT;
 	FTP_type : 	STRUCT 

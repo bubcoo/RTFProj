@@ -5,19 +5,21 @@
       <Widgets>
         <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutput1" top="21" left="30" width="205" height="30" zIndex="0" borderWidth="2px 6px 2px 2px" />
         <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutput2" top="61" left="30" width="205" height="30" zIndex="1" borderWidth="2px 6px 2px 2px" />
-        <Widget xsi:type="widgets.brease.LineChart" id="LineChart1" top="41" left="245" width="720" height="440" zIndex="2">
+        <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutput3" top="146" left="20" width="100" height="30" zIndex="2" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':1,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':0,'minimumIntegerDigits':1}}" borderWidth="2px" />
+        <Widget xsi:type="widgets.brease.LineChart" id="LineChart1" top="136" left="235" width="815" height="369" zIndex="3">
           <Widgets>
-            <Widget xsi:type="widgets.brease.LineChartIndexAxis" id="LineChartIndexAxis1" height="50" zIndex="0" minValue="10">
-              <Widgets />
+            <Widget xsi:type="widgets.brease.LineChartIndexAxis" id="LineChartIndexAxis1" height="40" zIndex="0">
+              <Widgets>
+                <Widget xsi:type="widgets.brease.LineChartXAxisIndexCursor" id="LineChartXAxisIndexCursor1" zIndex="0" xAxisRefId="LineChartIndexAxis1" />
+              </Widgets>
             </Widget>
             <Widget xsi:type="widgets.brease.LineChartYAxis" id="LineChartYAxis1" width="60" zIndex="1">
               <Widgets>
-                <Widget xsi:type="widgets.brease.LineChartGraph" id="LineChartGraph1" zIndex="0" xAxisRefId="xAxisRefId1" />
+                <Widget xsi:type="widgets.brease.LineChartGraph" id="LineChartGraph1" zIndex="0" maxValue="450" xAxisRefId="LineChartIndexAxis1" />
               </Widgets>
             </Widget>
           </Widgets>
         </Widget>
-        <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutput3" top="146" left="20" width="100" height="30" zIndex="3" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':1,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':0,'minimumIntegerDigits':1}}" borderWidth="2px" />
       </Widgets>
     </Widget>
   </Widgets>
