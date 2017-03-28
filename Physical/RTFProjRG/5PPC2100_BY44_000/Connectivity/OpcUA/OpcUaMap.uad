@@ -39,12 +39,11 @@
             <Variable Name="AxisY" Enable="True" />
           </Variable>
         </Variable>
-        <Variable Name="GoalKeeper_0" Enable="True">
-          <Variable Name="MappView" Enable="True">
-            <Variable Name="counter" Enable="True" />
-          </Variable>
-        </Variable>
+        <Variable Name="GoalKeeper_0" Enable="True" />
       </GlobalVariables>
+      <Task Name="cam_sens_s">
+        <Variable Name="Y" Enable="True" />
+      </Task>
     </Module>
   </DefaultView>
 </OpcUaSource>

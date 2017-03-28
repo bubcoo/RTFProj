@@ -6,10 +6,10 @@ FUNCTION_BLOCK GoalKeeper
 	END_VAR
 	VAR_OUTPUT
 		status : UINT;
-		isGoal : BOOL;
+		isGoal1 : BOOL;
+		isGoal2 : BOOL;
 	END_VAR
 	VAR
-		MappView : MappViewG_type;
 		Internal : InternalG_type;
 	END_VAR
 END_FUNCTION_BLOCK
