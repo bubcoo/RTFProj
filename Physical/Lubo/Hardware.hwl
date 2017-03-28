@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<BR.AS.HardwareTopology Version="0.0.0.1">
-  <Modules>
-    <Module Name="PC_any" Type="PC_any" X="100" Y="100" />
-    <Module Name="5LS182.6-1" Type="5LS182.6-1" X="418" Y="110" />
-  </Modules>
-  <Links />
-  <InfoElements />
-</BR.AS.HardwareTopology>

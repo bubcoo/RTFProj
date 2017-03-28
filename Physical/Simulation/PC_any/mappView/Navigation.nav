@@ -10,7 +10,7 @@
 	 	<Destination refId="PosPage" index="5" />
 	  	<Destination refId="TempPage" index="6" />
 	  	<Destination refId="AlarmPage" index="7" />
-	  	<Destination refId="SafetyPage" index="8" />
+	  	<Destination refId="SftPage" index="8" />
 	  	<Destination refId="AboutPage" index="9" />
     </NavigationPath>
     <NavigationPath refId="GamePage">
@@ -22,7 +22,7 @@
 		<Destination refId="PosPage" index="5" />
 		<Destination refId="TempPage" index="6" />
 		<Destination refId="AlarmPage" index="7" />
-		<Destination refId="SafetyPage" index="8" />
+		<Destination refId="SftPage" index="8" />
 		<Destination refId="AboutPage" index="9" />
     </NavigationPath>
     <NavigationPath refId="MatchPage">
@@ -34,7 +34,7 @@
 		<Destination refId="PosPage" index="5" />
 		<Destination refId="TempPage" index="6" />
 		<Destination refId="AlarmPage" index="7" />
-		<Destination refId="SafetyPage" index="8" />
+		<Destination refId="SftPage" index="8" />
 		<Destination refId="AboutPage" index="9" />
     </NavigationPath>
 	<NavigationPath refId="CameraPage">
@@ -46,7 +46,7 @@
 		<Destination refId="PosPage" index="5" />
 		<Destination refId="TempPage" index="6" />
 		<Destination refId="AlarmPage" index="7" />
-		<Destination refId="SafetyPage" index="8" />
+		<Destination refId="SftPage" index="8" />
 		<Destination refId="AboutPage" index="9" />
 	</NavigationPath>
 	<NavigationPath refId="SDMPage">
@@ -58,7 +58,7 @@
 		<Destination refId="PosPage" index="5" />
 		<Destination refId="TempPage" index="6" />
 		<Destination refId="AlarmPage" index="7" />
-		<Destination refId="SafetyPage" index="8" />
+		<Destination refId="SftPage" index="8" />
 		<Destination refId="AboutPage" index="9" />
 	</NavigationPath>
 	<NavigationPath refId="GraphPage">
@@ -70,7 +70,7 @@
 		<Destination refId="PosPage" index="5" />
 		<Destination refId="TempPage" index="6" />
 		<Destination refId="AlarmPage" index="7" />
-		<Destination refId="SafetyPage" index="8" />
+		<Destination refId="SftPage" index="8" />
 		<Destination refId="AboutPage" index="9" />
 	</NavigationPath>
 	<NavigationPath refId="PosPage">
@@ -82,7 +82,7 @@
 		<Destination refId="PosPage" index="5" />
 		<Destination refId="TempPage" index="6" />
 		<Destination refId="AlarmPage" index="7" />
-		<Destination refId="SafetyPage" index="8" />
+		<Destination refId="SftPage" index="8" />
 		<Destination refId="AboutPage" index="9" />
 	</NavigationPath>
 	<NavigationPath refId="TempPage">
@@ -94,7 +94,7 @@
 		<Destination refId="PosPage" index="5" />
 		<Destination refId="TempPage" index="6" />
 		<Destination refId="AlarmPage" index="7" />
-		<Destination refId="SafetyPage" index="8" />
+		<Destination refId="SftPage" index="8" />
 		<Destination refId="AboutPage" index="9" />
 	</NavigationPath>
 	<NavigationPath refId="AlarmPage">
@@ -106,10 +106,10 @@
 		<Destination refId="PosPage" index="5" />
 		<Destination refId="TempPage" index="6" />
 		<Destination refId="AlarmPage" index="7" />
-		<Destination refId="SafetyPage" index="8" />
+		<Destination refId="SftPage" index="8" />
 		<Destination refId="AboutPage" index="9" />
 	</NavigationPath>
-	<NavigationPath refId="SafetyPage">
+	<NavigationPath refId="SftPage">
 		<Destination refId="HomePage" index="0" />
 		<Destination refId="GamePage" index="1" />    
 		<Destination refId="CameraPage" index="2" />
@@ -118,7 +118,7 @@
 		<Destination refId="PosPage" index="5" />
 		<Destination refId="TempPage" index="6" />
 		<Destination refId="AlarmPage" index="7" />
-		<Destination refId="SafetyPage" index="8" />
+		<Destination refId="SftPage" index="8" />
 		<Destination refId="AboutPage" index="9" />
 	</NavigationPath>
 	<NavigationPath refId="AboutPage">
@@ -130,7 +130,7 @@
 		<Destination refId="PosPage" index="5" />
 		<Destination refId="TempPage" index="6" />
 		<Destination refId="AlarmPage" index="7" />
-		<Destination refId="SafetyPage" index="8" />
+		<Destination refId="SftPage" index="8" />
 		<Destination refId="AboutPage" index="9" />
 	</NavigationPath>
   </NavigationPaths>

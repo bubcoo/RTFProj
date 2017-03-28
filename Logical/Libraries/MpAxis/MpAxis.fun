@@ -42,7 +42,7 @@ FUNCTION_BLOCK MpAxisBasic (*Covers all basic functions of an axis*) (* $GROUP=m
 		Info : MpAxisBasicInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*)
+		Internal : MpComInternalDataType; (*Internal data*)
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -83,7 +83,7 @@ FUNCTION_BLOCK MpAxisCamSequencer (*Flexibly sequence various (user-defined or p
 		Info : MpAxisCamSequencerInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*)
+		Internal : MpComInternalDataType; (*Internal data*)
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -116,7 +116,7 @@ FUNCTION_BLOCK MpAxisCoupling (*Create simple couplings between axes*) (* $GROUP
 		Info : MpAxisCouplingInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*)
+		Internal : MpComInternalDataType; (*Internal data*)
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -145,7 +145,7 @@ FUNCTION_BLOCK MpAxisCyclicSet (*Controls a single axis via cyclic setpoints*) (
 		Info : MpAxisCyclicSetInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*)
+		Internal : MpComInternalDataType; (*Internal data*)
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -167,6 +167,6 @@ FUNCTION_BLOCK MpAxisBasicConfig (*Configuration of an axis (I/O points, trigger
 		Info : MpAxisInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType;
+		Internal : MpComInternalDataType;
 	END_VAR
 END_FUNCTION_BLOCK
