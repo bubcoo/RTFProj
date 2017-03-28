@@ -34,52 +34,6 @@
     <NcDataObject Name="fwLinearDi" Source="Simulation.Motion.Linear.fwLinearDobj.fwLinearDi.dob" Memory="UserROM" Language="Ax" />
     <NcDataObject Name="mdLinearCa" Source="Simulation.Motion.Linear.mdLinearCobj.mdLinearCa.dob" Memory="UserROM" Language="Apt" />
     <NcDataObject Name="mdLinearCi" Source="Simulation.Motion.Linear.mdLinearCobj.mdLinearCi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="gmcipsys1" Source="ACP10_ETXEN.GmcIpConfig.gmcipsys.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipvar1" Source="ACP10_ETXEN.GmcIpUserConfig.gmcipvar.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmciplbr1" Source="ACP10_ETXEN.GmcIpConfig.gmciplbr.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipvar" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipvar.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipcbr1" Source="ACP10_ETXEN.GmcIpConfig.gmcipcbr.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipfun1" Source="ACP10_ETXEN.GmcIpUserConfig.gmcipfun.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmciplsm1" Source="ACP10_ETXEN.GmcIpConfig.gmciplsm.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipfun" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipfun.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipcsm1" Source="ACP10_ETXEN.GmcIpConfig.gmcipcsm.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipfub1" Source="ACP10_ETXEN.GmcIpUserConfig.gmcipfub.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipcfg1" Source="ACP10_ETXEN.GmcIpConfig.gmcipcfg.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipfub" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipfub.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipiec1" Source="ACP10_ETXEN.GmcIpConfig.gmcipiec.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipubr1" Source="ACP10_ETXEN.GmcIpUserConfig.gmcipubr.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmciplog1" Source="ACP10_ETXEN.GmcIpConfig.gmciplog.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipubr" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipubr.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipesm1" Source="ACP10_ETXEN.GmcIpConfig.gmcipesm.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipusm1" Source="ACP10_ETXEN.GmcIpUserConfig.gmcipusm.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipmxd1" Source="ACP10_ETXEN.GmcIpConfig.gmcipmxd.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipusm" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipusm.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipmx1" Source="ACP10_ETXEN.GmcIpConfig.gmcipmx.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipui1" Source="ACP10_ETXEN.GmcIpUserConfig.gmcipui.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipui" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipui.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipus1" Source="ACP10_ETXEN.GmcIpUserConfig.gmcipus.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipus" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipus.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipuc1" Source="ACP10_ETXEN.GmcIpUserConfig.gmcipuc.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipuc" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipuc.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipvar2" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipvar.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipfun2" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipfun.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipfub2" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipfub.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipubr2" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipubr.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipusm2" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipusm.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipui2" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipui.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipus2" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipus.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipuc2" Source="ACP10_ETXEN.ACP10_N.GmcIpUserConfig.gmcipuc.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipsys" Source="ACP10_ETXEN.ACP10_N.GmcIpConfig.gmcipsys.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmciplbr" Source="ACP10_ETXEN.ACP10_N.GmcIpConfig.gmciplbr.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipcbr" Source="ACP10_ETXEN.ACP10_N.GmcIpConfig.gmcipcbr.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmciplsm" Source="ACP10_ETXEN.ACP10_N.GmcIpConfig.gmciplsm.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipcsm" Source="ACP10_ETXEN.ACP10_N.GmcIpConfig.gmcipcsm.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipcfg" Source="ACP10_ETXEN.ACP10_N.GmcIpConfig.gmcipcfg.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipiec" Source="ACP10_ETXEN.ACP10_N.GmcIpConfig.gmcipiec.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmciplog" Source="ACP10_ETXEN.ACP10_N.GmcIpConfig.gmciplog.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipesm" Source="ACP10_ETXEN.ACP10_N.GmcIpConfig.gmcipesm.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipmxd" Source="ACP10_ETXEN.ACP10_N.GmcIpConfig.gmcipmxd.dob" Memory="UserROM" Language="Cnc" />
-    <NcDataObject Name="gmcipmx" Source="ACP10_ETXEN.ACP10_N.GmcIpConfig.gmcipmx.dob" Memory="UserROM" Language="Cnc" />
   </NcDataObjects>
   <Binaries>
     <BinaryObject Name="TCData" Source="" Memory="SystemROM" Language="Binary" />

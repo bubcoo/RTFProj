@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Content id="ContentAboutPage" height="668" width="1166" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
-    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox1" top="10" left="10" width="1145" height="645" zIndex="0" text="About" borderWidth="0px" cornerRadius="8px 8px 0px 0px" backColor="rgba(255, 255, 255, 1)" headerGradient="linear-gradient(to bottom,#F7F7F7 10%,#C6C6C6 90%)" borderColor="rgba(190, 190, 190, 0.75)" fontSize="14px">
-      <Widgets />
+    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox1" top="10" left="10" width="1145" height="645" zIndex="0" text="About" borderWidth="0px" cornerRadius="8px 8px 0px 0px" backColor="rgba(255, 255, 255, 1)" headerGradient="linear-gradient(to bottom,#F7F7F7 10%,#C6C6C6 90%)" borderColor="rgba(190, 190, 190, 0.75)" textColor="rgba(84, 84, 84, 1)" fontName="TSTAR PRO" fontSize="14px">
+      <Widgets>
+        <Widget xsi:type="widgets.brease.Image" id="Image1" top="-43" left="70" width="492" height="503" zIndex="0" image="Media/Images/Other/sideView.png" borderWidth="0px" />
+        <Widget xsi:type="widgets.brease.Image" id="Image2" top="-23" left="509" width="638" height="680" zIndex="1" image="Media/Images/Other/topView.png" borderWidth="0px" />
+        <Widget xsi:type="widgets.brease.Image" id="Image3" top="515" left="769" width="360" height="80" zIndex="2" image="Media/Images/Other/br_perfect.png" borderWidth="0px" />
+        <Widget xsi:type="widgets.brease.Image" id="Image4" top="296" left="190" width="210" height="104" zIndex="3" image="Media/Images/Other/seko.png" borderWidth="0px" />
+      </Widgets>
     </Widget>
   </Widgets>
 </Content>

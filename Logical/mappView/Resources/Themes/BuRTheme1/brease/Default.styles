@@ -15,7 +15,7 @@
 
 	<!--automatic navigation button-->
 		
-	<Style id="default" xsi:type="widgets.brease.SystemNavButton" fontSize="16px" bold="true" textColor="#474747" mouseDownTextColor="#FF8500" cornerRadius="8px" borderWidth="0px 0px 0px 0px" mouseDownBorderWidth="0px 0px 0px 0px" borderColor="#A899A0 #5F5F5F #5F5F5F #A899A0" mouseDownBorderColor="#FFA947 #FD7B01 #FD7B01 #FFA947" backGroundGradient="linear-gradient(to bottom, rgba(247,247,247,1) 0%,rgba(229,229,229,1) 100%)" mouseDownBackGroundGradient="linear-gradient(to bottom, rgba(229,229,229,1) 0%,rgba(247,247,247,1) 100%) " checkedBackGroundGradient="linear-gradient(to bottom, rgba(229,229,229,1) 0%,rgba(247,247,247,1) 100%) " disabledBackGroundGradient="linear-gradient(135deg, #777777 0%,#bbbbbb 0%,#777777 4%,#777777 4%,#777777 86%,#eeeeee 98%)" shadow="3px 3px 12px 0px rgba(190, 190, 190, 0.75)" mouseDownShadow="2px 2px 8px 0px rgba(62, 79, 92, 0.75)" padding="0px 7px 0px 7px"/>	
+	<Style id="default" xsi:type="widgets.brease.SystemNavButton" fontName="TSTAR PRO" fontSize="16px" bold="true" textColor="rgba(84, 84, 84, 1)" mouseDownTextColor="#FF8500" cornerRadius="8px" borderWidth="0px 0px 0px 0px" mouseDownBorderWidth="0px 0px 0px 0px" borderColor="#A899A0 #5F5F5F #5F5F5F #A899A0" mouseDownBorderColor="#FFA947 #FD7B01 #FD7B01 #FFA947" backGroundGradient="linear-gradient(to bottom, rgba(247,247,247,1) 0%,rgba(229,229,229,1) 100%)" mouseDownBackGroundGradient="linear-gradient(to bottom, rgba(229,229,229,1) 0%,rgba(247,247,247,1) 100%) " checkedBackGroundGradient="linear-gradient(to bottom, rgba(229,229,229,1) 0%,rgba(247,247,247,1) 100%) " disabledBackGroundGradient="linear-gradient(135deg, #777777 0%,#bbbbbb 0%,#777777 4%,#777777 4%,#777777 86%,#eeeeee 98%)" shadow="3px 3px 12px 0px rgba(190, 190, 190, 0.75)" mouseDownShadow="2px 2px 8px 0px rgba(62, 79, 92, 0.75)" padding="0px 7px 0px 7px"/>	
 
 		
 	<!--toggle button-->
@@ -140,12 +140,11 @@
 
 	<!--radial gauge-->
 		
-	<Style id="default" xsi:type="widgets.brease.RadialGauge" 	borderWidth="2px" borderColor="#474747" pointerBackColor="#FF0000" 	backGroundGradient="radial-gradient(ellipse farthest-corner at 45px 45px , #d9d9d9 0%, rgba(0, 0, 255, 0) 50%, #555555 95%)"/>
+	<Style id="default" xsi:type="widgets.brease.RadialGauge" borderWidth="2px" borderColor="#474747" pointerBackColor="#FF0000" 	backGroundGradient="radial-gradient(ellipse farthest-corner at 45px 45px , #d9d9d9 0%, rgba(0, 0, 255, 0) 50%, #555555 95%)"/>
 
 	<!--table and table item-->
 	
 	<Style id="default" xsi:type="widgets.brease.Table" fontSize="16px" headerFontSize="16px" bold="false" headerGradient="linear-gradient(to bottom,#F7F7F7 0%,#C6C6C6 100%)" shadow="4px 4px 14px 0px rgba(62, 79, 92, 0.75)" />
-	
 		
 	<!--version 1.1 widgets-->
 	

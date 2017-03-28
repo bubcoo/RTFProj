@@ -1,4 +1,3 @@
-
 TYPE
 	MpAxisBasicParType : 	STRUCT  (*Axis runtime parameters*)
 		Acceleration : REAL := 200.0; (*Acceleration [Units/sec²]*)
@@ -60,7 +59,6 @@ TYPE
 		TorqueMode : MpAxisReadInfoModeEnum := mpAXIS_READ_OFF; (*Reads the torque*)
 		LagErrorMode : MpAxisReadInfoModeEnum := mpAXIS_READ_OFF; (*Reads the lag error*)
 		MotorTempMode : MpAxisReadInfoModeEnum := mpAXIS_READ_OFF; (*Reads the motor temperature*)
-		UserChannelMode : MpAxisReadInfoModeEnum := mpAXIS_READ_OFF; (*Channel for read cyclically a custom parameter defined in configuration*)
 	END_STRUCT;
 	MpAxisAutotuneType : 	STRUCT  (*Autotuning setup*)
 		Mode : MpAxisAutotuneModeEnum := mpAXIS_TUNE_AUTOMATIC; (*Tuning mode*)
@@ -71,6 +69,8 @@ TYPE
 		MaxDistance : LREAL := 100.0; (*Maximum movement distance during tuning [units]*)
 		ProportionalAmplification : REAL := 100.0; (*Percentage of the additional gain factor (defined by the configuration) being used for closed-loop control [%]*)
 	END_STRUCT;
+END_TYPE
+TYPE
 	MpAxisBasicInfoType : 	STRUCT  (*Additional info about the axis*)
 		AxisInitialized : BOOL; (*The axis has been completely initialized at least once (configuration loaded to the drive)*)
 		ReadyToPowerOn : BOOL; (*Axis ready for "PowerOn" command*)
@@ -83,7 +83,6 @@ TYPE
 		DigitalInputsStatus : MpAxisDigitalIOStatusType; (*Digital inputs status*)
 		HardwareInfo : MpAxisAddInfoHardwareType; (*Hardware information*)
 		Diag : MpAxisDiagExtType; (*Diagnostic structure for the status ID*)
-		MoveDone : BOOL; (*Discrete movement done*)
 	END_STRUCT;
 	MpAxisDigitalIOStatusType : 	STRUCT  (*Digital inputs status*)
 		DriveEnable : BOOL; (*Enable input of the drive is closed*)
@@ -103,11 +102,10 @@ TYPE
 		Torque : MpAxisCyclicReadValueType; (*Torque value*)
 		LagError : MpAxisCyclicReadValueType; (*Lag error value*)
 		MotorTemperature : MpAxisCyclicReadValueType; (*Motor temperature value*)
-		UserChannelParameterID : MpAxisCyclicReadValueType; (*Custom parameter value*)
 	END_STRUCT;
 	MpAxisCyclicReadValueType : 	STRUCT  (*Cyclic information*)
 		Valid : BOOL; (*The information is valid*)
-		Value : LREAL; (*Current value Lag error [units] Temperature [°C] Torque [Nm] Custom [depends of parID]*)
+		Value : LREAL; (*Current value Lag error [units] Temperature [°C] Torque [Nm]*)
 	END_STRUCT;
 	MpAxisDiagExtType : 	STRUCT  (*Extended component diagnostics*)
 		StatusID : MpAxisStatusIDType; (*StatusID diagnostic structure*)
@@ -128,6 +126,8 @@ TYPE
 		Facility : MpComFacilitiesEnum; (*Facility of internal error*)
 		Code : UINT; (*Error ID contained into internal error*)
 	END_STRUCT;
+END_TYPE
+TYPE
 	MpAxisAutotuneModeEnum : 
 		( (*Autotuning modes*)
 		mpAXIS_TUNE_AUTOMATIC := 0, (*Performs a complete autotuning sequence*)
@@ -303,6 +303,8 @@ TYPE
 		mpAXIS_ACOPOS_SDC := 128, (*ACOPOS with SDC-Interface*)
 		mpAXIS_ACOPOS_SIM := 129 (*ACOPOS simulation*)
 		);
+END_TYPE
+TYPE
 	MpAxisBasicConfigType : 	STRUCT  (*Global MpAxis configuration*)
 		AxisName : STRING[20] := 'Axis'; (*Axis Name*)
 		Axis : MpAxisBasicConfigAxisType; (*Axis configuration*)
@@ -317,10 +319,6 @@ TYPE
 		SoftwareLimitPositions : MpAxisSoftwareLimitType; (*Software position limit values*)
 		PeriodSettings : MpAxisPeriodType; (*Period definition*)
 		MovementLimits : MpAxisMovementLimitsType; (*Limits configuration*)
-		CyclicReadChannels : MpAxisCyclicReadChannelsType; (*Channel for cyclic read a custom parameter*)
-	END_STRUCT;
-	MpAxisCyclicReadChannelsType : 	STRUCT 
-		UserChannelParameterID : UINT := 214; (*ParID of drive that should be cyclically read (Default 214: CTRL Current controller: Actual stator current quadrature component)*)
 	END_STRUCT;
 	MpAxisSoftwareLimitType : 	STRUCT  (*Software position limits*)
 		LowerLimit : LREAL := -8388608.0; (*Software limit value in the negative direction [units]*)
@@ -339,6 +337,8 @@ TYPE
 		VelocityErrorStopLimit : REAL := 0.0; (*Maximum velocity [units/s]*)
 		VelocityErrorStopLimitMode : MpAxisVelocityLimitModeEnum := mpAXIS_VEL_MODE_OFF; (*Velocity limit mode*)
 	END_STRUCT;
+END_TYPE
+TYPE
 	MpAxisBasicConfigDriveType : 	STRUCT  (*Drive configuration*)
 		Gearbox : MpAxisGearboxType; (*Scaling configuration*)
 		Transformation : MpAxisTransformationType; (*Transformation configuration for rotary and linear axes*)
@@ -350,7 +350,6 @@ TYPE
 		Input : UDINT := 1; (*Input ratio*)
 		Output : UDINT := 1; (*Output ratio*)
 		Direction : MpAxisMotorDirectionEnum := mpAXIS_DIR_CLOCKWISE; (*Direction of rotation of the motor*)
-		MaximumTorque : REAL; (*Maximum torque allowed*)
 	END_STRUCT;
 	MpAxisTransformationType : 	STRUCT  (*Transformation configuration*)
 		ReferenceDistance : LREAL := 360.0; (*Linear axis: Defines the distance moved by the linear axis while the output after the gearbox (on the load side) moves one rotation [units]
@@ -371,7 +370,7 @@ Rotary axis: Defines the physical units in relation to one rotation of the gearb
 		TotalDelayTime : REAL := 0.0004; (*Total delay time [s]*)
 	END_STRUCT;
 	MpAxisControllerSpeedType : 	STRUCT  (*Controller for speed loop*)
-		ProportionalGain : REAL := 2.0; (*Gain factor [Asec]*)
+		ProportionalGain : REAL := 2.0; (*Gain factor [1/s]*)
 		IntegralTime : REAL := 0.0; (*Integral time [s]*)
 		FilterTime : REAL := 0.0; (*Filter time constant [s]*)
 	END_STRUCT;
@@ -456,9 +455,13 @@ Rotary axis: Defines the physical units in relation to one rotation of the gearb
 		Trigger1 : MpAxisLevelIOEnum := mpAXIS_IO_ACTIVE_HI; (*Trigger 1*)
 		Trigger2 : MpAxisLevelIOEnum := mpAXIS_IO_ACTIVE_HI; (*Trigger 2 *)
 	END_STRUCT;
+END_TYPE
+TYPE
 	MpAxisInfoType : 	STRUCT  (*Additional info about the axis config*)
 		Diag : MpAxisDiagType; (*Diagnostic structure about errors*)
 	END_STRUCT;
+END_TYPE
+TYPE
 	MpAxisBaseTypeEnum : 
 		( (*System type options list*)
 		mpAXIS_LIMITED_LINEAR := 0, (*The system is linear with active software limit positions*)
@@ -541,6 +544,8 @@ Rotary axis: Defines the physical units in relation to one rotation of the gearb
 		mpAXIS_OUTPUT_SET := 0, (*The value provided by Position or Velocity output is the set profile generated*)
 		mpAXIS_OUTPUT_ACTUAL := 1 (*The value provided by Position or Velocity output is the real motor feedback*)
 		);
+END_TYPE
+TYPE
 	MpAxisCouplingParType : 	STRUCT  (*Standard coupling parameters structure*)
 		RatioNumerator : REAL := 360.0; (*Numerator*)
 		RatioDenominator : REAL := 360.0; (*Denominator*)
@@ -615,8 +620,9 @@ Rotary axis: Defines the physical units in relation to one rotation of the gearb
 		ActualOffsetValue : LREAL; (*Current shift of the axis [slave units]*)
 		ActualPhasingValue : LREAL; (*Current shift of the axis [master units]*)
 		Diag : MpAxisDiagExtType; (*Diagnostic structure for the status ID*)
-		RecoveryPosition : LREAL; (*Target position for recovery the slave. It is shown with all recovery mode types*)
 	END_STRUCT;
+END_TYPE
+TYPE
 	MpAxisShiftModeEnum : 
 		( (*Shift mode options list*)
 		mpAXIS_SHIFT_MODE_ABS := 0, (*The value on the "Shift" input is interpreted as an absolute value*)
@@ -646,15 +652,17 @@ Rotary axis: Defines the physical units in relation to one rotation of the gearb
 		mpAXIS_RECOVERY_BACKWARD := 2, (*The process only moves the slave backward in order to find the correct position again in accordance with the cam*)
 		mpAXIS_RECOVERY_SHORTEST_WAY := 3, (*The process moves the slave to the correct position using the shortest path in accordance with the cam*)
 		mpAXIS_RECOVERY_FORWARD_WINDOW := 100, (*The process moves the slave to the correct position using the shortest path in accordance with the cam in a defined window; otherwise only forward*)
-		mpAXIS_RECOVERY_BACKWARD_WINDOW := 101, (*The process moves the slave to the correct position using the shortest path in accordance with the cam in a defined window; otherwise only backward*)
-		mpAXIS_RECOVERY_GET_POSITION := 102 (*The process only calculate the target position (shown inside Info structure) according with setup but it doesn't perform any movement. The movement could be launched by MoveAbsolute or different recovery mode*)
+		mpAXIS_RECOVERY_BACKWARD_WINDOW := 101 (*The process moves the slave to the correct position using the shortest path in accordance with the cam in a defined window; otherwise only backward*)
 		);
+END_TYPE
+TYPE
 	MpAxisTorqueModeEnum : 
 		( (*Torque mode options list*)
-		mpAXIS_TORQUE_MODE_FF := 32, (*Feed-forward control (standard)*)
-		mpAXIS_TORQUE_MODE_LIMIT := 40, (*Torque limiter (standard)*)
-		mpAXIS_TORQUE_MODE_RAMPED_CTRL := 48 (*Ramped torque control*)
+		mpAXIS_TORQUE_MODE_FF := 32, (*Feed-forward control*)
+		mpAXIS_TORQUE_MODE_LIMIT := 40 (*Torque limiter*)
 		);
+END_TYPE
+TYPE
 	MpAxisCyclicSetParType : 	STRUCT  (*Cyclic Ref parameters structure*)
 		Acceleration : REAL := 100.0; (*Maximum acceleration [units/s²]*)
 		Deceleration : REAL := 100.0; (*Maximum deceleration [units/s²]*)
@@ -668,7 +676,6 @@ Rotary axis: Defines the physical units in relation to one rotation of the gearb
 		Mode : MpAxisTorqueModeEnum := mpAXIS_TORQUE_MODE_FF; (*Specifies how the "CyclicTorque" input is used*)
 		SctrlKv : REAL := 5.0; (*Proportional gain of the speed controller while cyclic torque control is active. This value is reset when disabled*)
 		SctrlTn : REAL := 0.1; (*Integral time of the speed controller while cyclic torque control is active. This value is reset when disabled [s]*)
-		RampedControl : MpAxisTorqueRampedControlType; (*Ramped torque control parameters*)
 	END_STRUCT;
 	MpAxisCyclicSetInfoType : 	STRUCT  (*Additional info about the axis*)
 		AxisReady : BOOL; (*The axis has been completely initialized at least once.*)
@@ -677,8 +684,9 @@ Rotary axis: Defines the physical units in relation to one rotation of the gearb
 		SlavePosition : LREAL; (*Position of the slave axis [units/s]*)
 		SlaveVelocity : REAL; (*Velocity of the slave axis [units/s]*)
 		Diag : MpAxisDiagExtType; (*Diagnostic structure for the status ID*)
-		TorqueControl : MpAxisTorqueInfoType; (*Torque control information*)
 	END_STRUCT;
+END_TYPE
+TYPE
 	MpAxisCamSequencerParType : 	STRUCT  (*Cam sequencer parameters structure*)
 		Configuration : MC_AUTDATA_TYP := (MaxMasterVelocity:=1000.0,State:=[15((RepeatCounterInit:=1))]); (*Configuration of CAM states*)
 		Deceleration : REAL; (*Deceleration used to stop the slave [units/s² of the slave]*)
@@ -699,22 +707,5 @@ Rotary axis: Defines the physical units in relation to one rotation of the gearb
 		ActualOffsetValue : REAL; (*Current shift of the axis [slave units]*)
 		ActualPhasingValue : REAL; (*Current shift of the axis [master units]*)
 		Diag : MpAxisDiagExtType; (*Diagnostic structure for the status ID*)
-		RecoveryPosition : LREAL; (*Target position for recovery the slave. It is shown with all recovery mode types*)
-	END_STRUCT;
-	MpAxisTorqueInfoType : 	STRUCT  (*Torque control information parameters*)
-		InTorque : BOOL; (*Setpoint reached*)
-		WaitingForStart : BOOL; (*Function initialized, ready for StartParID"*)
-		VelocityLimitActive : BOOL; (*Axis velocity limit active*)
-	END_STRUCT;
-	MpAxisTorqueRampedControlType : 	STRUCT  (*Ramped torque control parameters*)
-		TorqueRamp : REAL := 0.0; (*Increase in torque until "Torque" value is reached [Nm/s]*)
-		PositiveMaxVelocity : REAL := 0.0; (*Upper velocity limit in the positive direction of rotation or lower velocity limit in the negative direction of rotation [PLCopen units/s]*)
-		NegativeMaxVelocity : REAL := 0.0; (*Upper velocity limit in the negative direction of rotation or lower velocity limit in the positive direction of rotation [PLCopen units/s]*)
-		DisableVelocityLimits : BOOL := FALSE; (*If TRUE, the "NegativeMaxVelocity" and "PositiveMaxVelocity" velocity limits are disabled. These parameters can be set to with any value and no longer have any effect.*)
-		CompensateVelocityLimits : BOOL := FALSE; (*If TRUE,  the velocity limits on the drive will be set to a calculated factor that is less or greater than specified for the "XxxMaxVelocity" parameters. The result of this configuration is that the configured velocity limits will not be exceeded*)
-		EnableTimeLimit : BOOL := FALSE; (*If TRUE, when the axis moves at the limit velocity for a certain amount of time (in seconds), then function will be terminated automatically with an error message*)
-		TimeLimit : REAL := 0.0; (*Time limit for how long the axis can move at the velocity or acceleration limit before it is stopped automatically [s]*)
-		StartParID : UINT := 0; (*Torque controlled movement starts via ParID when the value changes from 0 to !=0*)
-		TorqueParID : UINT := 0; (*Preset value of the torque setpoint from a ParID instead of the PLC via "Torque" [Nm]*)
 	END_STRUCT;
 END_TYPE

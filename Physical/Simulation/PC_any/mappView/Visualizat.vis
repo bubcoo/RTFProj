@@ -2,17 +2,17 @@
 <vdef:Visualization id="RSTSIMPROJ" xmlns:vdef="http://www.br-automation.com/iat2015/visualizationDefinition/v2">
   <StartPage pageRefId="HomePage" />
   <Pages>
+	<Page refId="HomePage"/>
 	<Page refId="GamePage"/>
-	<Page refId="CameraPage"/>
-	<Page refId="SDMPage"/>
 	<Page refId="MatchPage"/>
-	<Page refId="HomePage"/> 
-	<Page refId="AlarmPage"/>
-	<Page refId="SafetyPage"/>
-	<Page refId="TempPage"/> 
-	<Page refId="AboutPage"/>
+	<Page refId="CameraPage"/>
 	<Page refId="GraphPage"/>
 	<Page refId="PosPage"/>
+	<Page refId="TempPage"/>
+	<Page refId="AlarmPage"/>
+	<Page refId="SftPage"/>
+	<Page refId="AboutPage"/>
+	<Page refId="SDMPage"/>
   </Pages>
   <Navigations>
     <Navigation refId="MainNavigation" />

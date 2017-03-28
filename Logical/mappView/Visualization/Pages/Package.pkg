@@ -3,8 +3,8 @@
 <Package PackageType="PagesPackage" xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
     <Object Type="Package" Description="AreaContents">AreaContents</Object>
-    <Object Type="Package">GamePage</Object>
     <Object Type="Package">CameraPage</Object>
+    <Object Type="Package">GamePage</Object>
     <Object Type="Package">SDMPage</Object>
     <Object Type="Package">MatchPage</Object>
     <Object Type="Package">HomePage</Object>
