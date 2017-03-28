@@ -13,8 +13,8 @@
 
 
 <Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::cam_sens_s:Y" attribute="value" />
+<Source xsi:type="opcUa" refId="::cam_sens_s:LineChart" attribute="value" />
 <Target xsi:type="brease" contentRefId="ContentCameraPage" widgetRefId="LineChartGraph1" attribute="value" />
 </Binding>
 </Bindings>
-</BindingsSet>
+</BindingsSet>	

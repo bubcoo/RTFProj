@@ -17,6 +17,7 @@
     </Connector>
     <Parameter ID="AutomationRuntime" Value="AR010" />
     <Parameter ID="ConfigurationID" Value="RTFProj_Config1" />
+    <Parameter ID="Simulation" Value="1" />
     <Parameter ID="TaskClassIdleTime" Value="2000" />
     <Parameter ID="Cyclic1Duration" Value="1000" />
     <Parameter ID="Cyclic1Tolerance" Value="10000" />
@@ -131,7 +132,6 @@
     <Parameter ID="Supervision" Value="off" />
     <Parameter ID="SafeProject" Value="SafeLOGIC-1" />
     <Parameter ID="SafeDesigner" Value="4.2.2.18" />
-    <Parameter ID="SourceSL" Value="on" />
   </Module>
   <Module Name="X20TB12" Type="X20TB12" Version="1.0.0.0" />
   <Module Name="X20TB12a" Type="X20TB12" Version="1.0.0.0" />

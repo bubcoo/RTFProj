@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio Version=4.2.7.54 SP?>
+<?AutomationStudio Version=4.2.8.54 SP?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
     <Object Type="File">game_playground.png</Object>
@@ -9,5 +9,6 @@
     <Object Type="File">feec.png</Object>
     <Object Type="File">fme.png</Object>
     <Object Type="File">pie.png</Object>
+    <Object Type="File">football.jpg</Object>
   </Objects>
 </Package>
