@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Content id="ContentInfo" height="668" width="200" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
-    <Widget xsi:type="widgets.brease.DateTimeOutput" id="DateTimeOutput1" top="20" left="20" width="160" height="30" zIndex="0" format="HH:mm:ss" textColor="rgba(84, 84, 84, 1)" fontName="TSTAR PRO" fontSize="35px" />
+    <Widget xsi:type="widgets.brease.DateTimeOutput" id="DateTimeOutput1" top="20" left="20" width="160" height="30" zIndex="0" format="HH:mm:ss" textColor="rgba(84, 84, 84, 1)" fontName="TSTAR PRO" fontSize="35px" bold="true" />
     <Widget xsi:type="widgets.brease.DateTimeOutput" id="DateTimeOutput2" top="40" left="0" width="200" height="60" zIndex="1" format="dddd, MMMM dd, yyyy" textColor="rgba(84, 84, 84, 1)" textAlign="center" fontName="TSTAR PRO" fontSize="15px" />
   </Widgets>
 </Content>

@@ -133,5 +133,41 @@
 		<Destination refId="SftPage" index="8" />
 		<Destination refId="AboutPage" index="9" />
 	</NavigationPath>
+	<NavigationPath refId="mbInfo">
+		<Destination refId="HomePage" index="0" />
+		<Destination refId="GamePage" index="1" />    
+		<Destination refId="CameraPage" index="2" />
+		<Destination refId="SDMPage" index="3" />
+		<Destination refId="GraphPage" index="4" />
+		<Destination refId="PosPage" index="5" />
+		<Destination refId="TempPage" index="6" />
+		<Destination refId="AlarmPage" index="7" />
+		<Destination refId="SftPage" index="8" />
+		<Destination refId="AboutPage" index="9" />
+	</NavigationPath>
+	<NavigationPath refId="dsInfo">
+		<Destination refId="HomePage" index="0" />
+		<Destination refId="GamePage" index="1" />    
+		<Destination refId="CameraPage" index="2" />
+		<Destination refId="SDMPage" index="3" />
+		<Destination refId="GraphPage" index="4" />
+		<Destination refId="PosPage" index="5" />
+		<Destination refId="TempPage" index="6" />
+		<Destination refId="AlarmPage" index="7" />
+		<Destination refId="SftPage" index="8" />
+		<Destination refId="AboutPage" index="9" />
+	</NavigationPath>
+	<NavigationPath refId="wdInfo">
+		<Destination refId="HomePage" index="0" />
+		<Destination refId="GamePage" index="1" />    
+		<Destination refId="CameraPage" index="2" />
+		<Destination refId="SDMPage" index="3" />
+		<Destination refId="GraphPage" index="4" />
+		<Destination refId="PosPage" index="5" />
+		<Destination refId="TempPage" index="6" />
+		<Destination refId="AlarmPage" index="7" />
+		<Destination refId="SftPage" index="8" />
+		<Destination refId="AboutPage" index="9" />
+	</NavigationPath>
   </NavigationPaths>
 </ndef:Navigation>

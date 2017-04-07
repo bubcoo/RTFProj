@@ -16,22 +16,23 @@
     <DataObject Name="Arnc0sys" Source="" Memory="UserROM" Language="Binary" />
   </DataObjects>
   <NcDataObjects>
-    <NcDataObject Name="gkRotaryDa" Source="Real_Game.Motion_RG.gkRotaryDobj.gkRotaryDa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="gkRotaryDi" Source="Real_Game.Motion_RG.gkRotaryDobj.gkRotaryDi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="gkRotaryGa" Source="Real_Game.Motion_RG.gkRotaryGobj.gkRotaryGa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="gkRotaryGi" Source="Real_Game.Motion_RG.gkRotaryGobj.gkRotaryGi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="gkLinearDa" Source="Real_Game.Motion_RG.gkLinearDobj.gkLinearDa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="gkLinearDi" Source="Real_Game.Motion_RG.gkLinearDobj.gkLinearDi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="gkLinearGa" Source="Real_Game.Motion_RG.gkLinearGobj.gkLinearGa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="gkLinearGi" Source="Real_Game.Motion_RG.gkLinearGobj.gkLinearGi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="gkRotaryFa" Source="Real_Game.Motion_RG.gkRotaryFobj.gkRotaryFa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="gkRotaryFi" Source="Real_Game.Motion_RG.gkRotaryFobj.gkRotaryFi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="gkRotaryMa" Source="Real_Game.Motion_RG.gkRotaryMobj.gkRotaryMa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="gkRotaryMi" Source="Real_Game.Motion_RG.gkRotaryMobj.gkRotaryMi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="gkLinearFa" Source="Real_Game.Motion_RG.gkLinearFobj.gkLinearFa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="gkLinearFi" Source="Real_Game.Motion_RG.gkLinearFobj.gkLinearFi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="gkLinearMa" Source="Real_Game.Motion_RG.gkLinearMobj.gkLinearMa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="gkLinearMi" Source="Real_Game.Motion_RG.gkLinearMobj.gkLinearMi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="acp10etxen" Source="acp10etxen.dob" Memory="UserROM" Language="Ett" />
+    <NcDataObject Name="rotaryDFa" Source="rotaryDFobj.rotaryDFa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="rotaryDFi" Source="rotaryDFobj.rotaryDFi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="rotaryGKa" Source="rotaryGKobj.rotaryGKa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="rotaryGKi" Source="rotaryGKobj.rotaryGKi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="linearDFa" Source="linearDFobj.linearDFa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="linearDFi" Source="linearDFobj.linearDFi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="linearGKa" Source="linearGKobj.linearGKa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="linearGKi" Source="linearGKobj.linearGKi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="rotaryFWa" Source="rotaryFWobj.rotaryFWa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="rotaryFWi" Source="rotaryFWobj.rotaryFWi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="rotaryMDa" Source="rotaryMDobj.rotaryMDa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="rotaryMDi" Source="rotaryMDobj.rotaryMDi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="linearFWa" Source="linearFWobj.linearFWa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="linearFWi" Source="linearFWobj.linearFWi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="linearMDa" Source="linearMDobj.linearMDa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="linearMDi" Source="linearMDobj.linearMDi.dob" Memory="UserROM" Language="Ax" />
   </NcDataObjects>
   <Binaries>
     <BinaryObject Name="mvLoader" Source="" Memory="UserROM" Language="Binary" />
@@ -82,13 +83,10 @@
     <LibraryObject Name="AsSafety" Source="Libraries.AsSafety.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="AsXml" Source="Libraries.AsXml.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="MpAxis" Source="Libraries.MpAxis.lby" Memory="UserROM" Language="Binary" Debugging="true" />
-    <LibraryObject Name="GmcManager" Source="Libraries.GmcManager.lby" Memory="UserROM" Language="Binary" Debugging="true" />
-    <LibraryObject Name="GmcGrpAPI" Source="Libraries.GmcGrpAPI.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="Acp10_MC" Source="Libraries.Acp10_MC.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="Acp10man" Source="Libraries.Acp10man.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="NcGlobal" Source="Libraries.NcGlobal.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="Acp10par" Source="Libraries.Acp10par.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="powerlnk" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
-    <LibraryObject Name="GmcArncGrp" Source="Libraries.GmcArncGrp.lby" Memory="UserROM" Language="Binary" Debugging="true" />
   </Libraries>
 </SwConfiguration>

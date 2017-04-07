@@ -14,5 +14,8 @@
     <Object Type="Package">AboutPage</Object>
     <Object Type="Package">PosPage</Object>
     <Object Type="Package">GraphPage</Object>
+    <Object Type="Package">mbInfo</Object>
+    <Object Type="Package">dsInfo</Object>
+    <Object Type="Package">wdInfo</Object>
   </Objects>
 </Package>

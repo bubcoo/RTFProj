@@ -19,7 +19,7 @@ FUNCTION_BLOCK MpComConfigManager (*Export / Import configuration data*) (* $GRO
 		Info : MpComConfigManagerInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : MpComConfigInternalType; (*Internal data*)
+		Internal : {REDUND_UNREPLICABLE} MpComConfigInternalType; (*Internal data*)
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -42,7 +42,7 @@ FUNCTION_BLOCK MpComLoggerUI (*Get mapp logger information*) (* $GROUP=mapp,$CAT
 		Info : MpComLoggerUIInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : MpComInternalDataType; (*Internal data*) (* *) (*#OMIT#;*)
+		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*) (* *) (*#OMIT#;*)
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -65,7 +65,7 @@ FUNCTION_BLOCK MpComLinkToParent (*Creates a hierarchy for the mapp components*)
 		MpLink : REFERENCE TO MpComIdentType; (*Link to mapp-component*) (* *) (*#PAR#;*)
 	END_VAR
 	VAR_OUTPUT
-		LinkOut : MpComIdentType; (*Outgoing component link (MpLink)*) (* *) (*#PAR#;*)
+		LinkOut : {REDUND_UNREPLICABLE} MpComIdentType; (*Outgoing component link (MpLink)*) (* *) (*#PAR#;*)
 		StatusID : DINT; (*Error output*) (* *) (*#PAR#;*)
 	END_VAR
 END_FUNCTION_BLOCK
@@ -85,6 +85,22 @@ FUNCTION_BLOCK MpComDump (*Creates a mapp diagnostic dump file*) (* $GROUP=mapp,
 		CommandDone : BOOL; (*Command is finished*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : MpComDumpInternalType;
+		Internal : {REDUND_UNREPLICABLE} MpComDumpInternalType;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MpComGetLink (*Get MpLink by component name*)
+	VAR_INPUT
+		Enable : BOOL; (*Enables/Disables the function block *) (* *) (*#PAR#;*)
+		ComponentName : REFERENCE TO STRING[100]; (*Full-qualified component name (including scope if necessary)*) (* *) (*#CMD#;*)
+	END_VAR
+	VAR_OUTPUT
+		MpLink : {REDUND_UNREPLICABLE} MpComIdentType; (*Link to mapp-component*) (* *) (*#CMD#;*)
+		Error : BOOL; (*A error has occurred when trying to find component*) (* *) (*#PAR#;*)
+		Active : BOOL; (*Component was found (MpLink valid)*) (* *) (*#PAR#;*)
+		StatusID : DINT; (*Information about the error that has occurred*) (* *) (*#PAR#;*)
+	END_VAR
+	VAR
+		Internal : {REDUND_UNREPLICABLE} BOOL;
 	END_VAR
 END_FUNCTION_BLOCK

@@ -12,9 +12,10 @@
     <Object Type="Package">TextSystem</Object>
     <Object Type="Package">AccessAndSecurity</Object>
     <Object Type="Package">Motion</Object>
+    <Object Type="File" Description="SafeDESIGNER project">SafeLOGIC-1.swt</Object>
   </Objects>
   <Configuration ModuleId="5PPC2100.BY44-000">
-    <AutomationRuntime Version="J4.25" />
+    <AutomationRuntime Version="B4.26" />
     <Build GccVersion="4.1.2" />
     <DefaultTargetMemory Tasks="UserROM" />
     <Vc FirmwareVersion="not used" />

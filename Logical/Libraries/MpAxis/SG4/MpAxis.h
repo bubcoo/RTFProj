@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpAxis 1.30.0 */
+/* MpAxis 1.60.1 */
 
 #ifndef _MPAXIS_
 #define _MPAXIS_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpAxis_VERSION
-#define _MpAxis_VERSION 1.30.0
+#define _MpAxis_VERSION 1.60.1
 #endif
 
 #include <bur/plctypes.h>
@@ -321,12 +321,14 @@ typedef enum MpAxisRecoveryModeEnum
 	mpAXIS_RECOVERY_BACKWARD = 2,
 	mpAXIS_RECOVERY_SHORTEST_WAY = 3,
 	mpAXIS_RECOVERY_FORWARD_WINDOW = 100,
-	mpAXIS_RECOVERY_BACKWARD_WINDOW = 101
+	mpAXIS_RECOVERY_BACKWARD_WINDOW = 101,
+	mpAXIS_RECOVERY_GET_POSITION = 102
 } MpAxisRecoveryModeEnum;
 
 typedef enum MpAxisTorqueModeEnum
 {	mpAXIS_TORQUE_MODE_FF = 32,
-	mpAXIS_TORQUE_MODE_LIMIT = 40
+	mpAXIS_TORQUE_MODE_LIMIT = 40,
+	mpAXIS_TORQUE_MODE_RAMPED_CTRL = 48
 } MpAxisTorqueModeEnum;
 
 typedef enum MpAxisErrorEnum
@@ -436,6 +438,7 @@ typedef struct MpAxisCyclicReadSetupType
 {	enum MpAxisReadInfoModeEnum TorqueMode;
 	enum MpAxisReadInfoModeEnum LagErrorMode;
 	enum MpAxisReadInfoModeEnum MotorTempMode;
+	enum MpAxisReadInfoModeEnum UserChannelMode;
 } MpAxisCyclicReadSetupType;
 
 typedef struct MpAxisAutotuneType
@@ -473,6 +476,7 @@ typedef struct MpAxisCyclicReadType
 {	struct MpAxisCyclicReadValueType Torque;
 	struct MpAxisCyclicReadValueType LagError;
 	struct MpAxisCyclicReadValueType MotorTemperature;
+	struct MpAxisCyclicReadValueType UserChannelParameterID;
 } MpAxisCyclicReadType;
 
 typedef struct MpAxisDigitalIOStatusType
@@ -522,6 +526,7 @@ typedef struct MpAxisBasicInfoType
 	struct MpAxisDigitalIOStatusType DigitalInputsStatus;
 	struct MpAxisAddInfoHardwareType HardwareInfo;
 	struct MpAxisDiagExtType Diag;
+	plcbit MoveDone;
 } MpAxisBasicInfoType;
 
 typedef struct MpAxisDiagType
@@ -548,6 +553,10 @@ typedef struct MpAxisMovementLimitsType
 	enum MpAxisVelocityLimitModeEnum VelocityErrorStopLimitMode;
 } MpAxisMovementLimitsType;
 
+typedef struct MpAxisCyclicReadChannelsType
+{	unsigned short UserChannelParameterID;
+} MpAxisCyclicReadChannelsType;
+
 typedef struct MpAxisBasicConfigAxisType
 {	enum MpAxisBaseTypeEnum BaseType;
 	enum MpAxisMeasurementUnitEnum MeasurementUnit;
@@ -555,12 +564,14 @@ typedef struct MpAxisBasicConfigAxisType
 	struct MpAxisSoftwareLimitType SoftwareLimitPositions;
 	struct MpAxisPeriodType PeriodSettings;
 	struct MpAxisMovementLimitsType MovementLimits;
+	struct MpAxisCyclicReadChannelsType CyclicReadChannels;
 } MpAxisBasicConfigAxisType;
 
 typedef struct MpAxisGearboxType
 {	unsigned long Input;
 	unsigned long Output;
 	enum MpAxisMotorDirectionEnum Direction;
+	float MaximumTorque;
 } MpAxisGearboxType;
 
 typedef struct MpAxisTransformationType
@@ -786,12 +797,26 @@ typedef struct MpAxisCouplingInfoType
 	double ActualOffsetValue;
 	double ActualPhasingValue;
 	struct MpAxisDiagExtType Diag;
+	double RecoveryPosition;
 } MpAxisCouplingInfoType;
+
+typedef struct MpAxisTorqueRampedControlType
+{	float TorqueRamp;
+	float PositiveMaxVelocity;
+	float NegativeMaxVelocity;
+	plcbit DisableVelocityLimits;
+	plcbit CompensateVelocityLimits;
+	plcbit EnableTimeLimit;
+	float TimeLimit;
+	unsigned short StartParID;
+	unsigned short TorqueParID;
+} MpAxisTorqueRampedControlType;
 
 typedef struct MpAxisTorqueSetupType
 {	enum MpAxisTorqueModeEnum Mode;
 	float SctrlKv;
 	float SctrlTn;
+	struct MpAxisTorqueRampedControlType RampedControl;
 } MpAxisTorqueSetupType;
 
 typedef struct MpAxisCyclicSetParType
@@ -804,6 +829,12 @@ typedef struct MpAxisCyclicSetParType
 	struct MpAxisTorqueSetupType TorqueSetup;
 } MpAxisCyclicSetParType;
 
+typedef struct MpAxisTorqueInfoType
+{	plcbit InTorque;
+	plcbit WaitingForStart;
+	plcbit VelocityLimitActive;
+} MpAxisTorqueInfoType;
+
 typedef struct MpAxisCyclicSetInfoType
 {	plcbit AxisReady;
 	unsigned short PositionReceivedParID;
@@ -811,6 +842,7 @@ typedef struct MpAxisCyclicSetInfoType
 	double SlavePosition;
 	float SlaveVelocity;
 	struct MpAxisDiagExtType Diag;
+	struct MpAxisTorqueInfoType TorqueControl;
 } MpAxisCyclicSetInfoType;
 
 typedef struct MpAxisCamSequencerParType
@@ -834,6 +866,7 @@ typedef struct MpAxisCamSequencerInfoType
 	float ActualOffsetValue;
 	float ActualPhasingValue;
 	struct MpAxisDiagExtType Diag;
+	double RecoveryPosition;
 } MpAxisCamSequencerInfoType;
 
 typedef struct MpAxisBasic

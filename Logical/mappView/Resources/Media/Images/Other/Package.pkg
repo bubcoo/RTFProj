@@ -26,5 +26,6 @@
     <Object Type="File">ackall.png</Object>
     <Object Type="File">alrmx.png</Object>
     <Object Type="File">seko.png</Object>
+    <Object Type="File">PDF.png</Object>
   </Objects>
 </Package>

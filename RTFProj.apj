@@ -8,8 +8,7 @@
   <Project StoreRuntimeInProject="false" />
   <Variables DefaultInitValue="0" DefaultRetain="false" DefaultVolatile="true" />
   <TechnologyPackages>
-    <GMC Version="0.67.0" />
-    <mapp Version="1.30.0" />
+    <mapp Version="1.60.1" />
     <mappView Version="1.2.1" mvLoader="1.0.0" />
     <TextSystem udbdef="0.1.0" />
   </TechnologyPackages>

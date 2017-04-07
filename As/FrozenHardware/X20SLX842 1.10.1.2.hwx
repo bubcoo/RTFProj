@@ -1,0 +1,1316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Module xmlns="http://br-automation.co.at/AS/HardwareModule" xmlns:osdd="http://www.ethernet-powerlink.org/osdd" Version="1.10.1.2" Description-de="X20 SafeLOGIC Compact, 8xE 24V, 4xA 24V 3.0A, 2xA 24V 0.05A" Description-en="X20 SafeLOGIC Compact, 8xI 24V, 4xO 24V 3.0A, 2xO 24V 0.05A" SlotWidth="1" Width="26" Height="99" >
+  <Aprol>
+    <Config ID="Supported" FromVersion="APROL R 3.3-70" Recommended="true" />
+  </Aprol> 
+  <Channels Target="SG4" >
+    <Channel ID="ModuleOk" HwdResource="IO" Description-de="Modul Status (1 = Modul gesteckt)" Description-en="Module status (1 = module present)" Description-fr="Etat module (1 = module présent)" >
+      <Parameter ID="Ext" Value="/OK" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+    </Channel>
+    <Separator />
+    <Channel ID="SerialNumber" HwdResource="IO" Description-de="Seriennummer" Description-en="Serial number">
+      <Parameter ID="Ext" Value="/INFO" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+      <Parameter ID="Sig_St_Udint" Value="1" Type="STRING" />
+    </Channel>
+    <Channel ID="ModuleID" HwdResource="IO" Description-de="Modulkennung" Description-en="Module ID">
+      <Parameter ID="Ext" Value="/INFO" Type="STRING" />
+      <Parameter ID="Address" Value="10" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+      <Parameter ID="Sig_St_Uint" Value="1" Type="STRING" />
+    </Channel>
+    <Channel ID="HardwareVariant" HwdResource="IO" Description-de="Hardware Variante" Description-en="Hardware variant">
+      <Parameter ID="Ext" Value="/INFO" Type="STRING" />
+      <Parameter ID="Address" Value="12" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+      <Parameter ID="Sig_St_Uint" Value="1" Type="STRING" />
+    </Channel>
+    <Channel ID="FirmwareVersion" HwdResource="IO" Description-de="Firmware Version" Description-en="Firmware version">
+      <Parameter ID="Ext" Value="/INFO" Type="STRING" />
+      <Parameter ID="Address" Value="14" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+      <Parameter ID="Sig_St_Uint" Value="1" Type="STRING" />
+    </Channel>
+    <Separator />
+	<Channel ID="SLXioCycle" HwdResource="IO" FromVersion="H4.06" >
+      <Parameter ID="Ext" Value="/MULTIPLEXED /INFOCHANNEL=TransferDuration" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>
+    <Channel ID="FailSafeQuitt" HwdResource="IO" >
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1342" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="FailSafeState" HwdResource="IO" >
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x0101" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="UDID_low" HwdResource="IO" Description-de="unterer Teil der Safety-UDID" Description-en="lower part of safety UDID">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1384" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>
+    <Channel ID="UDID_high" HwdResource="IO" Description-de="oberer Teil der Safety-UDID" Description-en="upper part of safety UDID">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x138A" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="SafetyFWversion1" HwdResource="IO" Description-de="FW-Version µP1" Description-en="fw version µP1" Description-fr="fw version µP1">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x13B2" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="SafetyFWversion2" HwdResource="IO" Description-de="FW-Version µP2" Description-en="fw version µP2" Description-fr="fw version µP2">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x13B6" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="Diag1_Temp" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1402" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="INT" Type="STRING" />
+    </Channel>
+    <Channel ID="Diag1_24V" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1406" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="Diag1_3V3b" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x140A" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="Diag1_5Vref" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x140E" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="Diag1_3V3a" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1412" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="Diag2_24V" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1446" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="Diag2_3V3a" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x144A" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="Diag2_5Vref" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x144E" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="Diag2_3V3b" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1452" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="PDOmuxIN" HwdResource="IO" >
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Address" Value="0x129B" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="OCTET" Type="STRING" />
+      <Parameter ID="NrElements" Value="28" Type="UDINT"/>
+    </Channel>
+    <Channel ID="PDOmuxOUT" HwdResource="IO" >
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Address" Value="0x109B" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="OCTET" Type="STRING" />
+      <Parameter ID="NrElements" Value="28" Type="UDINT"/>
+    </Channel>
+
+    <Channel ID="PDOo" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Address" Value="0x110D" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+
+    <Channel ID="InternalCycleTime" HwdResource="IO" >
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x3c0e" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="SafetyCycleTimeInit" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x3c0c" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>
+    <Separator />
+    <Channel ID="SafetyCycleDelay" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x3c06" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="INT" Type="STRING" />
+    </Channel>
+    <Channel ID="SafetyComEnable" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1301" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="SafetySPDOnettoDataSize" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1303" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="SafetyCycleStartupTimeout" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x131E" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="SafetyPeriodicTimeInfoCycle" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x3C44" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>
+    <Channel ID="BlockForwardDelay" HwdResource="IO" >
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1102" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="PdoMuxInMtu" HwdResource="IO" >
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1105" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="PdoMuxInLen" HwdResource="IO" >
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1107" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="PdoMuxOutMtu" HwdResource="IO" >
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1109" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="PdoMuxOutLen" HwdResource="IO" >
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x110B" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+
+    <Channel ID="IntTstUnit" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1119" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="IntTstNr" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x111B" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="InputErrorStates" HwdResource="IO" Description-de="Eingangs-Fehlerstati" Description-en="input error states" Description-fr="input error states" >
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1524" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>
+    <Channel ID="PulseoutputErrors" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x152C" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>
+    <Channel ID="CentralControl" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1117" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="MaxSwitchFreq12" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1111" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="MaxSwitchFreq34" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1113" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="MaxSwitchFreq56" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1115" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+
+    <Channel ID="SafeOsState" HwdResource="IO" Description-de="aktueller SafeOS-Status" Description-en="actual state of SafeOS">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1501" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="openSafetyActState" HwdResource="IO" Description-de="openSAFETY Status" Description-en="openSAFETY state">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1503" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="SafetyFWversionSCM" HwdResource="IO" Description-de="Version des SCMar" Description-en="version of SCMar">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1506" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+    <Channel ID="SLXbootState" HwdResource="IO" Description-de="aktueller SLX Hochlaufstatus" Description-en="actual SLX boot state">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1509" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+    </Channel>
+    <Channel ID="ApplSDcrc" HwdResource="IO" FromSafetyRelease="1.10">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1614" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>
+    <Channel ID="ApplSDtime" HwdResource="IO" FromSafetyRelease="1.10">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x161C" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>
+    <Channel ID="ApplMOptCRC" HwdResource="IO" FromSafetyRelease="1.10">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1654" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>
+    <Channel ID="ApplMOptTime" HwdResource="IO" FromSafetyRelease="1.10">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x165C" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>
+    <Channel ID="ApplMOpt2CRC" HwdResource="IO" FromSafetyRelease="1.10">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x1664" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>    
+    <Channel ID="ApplMOpt2Time" HwdResource="IO" FromSafetyRelease="1.10">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x166C" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+    </Channel>
+    <Separator />
+    <Channel ID="MFWslxIN" HwdResource="IO" IncludeInChannelCRC="1" GeneratedBySafeFirmware="true">
+      <Parameter ID="Disabled" Value="true" Type="STRING" />
+      <Parameter ID="Mappable" Value="false" Type="STRING" />
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/MULTIPLEXED" />
+      <Parameter ID="Address" Value="0x00002581" Type="UDINT" />	<!-- see SD-450 -->
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="OCTET" Type="STRING" />
+      <Parameter ID="NrElements" Value="14" Type="UDINT"/>
+    </Channel>
+	
+    <Channel ID="SafeDigitalInput01" Safe="true" HwdResource="IO" Description-de="24 VDC, Sink" Description-en="24 VDC, sink">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="0" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+      <Pin Number="12" Name="SI-01" Terminal="X1" IoType="Digital" />
+    </Channel>
+    <Channel ID="SafeDigitalInput02" Safe="true" HwdResource="IO" Description-de="24 VDC, Sink" Description-en="24 VDC, sink">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="1" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+      <Pin Number="22" Name="SI-02" Terminal="X1" IoType="Digital" />
+    </Channel>
+    <Channel ID="SafeDigitalInput03" Safe="true" HwdResource="IO" Description-de="24 VDC, Sink" Description-en="24 VDC, sink">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="2" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+      <Pin Number="14" Name="SI-03" Terminal="X1" IoType="Digital" />
+    </Channel>
+    <Channel ID="SafeDigitalInput04" Safe="true" HwdResource="IO" Description-de="24 VDC, Sink" Description-en="24 VDC, sink">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="3" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+      <Pin Number="24" Name="SI-04" Terminal="X1" IoType="Digital" />
+    </Channel>
+    <Channel ID="SafeDigitalInput05" Safe="true" HwdResource="IO" Description-de="24 VDC, Sink" Description-en="24 VDC, sink">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="4" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+      <Pin Number="15" Name="SI-05" Terminal="X1" IoType="Digital" />
+    </Channel>
+    <Channel ID="SafeDigitalInput06" Safe="true" HwdResource="IO" Description-de="24 VDC, Sink" Description-en="24 VDC, sink">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="5" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+      <Pin Number="25" Name="SI-06" Terminal="X1" IoType="Digital" />
+    </Channel>
+    <Channel ID="SafeDigitalInput07" Safe="true" HwdResource="IO" Description-de="24 VDC, Sink" Description-en="24 VDC, sink">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="6" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+      <Pin Number="16" Name="SI-07" Terminal="X1" IoType="Digital" />
+    </Channel>
+    <Channel ID="SafeDigitalInput08" Safe="true" HwdResource="IO" Description-de="24 VDC, Sink" Description-en="24 VDC, sink">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="7" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+      <Pin Number="26" Name="SI-08" Terminal="X1" IoType="Digital" />
+    </Channel>
+    <Separator />
+	<Channel ID="SafeTwoChannelInput0102" Safe="true" HwdResource="IO" Description-de="2-Kanalauswertung Kanal 1/2" Description-en="2-channel evaluation channel 1/2">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="1" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="0" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeTwoChannelInput0304" Safe="true" HwdResource="IO" Description-de="2-Kanalauswertung Kanal 3/4" Description-en="2-channel evaluation channel 3/4">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="1" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="1" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeTwoChannelInput0506" Safe="true" HwdResource="IO" Description-de="2-Kanalauswertung Kanal 5/6" Description-en="2-channel evaluation channel 5/6">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="1" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="2" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeTwoChannelInput0708" Safe="true" HwdResource="IO" Description-de="2-Kanalauswertung Kanal 7/8" Description-en="2-channel evaluation channel 7/8">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="1" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="3" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Separator />
+
+    <Channel ID="SafeTwoChannelOk0102" Safe="true" HwdResource="IO" Description-de="Status 2-Kanalauswertung (1=OK)" Description-en="Status 2-channel evaluation (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="1" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="4" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeTwoChannelOk0304" Safe="true" HwdResource="IO" Description-de="Status 2-Kanalauswertung (1=OK)" Description-en="Status 2-channel evaluation (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="1" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="5" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeTwoChannelOk0506" Safe="true" HwdResource="IO" Description-de="Status 2-Kanalauswertung (1=OK)" Description-en="Status 2-channel evaluation (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="1" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="6" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeTwoChannelOk0708" Safe="true" HwdResource="IO" Description-de="Status 2-Kanalauswertung (1=OK)" Description-en="Status 2-channel evaluation (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="1" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="7" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Separator />
+
+    <Channel ID="SafeInputOK01" Safe="true" HwdResource="IO" Description-de="Status digitaler Eingang (1=OK)" Description-en="Status digital input (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="2" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="0" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeInputOK02" Safe="true" HwdResource="IO" Description-de="Status digitaler Eingang (1=OK)" Description-en="Status digital input (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="2" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="1" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeInputOK03" Safe="true" HwdResource="IO" Description-de="Status digitaler Eingang (1=OK)" Description-en="Status digital input (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="2" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="2" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeInputOK04" Safe="true" HwdResource="IO" Description-de="Status digitaler Eingang (1=OK)" Description-en="Status digital input (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="2" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="3" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeInputOK05" Safe="true" HwdResource="IO" Description-de="Status digitaler Eingang (1=OK)" Description-en="Status digital input (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="2" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="4" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeInputOK06" Safe="true" HwdResource="IO" Description-de="Status digitaler Eingang (1=OK)" Description-en="Status digital input (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="2" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="5" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeInputOK07" Safe="true" HwdResource="IO" Description-de="Status digitaler Eingang (1=OK)" Description-en="Status digital input (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="2" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="6" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeInputOK08" Safe="true" HwdResource="IO" Description-de="Status digitaler Eingang (1=OK)" Description-en="Status digital input (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="2" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="7" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+
+    <Separator />
+    <Channel ID="PLCopenFBK0102_state" HwdResource="IO" Description-de="Zustandsnummer 2-Kanalauswertung (Kanal 1/2)" Description-en="State number of 2-channel evaluation (channel 1/2)">
+      <Filter Value="PLCopenInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="5" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="PLCopenFBK0304_state" HwdResource="IO" Description-de="Zustandsnummer 2-Kanalauswertung (Kanal 3/4)" Description-en="State number of 2-channel evaluation (channel 3/4)">
+      <Filter Value="PLCopenInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="6" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="PLCopenFBK0506_state" HwdResource="IO" Description-de="Zustandsnummer 2-Kanalauswertung (Kanal 5/6)" Description-en="State number of 2-channel evaluation (channel 5/6)">
+      <Filter Value="PLCopenInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="7" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="PLCopenFBK0708_state" HwdResource="IO" Description-de="Zustandsnummer 2-Kanalauswertung (Kanal 7/8)" Description-en="State number of 2-channel evaluation (channel 7/8)">
+      <Filter Value="PLCopenInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="8" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="USINT" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Separator />
+
+    <Channel ID="DigitalOutput01" HwdResource="IO" Description-de="Zustimmsignal" Description-en="Enable signal">
+      <Filter Value="DigitalOutput01='direct'" />
+      <Parameter ID="Ext" Value="/SUB=PDOo" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="0" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_Dig_2A_24VDC" Value="1" Type="STRING" />
+      <Pin Number="11" Name="SO-01+" Terminal="X2" IoType="Digital" /> 
+      <Pin Number="12" Name="SO-01-" Terminal="X2" IoType="Digital"/>     
+    </Channel>
+    <Channel ID="DigitalOutput02" HwdResource="IO" Description-de="Zustimmsignal" Description-en="Enable signal">
+      <Filter Value="DigitalOutput02='direct'" />
+      <Parameter ID="Ext" Value="/SUB=PDOo" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="1" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_Dig_2A_24VDC" Value="1" Type="STRING" />
+      <Pin Number="21" Name="SO-02+" Terminal="X2" IoType="Digital" />
+      <Pin Number="22" Name="SO-02-" Terminal="X2" IoType="Digital" />
+    </Channel>
+    <Channel ID="DigitalOutput03" HwdResource="IO" Description-de="Zustimmsignal" Description-en="Enable signal">
+      <Filter Value="DigitalOutput03='direct'" />
+      <Parameter ID="Ext" Value="/SUB=PDOo" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="2" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_Dig_2A_24VDC" Value="1" Type="STRING" />
+      <Pin Number="13" Name="SO-03+" Terminal="X2" IoType="Digital" />
+      <Pin Number="14" Name="SO-03-" Terminal="X2" IoType="Digital" />
+    </Channel>
+    <Channel ID="DigitalOutput04" HwdResource="IO" Description-de="Zustimmsignal" Description-en="Enable signal">
+      <Filter Value="DigitalOutput04='direct'" />
+      <Parameter ID="Ext" Value="/SUB=PDOo" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="3" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_Dig_2A_24VDC" Value="1" Type="STRING" />
+      <Pin Number="23" Name="SO-04+" Terminal="X2" IoType="Digital" />
+      <Pin Number="24" Name="SO-04-" Terminal="X2" IoType="Digital" />
+    </Channel>
+    <Channel ID="DigitalOutput05" HwdResource="IO" Description-de="Zustimmsignal" Description-en="Enable signal">
+      <Filter Value="DigitalOutput05='direct'" />
+      <Parameter ID="Ext" Value="/SUB=PDOo" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="4" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_Dig_2A_24VDC" Value="1" Type="STRING" />
+      <Pin Number="15" Name="SO-05" Terminal="X2" IoType="Digital" />
+    </Channel>
+    <Channel ID="DigitalOutput06" HwdResource="IO" Description-de="Zustimmsignal" Description-en="Enable signal">
+      <Filter Value="DigitalOutput06='direct'" />
+      <Parameter ID="Ext" Value="/SUB=PDOo" Type="STRING" />
+      <Parameter ID="Address" Value="0" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="5" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_Dig_2A_24VDC" Value="1" Type="STRING" />
+      <Pin Number="25" Name="SO-06" Terminal="X2" IoType="Digital" />
+    </Channel>
+    <Separator />
+    <Channel ID="SafeDigitalOutput01" Safe="true" HwdResource="IO">
+      <Filter Value="SafeCOMPONENTS='1'" />
+      <Parameter ID="Ext" Value="/SUB=SafeOUT" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="0" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+    </Channel>
+    <Channel ID="SafeDigitalOutput02" Safe="true" HwdResource="IO">
+      <Filter Value="SafeCOMPONENTS='1'" />
+      <Parameter ID="Ext" Value="/SUB=SafeOUT" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="1" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+    </Channel>
+	<Channel ID="SafeDigitalOutput03" Safe="true" HwdResource="IO">
+      <Filter Value="SafeCOMPONENTS='1'" />
+      <Parameter ID="Ext" Value="/SUB=SafeOUT" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="2" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+    </Channel>
+    <Channel ID="SafeDigitalOutput04" Safe="true" HwdResource="IO">
+      <Filter Value="SafeCOMPONENTS='1'" />
+      <Parameter ID="Ext" Value="/SUB=SafeOUT" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="3" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+    </Channel>
+    <Channel ID="SafeDigitalOutput05" Safe="true" HwdResource="IO">
+      <Filter Value="SafeCOMPONENTS='1'" />
+      <Parameter ID="Ext" Value="/SUB=SafeOUT" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="4" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+    </Channel>
+    <Channel ID="SafeDigitalOutput06" Safe="true" HwdResource="IO">
+      <Filter Value="SafeCOMPONENTS='1'" />
+      <Parameter ID="Ext" Value="/SUB=SafeOUT" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="5" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+    </Channel>
+    <Separator />
+    <Channel ID="SafeOutputOK01" Safe="true" HwdResource="IO" Description-de="Status digitaler Ausgang (1=OK)" Description-en="Status digital output (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="3" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="0" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeOutputOK02" Safe="true" HwdResource="IO" Description-de="Status digitaler Ausgang (1=OK)" Description-en="Status digital output (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="3" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="1" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeOutputOK03" Safe="true" HwdResource="IO" Description-de="Status digitaler Ausgang (1=OK)" Description-en="Status digital output (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="3" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="2" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeOutputOK04" Safe="true" HwdResource="IO" Description-de="Status digitaler Ausgang (1=OK)" Description-en="Status digital output (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="3" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="3" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeOutputOK05" Safe="true" HwdResource="IO" Description-de="Status digitaler Ausgang (1=OK)" Description-en="Status digital output (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="3" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="4" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="SafeOutputOK06" Safe="true" HwdResource="IO" Description-de="Status digitaler Ausgang (1=OK)" Description-en="Status digital output (1=OK)">
+      <Filter Value="ErrorInfo='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="3" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="5" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+
+    <Separator />
+    <Channel ID="PhysicalStateChannel01" HwdResource="IO" Description-de="Rücklesewert des Kanals" Description-en="Read back value of channel">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="0" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="Group" Value="General" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="PhysicalStateChannel02" HwdResource="IO" Description-de="Rücklesewert des Kanals" Description-en="Read back value of channel">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="1" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="Group" Value="General" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="PhysicalStateChannel03" HwdResource="IO" Description-de="Rücklesewert des Kanals" Description-en="Read back value of channel">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="2" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="Group" Value="General" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="PhysicalStateChannel04" HwdResource="IO" Description-de="Rücklesewert des Kanals" Description-en="Read back value of channel">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="3" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="Group" Value="General" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="PhysicalStateChannel05" HwdResource="IO" Description-de="Rücklesewert des Kanals" Description-en="Read back value of channel">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="4" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="Group" Value="General" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Channel ID="PhysicalStateChannel06" HwdResource="IO" Description-de="Rücklesewert des Kanals" Description-en="Read back value of channel">
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="4" Type="UDINT" />
+      <Parameter ID="BitOffset" Value="5" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="Group" Value="General" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Separator />
+
+    <Channel ID="FBK_Status_1" HwdResource="IO" Description-de="Stati Wiederanlaufsperren" Description-en="Restart inhibit states">
+      <Filter Value="PLCopenInfo2='on'" />
+      <Parameter ID="Ext" Value="/SUB=MFWslxIN" Type="STRING" />
+      <Parameter ID="Address" Value="9" Type="UDINT" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+      <Parameter ID="SafetyOption" Value="3" Type="STRING"/>
+    </Channel>
+    <Separator />
+
+    <Channel ID="BOOL1{0:D2}" HwdResource="IO" HwdSkip="true" Repeat="64" RepeatPropertyId="UnsafeOutputBOOLs" CrossLink="true">
+      <Parameter ID="Ext" Value="/DYNAMIC /MULTIPLEXED" Type="STRING" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="Inverted" Value="true" Type="STRING" />
+      <Parameter ID="Group" Value="CPU_SafeLOGIC" Type="STRING" />
+    </Channel>
+    <Channel ID="INT1{0:D2}" HwdResource="IO" HwdSkip="true" Repeat="4" RepeatPropertyId="UnsafeOutputINTs" CrossLink="true">
+      <Parameter ID="Ext" Value="/DYNAMIC /MULTIPLEXED" Type="STRING" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="INT" Type="STRING" />
+      <Parameter ID="Sig_St_Int" Value="1" Type="STRING" />
+      <Parameter ID="Inverted" Value="true" Type="STRING" />
+      <Parameter ID="Group" Value="CPU_SafeLOGIC" Type="STRING" />
+    </Channel>
+    <Channel ID="UINT1{0:D2}" HwdResource="IO" HwdSkip="true" Repeat="4" RepeatPropertyId="UnsafeOutputUINTs" CrossLink="true">
+      <Parameter ID="Ext" Value="/DYNAMIC /MULTIPLEXED" Type="STRING" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+      <Parameter ID="Sig_St_Uint" Value="1" Type="STRING" />
+      <Parameter ID="Inverted" Value="true" Type="STRING" />
+      <Parameter ID="Group" Value="CPU_SafeLOGIC" Type="STRING" />
+    </Channel>
+    <Channel ID="DINT1{0:D2}" HwdResource="IO" HwdSkip="true" Repeat="2" RepeatPropertyId="UnsafeOutputDINTs" CrossLink="true">
+      <Parameter ID="Ext" Value="/DYNAMIC /MULTIPLEXED" Type="STRING" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="DINT" Type="STRING" />
+      <Parameter ID="Sig_St_Dint" Value="1" Type="STRING" />
+      <Parameter ID="Inverted" Value="true" Type="STRING" />
+      <Parameter ID="Group" Value="CPU_SafeLOGIC" Type="STRING" />
+    </Channel>
+    <Channel ID="UDINT1{0:D2}" HwdResource="IO" HwdSkip="true" Repeat="2" RepeatPropertyId="UnsafeOutputUDINTs" CrossLink="true">
+      <Parameter ID="Ext" Value="/DYNAMIC /MULTIPLEXED" Type="STRING" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+      <Parameter ID="Sig_St_Udint" Value="1" Type="STRING" />
+      <Parameter ID="Inverted" Value="true" Type="STRING" />
+      <Parameter ID="Group" Value="CPU_SafeLOGIC" Type="STRING" />
+    </Channel>
+    <Separator />
+    <Channel ID="BOOL0{0:D2}" HwdResource="IO" HwdSkip="true" Repeat="64" RepeatPropertyId="UnsafeInputBOOLs" CrossLink="true">
+      <Parameter ID="Ext" Value="/DYNAMIC /MULTIPLEXED" Type="STRING" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="BOOL" Type="STRING" />
+      <Parameter ID="Sig_St_Bool" Value="1" Type="STRING" />
+      <Parameter ID="Inverted" Value="true" Type="STRING" />
+      <Parameter ID="Group" Value="CPU_SafeLOGIC" Type="STRING" />
+    </Channel>
+    <Channel ID="INT0{0:D2}" HwdResource="IO" HwdSkip="true" Repeat="4" RepeatPropertyId="UnsafeInputINTs" CrossLink="true">
+      <Parameter ID="Ext" Value="/DYNAMIC /MULTIPLEXED" Type="STRING" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="INT" Type="STRING" />
+      <Parameter ID="Sig_St_Int" Value="1" Type="STRING" />
+      <Parameter ID="Inverted" Value="true" Type="STRING" />
+      <Parameter ID="Group" Value="CPU_SafeLOGIC" Type="STRING" />
+    </Channel>
+    <Channel ID="UINT0{0:D2}" HwdResource="IO" HwdSkip="true" Repeat="4" RepeatPropertyId="UnsafeInputUINTs" CrossLink="true">
+      <Parameter ID="Ext" Value="/DYNAMIC /MULTIPLEXED" Type="STRING" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+      <Parameter ID="Sig_St_Uint" Value="1" Type="STRING" />
+      <Parameter ID="Inverted" Value="true" Type="STRING" />
+      <Parameter ID="Group" Value="CPU_SafeLOGIC" Type="STRING" />
+    </Channel>
+    <Channel ID="DINT0{0:D2}" HwdResource="IO" HwdSkip="true" Repeat="2" RepeatPropertyId="UnsafeInputDINTs" CrossLink="true">
+      <Parameter ID="Ext" Value="/DYNAMIC /MULTIPLEXED" Type="STRING" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="DINT" Type="STRING" />
+      <Parameter ID="Sig_St_Dint" Value="1" Type="STRING" />
+      <Parameter ID="Inverted" Value="true" Type="STRING" />
+      <Parameter ID="Group" Value="CPU_SafeLOGIC" Type="STRING" />
+    </Channel>
+    <Channel ID="UDINT0{0:D2}" HwdResource="IO" HwdSkip="true" Repeat="2" RepeatPropertyId="UnsafeInputUDINTs" CrossLink="true">
+      <Parameter ID="Ext" Value="/DYNAMIC /MULTIPLEXED" Type="STRING" />
+      <Parameter ID="Direction" Value="IN" Type="STRING" />
+      <Parameter ID="Type" Value="UDINT" Type="STRING" />
+      <Parameter ID="Sig_St_Udint" Value="1" Type="STRING" />
+      <Parameter ID="Inverted" Value="true" Type="STRING" />
+      <Parameter ID="Group" Value="CPU_SafeLOGIC" Type="STRING" />
+    </Channel>
+	<Channel ID="SizeAPEMODATA0" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x3702" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+	<Channel ID="SizeAPEMODATA1" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x3706" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+	<Channel ID="SizeAPSD1" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x370A" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+	<Channel ID="SizeAPSD2" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x370E" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+	<Channel ID="SizeAPSD3" HwdResource="IO">
+      <Filter Value="IS_RUNTIME='1'" />
+      <Parameter ID="Ext" Value="/NOTCYCLIC" Type="STRING" />
+      <Parameter ID="Address" Value="0x3712" Type="UDINT" />
+      <Parameter ID="Direction" Value="OUT" Type="STRING" />
+      <Parameter ID="Type" Value="UINT" Type="STRING" />
+    </Channel>
+  </Channels>
+  <Classification>
+    <HardwareModuleFamily Value="X20" />
+    <HardwareModuleType Value="IO" />
+    <HardwareModuleType Value="Safe" />
+    <HardwareModuleType Value="CPU" />
+	<HardwareModuleType Value="SLX" />
+    <IOType Value="Digital" />
+    <IOType Value="In" />
+    <IOType Value="Out" />
+  </Classification>
+  <Connectors>
+    <Connector Name="SS1" Male="true" Type="Plug">
+      <AutoConnect ModuleID="X20TB52" ConnectorName="SS" />
+      <Connections>
+        <Connection Name="X20SafeTerminal" />
+      </Connections>
+      <Layout PositionX="0" PositionY="26" />
+    </Connector>
+    <Connector Name="SS2" Male="true" Type="Plug">
+      <AutoConnect ModuleID="X20TB52" ConnectorName="SS" />
+      <Connections>
+        <Connection Name="X20SafeTerminal" />
+      </Connections>
+      <Layout PositionX="13" PositionY="26" />
+    </Connector>
+    <Connector Name="SL" AddressRule="AsContainer" Back="true" Male="true" Type="Plug">
+      <AutoConnect ModuleID="X20BM33" ConnectorName="SL1" />
+      <Connections>
+        <Connection Name="X20SafeElectronic" />
+      </Connections>
+      <Layout PositionX="0" PositionY="0" />
+    </Connector>
+  </Connectors>
+  <EcadData>
+	<ArticleData TypeNr="X20SLX842"
+      Height="99"
+      Width="25"
+      Depth="79"
+      Weight="0"
+      DepthSpacingRear="0"
+      DepthSpacingFront="20"
+      HeightSpacingAbove="35"
+      HeightSpacingBelow="35"
+      WidthSpacingLeft="0"
+      WidthSpacingRight="0"
+      SnapHeightMiddleOffset="-10"
+      PackagingQuantity="1"
+      ShortDescription-de="X20 SafeLOGIC, 8xE 24V, 4xA 24V 3.0A, 2xA 24V 0.05A"
+      ShortDescription-en="X20 SafeLOGIC, 8xI 24V, 4xO 24V 3.0A, 2xO 24V 0.05A"
+      Description-de="X20 Sicheres digitales Mischmodul, sichere Steuerung, openSAFETY, 11 Safety Nodes, 4 SafeMC Achsen, 8 sichere digitale Eingänge, Eingangsfilter parametrierbar, 4 Pulsausgänge, 24 VDC, 4 sichere digitale Ausgänge Typ A, 24 VDC, 3 A, 2 sichere digitale Ausgänge Typ B, 24 VDC, 50 mA"
+      Description-en="X20 safe digital combined module, safe controller, openSAFETY, 11 safety nodes, 4 SafeMC axes, 8 failsafe inputs, configurable input filter, 4 pulse outputs, 24 VDC, 4 safe digital outputs type A, 24 VDC, 3 A, 2 safe digital outputs type B, 24 VDC, 50 mA"/>
+    <PinSpecification>
+      <Pin Number="11" Name="Pulse-01" Terminal="X1" IoType="Digital"/>
+      <Pin Number="12" Name="SI-01" Terminal="X1" IoType="Digital"/>
+      <Pin Number="13" Name="Pulse-03" Terminal="X1" IoType="Digital"/>
+      <Pin Number="14" Name="SI-03" Terminal="X1" IoType="Digital"/>
+      <Pin Number="15" Name="SI-05" Terminal="X1" IoType="Digital"/>
+      <Pin Number="16" Name="SI-07" Terminal="X1" IoType="Digital"/>
+      <Pin Number="21" Name="Pulse-02" Terminal="X1" IoType="Digital"/>
+      <Pin Number="22" Name="SI-02" Terminal="X1" IoType="Digital"/>
+      <Pin Number="23" Name="Pulse-04" Terminal="X1" IoType="Digital"/>
+      <Pin Number="24" Name="SI-04" Terminal="X1" IoType="Digital"/>
+      <Pin Number="25" Name="SI-06" Terminal="X1" IoType="Digital"/>
+      <Pin Number="26" Name="SI-08" Terminal="X1" IoType="Digital"/>
+      <Pin Number="11" Name="SO-01+" Terminal="X2" IoType="Digital"/>
+      <Pin Number="12" Name="SO-01-" Terminal="X2" IoType="Digital"/>
+      <Pin Number="13" Name="SO-03+" Terminal="X2" IoType="Digital"/>
+      <Pin Number="14" Name="SO-03-" Terminal="X2" IoType="Digital"/>
+      <Pin Number="15" Name="SO-05" Terminal="X2" IoType="Digital"/>
+      <Pin Number="16" Name="GND" Terminal="X2" IoType="Supply"/>
+      <Pin Number="21" Name="SO-02+" Terminal="X2" IoType="Digital"/>
+      <Pin Number="22" Name="SO-02-" Terminal="X2" IoType="Digital"/>
+      <Pin Number="23" Name="SO-04+" Terminal="X2" IoType="Digital"/>
+      <Pin Number="24" Name="SO-04-" Terminal="X2" IoType="Digital"/>
+      <Pin Number="25" Name="SO-06" Terminal="X2" IoType="Digital"/>
+      <Pin Number="26" Name="GND" Terminal="X2" IoType="Supply"/>      
+    </PinSpecification>
+  </EcadData>
+  <Editors>
+    <Editor Name="IoMapping" Target="SG4" />
+    <Editor Name="Configuration" Target="SG4" />
+  </Editors>
+  <Firmware Folder="X20SLX842" >
+    <Target Name="SG4" FromSafetyRelease="1.10" SubFolder="1" />
+  </Firmware>
+  <HWD Target="SG4">
+    <Parameter ID="NeededBus" Value="X2X" />
+    <Parameter ID="InsertParameter" Value="ARIOMasterBus" />
+    <Parameter ID="X2XNodeType" Value="STANDARD" />
+    <Parameter ID="RemoteUpdate" Value="1" Type="UDINT" />
+    <Parameter ID="IOSuffix" Value="IO:MUX"/>
+    <Resource ID="IO">
+      <Parameter ID="Classcode" Value="0x2000000d" Type="UDINT" />
+      <Parameter ID="AsynSize" Value="28" Type="USINT" />
+      <Parameter ID="InitScript" Value="  			write(SafetySPDOnettoDataSize, 0x9C); 	write(SafetyCycleTimeInit, 200&lt;&lt;16);	write(SafetyPeriodicTimeInfoCycle, 10000000); 	        write(CentralControl, 0x00 			| DigitalOutput01==&quot;direct&quot; ? 0x00 : 0x01 			| DigitalOutput02==&quot;direct&quot; ? 0x00 : 0x02			| DigitalOutput03==&quot;direct&quot; ? 0x00 : 0x04			| DigitalOutput04==&quot;direct&quot; ? 0x00 : 0x08		| DigitalOutput05==&quot;direct&quot; ? 0x00 : 0x10			| DigitalOutput06==&quot;direct&quot; ? 0x00 : 0x20); 	        write(MaxSwitchFreq12, 0x00 	        | MaxSwitchFreq_01==&quot;1Hz&quot; ? 0x00 : 0x00 	        | MaxSwitchFreq_01==&quot;10Hz&quot; ? 0x01 : 0x00 	        | MaxSwitchFreq_01==&quot;100Hz&quot; ? 0x02 : 0x00 	        | MaxSwitchFreq_02==&quot;1Hz&quot; ? 0x00 : 0x00 	        | MaxSwitchFreq_02==&quot;10Hz&quot; ? 0x10 : 0x00 	        | MaxSwitchFreq_02==&quot;100Hz&quot; ? 0x20 : 0x00); 	        write(MaxSwitchFreq34, 0x00 	        | MaxSwitchFreq_03==&quot;1Hz&quot; ? 0x00 : 0x00 	        | MaxSwitchFreq_03==&quot;10Hz&quot; ? 0x01 : 0x00 	        | MaxSwitchFreq_03==&quot;100Hz&quot; ? 0x02 : 0x00 	        | MaxSwitchFreq_04==&quot;1Hz&quot; ? 0x00 : 0x00 	        | MaxSwitchFreq_04==&quot;10Hz&quot; ? 0x10 : 0x00 	        | MaxSwitchFreq_04==&quot;100Hz&quot; ? 0x20 : 0x00); 	        write(MaxSwitchFreq56, 0x00 	        | MaxSwitchFreq_05==&quot;1Hz&quot; ? 0x00 : 0x00 	        | MaxSwitchFreq_05==&quot;10Hz&quot; ? 0x01 : 0x00 	        | MaxSwitchFreq_05==&quot;100Hz&quot; ? 0x02 : 0x00 	        | MaxSwitchFreq_06==&quot;1Hz&quot; ? 0x00 : 0x00 	        | MaxSwitchFreq_06==&quot;10Hz&quot; ? 0x10 : 0x00 	        | MaxSwitchFreq_06==&quot;100Hz&quot; ? 0x20 : 0x00);   	" />
+    </Resource>
+    <Resource ID="CMD" >
+      <Parameter ID="Classcode" Value="0x200000ff" Type="UDINT"/>
+      <Parameter ID="DDriverName" Value="DdxxIoSafetyCmdIf"/>
+      <Parameter ID="AsynResource" Value="1" Type="UDINT" />
+      <Parameter ID="ARIOMaster" Value="1" Type="UDINT" />
+      <Parameter ID="Transparent" Value="0" Type="UDINT" />
+    </Resource>
+  	<Resource ID="MUX" >
+		<Parameter ID="Classcode" Value="0x200000ff" Type="UDINT" />
+		<Parameter ID="DDriverName" Value="DdxxIoCycTimeMux" />
+		<Parameter ID="AsynResource" Value="1" Type="UDINT" />
+		<Parameter ID="ARIOMaster" Value="1" Type="UDINT" />
+		<Parameter ID="Transparent" Value="1" Type="UDINT" />
+		<Parameter ID="TimeoutFactor" Value="20" Type="UDINT" />
+		<Parameter ID="BlockForwardDelay" Value="BlockForwardDelay" />
+		<Parameter ID="PdoMuxInMtu" Value="PdoMuxInMtu" />
+		<Parameter ID="PdoMuxOutMtu" Value="PdoMuxOutMtu" />
+		<Parameter ID="PdoMuxInLen" Value="PdoMuxInLen" />
+		<Parameter ID="PdoMuxOutLen" Value="PdoMuxOutLen" />
+		<Parameter ID="InternalCycleTimeMultiplier" Value="4" Type="UDINT" />
+	</Resource>
+    <Resource ID="SPM" >
+      <Parameter ID="Classcode" Value="0x200000ff" Type="UDINT"/>
+      <Parameter ID="DDriverName" Value="DdxxIoSProxyMapper"/>
+      <Parameter ID="AsynResource" Value="1" Type="UDINT" />
+      <Parameter ID="ARIOMaster" Value="1" Type="UDINT" />
+      <Parameter ID="Transparent" Value="1" Type="UDINT" />
+    </Resource>
+    <Resource ID="CCP" >
+      <Parameter ID="Classcode" Value="0x200000ff" Type="UDINT" />
+      <Parameter ID="DDriverName" Value="DdxxIoPacketChannel" />
+      <Parameter ID="AsynResource" Value="1" Type="UDINT" />
+      <Parameter ID="ARIOMaster" Value="1" Type="UDINT" />
+      <Parameter ID="Transparent" Value="1" Type="UDINT" />
+      <Parameter ID="IOSuffix" Value="IO:MUX" />
+      <Resource ID="SSCH" >
+          <Parameter ID="Classcode" Value="0x200000ff" Type="UDINT" />
+          <Parameter ID="DDriverName" Value="DdxxIoSafetySubChannel" />
+          <Parameter ID="Timeout" Value="150" Type="UDINT" />
+          <Parameter ID="Retries" Value="5" Type="UDINT" />
+          <Parameter ID="AsynResource" Value="1" Type="UDINT" />
+          <Parameter ID="ARIOMaster" Value="0" Type="UDINT" />
+          <Parameter ID="Transparent" Value="0" Type="UDINT" />
+          <Parameter ID="ChannelId" Type="UDINT" Value="129"/>
+      </Resource>   
+      <Resource ID="SSDO" >
+        <Parameter ID="Classcode" Value="0x200000ff" Type="UDINT" />
+        <Parameter ID="DDriverName" Value="DdxxIoSSDO" />
+        <Parameter ID="AsynResource" Value="1" Type="UDINT" />
+        <Parameter ID="ARIOMaster" Value="1" Type="UDINT" />
+        <Parameter ID="Transparent" Value="1" Type="UDINT" />
+        <Parameter ID="ChannelId" Value="128" Type="UDINT" />
+      </Resource>
+      <Resource ID="SLOG" >
+        <Parameter ID="Classcode" Value="0x200000ff" Type="UDINT" />
+        <Parameter ID="DDriverName" Value="DdxxIoSafetyLogger" />
+        <Parameter ID="AsynResource" Value="1" Type="UDINT" />
+        <Parameter ID="ARIOMaster" Value="1" Type="UDINT" />
+        <Parameter ID="Transparent" Value="1" Type="UDINT" />
+        <Parameter ID="ChannelIdInfo" Value="130" Type="UDINT" />
+        <Parameter ID="ChannelIdData" Value="131" Type="UDINT" />
+        <Parameter ID="SafeLogEntrySize" Value="22" Type="UDINT" />
+      </Resource>
+    </Resource>
+  </HWD>
+  <Images>
+    <Image Type="FrontFoto" Name="X20SLX842.front.png" />
+    <Image Type="Icon" Name="hw_x20sdm.ico" />
+  </Images>
+  <Properties Target="SG4">
+    <Selector ID="FunctionModel" Name-en="Function model" Name-de="Funktionsmodell" Name-fr="Modèle fonctionnel" Value="Standard" Description-en="Module operating mode" Description-de="Arbeitsweise des Moduls" Description-fr="Mode de fonctionnement du module" >
+      <Selection ID="Standard" Name-en="default" Name-de="Standard" Name-fr="Standard">
+        <Parameter ID="FunctionModelNumber" Value="0" Type="USINT" CanEdit="false" Visible="false" />
+        <Group ID="General" Name-en="General" Name-de="Allgemein" Name-fr="Général">
+          <Parameter ID="Supervision" Name-en="Module supervised" Name-de="Modulüberwachung" Name-fr="Surveillance module" Value="on" Description-en="Service mode if there is no hardware module" Description-de="Service Mode auslösen, wenn Modul nicht vorhanden ist" Description-fr="Mode service si module absent" Type="STRING">
+            <ComboBox>
+              <Item ID="off" Name-en="off" Name-de="Aus" Name-fr="Inactif" />
+              <Item ID="on" Name-en="on" Name-de="Ein" Name-fr="Actif" />
+            </ComboBox>
+          </Parameter>
+          <Parameter ID="ErrorInfo" Name-en="Channel status information" Name-de="Kanalstatusinformation" Value="on" Description-en="Additional channel status information" Description-de="Zusätzliche Kanalstatusinformation" Type="STRING" Template="OnOffText" />
+          <Parameter ID="PLCopenInfo" Name-en="State number of 2-channel evaluation" Name-de="Zustandsnummer der 2-Kanalauswertung" Value="off" Description-en="State number information of 2-channel evaluation" Description-de="Information Zustandsnummer der 2-Kanalauswertung" Type="STRING" Template="OnOffText" />
+          <Parameter ID="PLCopenInfo2" Name-en="Restart inhibit state numbers" Name-de="Zustandsnummern Wiederanlaufsperren" Value="off" Description-en="Provide restart inhibit state numbers" Description-de="Zustandsnummern Wiederanlaufsperren bereitstellen" Type="STRING" Template="OnOffText" />
+          <Parameter ID="SafeLogicID" Name-en="SafeLOGIC ID" Name-de="SafeLOGIC ID" Value="1" Type="UDINT" Range="1-1000" Validated="true" />
+          <Parameter ID="SafeModuleID" Name-en="SafeMODULE ID" Name-de="SafeMODULE ID" Value="1" CanEdit="false" Validated="true" Type="UDINT" />
+          <Parameter ID="SafeModuleID_SCM" Name-en="SafeMODULE ID SCM" Name-de="SafeMODULE ID SCM" Value="1023" CanEdit="false" Visible="false" Type="UDINT" />
+          <Parameter ID="SafeProject" Name-en="SafeDESIGNER project" Name-de="SafeDESIGNER Project" ArConfigSkip="true" Type="STRING" /> 
+          <Parameter ID="SafeDesigner" Name-en="SafeDESIGNER version" Name-de="SafeDESIGNER Version" ArConfigSkip="true" Type="STRING" Description-en="Requires SafeDESIGNER 4.2.1 or higher" Description-de="Benötigt SafeDESIGNER 4.2.1 oder höher" Description-fr="Requires SafeDESIGNER 4.2.1 or higher"/>
+        </Group>
+		<Group ID="OutputSignalPath" Name-en="Output signal path" Name-de="Ausgangssignalpfad">
+          <Parameter ID="DigitalOutput01" Value="direct" Type="STRING" Template="OutputSignalPath" />
+          <Parameter ID="DigitalOutput02" Value="direct" Type="STRING" Template="OutputSignalPath" />
+          <Parameter ID="DigitalOutput03" Value="direct" Type="STRING" Template="OutputSignalPath" />
+          <Parameter ID="DigitalOutput04" Value="direct" Type="STRING" Template="OutputSignalPath" />
+          <Parameter ID="DigitalOutput05" Value="direct" Type="STRING" Template="OutputSignalPath" />
+          <Parameter ID="DigitalOutput06" Value="direct" Type="STRING" Template="OutputSignalPath" />
+        </Group>
+        <Group ID="IOImage" Name-en="I/O Image" Name-de="I/O Bereich" FromVersion="A8.00">
+          <Parameter ID="InOffset" Name-en="Offset for inputs" Name-de="Offset für Eingänge" Value="0" Description-en="Offset is relative to base address of bus controller" Description-de="Offset ist relativ zur Basisadresse des Bus Controller" Type="UDINT" />
+          <Parameter ID="OutOffset" Name-en="Offset for outputs" Name-de="Offset für Ausgänge" Value="0" Description-en="Offset is relative to base address of bus controller" Description-de="Offset ist relativ zur Basisadresse des Bus Controller" Type="UDINT" />
+        </Group>
+      </Selection>
+    </Selector>
+    <Group ID="SProxy" Name-en="SafeDESIGNER to SafeLOGIC communication" Name-de="Kommunikation von SafeDESIGNER zur SafeLOGIC" Description-en="TCP/IP forwarding to the SafeLOGIC" Description-de="Weiterleitung von TCP/IP-Paketen zur SafeLOGIC">
+      <Selector ID="SProxyActivate" Name-en="Activate SPROXY" Name-de="SPROXY aktivieren" Value="on" >
+        <Selection ID="off" Name-en="off" Name-de="Aus" >
+          <Parameter ID="SProxyCProtocol" Value="undefined" Visible="false" CanEdit="false" />
+          <Parameter ID="SProxySProtocol" Value="undefined" Visible="false" CanEdit="false" />
+        </Selection>
+        <Selection ID="on" Name-en="on" Name-de="Ein" >
+            <Parameter ID="SProxyServer" Value="/FRAMENUMB=8 /FRAMESIZE=256" Visible="false" CanEdit="false" />
+            <Parameter ID="SProxySProtocol" Value="TCP/IP" Visible="false" CanEdit="false" />
+            <Parameter ID="SProxySAddress" Value="0.0.0.0" Visible="false" CanEdit="false" />
+            <Parameter ID="SProxySCommID" Name-en="Server communication port" Name-de="Server Portnummer" Value="50000" Description-en="TCP/IP port number" Description-de="TCP/IP Portnummer" Type="STRING" Validated="true" />
+            <Parameter ID="SProxyClient" Value="/FRAMENUMB=8 /FRAMESIZE=62" Visible="false" CanEdit="false" />
+            <Parameter ID="SProxyCProtocol" Value="asyncX2XChannel" Visible="false" CanEdit="false" />
+            <Parameter ID="SProxyCAddress" Value="CCP.SSCH" Visible="false" CanEdit="false" />
+            <Parameter ID="SProxyCCommID" Value="4" Visible="false" CanEdit="false" />
+        </Selection>
+      </Selector>
+    </Group>
+    <Group ID="UnsafeOutputChannels" Name-en="CPU to SafeLOGIC communication" Name-de="Kommunikation von CPU zur SafeLOGIC" Description-en="Data points from CPU to SLX (maximum 8 bytes total!)" Description-de="Datenpunkte von CPU zur SLX (insgesamt maximal 8 Byte!)" ArConfigSkip="true">
+      <Parameter ID="UnsafeOutputBOOLs" Name-en="Number of BOOL channels" Name-de="Anzahl der BOOL Kanäle" Value="8" Type="UDINT" Range="0;8;16;24;32;40;48;56;64" Validated="true" />
+      <Parameter ID="UnsafeOutputINTs" Name-en="Number of INT channels" Name-de="Anzahl der INT Kanäle" Value="0" Type="UDINT" Range="0-4" Validated="true" />
+      <Parameter ID="UnsafeOutputUINTs" Name-en="Number of UINT channels" Name-de="Anzahl der UINT Kanäle" Value="0" Type="UDINT" Range="0-4" Validated="true" />
+      <Parameter ID="UnsafeOutputDINTs" Name-en="Number of DINT channels" Name-de="Anzahl der DINT Kanäle" Value="0" Type="UDINT" Range="0-2" Validated="true" />
+      <Parameter ID="UnsafeOutputUDINTs" Name-en="Number of UDINT channels" Name-de="Anzahl der UDINT Kanäle" Value="0" Type="UDINT" Range="0-2" Validated="true" />
+    </Group>
+    <Group ID="UnsafeInputChannels" Name-en="SafeLOGIC to CPU communication" Name-de="Kommunikation von SafeLOGIC zur CPU" Description-en="Data points from SLX to CPU (maximum 8 bytes total!)" Description-de="Datenpunkte von SLX zur CPU (insgesamt maximal 8 Byte!)" ArConfigSkip="true">
+      <Parameter ID="UnsafeInputBOOLs" Name-en="Number of BOOL channels" Name-de="Anzahl der BOOL Kanäle" Value="8" Type="UDINT" Range="0;8;16;24;32;40;48;56;64" Validated="true" />
+      <Parameter ID="UnsafeInputINTs" Name-en="Number of INT channels" Name-de="Anzahl der INT Kanäle" Value="0" Type="UDINT" Range="0-4" Validated="true" />
+      <Parameter ID="UnsafeInputUINTs" Name-en="Number of UINT channels" Name-de="Anzahl der UINT Kanäle" Value="0" Type="UDINT" Range="0-4" Validated="true" />
+      <Parameter ID="UnsafeInputDINTs" Name-en="Number of DINT channels" Name-de="Anzahl der DINT Kanäle" Value="0" Type="UDINT" Range="0-2" Validated="true" />
+      <Parameter ID="UnsafeInputUDINTs" Name-en="Number of UDINT channels" Name-de="Anzahl der UDINT Kanäle" Value="0" Type="UDINT" Range="0-2" Validated="true" />
+    </Group>
+    <Group ID="SafeLogicToSafeLogic" Name-en="SafeLOGIC to SafeLOGIC communication" Name-de="Kommunikation von SafeLOGIC zu SafeLOGIC">
+      <Selector ID="SourceSL" Name-en="Use as source SafeLOGIC" Name-de="Als Quell-SafeLOGIC verwenden" Value="off" ArConfigSkip="true">
+	   <Selection ID="off" Name-en="off" Name-de="Aus" />
+        <Selection ID="on" Name-en="on" Name-de="Ein">
+			<Parameter ID="ExtendedSourceSL" Name-en="Extended source SafeLOGIC communication" Name-de="Erweiterte Quell-SafeLOGIC Kommunikation" Value="on" CanEdit="false" ArConfigSkip="true" />
+		</Selection>
+      </Selector>
+	</Group>
+  </Properties>
+  <Runtime BuildError="true" FromVersion="E4.25" Target="SG4"></Runtime>
+  <Safety AdditionalSADR="10" >
+	<Configuration ID="X20SLX842" MaxSL2SLChannels="2" FromSafetyRelease="1.10" MaxMXPayloadSizeIn="27" MaxMXPayloadSizeOut="27" GPDOIn="8" GPDOOut="0" MinModuleCycleTime="800" MaxModuleCycleTime="1599">
+      <SafetyConfigurationManager ID="X20SLXxxx_110.SCM" MinOpenSafetyRelease="1.5" Xref="X20SLXxxx_SCM_R110.xosdd" />
+      <Module ID="X20SLX842_110.MainSN" MinOpenSafetyRelease="1.5" Xref="X20SLX842.xosdd">
+        <DataTransport>
+          <GenericTransport Name="DataExFromCpu" Direction="IN" OctetSize="20" Safe="false"/>
+          <GenericTransport Name="DataExToCpu" Direction="OUT" OctetSize="20" Safe="false"/>
+        </DataTransport>
+        <Settings>
+          <Group ID="DataFromAs" >
+            <Setting RefParameterID="SafeDesigner" />
+          </Group>
+        </Settings>
+      </Module>
+    </Configuration>
+	<ConfigurationSourceSL ID="Dummy">
+      <Group ID="Basic">
+        <BitStream ID="HWC_CRC" Value="2084248596" Type="UDINT" />
+      </Group>
+    </ConfigurationSourceSL>
+    <ConfigurationSourceSLX ID="X20SLX842" FromSafetyRelease="1.10">
+      <Module ID="X20SLX842_110.Source_8Byte" MinOpenSafetyRelease="1.5" Xref="X20SLX842.xosdd" />
+    </ConfigurationSourceSLX>
+  </Safety>
+  <Upload ModuleNr="59371" />
+</Module>

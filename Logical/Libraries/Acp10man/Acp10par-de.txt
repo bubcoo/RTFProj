@@ -139,8 +139,8 @@
   145: CTRL Regler: Modus der Reglerkaskaden-Zykluszeiten
   146: CTRL Lageregler: Parameter-ID für zyklische Sollposition
   147: CTRL Lageregler: Bewegung mit zyklischer Positionsvorgabe starten
-  148: RESERVED148
-  149: RESERVED149
+  148: Meldungen: Erweiterter Fehlersatz vom Antrieb
+  149: Meldungen: Achs-Index
   150: Grenzwerte: Wartezeit vor Meldung 'Zielposition erreicht'
   151: Referenzieren: Referenzimpuls-Distanz
   152: Referenzieren: Referenzposition
@@ -209,7 +209,6 @@
   221: CTRL Strom: Statorspannung Hauptkomponente
   222: Flussregler: Stellgröße der Statorstromhauptkomponente
   223: CTRL Strom: Proportional-Verstärkung
-  224: CTRL Strom: Integral Faktor
   225: CTRL Strom: Integrierzeitkonstante
   226: CTRL Drehzahl: Sperrfilter-Frequenz
   227: CTRL Drehzahl: Sperrfilter-Bandbreite
@@ -551,7 +550,7 @@
   661: Simulationsmodus: Massenträgheitsmoment1
   662: Simulationsmodus: Haftreibung1
   663: Simulationsmodus: Viskose Reibung1
-  664: Simulationsmodus: Parameter füür additiven Lasteingang
+  664: Simulationsmodus: Parameter für additiven Lasteingang
   665: Geber1: INK Referenzimpuls-Abstandsfehler
   666: Geber2: INK Referenzimpuls-Abstandsfehler
   667: Geber3: INK Referenzimpuls-Abstandsfehler
@@ -1045,10 +1044,10 @@
  1171: Bestellbezeichnung
  1172: Motor: Temperaturmodell: Grenztemperatur
  1173: Geber1: Kompensation: Modus
- 1174: Geber: Daten: Index
- 1175: Geber: Daten: Parameter A0
- 1176: Geber: Daten: Parameter A1
- 1177: Geber: Daten: Parameter A2
+ 1174: Geber1: Daten: Index
+ 1175: Geber1: Daten: Parameter A0
+ 1176: Geber1: Daten: Parameter A1
+ 1177: Geber1: Daten: Parameter A2
  1178: CTRL CR_OK: Abschaltschwelle
  1179: Bewegungsabbruch: Mindestzeit für zyklisches Bit 'Abbruch durch Antriebs-Ereignis'
  1180: CTRL Lageregler: Verzögerung in positive Richtung bei Aktivierung des Enable Eingangs
@@ -1101,8 +1100,8 @@
  1232: Geber1: Kompensation: Parameter 3
  1233: Geber1: Kompensation: Parameter 4
  1234: Geber1: Kompensation: Maximaler Strom für Identifikation
- 1235: RESERVED1235
- 1236: RESERVED1236
+ 1235: CTRL Strom: MTPC Regelung: Momentproportionaler Sollstrom
+ 1236: CTRL Strom: MTPC Regelung: Eingangs-Hauptkomponente
  1237: CTRL Drehzahl: Repetitive Control: Kommando
  1238: CTRL Drehzahl: Repetitive Control: Vorausschauzeit
  1239: CTRL Drehzahl: Repetitive Control: Minimaldrehzahl
@@ -1115,7 +1114,7 @@
  1246: CTRL Drehzahl: Repetitive Control: Parameter 1
  1247: CTRL Drehzahl: Repetitive Control: Parameter 2
  1248: CTRL Drehzahl: Repetitive Control: Modus
- 1249: RESERVED1249
+ 1249: CTRL Vorsteuerung: Sollmotorkraft
  1250: CTRL Flussschwächung: Spannungsgrenze Reserve
  1251: CTRL Flussschwächung: PI-Regler P-Verstärkung
  1252: MAINSSIM_UCTRL_TD
@@ -1129,6 +1128,8 @@
  1260: Motor-Haltebremse: Typ
  1261: Motor-Haltebremse: Widerstand
  1262: Motor-Haltebremse: Induktivität
+ 1263: CTRL Vorsteuerung: Gesamtmasse
+ 1264: CTRL Vorsteuerung: Externe Last
  1266: Motorhaltebremstest: Prüfdauer
  1267: Motorhaltebremstest: Moment zum Zeitpunkt wenn die Bremse einfällt
  1268: Motorhaltebremstest: Prüfmoment
@@ -1139,23 +1140,22 @@
  1273: MAINSSIM_VOLTAGE
  1274: MAINSSIM_FREQUENCY
  1275: MAINSSIM_STATE
- 1276: RESERVED1276
- 1277: RESERVED1277
+ 1277: Motor: Magnetisches Ausprägungsverhältnis
  1278: CTRL Zwischenkreis: Spannungsoffset
  1279: Wechselrichter: Summenstrom: Grenzwert
  1280: Parameteridentifikation: Ablauf
  1281: Parameter Identifikation: Zeitkonstante
  1282: Parameter Identifikation: Induktivität in D-Richtung
  1283: Parameter Identifikation: Auslösezeit bei thermischer Überlast
- 1284: RESERVED1284
+ 1284: Motor: Masse
  1285: RESERVED1285
- 1286: RESERVED1286
+ 1286: Motor: Maximalgeschwindigkeit
  1287: RESERVED1287
  1288: RESERVED1288
- 1289: RESERVED1289
- 1290: RESERVED1290
+ 1289: Motor: Spitzenkraft
+ 1290: Motor: Kraftkonstante
  1291: RESERVED1291
- 1292: RESERVED1292
+ 1292: Motor: Polteilung
  1293: CTRL Vektor: Parameter-ID des additiven Kommutierungswinkels
  1294: CTRL Vektor: Additiver Kommutierungswinkel
  1295: Spannungsbeobachter: Phasenspannung U
@@ -1268,10 +1268,9 @@
  1407: Geber2: Signalamplitude unterer Grenzwert
  1408: Geber3: Signalamplitude oberer Grenzwert
  1409: Geber3: Signalamplitude unterer Grenzwert
- 1410: RESERVED1410
- 1411: RESERVED1411
- 1412: RESERVED1412
- 1413: RESERVED1413
+ 1410: CTRL Vorsteuerung: Geschwindigkeitskraftfaktor
+ 1411: CTRL Vorsteuerung: Kraft in positiver Richtung
+ 1412: CTRL Vorsteuerung: Kraft in negativer Richtung
  1414: Geber1: Kommando Referenzieren starten
  1415: Geber1: Status Referenzposition gültig
  1416: Geber1: Referenzoffset
@@ -1358,14 +1357,13 @@
  1497: Simulationsmodus: Torsion der Kopplung
  1498: Simulationsmodus: Drehzahl von Masse 2
  1499: Simulationsmodus: Status
+ 1500: Simulationsmodus: Masse1
  1501: Meldungen: Kommando Fehler-Reaktion ausführen
  1502: VAX Meldungen: Kommando Fehler-Reaktion ausführen
  1503: Motor: Temperaturmodell: Modus
  1504: Motor-Haltebremse: Lüftspannung
  1505: Motor-Haltebremse: Haltespannung
  1506: Motor-Haltebremse: Überspannungsgrenzwert
- 1507: Basis-Bewegungen: Sollwertgenerator Modus
- 1508: VAX Basis-Bewegungen: Sollwertgenerator Modus
  1509: Achsen Querverbindung: Geber2: Istposition
  1510: Spindelsteigungsfehler-Losekompensation: Modus
  1511: Spindelsteigungsfehler-Losekompensation: Kompensationszeit
@@ -1406,7 +1404,7 @@
  1551: Virtueller Geber: Grenzwert für Positions-Schleppfehler
  1552: Virtueller Geber: Grenzwert für Geschwindigkeits-Schleppfehler
  1553: Virtueller Geber: Skalierfaktor für Strom
- 1554: Temperatursensor: Motoranschluss: Widerstand
+ 1554: Temperatursensor: Kennlinen: Eingang
  1555: Temperatursensor: Einsteckmodul: Widerstand
  1556: Geber1: Versorgungspannung
  1557: CTRL Zwischenkreis: Regler: Kommando
@@ -1426,6 +1424,16 @@
  1571: Geber1: Geber-Maßstab: Strichzahl/Signalperioden pro Geberumdrehung
  1572: Geber2: Geber-Maßstab: Strichzahl/Signalperioden pro Geberumdrehung
  1573: Geber3: Geber-Maßstab: Strichzahl/Signalperioden pro Geberumdrehung
+ 1574: Adreßabbilder: Konfiguration für die Adresszuweisung
+ 1575: Adreßabbilder: Index der Adresse
+ 1576: Geber2: Versorgungspannung
+ 1577: Interner Test-Parameter für Entwicklung
+ 1578: CTRL: Status
+ 1579: Signalgenerator: Anzahl der Doppelimpulse
+ 1580: Signalgenerator: Amplitude am Signalende
+ 1581: SafeMC: Korrektur Zählrichtung
+ 1582: SafeMC: ACPCOM Zustand
+ 1583: Systemverwaltung: Modus der Antriebs-Zykluszeit
  3072: FB LOGIC: Modus
  3080: FB LOGIC: Parameter-ID Eingang1
  3088: FB LOGIC: Parameter-ID Eingang2
@@ -1838,16 +1846,19 @@
 14480: FB DYNSYS: Systemzustand 4
 14488: FB DYNSYS: Systemzustand 5
 14496: FB DYNSYS: Zustand
-63488: LLM: Konfiguration der ADCs
+63488: RESERVED63488
 63489: LLM: der Achse zugewiesene, aktive Phasen
 63490: LLM: Anzahl der Phasen (Spulen) am Segment
-63491: LLM: gemessener Balancerstrom
+63491: LLM: Zwischenkreis: gefilterte Mittenspannung
 63492: LLM: Zwischenkreis: Mittenspannung
-63493: LLM: Balancer: Kommando
-63494: LLM: Balancer: Proportionalverstärkung
-63495: LLM: Balancer: Integratierzeitkonstante
-63496: LLM: Balancer: Status
+63493: LLM: Shutlle: Initialposition
+63494: LLM: Shutlle: Index der Initialposition
+63495: ISC: Zustand
+63496: ISC: Fehlertoleranz
 63497: LLM: IBN
+63498: ISC: interner Status
+63499: ISC: Fehlerzähler Low-Side
+63500: ISC: Fehlerzähler High-Side
 63501: LLM: gemessener Phasenstrom 1
 63502: LLM: gemessener Phasenstrom 2
 63503: LLM: gemessener Phasenstrom 3
@@ -1990,13 +2001,114 @@
 63640: LLM: Sollphasenspannung 40
 63641: LLM: Sollphasenspannung 41
 63642: LLM: Sollphasenspannung 42
-63643: RESERVED63643
-63644: RESERVED63644
-63645: RESERVED63645
-63646: RESERVED63646
+63643: LLM: Temperatursensoren: LST Luft
+63644: LLM: Temperatursensoren: LST Balancer
+63645: LLM: Temperatursensoren: LST Motor 1
+63646: LLM: Temperatursensoren: LST Motor 2
 63647: RESERVED63647
 63648: RESERVED63648
 63649: RESERVED63649
+63650: Virtueller Geber: Istposition
+63651: Virtueller Geber: Positionsdifferenz in 200us
+63652: Sensor Map: aktiver Sensor
+63653: Sensor Map: Periode aktiver Sensor
+63654: Sensor Map: Gamma aktiver Sensor
+63655: Sensor Map: Betrag aktiver Sensor
+63656: Sensor Map: Sinus aktiver Sensor
+63657: Sensor Map: Cosinus aktiver Sensor
+63711: Sinus Signal Magnetsensor 1
+63712: Cosinus Signal Magnetsensor 1
+63713: Sinus Signal Magnetsensor 2
+63714: Cosinus Signal Magnetsensor 2
+63715: Sinus Signal Magnetsensor 3
+63716: Cosinus Signal Magnetsensor 3
+63717: Sinus Signal Magnetsensor 4
+63718: Cosinus Signal Magnetsensor 4
+63719: Sinus Signal Magnetsensor 5
+63720: Cosinus Signal Magnetsensor 5
+63721: Sinus Signal Magnetsensor 6
+63722: Cosinus Signal Magnetsensor 6
+63723: Sinus Signal Magnetsensor 7
+63724: Cosinus Signal Magnetsensor 7
+63725: Sinus Signal Magnetsensor 8
+63726: Cosinus Signal Magnetsensor 8
+63727: Sinus Signal Magnetsensor 9
+63728: Cosinus Signal Magnetsensor 9
+63729: Sinus Signal Magnetsensor 10
+63730: Cosinus Signal Magnetsensor 10
+63731: Sinus Signal Magnetsensor 11
+63732: Cosinus Signal Magnetsensor 11
+63733: Sinus Signal Magnetsensor 12
+63734: Cosinus Signal Magnetsensor 12
+63735: Sinus Signal Magnetsensor 13
+63736: Cosinus Signal Magnetsensor 13
+63737: Sinus Signal Magnetsensor 14
+63738: Cosinus Signal Magnetsensor 14
+63739: Sinus Signal Magnetsensor 15
+63740: Cosinus Signal Magnetsensor 15
+63741: Sinus Signal Magnetsensor 16
+63742: Cosinus Signal Magnetsensor 16
+63743: Sinus Signal Magnetsensor 17
+63744: Cosinus Signal Magnetsensor 17
+63745: Sinus Signal Magnetsensor 18
+63746: Cosinus Signal Magnetsensor 18
+63747: Sinus Signal Magnetsensor 19
+63748: Cosinus Signal Magnetsensor 19
+63749: Sinus Signal Magnetsensor 20
+63750: Cosinus Signal Magnetsensor 20
+63751: Sinus Signal Magnetsensor 21
+63752: Cosinus Signal Magnetsensor 21
+63753: Sinus Signal Magnetsensor 22
+63754: Cosinus Signal Magnetsensor 22
+63755: Sinus Signal Magnetsensor 23
+63756: Cosinus Signal Magnetsensor 23
+63757: Sinus Signal Magnetsensor 24
+63758: Cosinus Signal Magnetsensor 24
+63759: Sinus Signal Magnetsensor 25
+63760: Cosinus Signal Magnetsensor 25
+63761: Sinus Signal Magnetsensor 26
+63762: Cosinus Signal Magnetsensor 26
+63763: Sinus Signal Magnetsensor 27
+63764: Cosinus Signal Magnetsensor 27
+63765: Sinus Signal Magnetsensor 28
+63766: Cosinus Signal Magnetsensor 28
+63767: Sinus Signal Magnetsensor 29
+63768: Cosinus Signal Magnetsensor 29
+63769: Sinus Signal Magnetsensor 30
+63770: Cosinus Signal Magnetsensor 30
+63771: Sinus Signal Magnetsensor 31
+63772: Cosinus Signal Magnetsensor 31
+63773: Sinus Signal Magnetsensor 32
+63774: Cosinus Signal Magnetsensor 32
+63775: Sinus Signal Magnetsensor 33
+63776: Cosinus Signal Magnetsensor 33
+63777: Sinus Signal Magnetsensor 34
+63778: Cosinus Signal Magnetsensor 34
+63779: Sinus Signal Magnetsensor 35
+63780: Cosinus Signal Magnetsensor 35
+63781: Sinus Signal Magnetsensor 36
+63782: Cosinus Signal Magnetsensor 36
+63783: Sinus Signal Magnetsensor 37
+63784: Cosinus Signal Magnetsensor 37
+63785: Sinus Signal Magnetsensor 38
+63786: Cosinus Signal Magnetsensor 38
+63787: Sinus Signal Magnetsensor 39
+63788: Cosinus Signal Magnetsensor 39
+63789: Sinus Signal Magnetsensor 40
+63790: Cosinus Signal Magnetsensor 40
+63791: Sinus Signal Magnetsensor 41
+63792: Cosinus Signal Magnetsensor 41
+63800: LLM: Weichen-Auslöse-Strom
+63879: LLM: Konfiguration: Index eines Parametersatzes
+63880: LLM: Lageregler: Istposition
+63881: LLM: Test R8
+63882: LLM: Zyklischer Sollwert
+63883: LLM: Lageregler: Sollposition
+63884: LLM Netzwerk: Zykluszeit der Sollwerte
+63885: LLM: Zyklische Channel Status Bits
+63886: LLM: Zyklische Segment Steuer Bits
+63887: LLM: Zyklische Channel Steuer Bits
+63888: LLM: Zyklische Segment Status Bits
 64201: Antriebsanpassung: Geschwindigkeit bei maximalem Ausgangswert
 64225: Geber1: Wertebereich der Geberposition
 64232: Schrittmotor: Schrittauflösung: Schritte pro Motorumdrehung

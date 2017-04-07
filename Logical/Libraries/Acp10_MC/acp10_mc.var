@@ -38,6 +38,8 @@ VAR CONSTANT
 	mcCHECK_HOMING_OFF : USINT := 1; (*disable homing check*)
 	mcCLOSE : USINT := 0;
 	mcCMD_ERROR : UINT := 1; (*error command*)
+    mcCMD_ERROR_COAST_TO_STANDSTILL : UINT := 5; (*error command*)
+    mcCMD_ERROR_INDUCTION_HALT : UINT := 6; (*error command*)
 	mcCMD_ERROR_STOP : UINT := 2; (*error command*)
 	mcCMD_ERROR_STOP_CTRL_OFF : UINT := 3; (*error command*)
 	mcCMD_ERROR_V_STOP_CTRL_OFF : UINT := 4; (*error command*)

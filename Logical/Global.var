@@ -1,11 +1,11 @@
 VAR
 	TestVar : USINT;
-	gkRotaryG : ACP10AXIS_typ;
-	gkRotaryD : ACP10AXIS_typ;
-	gkLinearG : ACP10AXIS_typ;
-	gkLinearD : ACP10AXIS_typ;
-	gkRotaryM : ACP10AXIS_typ;
-	gkRotaryF : ACP10AXIS_typ;
-	gkLinearM : ACP10AXIS_typ;
-	gkLinearF : ACP10AXIS_typ;
+	rotaryGK : ACP10AXIS_typ;
+	rotaryDF : ACP10AXIS_typ;
+	linearGK : ACP10AXIS_typ;
+	linearDF : ACP10AXIS_typ;
+	rotaryMD : ACP10AXIS_typ;
+	rotaryFW : ACP10AXIS_typ;
+	linearMD : ACP10AXIS_typ;
+	linearFW : ACP10AXIS_typ;
 END_VAR

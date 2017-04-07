@@ -10,5 +10,14 @@
     <Object Type="Package">Real_Game</Object>
     <Object Type="Package">mappView</Object>
     <Object Type="File">Project.language</Object>
+    <Object Type="DataObject" Language="Ett">acp10etxen</Object>
+    <Object Type="Package" Description="rotaryDFobj">rotaryDFobj</Object>
+    <Object Type="Package" Description="rotaryGKobj">rotaryGKobj</Object>
+    <Object Type="Package" Description="linearDFobj">linearDFobj</Object>
+    <Object Type="Package" Description="linearGKobj">linearGKobj</Object>
+    <Object Type="Package" Description="rotaryFWobj">rotaryFWobj</Object>
+    <Object Type="Package" Description="rotaryMDobj">rotaryMDobj</Object>
+    <Object Type="Package" Description="linearFWobj">linearFWobj</Object>
+    <Object Type="Package" Description="linearMDobj">linearMDobj</Object>
   </Objects>
 </Package>

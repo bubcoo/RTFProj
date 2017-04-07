@@ -6,16 +6,19 @@
 	<Page refId="GamePage"/>
 	<Page refId="MatchPage"/>
 	<Page refId="CameraPage"/>
-	<Page refId="GraphPage"/>
-	<Page refId="PosPage"/>
-	<Page refId="TempPage"/>
+	<Page refId="SDMPage"/>
 	<Page refId="AlarmPage"/>
 	<Page refId="SftPage"/>
+	<Page refId="TempPage"/>
 	<Page refId="AboutPage"/>
-	<Page refId="SDMPage"/>
+	<Page refId="PosPage"/>
+	<Page refId="GraphPage"/>
+	<Page refId="mbInfo"/>
+	<Page refId="dsInfo"/>
+	<Page refId="wdInfo"/>	
   </Pages>
   <Navigations>
-    <Navigation refId="MainNavigation" />
+	<Navigation refId="MainNavigation" />
   </Navigations>  
   <BindingsSets>
     <BindingsSet refId="binding_0" />

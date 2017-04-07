@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio Version=4.2.7.54 SP?>
-<Library Version="0.67.0" Description="GMC Objects and Services Manager" xmlns="http://br-automation.co.at/AS/Library">
-  <Files>
-    <File>GmcManager.typ</File>
-    <File>GmcManager.fun</File>
-    <File>GmcManager.var</File>
-  </Files>
-</Library>

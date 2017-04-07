@@ -17,7 +17,6 @@
     <DataObject Name="Arnc0sys" Source="" Memory="UserROM" Language="Binary" />
   </DataObjects>
   <NcDataObjects>
-    <NcDataObject Name="acp10etxen" Source="ACP10_ETXEN.acp10etxen.dob" Memory="UserROM" Language="Ett" />
     <NcDataObject Name="dfRotaryBa" Source="Simulation.Motion.Rotary.dfRotaryBobj.dfRotaryBa.dob" Memory="UserROM" Language="Apt" />
     <NcDataObject Name="dfRotaryBi" Source="Simulation.Motion.Rotary.dfRotaryBobj.dfRotaryBi.dob" Memory="UserROM" Language="Ax" />
     <NcDataObject Name="gkRotaryAa" Source="Simulation.Motion.Rotary.gkRotaryAobj.gkRotaryAa.dob" Memory="UserROM" Language="Apt" />

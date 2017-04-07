@@ -13,6 +13,9 @@
 	<Page refId="SftPage"/>
 	<Page refId="AboutPage"/>
 	<Page refId="SDMPage"/>
+	<Page refId="mbInfo"/>
+	<Page refId="dsInfo"/>
+	<Page refId="wdInfo"/>
   </Pages>
   <Navigations>
     <Navigation refId="MainNavigation" />
