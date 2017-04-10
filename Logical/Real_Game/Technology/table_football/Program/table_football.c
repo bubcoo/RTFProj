@@ -60,36 +60,36 @@ void _INIT ProgramInit(void)
     
     // axis type -> MAPP
     // linear
-    gLinkAxes_linear[0] = gk_mappAxisL;
+    gLinkAxes_linear[0] = gk_mappAxisLR;
     /*
-    gLinkAxes_linear[1] = df_mappAxisL;
-    gLinkAxes_linear[2] = md_mappAxisL;
-    gLinkAxes_linear[3] = fw_mappAxisL;
+    gLinkAxes_linear[1] = df_mappAxisLR;
+    gLinkAxes_linear[2] = md_mappAxisLR;
+    gLinkAxes_linear[3] = fw_mappAxisLR;
     */
     // rotary
-    gLinkAxes_rotary[0] = gk_mappAxisR;
+    gLinkAxes_rotary[0] = gk_mappAxisRR;
    	/*
-    gLinkAxes_rotary[1] = df_mappAxisR;
-    gLinkAxes_rotary[2] = md_mappAxisR;
-    gLinkAxes_rotary[3] = fw_mappAxisR;
+    gLinkAxes_rotary[1] = df_mappAxisRR;
+    gLinkAxes_rotary[2] = md_mappAxisRR;
+    gLinkAxes_rotary[3] = fw_mappAxisRR;
     */
     /************************************ Control of AlarmX ************************************/
 	
     // adjustment device name
     alarm_device_address = (UDINT) strcpy(mp_alarmX.deviceName_no1_exp,"EXPORT_HISTORY");
     // MpAlarmX Core
-    mp_alarmX.mp_core.MpLink         = &gAlarmXCore;
+    mp_alarmX.mp_core.MpLink         = &gAlarmXCoreR;
     mp_alarmX.mp_core.Enable         = 1;
     // MpAlarmX ListUI
-    mp_alarmX.mp_listUI.MpLink       = &gAlarmXCore;
+    mp_alarmX.mp_listUI.MpLink       = &gAlarmXCoreR;
     mp_alarmX.mp_listUI.Enable       = 1;
     mp_alarmX.mp_listUI.UIConnect    = &AlarmListUI_ConnectType;
     // MpAlarmX History
-    mp_alarmX.mp_history.MpLink      = &gAlarmXHistory;
+    mp_alarmX.mp_history.MpLink      = &gAlarmXHistoryR;
     mp_alarmX.mp_history.Enable      = 1;
     mp_alarmX.mp_history.DeviceName  = &mp_alarmX.deviceName_no1_exp;
     // MpAlarmX HistoryUI
-    mp_alarmX.mp_historyUI.MpLink    = &gAlarmXHistory;
+    mp_alarmX.mp_historyUI.MpLink    = &gAlarmXHistoryR;
     mp_alarmX.mp_historyUI.Enable    = 1;
     mp_alarmX.mp_historyUI.UIConnect = &AlarmHistoryUI_ConnectType;
     
@@ -157,7 +157,7 @@ void _INIT ProgramInit(void)
 /**********************************************************************************************************/
 void _CYCLIC ProgramCyclic(void)
 {    
-	// initializatiom temp
+	// initializatiom temperature
 	temp_lin = mp_Axis.mp_axisLinear[0].Info.CyclicRead.MotorTemperature.Value;
 	temp_rot = mp_Axis.mp_axisRotary[0].Info.CyclicRead.MotorTemperature.Value;
 	

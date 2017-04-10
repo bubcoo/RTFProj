@@ -58,16 +58,16 @@ void _INIT ProgramInit(void)
     // generally
     max_numberOfFormation = EACH_FORMATION;
     
-    // axis type -> MAPP
+    // axis type -> MAPP -> Name Mapp axes for testing
     // linear
-    gLinkAxes_linear[0] = gk_mappAxisL;
+    //gLinkAxes_linear[0] = gk_mappAxisL;
     /*
     gLinkAxes_linear[1] = df_mappAxisL;
     gLinkAxes_linear[2] = md_mappAxisL;
     gLinkAxes_linear[3] = fw_mappAxisL;
     */
     // rotary
-    gLinkAxes_rotary[0] = gk_mappAxisR;
+    //gLinkAxes_rotary[0] = gk_mappAxisR;
    	/*
     gLinkAxes_rotary[1] = df_mappAxisR;
     gLinkAxes_rotary[2] = md_mappAxisR;

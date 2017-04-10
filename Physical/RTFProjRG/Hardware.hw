@@ -18,6 +18,7 @@
     <Parameter ID="AutomationRuntime" Value="AR010" />
     <Parameter ID="ConfigurationID" Value="RTFProj_Config1" />
     <Parameter ID="TimerDeviceType" Value="EPLX2X" />
+    <Parameter ID="TimerDevice" Value="5ACCIF01.FPSC-000.IF1" />
     <Parameter ID="TaskClassIdleTime" Value="2000" />
     <Parameter ID="Cyclic1Duration" Value="2000" />
     <Parameter ID="Cyclic1Tolerance" Value="10000" />
@@ -37,7 +38,6 @@
     <Parameter ID="Cyclic8Tolerance" Value="30000000" />
     <Parameter ID="ActivateOpcUa" Value="1" />
     <Parameter ID="OpcUa_Security_SoftwareCertificates" Value="" />
-    <Parameter ID="TimerDevice" Value="5ACCIF01.FPSC-000.IF1" />
   </Module>
   <Module Name="80VD100PD.C000-01" Type="80VD100PD.C000-01" Version="2.0.1.0">
     <Connection Connector="PLK1" TargetModule="X20BC0083" TargetConnector="PLK2" NodeNumber="2" />
@@ -65,12 +65,14 @@
   </Module>
   <Module Name="80VD100PD.C188-01a" Type="80VD100PD.C188-01" Version="2.0.1.0">
     <Connection Connector="PLK1" TargetModule="80VD100PD.C000-01a" TargetConnector="PLK2" NodeNumber="5" />
+    <Connection Connector="PLK2" TargetModule="In-Sight" TargetConnector="PLK1" NodeNumber="5" />
     <Parameter ID="BothEndSwitchesAreNormallyOpen_r1" Value="on" />
     <Parameter ID="QuickStopIsNormallyOpen_r1" Value="on" />
     <Parameter ID="BothEndSwitchesAreNormallyOpen_r2" Value="on" />
     <Parameter ID="QuickStopIsNormallyOpen_r2" Value="on" />
   </Module>
-  <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" Version="4.8.0" Disabled="true" OrderNumber="In-Sight">
+  <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" Version="4.8.0" OrderNumber="In-Sight">
+    <Connection Connector="PLK1" TargetModule="80VD100PD.C188-01a" TargetConnector="PLK2" NodeNumber="6" />
     <Parameter ID="Supervision" Value="off" />
     <Parameter ID="p2000s01_direction" Value="wo" />
     <Parameter ID="p2000s02_direction" Value="wo" />

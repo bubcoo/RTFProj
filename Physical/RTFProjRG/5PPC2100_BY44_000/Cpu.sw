@@ -16,7 +16,7 @@
     <DataObject Name="Arnc0sys" Source="" Memory="UserROM" Language="Binary" />
   </DataObjects>
   <NcDataObjects>
-    <NcDataObject Name="acp10etxen" Source="acp10etxen.dob" Memory="UserROM" Language="Ett" />
+    <NcDataObject Name="acp10etxen" Source="ACP10_ETXEN.acp10etxen.dob" Memory="UserROM" Language="Ett" />
     <NcDataObject Name="rotaryDFa" Source="rotaryDFobj.rotaryDFa.dob" Memory="UserROM" Language="Apt" />
     <NcDataObject Name="rotaryDFi" Source="rotaryDFobj.rotaryDFi.dob" Memory="UserROM" Language="Ax" />
     <NcDataObject Name="rotaryGKa" Source="rotaryGKobj.rotaryGKa.dob" Memory="UserROM" Language="Apt" />

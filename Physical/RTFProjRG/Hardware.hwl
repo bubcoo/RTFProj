@@ -52,17 +52,17 @@
       <Point X="458" Y="370" />
       <Point X="458" Y="370" />
     </Link>
-    <Link From="80VD100PD.C188-01" To="80VD100PD.C000-01" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
-      <Point X="806" Y="170" />
-      <Point X="806" Y="155" />
-      <Point X="825" Y="155" />
-      <Point X="835" Y="155" />
-      <Point X="835" Y="245" />
-      <Point X="755" Y="245" />
-      <Point X="755" Y="170" />
+    <Link From="80VD100PD.C000-01" To="80VD100PD.C188-01" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
+      <Point X="709" Y="170" />
+      <Point X="709" Y="170" />
       <Point X="718" Y="170" />
-      <Point X="709" Y="170" />
-      <Point X="709" Y="170" />
+      <Point X="732" Y="170" />
+      <Point X="732" Y="245" />
+      <Point X="835" Y="245" />
+      <Point X="835" Y="155" />
+      <Point X="825" Y="155" />
+      <Point X="806" Y="155" />
+      <Point X="806" Y="170" />
     </Link>
     <Link From="80VD100PD.C000-01a" To="80VD100PD.C188-01" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
       <Point X="913" Y="170" />
@@ -76,17 +76,28 @@
       <Point X="816" Y="170" />
       <Point X="816" Y="170" />
     </Link>
-    <Link From="80VD100PD.C188-01a" To="80VD100PD.C000-01a" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
-      <Point X="1020" Y="170" />
-      <Point X="1020" Y="155" />
-      <Point X="1039" Y="155" />
-      <Point X="1045" Y="155" />
-      <Point X="1045" Y="245" />
-      <Point X="975" Y="245" />
-      <Point X="975" Y="170" />
+    <Link From="80VD100PD.C000-01a" To="80VD100PD.C188-01a" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
+      <Point X="923" Y="170" />
+      <Point X="923" Y="170" />
       <Point X="932" Y="170" />
-      <Point X="923" Y="170" />
-      <Point X="923" Y="170" />
+      <Point X="952" Y="170" />
+      <Point X="952" Y="245" />
+      <Point X="1045" Y="245" />
+      <Point X="1045" Y="155" />
+      <Point X="1039" Y="155" />
+      <Point X="1020" Y="155" />
+      <Point X="1020" Y="170" />
+    </Link>
+    <Link From="In-Sight" To="80VD100PD.C188-01a" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
+      <Point X="719" Y="495" />
+      <Point X="719" Y="495" />
+      <Point X="719" Y="502" />
+      <Point X="719" Y="515" />
+      <Point X="1052" Y="515" />
+      <Point X="1052" Y="170" />
+      <Point X="1039" Y="170" />
+      <Point X="1030" Y="170" />
+      <Point X="1030" Y="170" />
     </Link>
   </Links>
   <InfoElements />

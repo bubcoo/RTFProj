@@ -65,12 +65,13 @@ struct axesAcopos get_axisParam(int idx_ofIteration){
     // output of this function is structure, that has two parameters(linear,rotary axis)
     switch(new_idx){
         case aNUM1:
+			// Name real axes
+			/*
             // goalkeeper
             a.linear = &gkLinearW;
             a.rotary = &gkRotaryW;
             return a;
             break;
-        /*
         case aNUM2:
             // defender
             a.linear = &dfLinearX;
