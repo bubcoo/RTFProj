@@ -174,6 +174,11 @@ void calculation_realCrossing(struct calculation_realCrossing* c_rC)
 	number_ofD[2] = 5;
 	number_ofD[3] = 3;
 	
+	calc_newC.reversed_HUM[0] = c_rC->reversed_HUM[0];
+	calc_newC.reversed_HUM[1] = c_rC->reversed_HUM[1];
+	calc_newC.reversed_HUM[2] = c_rC->reversed_HUM[2];
+	calc_newC.reversed_HUM[3] = c_rC->reversed_HUM[3];
+	
 	count_crossH   = c_rC->count_axesIntersectionHUM[0];	
 	count_calcH    = 5 - count_crossH;
 	
@@ -334,13 +339,16 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 			break;
 		case 3:
 			{
-				y_crossFW = c_nC->act_posOfAxesHUM_Y[3] - c_nC->predicted_position;
-				
-				if(c_nC->x_posOfBall[0] <= 8300){
-					y_crossMD = c_nC->act_posOfAxesHUM_Y[2] - c_nC->predicted_position;
+				if(c_nC->reversed_HUM[iteration] == 0){
+					y_crossFW = c_nC->act_posOfAxesHUM_Y[3] - c_nC->predicted_position;
+					y_crossMD = c_nC->act_posOfAxesCPU_Y[2] - c_nC->predicted_position;
 				}else{
-					y_crossMD = y_crossFW + value;
+					y_crossFW = c_nC->act_posOfAxesHUM_Y[3] - c_nC->predicted_position;
+					y_crossMD = y_crossFW + value;	
 				}
+				
+				y_crossDF = y_crossMD + value;
+				y_crossGK = y_crossFW + value;
 			
 				if(fabs(y_crossGK) > fabs(y_crossFW)){
 					y_crossGK = y_crossFW - value;
@@ -354,15 +362,25 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 			break;
 		case 4:
 			{
-				y_crossFW = c_nC->act_posOfAxesCPU_Y[3] - c_nC->predicted_position;
-				y_crossMD = c_nC->act_posOfAxesCPU_Y[2] - c_nC->predicted_position;
-				y_crossDF = c_nC->act_posOfAxesCPU_Y[1] - c_nC->predicted_position;
-                y_crossGK = y_crossFW + value;
+				if(c_nC->reversed_HUM[iteration] == 0){
+					y_crossFW = c_nC->act_posOfAxesCPU_Y[3] - c_nC->predicted_position;
+					y_crossMD = c_nC->act_posOfAxesCPU_Y[2] - c_nC->predicted_position;
+					y_crossDF = y_crossMD - c_nC->predicted_position;
+					y_crossGK = y_crossFW + value;
+				}else{
+					y_crossFW = c_nC->act_posOfAxesCPU_Y[3] - c_nC->predicted_position;
+					y_crossMD = c_nC->act_posOfAxesCPU_Y[2] - c_nC->predicted_position;
+					y_crossDF = y_crossMD + value;
+					y_crossGK = y_crossFW + value;
+					
+				}
             
 				if(fabs(y_crossGK) > fabs(y_crossFW)){
 					y_crossGK = y_crossFW - value;
 				}
-				
+				if(fabs(y_crossMD) < fabs(y_crossFW)){
+					y_crossDF = y_crossMD - value;
+				}
 				if(c_nC->x_posOfBall[0] <= 2300){
 					y_crossGK = c_nC->act_posOfAxesCPU_Y[0];
 				}
