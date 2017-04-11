@@ -205,7 +205,7 @@ void getRealAxes(struct FBCamera *inst)
 		inst->Results.AxisXOld = inst->Results.AxisX;
 		inst->Results.AxisYOld = inst->Results.AxisY;
 		memcpy((UDINT)&inst->Results.ActTimeOld,(UDINT)&inst->Results.ActTime,sizeof(inst->Results.ActTime));
-		inst->Results.AxisX = ((inst->InSight.InspectionResults_I2011_S02*(-9.9917423616845582163501238645747))+12349.793559042113955408753096614);
+		inst->Results.AxisX = ((inst->InSight.InspectionResults_I2011_S02*(-9.2674315975286849073256840247132))+12059.929390997352162400706090026);
 		inst->Results.AxisY = ((inst->InSight.InspectionResults_I2011_S01*(-10.049180327868852459016393442623))+5115.0327868852459016393442622951);
 		RTC_gettime(&inst->Results.ActTime);
 		inst->Results.TimeDiff = (REAL)((inst->Results.ActTime.millisec + (inst->Results.ActTime.second*1000)) - (inst->Results.ActTimeOld.millisec +(inst->Results.ActTimeOld.second*1000)));

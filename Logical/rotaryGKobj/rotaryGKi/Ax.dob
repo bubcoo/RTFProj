@@ -2,6 +2,6 @@
 <?AutomationStudio Version=4.2.8.54 SP?>
 <DataObject xmlns="http://br-automation.co.at/AS/DataObject">
   <Files>
-    <File>linearGKi.ax</File>
+    <File>rotaryDFi.ax</File>
   </Files>
 </DataObject>

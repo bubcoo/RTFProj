@@ -9,4 +9,6 @@ VAR_CONFIG
 	::Light_0.DO9322.ModuleOK AT %IX."X20DO9322".ModuleOk;
 	::Light_0.DO9322.DigitalOutput AT %QX."X20DO9322".DigitalOutput01;
 	::GoalKeeper_0.DI9371.DigitalInput_2 AT %IX."X20DI9371".DigitalInput06;
+	::table_foot:ESTOP AT %IX."X20SLX842".SafeDigitalInput03;
+	::table_foot:reset_safetyESTOP AT %QX."X20SLX842".BOOL101;
 END_VAR

@@ -41,9 +41,6 @@
         </Variable>
         <Variable Name="GoalKeeper_0" Enable="True" />
       </GlobalVariables>
-      <Task Name="cam_sens_s">
-        <Variable Name="LineChart" Enable="True" />
-      </Task>
     </Module>
   </DefaultView>
 </OpcUaSource>

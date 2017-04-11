@@ -2,7 +2,8 @@
 <?AutomationStudio Version=4.2.8.54 SP?>
 <SwConfiguration CpuAddress="SL1" xmlns="http://br-automation.co.at/AS/SwConfiguration">
   <TaskClass Name="Cyclic#1">
-    <Task Name="cam_sens_s" Source="Real_Game.Technology.cam_sens_sd_s.prg" Memory="UserROM" Language="ANSIC" Debugging="true" />
+    <Task Name="cam_sens_s" Source="Real_Game.Technology.cam_sens_sd_s.prg" Memory="UserROM" Language="ANSIC" Debugging="true" Disabled="true" />
+    <Task Name="table_foot" Source="Real_Game.Technology.table_football.prg" Memory="UserROM" Language="ANSIC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#2" />
   <TaskClass Name="Cyclic#3" />
@@ -12,8 +13,9 @@
   <TaskClass Name="Cyclic#7" />
   <TaskClass Name="Cyclic#8" />
   <DataObjects>
-    <DataObject Name="Acp10sys" Source="" Memory="UserROM" Language="Binary" />
+    <DataObject Name="assl1" Source="" Memory="UserROM" Language="Binary" />
     <DataObject Name="Arnc0sys" Source="" Memory="UserROM" Language="Binary" />
+    <DataObject Name="Acp10sys" Source="" Memory="UserROM" Language="Binary" />
   </DataObjects>
   <NcDataObjects>
     <NcDataObject Name="acp10etxen" Source="ACP10_ETXEN.acp10etxen.dob" Memory="UserROM" Language="Ett" />
@@ -35,23 +37,27 @@
     <NcDataObject Name="linearMDi" Source="linearMDobj.linearMDi.dob" Memory="UserROM" Language="Ax" />
   </NcDataObjects>
   <Binaries>
+    <BinaryObject Name="arsvcreg" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="mvLoader" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="TCData" Source="" Memory="SystemROM" Language="Binary" />
     <BinaryObject Name="udbdef" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="Linear" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="iomap" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="OpcUaMap" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="sysconf" Source="" Memory="SystemROM" Language="Binary" />
+    <BinaryObject Name="Config" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="TC" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="Config_1" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="ashwd" Source="" Memory="SystemROM" Language="Binary" />
     <BinaryObject Name="asfw" Source="" Memory="SystemROM" Language="Binary" />
     <BinaryObject Name="User" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="arconfig" Source="" Memory="SystemROM" Language="Binary" />
     <BinaryObject Name="Role" Source="" Memory="UserROM" Language="Binary" />
-    <BinaryObject Name="arnc0cfg" Source="" Memory="UserROM" Language="Binary" />
-    <BinaryObject Name="Arnc0map" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="Rotary" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="Acp10map" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="acp10cfg" Source="" Memory="UserROM" Language="Binary" />
-    <BinaryObject Name="arsvcreg" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="Arnc0map" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="arnc0cfg" Source="" Memory="UserROM" Language="Binary" />
   </Binaries>
   <Libraries>
     <LibraryObject Name="operator" Source="Libraries.operator.lby" Memory="UserROM" Language="Binary" Debugging="true" />
@@ -88,5 +94,6 @@
     <LibraryObject Name="NcGlobal" Source="Libraries.NcGlobal.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="Acp10par" Source="Libraries.Acp10par.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="powerlnk" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="areventlog" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
   </Libraries>
 </SwConfiguration>

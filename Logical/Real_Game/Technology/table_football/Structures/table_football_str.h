@@ -77,19 +77,17 @@ _GLOBAL axesAcopos axis_acopos;
 
 // axis type -> ACOPOS
 // goalkeeper
-_GLOBAL ACP10AXIS_typ gkLinearW;
-_GLOBAL ACP10AXIS_typ gkRotaryW;
+_GLOBAL ACP10AXIS_typ linearGK;
+_GLOBAL ACP10AXIS_typ rotaryGK;
 // defender
-/*
-_GLOBAL ACP10AXIS_typ dfLinearX;
-_GLOBAL ACP10AXIS_typ dfRotaryX;
+_GLOBAL ACP10AXIS_typ linearDF;
+_GLOBAL ACP10AXIS_typ rotaryDF;
 // midfielder
-_GLOBAL ACP10AXIS_typ mdLinearY;
-_GLOBAL ACP10AXIS_typ mdRotaryY;
+_GLOBAL ACP10AXIS_typ linearMD;
+_GLOBAL ACP10AXIS_typ rotaryMD;
 // forward
-_GLOBAL ACP10AXIS_typ fwLinearZ;
-_GLOBAL ACP10AXIS_typ fwRotaryZ;
-*/
+_GLOBAL ACP10AXIS_typ linearFW;
+_GLOBAL ACP10AXIS_typ rotaryFW;
 // axis type -> MAPP
 _GLOBAL struct MpComIdentType gLinkAxes_rotary[4];
 _GLOBAL struct MpComIdentType gLinkAxes_linear[4];

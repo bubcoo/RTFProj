@@ -66,29 +66,27 @@ struct axesAcopos get_axisParam(int idx_ofIteration){
     switch(new_idx){
         case aNUM1:
             // goalkeeper
-            a.linear = &gkLinearW;
-            a.rotary = &gkRotaryW;
+            a.linear = &linearGK;
+            a.rotary = &rotaryGK;
             return a;
             break;
-        /*
         case aNUM2:
             // defender
-            a.linear = &dfLinearX;
-            a.rotary = &dfRotaryX;
+            a.linear = &linearDF;
+            a.rotary = &rotaryDF;
             return a;
             break;
         case aNUM3:
             // midfielder
-            a.linear = &mdLinearY;
-            a.rotary = &mdRotaryY;
+            a.linear = &linearMD;
+            a.rotary = &rotaryMD;
             return a;
             break;
         case aNUM4:
             // forward
-            a.linear = &fwLinearZ;
-            a.rotary = &fwRotaryZ;
+            a.linear = &linearFW;
+            a.rotary = &rotaryFW;
             break;
-        */
     }  
 }
 
