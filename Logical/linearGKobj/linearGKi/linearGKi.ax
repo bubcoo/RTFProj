@@ -159,7 +159,7 @@
     <Group ID="message">
       <Group ID="text">
         <Group ID="parameter">
-          <Parameter ID="format" Value="ncBREAK" />
+          <Parameter ID="format" Value="ncBREAK + ncZERO" />
           <Parameter ID="columns" Value="80" />
           <Parameter ID="data_modul" Value="acp10etxen" />
         </Group>

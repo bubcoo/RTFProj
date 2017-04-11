@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<InitParameter Version="3.16.2">
+<InitParameter Version="3.16.2" NcSwId="ACP10">
   <Group ID="ACP10AXIS_typ">
     <Group ID="dig_in">
       <Group ID="level">
@@ -159,7 +159,7 @@
     <Group ID="message">
       <Group ID="text">
         <Group ID="parameter">
-          <Parameter ID="format" Value="ncBREAK" />
+          <Parameter ID="format" Value="ncBREAK + ncZERO" />
           <Parameter ID="columns" Value="80" />
           <Parameter ID="data_modul" Value="acp10etxen" />
         </Group>

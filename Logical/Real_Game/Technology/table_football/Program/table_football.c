@@ -213,18 +213,10 @@ void _INIT ProgramInit(void)
 	angle_ofRotation[0] = 0;
 	
 	// intialization state machine
-	SOCCER_TABLE_STEP = RST_EMPTY;
+	SOCCER_TABLE_STEP = RST_INITIALIZATION_1;
 	
 	// initialization safety reset
 	reset_safetyESTOP = 0;
-	
-	if(ESTOP){
-		reset_safetyESTOP = 1;
-					
-		if(reset_safetyESTOP){
-			reset_safetyESTOP = 0;
-		}
-	}
 }
 
 /**********************************************************************************************************/
@@ -237,12 +229,35 @@ void _CYCLIC ProgramCyclic(void)
 	temp_rot[0] = mp_Axis.mp_axisRotary[0].Info.CyclicRead.MotorTemperature.Value;
 	
 	switch(SOCCER_TABLE_STEP){
-		case RST_EMPTY:
+		case RST_INITIALIZATION_1:
+			{				
+				if(ESTOP == 1){
+					// reset safety
+					reset_safetyESTOP = 1;
+				}else{
+					// go to safety step
+					SOCCER_TABLE_STEP = RST_SAFETY;
+				}
+				
+				if(mp_Axis.mp_axisLinear[0].Active == 1 && mp_Axis.mp_axisRotary[0].Active == 1){
+					// reset safety -> turn off
+					reset_safetyESTOP = 0;
+					// get rotation position
+					get_rotPos.actual_position[0] = mp_Axis.mp_axisRotary[0].Position;
+					get_rotPos.define_position[0] = define_posRotary[0];
+					// call function
+					get_rotationalPostition(&get_rotPos);
+					angle_ofRotation[0] = get_rotPos.result[0] * (-1);
+				
+					if(labs(angle_ofRotation[0]) <= 3600){
+						mp_Axis.param_axisRotary[0].Home.Position = angle_ofRotation[0];
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_2;
+					}
+				}
+			}
+			break;
+		case RST_INITIALIZATION_2:
 			{
-				get_rotPos.actual_position[0] = act_pos;
-				get_rotPos.define_position[0] = define_posRotary[0];
-				get_rotationalPostition(&get_rotPos);
-				angle_ofRotation[0] = get_rotPos.result[0] * (-1);
 			}
 			break;
 		case RST_CALCULATION_DEFENSE:
@@ -305,6 +320,10 @@ void _CYCLIC ProgramCyclic(void)
 				c_doa.x_posOfBall[0] = ball1[0];
 				c_doa.x_posOfBall[1] = ball2[0];
 				calculation_displacementOfAxes(&c_doa);
+			}
+			break;
+		case RST_SAFETY:
+			{
 			}
 			break;
 	}// end switch
