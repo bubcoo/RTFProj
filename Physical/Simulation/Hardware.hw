@@ -18,7 +18,7 @@
   </Module>
   <Module Name="80VD100PD.C000-01a" Type="80VD100PD.C000-01" Version="2.0.1.0">
     <Connection Connector="PLK1" TargetModule="80VD100PD.C188-01" TargetConnector="PLK2" NodeNumber="4" />
-    <Connection Connector="PLK2" TargetModule="In-Sight" TargetConnector="PLK1" NodeNumber="4" />
+    <Connection Connector="PLK2" TargetModule="80VD100PD.C188-01a" TargetConnector="PLK1" NodeNumber="4" />
     <Parameter ID="BothEndSwitchesAreNormallyOpen_r1" Value="on" />
     <Parameter ID="QuickStopIsNormallyOpen_r1" Value="on" />
     <Parameter ID="BothEndSwitchesAreNormallyOpen_r2" Value="on" />
@@ -32,14 +32,16 @@
     <Parameter ID="BothEndSwitchesAreNormallyOpen_r2" Value="on" />
     <Parameter ID="QuickStopIsNormallyOpen_r2" Value="on" />
   </Module>
-  <Module Name="80VD100PD.C188-01a" Type="80VD100PD.C188-01" Version="2.0.1.0" Disabled="true">
+  <Module Name="80VD100PD.C188-01a" Type="80VD100PD.C188-01" Version="2.0.1.0">
+    <Connection Connector="PLK1" TargetModule="80VD100PD.C000-01a" TargetConnector="PLK2" NodeNumber="5" />
+    <Connection Connector="PLK2" TargetModule="In-Sight" TargetConnector="PLK1" NodeNumber="5" />
     <Parameter ID="BothEndSwitchesAreNormallyOpen_r1" Value="on" />
     <Parameter ID="QuickStopIsNormallyOpen_r1" Value="on" />
     <Parameter ID="BothEndSwitchesAreNormallyOpen_r2" Value="on" />
     <Parameter ID="QuickStopIsNormallyOpen_r2" Value="on" />
   </Module>
   <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" Version="4.8.0" OrderNumber="In-Sight">
-    <Connection Connector="PLK1" TargetModule="80VD100PD.C000-01a" TargetConnector="PLK2" NodeNumber="5" />
+    <Connection Connector="PLK1" TargetModule="80VD100PD.C188-01a" TargetConnector="PLK2" NodeNumber="6" />
     <Parameter ID="p2000s01_direction" Value="wo" />
     <Parameter ID="p2000s02_direction" Value="wo" />
     <Parameter ID="p2001s01_direction" Value="ro" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio Version=4.2.7.54 SP?>
+<?AutomationStudio Version=4.2.8.54 SP?>
 <Library xmlns="http://br-automation.co.at/AS/Library">
   <Files>
     <File Description="Exported functions and function blocks">rp_funcx1.fun</File>
@@ -10,6 +10,7 @@
     <File>calculation_crossingBall.c</File>
     <File>calculation_displacementOfAxes.c</File>
     <File>measurement_ofScore.c</File>
+    <File>test.c</File>
   </Files>
   <Dependencies>
     <Dependency ObjectName="MpAlarmX" />

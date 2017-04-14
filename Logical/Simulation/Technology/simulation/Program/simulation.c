@@ -28,7 +28,7 @@
 #endif
 
 /*************************** DEFINITIONS *******************************/
-#define EACH_FORMATION 4;
+#define EACH_FORMATION 1;
 
 /************************ LOCAL VARIABLES ******************************/
 
