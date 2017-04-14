@@ -72,16 +72,26 @@
       <Point X="619" Y="473" />
       <Point X="619" Y="473" />
     </Link>
-    <Link From="In-Sight" To="80VD100PD.C000-01a" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
-      <Point X="867" Y="343" />
-      <Point X="867" Y="343" />
-      <Point X="867" Y="350" />
-      <Point X="867" Y="355" />
-      <Point X="775" Y="355" />
-      <Point X="775" Y="473" />
+    <Link From="80VD100PD.C000-01a" To="80VD100PD.C188-01a" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
+      <Point X="726" Y="473" />
+      <Point X="726" Y="473" />
       <Point X="735" Y="473" />
-      <Point X="726" Y="473" />
-      <Point X="726" Y="473" />
+      <Point X="752" Y="473" />
+      <Point X="752" Y="545" />
+      <Point X="855" Y="545" />
+      <Point X="855" Y="458" />
+      <Point X="842" Y="458" />
+      <Point X="823" Y="458" />
+      <Point X="823" Y="473" />
+    </Link>
+    <Link From="80VD100PD.C188-01a" To="In-Sight" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
+      <Point X="833" Y="473" />
+      <Point X="833" Y="473" />
+      <Point X="842" Y="473" />
+      <Point X="867" Y="473" />
+      <Point X="867" Y="350" />
+      <Point X="867" Y="343" />
+      <Point X="867" Y="343" />
     </Link>
   </Links>
   <InfoElements />
