@@ -34,5 +34,6 @@
     <Object Type="Library" Language="Binary" Description="MpCom Library">MpCom</Object>
     <Object Type="Library" Language="Binary" Description="Single and multi axes control">MpAxis</Object>
     <Object Type="Library" Language="Binary" Description="Advanced alarm management">MpAlarmX</Object>
+    <Object Type="Library" Language="Binary" Description="ACOPOS Simulation">Acp10sim</Object>
   </Objects>
 </Package>

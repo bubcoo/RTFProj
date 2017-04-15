@@ -17,22 +17,22 @@
     <DataObject Name="Arnc0sys" Source="" Memory="UserROM" Language="Binary" />
   </DataObjects>
   <NcDataObjects>
-    <NcDataObject Name="dfRotaryBa" Source="Simulation.Motion.Rotary.dfRotaryBobj.dfRotaryBa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="dfRotaryBi" Source="Simulation.Motion.Rotary.dfRotaryBobj.dfRotaryBi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="gkRotaryAa" Source="Simulation.Motion.Rotary.gkRotaryAobj.gkRotaryAa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="gkRotaryAi" Source="Simulation.Motion.Rotary.gkRotaryAobj.gkRotaryAi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="dfLinearBa" Source="Simulation.Motion.Linear.dfLinearBobj.dfLinearBa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="dfLinearBi" Source="Simulation.Motion.Linear.dfLinearBobj.dfLinearBi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="gkLinearAa" Source="Simulation.Motion.Linear.gkLinearAobj.gkLinearAa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="gkLinearAi" Source="Simulation.Motion.Linear.gkLinearAobj.gkLinearAi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="fwRotaryDa" Source="Simulation.Motion.Rotary.fwRotaryDobj.fwRotaryDa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="fwRotaryDi" Source="Simulation.Motion.Rotary.fwRotaryDobj.fwRotaryDi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="mdRotaryCa" Source="Simulation.Motion.Rotary.mdRotaryCobj.mdRotaryCa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="mdRotaryCi" Source="Simulation.Motion.Rotary.mdRotaryCobj.mdRotaryCi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="fwLinearDa" Source="Simulation.Motion.Linear.fwLinearDobj.fwLinearDa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="fwLinearDi" Source="Simulation.Motion.Linear.fwLinearDobj.fwLinearDi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="mdLinearCa" Source="Simulation.Motion.Linear.mdLinearCobj.mdLinearCa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="mdLinearCi" Source="Simulation.Motion.Linear.mdLinearCobj.mdLinearCi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="dfRotSa" Source="Simulation.Motion.dfRotSobj.dfRotSa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="dfRotSi" Source="Simulation.Motion.dfRotSobj.dfRotSi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="gkRotSa" Source="Simulation.Motion.gkRotSobj.gkRotSa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="gkRotSi" Source="Simulation.Motion.gkRotSobj.gkRotSi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="dfLinSa" Source="Simulation.Motion.dfLinSobj.dfLinSa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="dfLinSi" Source="Simulation.Motion.dfLinSobj.dfLinSi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="gkLinSa" Source="Simulation.Motion.gkLinSobj.gkLinSa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="gkLinSi" Source="Simulation.Motion.gkLinSobj.gkLinSi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="fwRotSa" Source="Simulation.Motion.fwRotSobj.fwRotSa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="fwRotSi" Source="Simulation.Motion.fwRotSobj.fwRotSi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="mdRotSa" Source="Simulation.Motion.mdRotSobj.mdRotSa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="mdRotSi" Source="Simulation.Motion.mdRotSobj.mdRotSi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="fwLinSa" Source="Simulation.Motion.fwLinSobj.fwLinSa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="fwLinSi" Source="Simulation.Motion.fwLinSobj.fwLinSi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="mdLinSa" Source="Simulation.Motion.mdLinSobj.mdLinSa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="mdLinSi" Source="Simulation.Motion.mdLinSobj.mdLinSi.dob" Memory="UserROM" Language="Ax" />
   </NcDataObjects>
   <Binaries>
     <BinaryObject Name="arsvcreg" Source="" Memory="UserROM" Language="Binary" />
@@ -87,5 +87,6 @@
     <LibraryObject Name="MpAxis" Source="Libraries.MpAxis.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="powerlnk" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="areventlog" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="Acp10sim" Source="Libraries.Acp10sim.lby" Memory="UserROM" Language="Binary" Debugging="true" />
   </Libraries>
 </SwConfiguration>
