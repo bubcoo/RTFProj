@@ -51,7 +51,7 @@ void measurement_ofScore(struct measurement_ofScore* m_oS)
                 }else if(m_oS->Error == 1){
                     m_oS->Internal.state = 5;
                 }else if(m_oS->pause == 1){
-                    m_oS->Internal.after_state = m_oS->Internal.state;
+                    m_oS->Internal.before_state = m_oS->Internal.state;
                     m_oS->Internal.state = 6;
                 }else{
                     m_oS->Internal.state = 0;
@@ -100,7 +100,7 @@ void measurement_ofScore(struct measurement_ofScore* m_oS)
                 }else if(m_oS->Error == 1){
                     m_oS->Internal.state = 5;
                 }else if(m_oS->pause == 1){
-                    m_oS->Internal.after_state = m_oS->Internal.state;
+                    m_oS->Internal.before_state = m_oS->Internal.state;
                     m_oS->Internal.state = 6;
                 }else{
                     m_oS->Internal.state = 1;
@@ -143,7 +143,7 @@ void measurement_ofScore(struct measurement_ofScore* m_oS)
                 }else if(m_oS->Error == 1){
                     m_oS->Internal.state = 5;
                 }else if(m_oS->pause == 1){
-                    m_oS->Internal.after_state = m_oS->Internal.state;
+                    m_oS->Internal.before_state = m_oS->Internal.state;
                     m_oS->Internal.state = 6;
                 }else{
                     m_oS->Internal.state = 2;
@@ -165,7 +165,7 @@ void measurement_ofScore(struct measurement_ofScore* m_oS)
                 if(m_oS->Error == 1){
                     m_oS->Internal.state = 5;
                 }else if(m_oS->pause == 1){
-                    m_oS->Internal.after_state = m_oS->Internal.state;
+                    m_oS->Internal.before_state = m_oS->Internal.state;
                     m_oS->Internal.state = 6;
                 }else{
                     m_oS->Internal.state = 0;
@@ -187,7 +187,7 @@ void measurement_ofScore(struct measurement_ofScore* m_oS)
                 if(m_oS->Error == 1){
                     m_oS->Internal.state = 5;
                 }else if(m_oS->pause == 1){
-                    m_oS->Internal.after_state = m_oS->Internal.state;
+                    m_oS->Internal.before_state = m_oS->Internal.state;
                     m_oS->Internal.state = 6;
                 }else{
                     m_oS->Internal.state = 1;
@@ -200,7 +200,7 @@ void measurement_ofScore(struct measurement_ofScore* m_oS)
                 if(m_oS->Error == 0){
                     m_oS->Internal.state = 3;
                 }else if(m_oS->pause == 1){
-                    m_oS->Internal.after_state = m_oS->Internal.state;
+                    m_oS->Internal.before_state = m_oS->Internal.state;
                     m_oS->Internal.state = 6;
                 }
             }
@@ -211,7 +211,7 @@ void measurement_ofScore(struct measurement_ofScore* m_oS)
                 if(m_oS->Error == 1){
                     m_oS->Internal.state = 5;
                 }else if(m_oS->pause == 0){
-                    m_oS->Internal.state = m_oS->Internal.after_state;
+                    m_oS->Internal.state = m_oS->Internal.before_state;
                 }
             }
             break;
@@ -241,6 +241,7 @@ void initialization(struct measurement_ofScore* m_oS){
     m_oS->Internal.write_matchInfo   = 0;
     m_oS->Internal.results[0]        = 0;
     m_oS->Internal.results[1]        = 0;
+	m_oS->Internal.before_state      = 0;
     m_oS->count_goals_CPU            = 0;
     m_oS->count_goals_HUM            = 0;
     m_oS->sens_wicket_HUM            = 0;

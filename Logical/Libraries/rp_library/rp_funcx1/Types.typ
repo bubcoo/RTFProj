@@ -1,6 +1,10 @@
 (*Enumerations*)
 
 TYPE
+	internal_startAxisR : 	STRUCT 
+		before_state : USINT;
+		state : USINT;
+	END_STRUCT;
 	internal_machtInfo : 	STRUCT 
 		length : UDINT;
 		write_matchInfo : BOOL;
@@ -11,7 +15,7 @@ TYPE
 		e_r_str : ARRAY[0..3]OF UDINT;
 		DTStruct : DTStructure;
 		state : USINT;
-		after_state : USINT;
+		before_state : USINT;
 		string : ARRAY[0..8]OF STRING[25];
 	END_STRUCT;
 	match_info : 	STRUCT 
@@ -38,6 +42,7 @@ TYPE
 		RST_SERVICE := 200,
 		RST_STOP := 300,
 		RST_SAFETY := 400,
+		RST_AFTER_SAFETY := 401,
 		RST_ERROR := 500
 		);
 	rp_MainSteps : 

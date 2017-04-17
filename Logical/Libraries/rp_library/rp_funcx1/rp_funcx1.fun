@@ -216,11 +216,56 @@ FUNCTION random_number : INT (*TODO: Add your comment here*) (*$GROUP=User,$CAT=
 	END_VAR
 END_FUNCTION
 
-FUNCTION_BLOCK test (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+FUNCTION_BLOCK start_linearAxis (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
 	VAR_INPUT
-		a : REFERENCE TO MpAxisBasic;
+		start_btn : BOOL;
+		axis_name : REFERENCE TO MpAxisBasic;
+		axis_param : REFERENCE TO MpAxisBasicParType;
+		max_leftPosition : REAL;
 	END_VAR
 	VAR_OUTPUT
-		b : BOOL;
+		succesfully : BOOL;
+	END_VAR
+	VAR
+		Internal : internal_startAxisR;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK start_rotaryAxis (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		start_btn : BOOL;
+		axis_name : REFERENCE TO MpAxisBasic;
+		axis_param : REFERENCE TO MpAxisBasicParType;
+		value_ofRotatation : LREAL;
+	END_VAR
+	VAR_OUTPUT
+		succesfully : BOOL;
+	END_VAR
+	VAR
+		Internal : internal_startAxisR;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK powerOn_axes (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		start_btn : BOOL;
+		axis_name_R : REFERENCE TO MpAxisBasic;
+		axis_name_L : REFERENCE TO MpAxisBasic;
+	END_VAR
+	VAR_OUTPUT
+		succesfully : BOOL;
+	END_VAR
+	VAR
+		Internal : internal_startAxisR;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK err_detection (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		rotary_ERR : ARRAY[0..3] OF BOOL;
+		linear_ERR : ARRAY[0..3] OF BOOL;
+	END_VAR
+	VAR_OUTPUT
+		err_detect : BOOL;
 	END_VAR
 END_FUNCTION_BLOCK

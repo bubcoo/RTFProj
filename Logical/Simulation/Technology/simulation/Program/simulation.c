@@ -37,6 +37,7 @@ _LOCAL struct forecast_direction f_d;
 _LOCAL struct calculation_posDummiesOpponent c_ppd;
 _LOCAL struct calculation_crossingBall c_cb[2];
 _LOCAL struct calculation_displacementOfAxes c_doa;
+_LOCAL struct start_rotaryAxis start_rotaryAxis_0;
 // struct - MpAlarmX
 _LOCAL MpAlarmXListUIConnectType AlarmListUI_ConnectType;
 _LOCAL MpAlarmXHistoryUIConnectType AlarmHistoryUI_ConnectType;
@@ -174,6 +175,9 @@ void _CYCLIC ProgramCyclic(void)
     switch(SOCCER_TABLE_STEP){
         case RST_EMPTY:
             {
+				start_rotaryAxis_0.axis_name  = &mp_Axis.mp_axisRotary[0];
+				start_rotaryAxis_0.axis_param = &mp_Axis.param_axisLinear[0];
+				start_rotaryAxis_0.value_ofRotatation = 500;
             }
             break;
         case RST_CALCULATION_DEFENSE:
@@ -249,6 +253,8 @@ void _CYCLIC ProgramCyclic(void)
     // Active AxisBasic & AxisCyclicSet -> through the individual functions
     start_axesBasic(max_numberOfFormation,&mp_Axis.mp_axisLinear,&mp_Axis.mp_axisRotary);
     start_axesCyclic(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
+	// start axes
+	start_rotaryAxis(&start_rotaryAxis_0);
     
 }// end _CYCLIC
 
