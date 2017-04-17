@@ -14,8 +14,8 @@
   <TaskClass Name="Cyclic#8" />
   <DataObjects>
     <DataObject Name="assl1" Source="" Memory="UserROM" Language="Binary" />
-    <DataObject Name="Arnc0sys" Source="" Memory="UserROM" Language="Binary" />
     <DataObject Name="Acp10sys" Source="" Memory="UserROM" Language="Binary" />
+    <DataObject Name="Arnc0sys" Source="" Memory="UserROM" Language="Binary" />
   </DataObjects>
   <NcDataObjects>
     <NcDataObject Name="acp10etxen" Source="ACP10_ETXEN.acp10etxen.dob" Memory="UserROM" Language="Ett" />
@@ -56,8 +56,8 @@
     <BinaryObject Name="Rotary" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="Acp10map" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="acp10cfg" Source="" Memory="UserROM" Language="Binary" />
-    <BinaryObject Name="Arnc0map" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="arnc0cfg" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="Arnc0map" Source="" Memory="UserROM" Language="Binary" />
   </Binaries>
   <Libraries>
     <LibraryObject Name="operator" Source="Libraries.operator.lby" Memory="UserROM" Language="Binary" Debugging="true" />

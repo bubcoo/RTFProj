@@ -25,14 +25,18 @@ TYPE
 		ModuleOk : BOOL;
 		Control_I2000_S01 : UDINT; (*Camera control including trigger*)
 		Status_I2001_S01 : UDINT;
-		InspectionResults_I2011_S02 : UDINT;
-		InspectionResults_I2011_S01 : UDINT;
+		InspectionResults_I2011_S01 : UDINT; (*X Axis*)
+		InspectionResults_I2011_S02 : UDINT; (*Y Axis*)
+		InspectionResults_I2011_S03 : UDINT; (*Succes*)
+		InspectionResults_I2011_S04 : UDINT; (*Fail*)
 	END_STRUCT;
 	Internal_type : 	STRUCT 
 		NaN : REAL;
 		CameraControl : CameraControl_type;
 		MainSwitch : MainSwitch_enum;
 		FTP : FTP_type;
+		SuccesCount : UDINT;
+		FailCount : UDINT;
 		disableBit : USINT;
 		Search_tmp : BOOL;
 	END_STRUCT;
@@ -42,7 +46,7 @@ TYPE
 		ActTime : RTCtime_typ;
 		AxisXOld : REAL;
 		AxisYOld : REAL;
-		TimeDiff : REAL;
+		TimeDiff_ms : REAL;
 		ActTimeOld : RTCtime_typ;
 	END_STRUCT;
 	CameraControl_type : 	STRUCT 

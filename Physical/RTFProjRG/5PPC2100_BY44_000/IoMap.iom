@@ -2,8 +2,8 @@ VAR_CONFIG
 	::FBCamera_0.InSight.ModuleOk AT %IX."In-Sight".ModuleOk;
 	::FBCamera_0.InSight.Control_I2000_S01 AT %QD."In-Sight".Control_I2000_S01;
 	::FBCamera_0.InSight.Status_I2001_S01 AT %ID."In-Sight".Status_I2001_S01;
-	::FBCamera_0.InSight.InspectionResults_I2011_S02 AT %ID."In-Sight".InspectionResults_I2011_S01;
-	::FBCamera_0.InSight.InspectionResults_I2011_S01 AT %ID."In-Sight".InspectionResults_I2011_S02;
+	::FBCamera_0.InSight.InspectionResults_I2011_S02 AT %ID."In-Sight".InspectionResults_I2011_S01; (*X*)
+	::FBCamera_0.InSight.InspectionResults_I2011_S01 AT %ID."In-Sight".InspectionResults_I2011_S02; (*Y*)
 	::GoalKeeper_0.DI9371.DigitalInput_1 AT %IX."X20DI9371".DigitalInput05;
 	::GoalKeeper_0.DI9371.ModuleOk AT %IX."X20DI9371".ModuleOk;
 	::Light_0.DO9322.ModuleOK AT %IX."X20DO9322".ModuleOk;
