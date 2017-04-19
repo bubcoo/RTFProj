@@ -145,7 +145,7 @@ FUNCTION_BLOCK calculation_newCrossing
 	VAR_INPUT
 		specific_direction : STRING[30];
 		iteration : USINT;
-		reversed_HUM : ARRAY[0..3] OF BOOL;
+		reversed_HUM : BOOL;
 		predicted_position : REAL;
 		act_posOfAxesCPU_Y : ARRAY[0..3] OF REAL;
 		act_posOfAxesHUM_Y : ARRAY[0..3] OF REAL;

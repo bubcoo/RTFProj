@@ -38,7 +38,6 @@ _LOCAL struct calculation_posDummiesOpponent c_ppd;
 _LOCAL struct calculation_crossingBall c_cb[2];
 _LOCAL struct calculation_displacementOfAxes c_doa;
 _LOCAL struct start_rotaryAxis start_rotaryAxis_0;
-_LOCAL struct powerOn_axes power_on_axes[4];
 // struct - MpAlarmX
 _LOCAL MpAlarmXListUIConnectType AlarmListUI_ConnectType;
 _LOCAL MpAlarmXHistoryUIConnectType AlarmHistoryUI_ConnectType;
@@ -183,13 +182,7 @@ void _CYCLIC ProgramCyclic(void)
     switch(SOCCER_TABLE_STEP){
         case RST_EMPTY:
             {
-				BEFORE_STATE = RST_EMPTY;
-				
-				if(ESTOP == 0){
-					SOCCER_TABLE_STEP = RST_SAFETY;
-				}else if(error_s == 1){
-					SOCCER_TABLE_STEP = RST_ERROR;
-				}
+
             }
             break;
         case RST_CALCULATION_DEFENSE:
@@ -256,53 +249,11 @@ void _CYCLIC ProgramCyclic(void)
             break;
 		case RST_SAFETY:
 			{
-				if(ESTOP == 1){
-					// reset safety
-					if(reset_safetyESTOP == 0){
-						reset_safetyESTOP = 1;
-					}
-					// reset button -> power on
-					power_on_axes[0].start_btn  = 0;
-					power_on_axes[1].start_btn  = 0;
-					power_on_axes[2].start_btn  = 0;
-					power_on_axes[3].start_btn  = 0;
-					// reset counter
-					c_bState 				= 0;
-					// change state
-					SOCCER_TABLE_STEP 	    = RST_AFTER_SAFETY;
-				}
 			}
 			break;
 		case RST_AFTER_SAFETY:
 			{
-				for(i_bs = 0; i_bs <= max_numberOfFormation - 1; i_bs++){
-					// input parameters
-					power_on_axes[i_bs].start_btn   = 1;
-					power_on_axes[i_bs].axis_name_R = &mp_Axis.mp_axisRotary[i_bs];
-					power_on_axes[i_bs].axis_name_L = &mp_Axis.mp_axisLinear[i_bs];
-					// power on axes
-					powerOn_axes(&power_on_axes[i_bs]);
-					// output
-					if(power_on_axes[i_bs].succesfully == 1){
-						if(c_bState == i_bs){
-							c_bState++;
-						}
-					}
-				}
-				
-				if(c_bState == max_numberOfFormation){
-					if(reset_safetyESTOP == 1){
-						reset_safetyESTOP = 0;
-					}
-					
-					if(ESTOP == 0){
-						SOCCER_TABLE_STEP = RST_SAFETY;
-					}else if(error_s == 1){
-						SOCCER_TABLE_STEP = RST_ERROR;
-					}else {
-						SOCCER_TABLE_STEP = BEFORE_STATE;
-					}
-				}
+
 			}
 			break;
     }// end switch

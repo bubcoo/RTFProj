@@ -38,22 +38,22 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 	
 	// Ceilings of the axes
 	// Axes
-	max_posOfD[0] = 1000;
+	max_posOfD[0] = 820;
 	max_posOfD[1] = 3050;
 	max_posOfD[2] = 3050;
 	max_posOfD[3] = 3055;
 	
-	min_posOfD[0] = -1000;
+	min_posOfD[0] = -950;
 	min_posOfD[1] = -3050;
 	min_posOfD[2] = -3050;
 	min_posOfD[3] = -3055;
 	// Dummies
-	max_dispOfD[0] = 1000;
+	max_dispOfD[0] = 820;
 	max_dispOfD[1] = 1850;
 	max_dispOfD[2] = 650;
 	max_dispOfD[3] = 955;
 	
-	min_dispOfD[0] = -1000;
+	min_dispOfD[0] = -950;
 	min_dispOfD[1] = -1850;
 	min_dispOfD[2] = -650;
 	min_dispOfD[3] = -955;
@@ -144,7 +144,7 @@ void calculation_realCrossing(struct calculation_realCrossing* c_rC)
 	REAL predicted_pos;
 	USINT number_ofD[4], count_crossH, count_calcH;
 	USINT iteration, iteration_positionH;
-	USINT j, j_null, i_yC, i_yCn, i_cNC, i_out;
+	USINT j, j_null, i_yC, i_yCn, i_cNC, i_out, r;
 	BOOL auxiliary_bool,auxiliary_boolNo2;
 	UDINT auxiliary_str;
 	
@@ -174,10 +174,7 @@ void calculation_realCrossing(struct calculation_realCrossing* c_rC)
 	number_ofD[2] = 5;
 	number_ofD[3] = 3;
 	
-	calc_newC.reversed_HUM[0] = c_rC->reversed_HUM[0];
-	calc_newC.reversed_HUM[1] = c_rC->reversed_HUM[1];
-	calc_newC.reversed_HUM[2] = c_rC->reversed_HUM[2];
-	calc_newC.reversed_HUM[3] = c_rC->reversed_HUM[3];
+	calc_newC.reversed_HUM = 1;
 	
 	count_crossH   = c_rC->count_axesIntersectionHUM[0];	
 	count_calcH    = 5 - count_crossH;
@@ -210,6 +207,11 @@ void calculation_realCrossing(struct calculation_realCrossing* c_rC)
 			}
 		}
 		
+		for(r = 0; r < number_ofD[count_calcH - 1]; r++){
+			if(matrix_crossH_Iter[0][r] != 0){
+				calc_newC.reversed_HUM = 0;
+			}
+		}
 		for(j_null = 0; j_null < number_ofD[count_calcH - 1]; j_null++){
 			if(matrix_crossH_Iter[0][j_null] != 0){
 				auxiliary_bool 		= 1;
@@ -232,8 +234,9 @@ void calculation_realCrossing(struct calculation_realCrossing* c_rC)
 		
 	}else{
 		if(c_rC->tilted == 0){
-			predicted_pos 		= 0;
-			iteration_positionH = count_calcH;
+			calc_newC.reversed_HUM = 0;
+			predicted_pos 		   = 0;
+			iteration_positionH    = count_calcH;
 		}else{
 			auxiliary_boolNo2 = 1;
 			for(i_yC = 0; i_yC < (int)(sizeof(c_rC->act_posOfAxesCPU_Y)/sizeof(c_rC->act_posOfAxesCPU_Y[0])); i_yC++){
@@ -266,6 +269,10 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 	SINT iteration;
 	DINT resultUP, resultLF, resultDOWN, resultRH;
 	REAL y_crossGK, y_crossDF, y_crossMD, y_crossFW;
+	
+	// initial max goalkeeper
+	gk_max = 820;
+	gk_min = -950;
 	
 	resultUP   = strcmp(c_nC->specific_direction, "up_backward");
 	resultLF   = strcmp(c_nC->specific_direction, "left");
@@ -339,12 +346,12 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 			break;
 		case 3:
 			{
-				if(c_nC->reversed_HUM[iteration] == 0){
+				if(c_nC->reversed_HUM == 1){
 					y_crossFW = c_nC->act_posOfAxesHUM_Y[3] - c_nC->predicted_position;
-					y_crossMD = c_nC->act_posOfAxesCPU_Y[2] - c_nC->predicted_position;
+					y_crossMD = y_crossFW + value;
 				}else{
 					y_crossFW = c_nC->act_posOfAxesHUM_Y[3] - c_nC->predicted_position;
-					y_crossMD = y_crossFW + value;	
+					y_crossMD = y_crossFW + value;
 				}
 				
 				y_crossDF = y_crossMD + value;
@@ -362,25 +369,33 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 			break;
 		case 4:
 			{
-				if(c_nC->reversed_HUM[iteration] == 0){
+				if(c_nC->x_posOfBall[0] >= 5300){
+					if(c_nC->reversed_HUM == 1){
+						y_crossFW = c_nC->act_posOfAxesCPU_Y[3] - c_nC->predicted_position;
+						y_crossMD = c_nC->act_posOfAxesCPU_Y[2] - c_nC->predicted_position;
+						y_crossDF = y_crossMD + value;
+						y_crossGK = y_crossFW + value;
+					}else{
+						y_crossFW = c_nC->act_posOfAxesCPU_Y[3] - c_nC->predicted_position;
+						y_crossMD = c_nC->act_posOfAxesCPU_Y[2] - c_nC->predicted_position;
+						y_crossDF = y_crossMD - c_nC->predicted_position;
+						y_crossGK = y_crossFW + value;
+					
+					}
+            
+					if(fabs(y_crossGK) > fabs(y_crossFW)){
+						y_crossGK = y_crossFW - value;
+					}
+					if(fabs(y_crossMD) < fabs(y_crossFW)){
+						y_crossDF = y_crossMD - value;
+					}
+				}else{
 					y_crossFW = c_nC->act_posOfAxesCPU_Y[3] - c_nC->predicted_position;
 					y_crossMD = c_nC->act_posOfAxesCPU_Y[2] - c_nC->predicted_position;
 					y_crossDF = y_crossMD - c_nC->predicted_position;
 					y_crossGK = y_crossFW + value;
-				}else{
-					y_crossFW = c_nC->act_posOfAxesCPU_Y[3] - c_nC->predicted_position;
-					y_crossMD = c_nC->act_posOfAxesCPU_Y[2] - c_nC->predicted_position;
-					y_crossDF = y_crossMD + value;
-					y_crossGK = y_crossFW + value;
-					
 				}
-            
-				if(fabs(y_crossGK) > fabs(y_crossFW)){
-					y_crossGK = y_crossFW - value;
-				}
-				if(fabs(y_crossMD) < fabs(y_crossFW)){
-					y_crossDF = y_crossMD - value;
-				}
+			
 				if(c_nC->x_posOfBall[0] <= 2300){
 					y_crossGK = c_nC->act_posOfAxesCPU_Y[0];
 				}
