@@ -82,23 +82,7 @@ void start_linearAxis(struct start_linearAxis* s_la)
 			
 				if(s_la->axis_name->IsHomed == 1){
 					s_la->axis_name->Home = 0;
-					s_la->Internal.state  = 4;
-				}else if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
-					s_la->Internal.state = 10;
-				}else{
-					s_la->Internal.state = s_la->Internal.before_state;
-				}
-			}
-			break;
-		case 4:
-			{
-				s_la->Internal.before_state = s_la->Internal.state;
-				// move absolute -> axis
-				s_la->axis_name->MoveAbsolute = 1;
-				
-				if(s_la->axis_name->InPosition == 1){
-					s_la->axis_name->MoveAbsolute = 0;
-					s_la->succesfully			  = 1;
+					s_la->succesfully     = 1;
 				}else if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
 					s_la->Internal.state = 10;
 				}else{

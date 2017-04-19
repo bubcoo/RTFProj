@@ -38,6 +38,7 @@ _LOCAL struct calculation_posDummiesOpponent c_ppd;
 _LOCAL struct calculation_crossingBall c_cb[2];
 _LOCAL struct calculation_displacementOfAxes c_doa;
 _LOCAL struct start_rotaryAxis start_rotaryAxis_0;
+_LOCAL struct powerOn_axes power_on_axes[4];
 // struct - MpAlarmX
 _LOCAL MpAlarmXListUIConnectType AlarmListUI_ConnectType;
 _LOCAL MpAlarmXHistoryUIConnectType AlarmHistoryUI_ConnectType;
@@ -46,7 +47,11 @@ _LOCAL UDINT alarm_device_address, specific_directionOfBall;
 // usint
 _LOCAL USINT max_numberOfFormation;
 _LOCAL USINT i_axisNum;
+_LOCAL USINT i_bs;
 _LOCAL USINT i_ppd, i_ccd, i_ccdCPU, i_ccdHUM, i_cdoa1, i_cdoa2, i_cdoa3;
+_LOCAL USINT c_bState;
+// bool
+_LOCAL BOOL ESTOP,error_s,reset_safetyESTOP;
 // real
 _LOCAL REAL x_posOfCPU[4];
 _LOCAL REAL x_posOfHUM[4];
@@ -56,6 +61,7 @@ _LOCAL REAL optical_sensor[4];
 _LOCAL REAL reflex_sensor[4];
 // state machine
 _LOCAL soccer_table_ENUM SOCCER_TABLE_STEP;
+_LOCAL soccer_table_ENUM BEFORE_STATE;
 
 
 /**********************************************************************************************************/
@@ -101,7 +107,7 @@ void _INIT ProgramInit(void)
     for(i_axisNum = 0; i_axisNum <= max_numberOfFormation - 1; i_axisNum++){
         // initialization ACOPOS variables through function(get_axisParam), that returns two variables type of UDINT
         // into the structure -> axesAcopos(have two parameters : linear, rotary)
-        axis_acopos = get_axisParam(i_axisNum);
+        axis_acopos = get_axisParam(i_axisNum);	
         // linear -> LinMot
         // linear axis basic
         mp_Axis.mp_axisLinear[i_axisNum].Enable     = 1;
@@ -165,6 +171,8 @@ void _INIT ProgramInit(void)
     reflex_sensor[2] = 1;
     reflex_sensor[3] = 1;
     
+	// init safety
+	ESTOP = 1;
 }// end _INIT
 
 /**********************************************************************************************************/
@@ -175,9 +183,13 @@ void _CYCLIC ProgramCyclic(void)
     switch(SOCCER_TABLE_STEP){
         case RST_EMPTY:
             {
-				start_rotaryAxis_0.axis_name  = &mp_Axis.mp_axisRotary[0];
-				start_rotaryAxis_0.axis_param = &mp_Axis.param_axisLinear[0];
-				start_rotaryAxis_0.value_ofRotatation = 500;
+				BEFORE_STATE = RST_EMPTY;
+				
+				if(ESTOP == 0){
+					SOCCER_TABLE_STEP = RST_SAFETY;
+				}else if(error_s == 1){
+					SOCCER_TABLE_STEP = RST_ERROR;
+				}
             }
             break;
         case RST_CALCULATION_DEFENSE:
@@ -242,6 +254,57 @@ void _CYCLIC ProgramCyclic(void)
                 calculation_displacementOfAxes(&c_doa);
             }
             break;
+		case RST_SAFETY:
+			{
+				if(ESTOP == 1){
+					// reset safety
+					if(reset_safetyESTOP == 0){
+						reset_safetyESTOP = 1;
+					}
+					// reset button -> power on
+					power_on_axes[0].start_btn  = 0;
+					power_on_axes[1].start_btn  = 0;
+					power_on_axes[2].start_btn  = 0;
+					power_on_axes[3].start_btn  = 0;
+					// reset counter
+					c_bState 				= 0;
+					// change state
+					SOCCER_TABLE_STEP 	    = RST_AFTER_SAFETY;
+				}
+			}
+			break;
+		case RST_AFTER_SAFETY:
+			{
+				for(i_bs = 0; i_bs <= max_numberOfFormation - 1; i_bs++){
+					// input parameters
+					power_on_axes[i_bs].start_btn   = 1;
+					power_on_axes[i_bs].axis_name_R = &mp_Axis.mp_axisRotary[i_bs];
+					power_on_axes[i_bs].axis_name_L = &mp_Axis.mp_axisLinear[i_bs];
+					// power on axes
+					powerOn_axes(&power_on_axes[i_bs]);
+					// output
+					if(power_on_axes[i_bs].succesfully == 1){
+						if(c_bState == i_bs){
+							c_bState++;
+						}
+					}
+				}
+				
+				if(c_bState == max_numberOfFormation){
+					if(reset_safetyESTOP == 1){
+						reset_safetyESTOP = 0;
+					}
+					
+					if(ESTOP == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(error_s == 1){
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else {
+						SOCCER_TABLE_STEP = BEFORE_STATE;
+					}
+				}
+			}
+			break;
     }// end switch
     
     /************************** call function & function blocks **************************/
@@ -253,8 +316,6 @@ void _CYCLIC ProgramCyclic(void)
     // Active AxisBasic & AxisCyclicSet -> through the individual functions
     start_axesBasic(max_numberOfFormation,&mp_Axis.mp_axisLinear,&mp_Axis.mp_axisRotary);
     start_axesCyclic(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
-	// start axes
-	start_rotaryAxis(&start_rotaryAxis_0);
     
 }// end _CYCLIC
 

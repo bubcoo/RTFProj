@@ -96,7 +96,10 @@ void start_rotaryAxis(struct start_rotaryAxis* s_ra)
 				
 				if(s_ra->axis_name->InPosition == 1){
 					s_ra->axis_name->MoveAbsolute = 0;
-					s_ra->succesfully	          = 1;
+					
+					if(s_ra->axis_name->MoveAbsolute == 0){
+						s_ra->succesfully	          = 1;
+					}
 				}else if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
 					s_ra->Internal.state = 10;
 				}else{

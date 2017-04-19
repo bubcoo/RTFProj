@@ -246,20 +246,6 @@ FUNCTION_BLOCK start_rotaryAxis (*TODO: Add your comment here*) (*$GROUP=User,$C
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK powerOn_axes (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
-	VAR_INPUT
-		start_btn : BOOL;
-		axis_name_R : REFERENCE TO MpAxisBasic;
-		axis_name_L : REFERENCE TO MpAxisBasic;
-	END_VAR
-	VAR_OUTPUT
-		succesfully : BOOL;
-	END_VAR
-	VAR
-		Internal : internal_startAxisR;
-	END_VAR
-END_FUNCTION_BLOCK
-
 FUNCTION_BLOCK err_detection (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
 	VAR_INPUT
 		rotary_ERR : ARRAY[0..3] OF BOOL;

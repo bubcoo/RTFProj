@@ -12,7 +12,6 @@
     <File>measurement_ofScore.c</File>
     <File>start_linearAxis.c</File>
     <File>start_rotaryAxis.c</File>
-    <File>powerOn_axes.c</File>
     <File>err_detection.c</File>
   </Files>
   <Dependencies>

@@ -12,16 +12,22 @@
 void err_detection(struct err_detection* e_d)
 {
 	USINT i, count_err;
+	// initialization variables
+	count_err = 0;
+	// output
+	e_d->err_detect = 0;
 	
 	for(i = 0; i < (int)(sizeof(e_d->rotary_ERR)/sizeof(e_d->rotary_ERR[0])); i++){
-		if((e_d->rotary_ERR[i] || e_d->linear_ERR[i]) == 1){
-			count_err++;
+		if((e_d->rotary_ERR[i] == 1 || e_d->linear_ERR[i]) == 1){
+			if(count_err == i){
+				count_err++;
+			}
 		}
 	}
 	
-	if(count_err != 0){
-		e_d->err_detect = 1;
-	}else{
+	if(count_err == 0){
 		e_d->err_detect = 0;
+	}else{
+		e_d->err_detect = 1;
 	}
 }
