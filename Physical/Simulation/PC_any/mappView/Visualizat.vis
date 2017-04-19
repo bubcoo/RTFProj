@@ -1,27 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <vdef:Visualization id="RSTSIMPROJ" xmlns:vdef="http://www.br-automation.com/iat2015/visualizationDefinition/v2">
-  <StartPage pageRefId="HomePage" />
+  <StartPage pageRefId="CameraPage" />
   <Pages>
-	<Page refId="HomePage"/>
-	<Page refId="GamePage"/>
-	<Page refId="MatchPage"/>
-	<Page refId="CameraPage"/>
-	<Page refId="GraphPage"/>
-	<Page refId="PosPage"/>
-	<Page refId="TempPage"/>
-	<Page refId="AlarmPage"/>
-	<Page refId="SftPage"/>
-	<Page refId="AboutPage"/>
-	<Page refId="SDMPage"/>
-	<Page refId="mbInfo"/>
-	<Page refId="dsInfo"/>
-	<Page refId="wdInfo"/>
+		<Page refId="CameraPage"/>
   </Pages>
   <Navigations>
-    <Navigation refId="MainNavigation" />
-  </Navigations>  
+	 <!--<Navigation refId="MainNavigation" />-->
+  </Navigations>
   <BindingsSets>
-    <!--<BindingsSet refId="" />-->
+    <!--<BindingsSet refId="binding_0" />-->
   </BindingsSets>
   <EventBindingsSets>
     <!--<EventBindingsSet refId="" />-->

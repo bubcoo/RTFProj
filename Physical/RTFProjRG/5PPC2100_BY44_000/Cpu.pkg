@@ -18,6 +18,7 @@
     <AutomationRuntime Version="B4.26" />
     <Build GccVersion="4.1.2" />
     <DefaultTargetMemory Tasks="UserROM" />
+    <Transfer AdditionalUserDir="" AddToUserPart="false" DownloadMode="Overload" ExecuteInitExitProgram="true" ForceInitialTransfer="false" KeepNonVolatileMemory="false" PreserveVariableValues="false" ProjectConsistent="true" RebootDuringTransfer="false" UserFilesIgnoreDifference="false" />
     <Vc FirmwareVersion="not used" />
     <Safety SafetyRelease="1.10" />
     <OnlineConfiguration Name="5AP933.156B-00-AR010_4" DeviceType="TCPIP" DeviceParameters="/IF=tcpip /LOPO=11159 /SA=1" ConnectionParameters="/RT=1000 /AM=* /SDT=5 /DAIP=172.25.15.67 /REPO=11159 /ANSL=1 /PT=11169" Description="" />

@@ -23,4 +23,10 @@ VAR_GLOBAL {Group(0)}
     SDO_ACOPOSL1 AT %QX12.2 : SAFEBOOL {SafeAdr(true),Custom('SL1.SM1.SafeDigitalOutput03')};
     {LINE(11)}
     SDO_ACOPOSL2 AT %QX12.3 : SAFEBOOL {SafeAdr(true),Custom('SL1.SM1.SafeDigitalOutput04')};
+    {LINE(12)}
+    SDI_SSD1 AT %IX16.0 : SAFEBOOL {SafeAdr(true),Custom('SL1.SM1.SafeDigitalInput01')};
+    {LINE(13)}
+    SDI_SSD2 AT %IX16.1 : SAFEBOOL {SafeAdr(true),Custom('SL1.SM1.SafeDigitalInput02')};
+    {LINE(14)}
+    COM_RESET_SF_ESPE AT %QX0.1 : BOOL {Custom('SL1.SM1.BOOL002')};
 END_VAR
