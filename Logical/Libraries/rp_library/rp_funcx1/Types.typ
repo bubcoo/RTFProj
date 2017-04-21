@@ -1,6 +1,16 @@
 (*Enumerations*)
 
 TYPE
+	param_ac : 	STRUCT 
+		displacement : REAL;
+		velocity : REAL;
+		acceleration : REAL;
+		deceleration : REAL;
+	END_STRUCT;
+	internal_controlAxis : 	STRUCT 
+		before_state : USINT;
+		state : USINT;
+	END_STRUCT;
 	internal_startAxisR : 	STRUCT 
 		before_state : USINT;
 		state : USINT;

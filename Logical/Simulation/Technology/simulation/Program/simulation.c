@@ -20,7 +20,6 @@
 
 #include "rp_funcx1.h"
 #include "Structures/simulation_str.h"
-
 #include "Functions/sim_mapp.h"
 
 #ifdef _DEFAULT_INCLUDES
@@ -38,6 +37,8 @@ _LOCAL struct calculation_posDummiesOpponent c_ppd;
 _LOCAL struct calculation_crossingBall c_cb[2];
 _LOCAL struct calculation_displacementOfAxes c_doa;
 _LOCAL struct start_rotaryAxis start_rotaryAxis_0;
+_LOCAL struct control_temperature c_temp;
+_LOCAL struct axes_control axes_control_0;
 // struct - MpAlarmX
 _LOCAL MpAlarmXListUIConnectType AlarmListUI_ConnectType;
 _LOCAL MpAlarmXHistoryUIConnectType AlarmHistoryUI_ConnectType;
@@ -117,6 +118,8 @@ void _INIT ProgramInit(void)
         mp_Axis.mp_cyclicSetLinear[i_axisNum].Enable     = 1;
         mp_Axis.mp_cyclicSetLinear[i_axisNum].MpLink     = &gLinkAxes_linear[i_axisNum];
         mp_Axis.mp_cyclicSetLinear[i_axisNum].Parameters = &mp_Axis.param_cyclicSetLinear[i_axisNum];
+		// adjustment max velocity
+		mp_Axis.param_cyclicSetLinear[i_axisNum].PositionModeMaxVelocity = 30000;
 		// config
 		mp_Axis.mp_configAxisLinear[i_axisNum].Enable 		 = 1;
 		mp_Axis.mp_configAxisLinear[i_axisNum].MpLink 		 = &gLinkAxes_linear[i_axisNum];
@@ -131,6 +134,8 @@ void _INIT ProgramInit(void)
         mp_Axis.mp_cyclicSetRotary[i_axisNum].Enable     = 1;
         mp_Axis.mp_cyclicSetRotary[i_axisNum].MpLink     = &gLinkAxes_rotary[i_axisNum];
         mp_Axis.mp_cyclicSetRotary[i_axisNum].Parameters = &mp_Axis.param_cyclicSetRotary[i_axisNum];
+		// adjustment max velocity
+		mp_Axis.param_cyclicSetRotary[i_axisNum].PositionModeMaxVelocity = 85000;
 		// config
 		mp_Axis.mp_configAxisRotary[i_axisNum].Enable 		 = 1;
 		mp_Axis.mp_configAxisRotary[i_axisNum].MpLink 		 = &gLinkAxes_rotary[i_axisNum];
@@ -140,6 +145,11 @@ void _INIT ProgramInit(void)
 		// temperature - rotary
 		mp_Axis.param_axisRotary[i_axisNum].CyclicRead.MotorTempMode = mpAXIS_READ_POLLING_5s;
     }
+	// initialization axes control FB
+	axes_control_0.linear_axis_cyclic = &mp_Axis.mp_cyclicSetLinear[0];
+	axes_control_0.linear_axis_param  = &mp_Axis.param_cyclicSetLinear[0];
+	axes_control_0.rotary_axis_cyclic = &mp_Axis.mp_cyclicSetRotary[0];
+	axes_control_0.rotary_axis_param  = &mp_Axis.param_cyclicSetRotary[0];
     // initialization switch
     SOCCER_TABLE_STEP = RST_EMPTY;
     // initialization x axes for CPU
@@ -185,6 +195,13 @@ void _CYCLIC ProgramCyclic(void)
 
             }
             break;
+		case RST_INITIALIZATION_1:
+			{	
+				if(axes_control_0.successfully == 1){
+					axes_control_0.start_move = 0;
+				}
+			}
+			break;
         case RST_CALCULATION_DEFENSE:
             {
                 // calculation forecast direction
@@ -267,6 +284,10 @@ void _CYCLIC ProgramCyclic(void)
     // Active AxisBasic & AxisCyclicSet -> through the individual functions
     start_axesBasic(max_numberOfFormation,&mp_Axis.mp_axisLinear,&mp_Axis.mp_axisRotary);
     start_axesCyclic(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
+	
+	// control temperature
+	//control_temperature(&c_temp);
+	axes_control(&axes_control_0);
     
 }// end _CYCLIC
 

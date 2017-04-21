@@ -16,28 +16,32 @@ void initialization_sra(struct start_rotaryAxis* s_ra);
 
 void start_rotaryAxis(struct start_rotaryAxis* s_ra)
 {		
-	if(!s_ra->start_btn){
+	if(!s_ra->Enable){
 		initialization_sra(s_ra);
 	}
 	
 	switch(s_ra->Internal.state){
 		case 0:
-			{
+			{	
 				s_ra->Internal.before_state     = s_ra->Internal.state;
-				// adjust param -> axis
-				// move position
-				s_ra->axis_param->Acceleration = 2000;
-				s_ra->axis_param->Deceleration = 2000;
-				s_ra->axis_param->Velocity     = 1000;
-				s_ra->axis_param->Position 	   = 0;
-				// home
-				s_ra->axis_param->Home.Position = s_ra->value_ofRotatation;
-				
-				if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
-					s_ra->Internal.state = 10;
-				}else{
-					if(s_ra->start_btn == 1){
-						s_ra->Internal.state = 1;
+			
+				if(s_ra->start_btn == 1){
+					// adjust param -> axis
+					// move position
+					s_ra->axis_param->Acceleration = 2000;
+					s_ra->axis_param->Deceleration = 2000;
+					s_ra->axis_param->Velocity     = 1000;
+					s_ra->axis_param->Position 	   = 0;
+					// home
+					s_ra->axis_param->Home.Position = s_ra->value_ofRotatation;
+					// reset output
+					s_ra->succesfully = 0;
+					if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
+						s_ra->Internal.state = 10;
+					}else{
+						if(s_ra->start_btn == 1){
+							s_ra->Internal.state = 1;
+						}
 					}
 				}
 			}
@@ -99,6 +103,7 @@ void start_rotaryAxis(struct start_rotaryAxis* s_ra)
 					
 					if(s_ra->axis_name->MoveAbsolute == 0){
 						s_ra->succesfully	          = 1;
+						s_ra->Internal.state		  = 0;
 					}
 				}else if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
 					s_ra->Internal.state = 10;

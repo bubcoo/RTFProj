@@ -13,6 +13,8 @@
     <File>start_linearAxis.c</File>
     <File>start_rotaryAxis.c</File>
     <File>err_detection.c</File>
+    <File>control_temperature.c</File>
+    <File>axes_control.c</File>
   </Files>
   <Dependencies>
     <Dependency ObjectName="MpAlarmX" />

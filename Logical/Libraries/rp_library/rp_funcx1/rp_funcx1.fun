@@ -1,6 +1,7 @@
 
 FUNCTION_BLOCK measurement_ofScore (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
 	VAR_INPUT
+		Enable : BOOL;
 		start_measurement : BOOL;
 		exit_game : BOOL;
 		pause : BOOL;
@@ -218,6 +219,7 @@ END_FUNCTION
 
 FUNCTION_BLOCK start_linearAxis (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
 	VAR_INPUT
+		Enable : BOOL;
 		start_btn : BOOL;
 		axis_name : REFERENCE TO MpAxisBasic;
 		axis_param : REFERENCE TO MpAxisBasicParType;
@@ -233,6 +235,7 @@ END_FUNCTION_BLOCK
 
 FUNCTION_BLOCK start_rotaryAxis (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
 	VAR_INPUT
+		Enable : BOOL;
 		start_btn : BOOL;
 		axis_name : REFERENCE TO MpAxisBasic;
 		axis_param : REFERENCE TO MpAxisBasicParType;
@@ -253,5 +256,36 @@ FUNCTION_BLOCK err_detection (*TODO: Add your comment here*) (*$GROUP=User,$CAT=
 	END_VAR
 	VAR_OUTPUT
 		err_detect : BOOL;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK control_temperature (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		temperature_rotary : ARRAY[0..3] OF LREAL;
+		temperature_linear : ARRAY[0..3] OF LREAL;
+	END_VAR
+	VAR_OUTPUT
+		high_temp_rotary : ARRAY[0..3] OF BOOL;
+		high_temp_linear : ARRAY[0..3] OF BOOL;
+		start_cooling_linear : ARRAY[0..3] OF BOOL;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK axes_control (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		Enable : BOOL;
+		start_move : BOOL;
+		linear_axis_cyclic : REFERENCE TO MpAxisCyclicSet;
+		linear_axis_param : REFERENCE TO MpAxisCyclicSetParType;
+		linear_param : param_ac;
+		rotary_axis_cyclic : REFERENCE TO MpAxisCyclicSet;
+		rotary_axis_param : REFERENCE TO MpAxisCyclicSetParType;
+		rotary_param : param_ac;
+	END_VAR
+	VAR_OUTPUT
+		successfully : BOOL;
+	END_VAR
+	VAR
+		Internal : internal_controlAxis;
 	END_VAR
 END_FUNCTION_BLOCK

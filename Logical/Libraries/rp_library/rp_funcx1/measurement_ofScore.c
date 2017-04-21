@@ -17,7 +17,7 @@ void initialization(struct measurement_ofScore* m_oS);
 void measurement_ofScore(struct measurement_ofScore* m_oS)
 {
     
-    if(!m_oS->start_measurement){
+    if(!m_oS->Enable){
         initialization(m_oS);
     }
     

@@ -16,7 +16,7 @@ void initialization_sla(struct start_linearAxis* s_la);
 
 void start_linearAxis(struct start_linearAxis* s_la)
 {		
-	if(!s_la->start_btn){
+	if(!s_la->Enable){
 		initialization_sla(s_la);
 	}
 	
@@ -24,22 +24,26 @@ void start_linearAxis(struct start_linearAxis* s_la)
 		case 0:
 			{
 				s_la->Internal.before_state     = s_la->Internal.state;
-				// adjustment parameters -> axis
-				s_la->axis_param->Home.Mode 				  = mpAXIS_HOME_MODE_BLOCK_TORQUE;
-				s_la->axis_param->Home.Position 		  	  = s_la->max_leftPosition;
-				s_la->axis_param->Home.StartVelocity   		  = 400;
-				s_la->axis_param->Home.HomingVelocity  		  = 400;
-				s_la->axis_param->Home.Acceleration    		  = 1000;
-				s_la->axis_param->Home.StartDirection  		  = mpAXIS_HOME_DIR_POSITIVE;
-				s_la->axis_param->Home.HomingDirection 		  = mpAXIS_HOME_DIR_NEGATIVE;
-				s_la->axis_param->Home.TorqueLimit	 		  = 0.02;
-				s_la->axis_param->Home.PositionErrorStopLimit = s_la->max_leftPosition + 1;
 				
-				if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
-					s_la->Internal.state = 10;
-				}else{
-					if(s_la->start_btn == 1){
-						s_la->Internal.state = 1;
+				if(s_la->start_btn == 1){
+					// adjustment parameters -> axis
+					s_la->axis_param->Home.Mode 				  = mpAXIS_HOME_MODE_BLOCK_TORQUE;
+					s_la->axis_param->Home.Position 		  	  = s_la->max_leftPosition;
+					s_la->axis_param->Home.StartVelocity   		  = 400;
+					s_la->axis_param->Home.HomingVelocity  		  = 400;
+					s_la->axis_param->Home.Acceleration    		  = 1000;
+					s_la->axis_param->Home.StartDirection  		  = mpAXIS_HOME_DIR_POSITIVE;
+					s_la->axis_param->Home.HomingDirection 		  = mpAXIS_HOME_DIR_NEGATIVE;
+					s_la->axis_param->Home.TorqueLimit	 		  = 0.02;
+					s_la->axis_param->Home.PositionErrorStopLimit = s_la->max_leftPosition + 1;
+					// reset output
+					s_la->succesfully = 0;
+					if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
+						s_la->Internal.state = 10;
+					}else{
+						if(s_la->start_btn == 1){
+							s_la->Internal.state = 1;
+						}
 					}
 				}
 			}
@@ -83,6 +87,7 @@ void start_linearAxis(struct start_linearAxis* s_la)
 				if(s_la->axis_name->IsHomed == 1){
 					s_la->axis_name->Home = 0;
 					s_la->succesfully     = 1;
+					s_la->Internal.state  = 0;
 				}else if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
 					s_la->Internal.state = 10;
 				}else{
