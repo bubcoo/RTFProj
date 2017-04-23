@@ -1,0 +1,92 @@
+
+FUNCTION DetPos_Figure : BOOL
+	VAR_INPUT
+		ActPosHumFigDP : ARRAY[0..10] OF REAL;
+		ActPosHumAxisDP : ARRAY[0..3] OF REAL;
+	END_VAR
+	VAR
+		DispAxisDP : ARRAY[0..10] OF REAL := [0,-1200,1200,-2400,-1200,0.0,1200,2400,-2100,0.0,2100];
+		i1 : USINT;
+		i2 : USINT;
+		i3 : USINT;
+		MaxPosHumDP : ARRAY[0..3] OF REAL := [1015,1615,655,955];
+		MinPosHumDP : ARRAY[0..3] OF REAL := [-1015,-1615,-655,-955];
+	END_VAR
+END_FUNCTION
+
+FUNCTION DetRot_Error : BOOL
+	VAR_INPUT
+		DetRotErrorReflSens : ARRAY[0..3] OF BOOL;
+		DetRotModulOK : ARRAY[0..3] OF USINT;
+	END_VAR
+	VAR
+		i1 : USINT;
+		i2 : USINT;
+	END_VAR
+END_FUNCTION
+
+FUNCTION DetPos_Error : BOOL
+	VAR_INPUT
+		DetPosErrorOptSens : ARRAY[0..3] OF BOOL;
+		DetPosModulOK : ARRAY[0..3] OF USINT;
+	END_VAR
+	VAR
+		i1 : USINT;
+		i2 : USINT;
+	END_VAR
+END_FUNCTION
+
+FUNCTION_BLOCK DetectionPositionAxis
+	VAR_INPUT
+		ActPosSens : ARRAY[0..3] OF REAL;
+		ErrorStatusOptSens : ARRAY[0..3] OF BOOL;
+		ErrorOptSens : ARRAY[0..3] OF BOOL;
+	END_VAR
+	VAR_OUTPUT
+		ActPosHumFig : ARRAY[0..10] OF REAL;
+		ActPosHumAxis : ARRAY[0..3] OF REAL;
+		ErrorStatus : BOOL;
+		ModulOK : ARRAY[0..3] OF BOOL;
+	END_VAR
+	VAR CONSTANT
+		RefPosSens : ARRAY[0..3] OF REAL := [17927.4,19165.9,24150.6,22199.6];
+		MaxPosSens : ARRAY[0..3] OF REAL := [25889.8,31531,29485.6,31114.4];
+		MinPosSens : ARRAY[0..3] OF REAL := [9965,6800.8,18815.6,13284.8];
+		RefPosHum : ARRAY[0..3] OF REAL := [4(0.0)];
+		MaxPosHum : ARRAY[0..3] OF REAL := [1015,1615,655,955];
+		MinPosHum : ARRAY[0..3] OF REAL := [-1015,-1615,-655,-955];
+	END_VAR
+	VAR
+		TransConst : ARRAY[0..3] OF REAL;
+	END_VAR
+	VAR_INPUT
+		Enable : BOOL;
+	END_VAR
+	VAR
+		InternalPos : Stuct_OptSensInternal;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK DetectionRotation
+	VAR_OUTPUT
+		ActReflRotOP : ARRAY[0..3] OF BOOL;
+	END_VAR
+	VAR_INPUT
+		ActReflRotIP : ARRAY[0..3] OF BOOL;
+	END_VAR
+	VAR_OUTPUT
+		ModulRotOK : ARRAY[0..3] OF BOOL;
+	END_VAR
+	VAR_INPUT
+		ErrorReflSens : ARRAY[0..3] OF BOOL;
+	END_VAR
+	VAR
+		InternalRot : Stuct_RexlSensInternal;
+	END_VAR
+	VAR_INPUT
+		Enable : BOOL;
+	END_VAR
+	VAR_OUTPUT
+		ErrorStatusRot : BOOL;
+	END_VAR
+END_FUNCTION_BLOCK
