@@ -11,6 +11,6 @@ VAR_CONFIG
 	::GoalKeeper_0.DI9371.DigitalInput_2 AT %IX."X20DI9371".DigitalInput06;
 	Cyclic#1.::table_foot:reset_safetyESTOP AT %QX."X20SLX842".BOOL101;
 	Cyclic#1.::table_foot:ESTOP AT %IX."X20SLX842".SafeDigitalInput03;
-	Cyclic#1.::table_foot:SSD1 AT %IX."X20SLX842".SafeDigitalInput01;
-	Cyclic#1.::table_foot:SSD2 AT %IX."X20SLX842".SafeDigitalInput02;
+	Cyclic#1.::table_foot:OSSD2 AT %IX."X20SLX842".SafeDigitalInput02;
+	Cyclic#1.::table_foot:SAFETY_MODUL_OK AT %IX."X20SLX842".ModuleOk;
 END_VAR

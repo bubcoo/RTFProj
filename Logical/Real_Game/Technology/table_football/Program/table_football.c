@@ -380,7 +380,7 @@ void _CYCLIC ProgramCyclic(void)
 					axes_c[i_int3].linear_param.displacement = 0;
 					// rotary
 					axes_c[i_int3].rotary_param.velocity     = 10000;
-					axes_c[i_int3].rotary_param.displacement = -250;
+					axes_c[i_int3].rotary_param.displacement = -315;
 										
 					// start move
 					axes_c[i_int3].start_move = 1;

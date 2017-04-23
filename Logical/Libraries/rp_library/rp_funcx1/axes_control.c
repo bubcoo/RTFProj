@@ -27,7 +27,8 @@ void axes_control(struct axes_control* a_c)
 			{
 				if(a_c->start_move == 1){
 					a_c->successfully = 0;
-					if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0){
+					if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0
+					|| a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1){
 						a_c->Internal.state = 10;
 					}else{
 						// start cyclic position
@@ -45,13 +46,15 @@ void axes_control(struct axes_control* a_c)
 			
 				if(a_c->linear_axis_param->Acceleration == a_c->linear_param.acceleration){
 					if(a_c->rotary_axis_param->Acceleration == a_c->rotary_param.acceleration){
-						if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0){
+						if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0
+						|| a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1){
 							a_c->Internal.state = 10;
 						}else{
 							a_c->Internal.state = 2;
 						}
 					}else{
-						if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0){
+						if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0
+						|| a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1){
 							a_c->Internal.state = 10;
 						}else{
 							a_c->Internal.state = 3;
@@ -59,13 +62,15 @@ void axes_control(struct axes_control* a_c)
 					}
 				}else{
 					if(a_c->rotary_axis_param->Acceleration == a_c->rotary_param.acceleration){
-						if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0){
+						if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0
+						|| a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1){
 							a_c->Internal.state = 10;
 						}else{
 							a_c->Internal.state = 4;
 						}
 					}else{
-						if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0){
+						if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0
+						|| a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1){
 							a_c->Internal.state = 10;
 						}else{
 							a_c->Internal.state = 5;
@@ -85,7 +90,8 @@ void axes_control(struct axes_control* a_c)
 				a_c->rotary_axis_cyclic->Velocity   			= a_c->rotary_param.velocity;
 				a_c->rotary_axis_cyclic->Position 				= a_c->rotary_param.displacement;
 			
-				if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0){
+				if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0
+				|| a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1){
 					a_c->Internal.state = 10;
 				}else{
 					a_c->Internal.state = 6;
@@ -112,7 +118,8 @@ void axes_control(struct axes_control* a_c)
 					// update parameters
 					a_c->rotary_axis_cyclic->Update = 1;
 			
-					if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0){
+					if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0
+					|| a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1){
 						a_c->Internal.state = 10;
 					}else{
 						if(a_c->rotary_axis_cyclic->UpdateDone == 1){
@@ -148,7 +155,8 @@ void axes_control(struct axes_control* a_c)
 					// update parameters
 					a_c->linear_axis_cyclic->Update = 1;
 			
-					if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0){
+					if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0
+					|| a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1){
 						a_c->Internal.state = 10;
 					}else{
 						if(a_c->linear_axis_cyclic->UpdateDone == 1){
@@ -189,7 +197,8 @@ void axes_control(struct axes_control* a_c)
 					a_c->linear_axis_cyclic->Update = 1;
 					a_c->rotary_axis_cyclic->Update = 1;
 			
-					if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0){
+					if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0
+					|| a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1){
 						a_c->Internal.state = 10;
 					}else{
 						if(a_c->linear_axis_cyclic->UpdateDone == 1 && a_c->rotary_axis_cyclic->UpdateDone == 1){
@@ -210,7 +219,8 @@ void axes_control(struct axes_control* a_c)
 			{
 				a_c->Internal.before_state = 6;
 			
-				if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0){
+				if(a_c->rotary_axis_cyclic->Error == 1 || a_c->linear_axis_cyclic->Error == 1 || a_c->rotary_axis_cyclic->StatusID != 0 || a_c->linear_axis_cyclic->StatusID != 0
+				|| a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1){
 					a_c->Internal.state = 10;
 				}else{			
 					a_c->successfully = 1;
@@ -230,7 +240,8 @@ void axes_control(struct axes_control* a_c)
 				a_c->rotary_axis_cyclic->ErrorReset = 1;
 				a_c->linear_axis_cyclic->ErrorReset = 1;
 			
-				if(a_c->rotary_axis_cyclic->Error == 0 && a_c->linear_axis_cyclic->Error == 0 && a_c->rotary_axis_cyclic->StatusID == 0 && a_c->linear_axis_cyclic->StatusID == 0){
+				if(a_c->rotary_axis_cyclic->Error == 0 && a_c->linear_axis_cyclic->Error == 0 && a_c->rotary_axis_cyclic->StatusID == 0 && a_c->linear_axis_cyclic->StatusID == 0
+				|| a_c->rotary_axis_cyclic->CommandAborted == 0 || a_c->linear_axis_cyclic->CommandAborted == 0{
 					// cyclic position -> on
 					a_c->linear_axis_cyclic->CyclicPosition = 1;
 					a_c->rotary_axis_cyclic->CyclicPosition = 1;
