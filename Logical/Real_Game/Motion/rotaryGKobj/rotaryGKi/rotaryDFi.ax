@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.8.54 SP?>
 <InitParameter Version="3.16.2" NcSwId="ACP10">
   <Group ID="ACP10AXIS_typ">
     <Group ID="dig_in">
@@ -29,10 +30,10 @@
         <Parameter ID="a2_pos" Value="4000000.0" />
         <Parameter ID="a1_neg" Value="4000000.0" />
         <Parameter ID="a2_neg" Value="4000000.0" />
-        <Parameter ID="t_jolt" Value="0.0" />
+        <Parameter ID="t_jolt" Value="0.001" />
         <Parameter ID="t_in_pos" Value="0.0" />
-        <Parameter ID="pos_sw_end" Value="3600" />
-        <Parameter ID="neg_sw_end" Value="-3600" />
+        <Parameter ID="pos_sw_end" Value="910" />
+        <Parameter ID="neg_sw_end" Value="-910" />
         <Parameter ID="ds_warning" Value="200.0" />
         <Parameter ID="ds_stop" Value="200.0" />
         <Parameter ID="a_stop" Value="1.0E+30" />

@@ -148,8 +148,8 @@ void _INIT ProgramInit(void)
         mp_Axis.mp_cyclicSetLinear[i_axisNum].Parameters = &mp_Axis.param_cyclicSetLinear[i_axisNum];
 		// adjust parameters cyclic set
 		mp_Axis.param_cyclicSetLinear[i_axisNum].PositionModeMaxVelocity = 30000;
-		mp_Axis.param_cyclicSetLinear[i_axisNum].Acceleration 			 = 400000;
-		mp_Axis.param_cyclicSetLinear[i_axisNum].Deceleration			 = 400000;
+		mp_Axis.param_cyclicSetLinear[i_axisNum].Acceleration 			 = 489000;
+		mp_Axis.param_cyclicSetLinear[i_axisNum].Deceleration			 = 489000;
 		// config
 		mp_Axis.mp_configAxisLinear[i_axisNum].Enable 		 = 1;
 		mp_Axis.mp_configAxisLinear[i_axisNum].MpLink 		 = &gLinkAxes_linear[i_axisNum];
@@ -297,7 +297,7 @@ void _CYCLIC ProgramCyclic(void)
 									}
 								}
 							}
-					
+
 							if(c_initS == max_numberOfFormation){
 								if(ESTOP == 0 || OSSD2 == 0){
 									SOCCER_TABLE_STEP = RST_SAFETY;
@@ -369,18 +369,18 @@ void _CYCLIC ProgramCyclic(void)
 				for(i_int3 = 0; i_int3 <= max_numberOfFormation - 1; i_int3++){
 					// axes parameters
 					// linear
-					axes_c[i_int3].linear_param.acceleration = 400000.0;
-					axes_c[i_int3].linear_param.deceleration = 400000.0;
+					axes_c[i_int3].linear_param.acceleration = 489000.0;
+					axes_c[i_int3].linear_param.deceleration = 489000.0;
 					// rotary
 					axes_c[i_int3].rotary_param.acceleration = 125000;
 					axes_c[i_int3].rotary_param.deceleration = 125000;
 					// axes cyclic parameters
 					// linear
-					axes_c[i_int3].linear_param.velocity 	 = 19000.0;
+					axes_c[i_int3].linear_param.velocity 	 = 29000.0;
 					axes_c[i_int3].linear_param.displacement = 0;
 					// rotary
 					axes_c[i_int3].rotary_param.velocity     = 10000;
-					axes_c[i_int3].rotary_param.displacement = -315;
+					axes_c[i_int3].rotary_param.displacement = -250;
 										
 					// start move
 					axes_c[i_int3].start_move = 1;
@@ -511,7 +511,7 @@ void _CYCLIC ProgramCyclic(void)
 							reset_safetyESTOP = 1;
 						}
 						// reset counter
-						c_bState 				= 0;
+						c_bState = 0;
 						// change state
 						if(reset_safetyESTOP == 1){
 							SOCCER_TABLE_STEP = RST_AFTER_SAFETY;
