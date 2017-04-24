@@ -8,18 +8,22 @@ FUNCTION_BLOCK DetectionPositionAxis
 		InternalPos.Index[0] := 0;
 		InternalPos.Index[1] := 0;
 		// Referent positions
-		ActPosHum[0] := RefPosHum[0];
-		ActPosHum[1] := RefPosHum[1];
-		ActPosHum[2] := RefPosHum[2];
-		ActPosHum[3] := RefPosHum[3];
-		// Declined an ErrorStatus
-		ErrorStatus := FALSE;
-        
+		ActPosHumAxis[0] := RefPosHum[0];
+		ActPosHumAxis[1] := RefPosHum[1];
+		ActPosHumAxis[2] := RefPosHum[2];
+		ActPosHumAxis[3] := RefPosHum[3];
+		
 		// Calculate a constants
 		TransConst[0] := (MaxPosSens[0]-MinPosSens[0])/(MaxPosHum[0]-MinPosHum[0]);
 		TransConst[1] := (MaxPosSens[1]-MinPosSens[1])/(MaxPosHum[1]-MinPosHum[1]);
 		TransConst[2] := (MaxPosSens[2]-MinPosSens[2])/(MaxPosHum[2]-MinPosHum[2]);
 		TransConst[3] := (MaxPosSens[3]-MinPosSens[3])/(MaxPosHum[3]-MinPosHum[3]);
+		
+		
+		ModulOK[0] := TRUE;
+		ModulOK[1] := TRUE;
+		ModulOK[2] := TRUE;
+		ModulOK[3] := TRUE;
 		
 		// Go to Initialization case
 		InternalPos.State := PosInitial;
@@ -29,32 +33,33 @@ FUNCTION_BLOCK DetectionPositionAxis
 		PosInitial:
 			// Initialization state checking enable status
 			IF Enable = TRUE THEN
-				Internal.State := PosEnabled;
+				InternalPos.State := PosEnabled;
 			ELSE
-				Internal.State := PosInitial;
+				InternalPos.State := PosInitial;
 			END_IF
 		
 		PosEnabled:
 			// Enabled state switching task due to en error of sensor
-			// Set the Error Status
-			ErrorStatus := DetPos_Error(ErrorOptSens,ModulOK);
-        
-			IF ErrorStatus = TRUE THEN
-				Internal.State := PosSensError;
-			ELSE
-				Internal.State := PosCalcPos;
-			END_IF
-		
+			FOR InternalPos.Index[4] := 0 TO 3 DO
+				IF ActPosSens[InternalPos.Index[4]] <= 50 THEN
+					InternalPos.DetRot_ModulOK_0.ModulRotOK[InternalPos.Index[4]] := ModulOK[InternalPos.Index[4]];
+					InternalPos.DetRot_ModulOK_0();
+					ExternalModulOK[InternalPos.Index[4]] := InternalPos.DetRot_ModulOK_0.ExternalModulRotOK[InternalPos.Index[4]];
+				ELSE
+					InternalPos.State := PosCalcPos;
+				END_IF; 
+			END_FOR;
+				
 		PosCalcPos:
 			// Calculation state compute an atual value of distance or set the max/min value       
 			FOR InternalPos.Index[0] := 0 TO 3 DO
 				// Sensor work well and value is in range
 				IF ErrorOptSens[InternalPos.Index[0]] = FALSE AND (ActPosSens[InternalPos.Index[0]] < MaxPosSens[InternalPos.Index[0]] OR ActPosSens[InternalPos.Index[0]] > MinPosSens[InternalPos.Index[0]]) THEN
 					ActPosHumAxis[InternalPos.Index[0]] := RefPosHum[InternalPos.Index[0]]+((ActPosSens[InternalPos.Index[0]]-RefPosSens[InternalPos.Index[0]])/TransConst[InternalPos.Index[0]]);
-					Internal.CurrentPosition[Internal.index[0]]:= ActPosHumAxis[InternalPos.Index[0]]; //Last detected value is safed for case Error status at the range of values
-					// Sensor work with error, but value is in range
+					InternalPos.CurrentPosition[InternalPos.Index[0]]:= ActPosHumAxis[InternalPos.Index[0]]; //Last detected value is safed for case Error status at the range of values
+					// Sensor work with error, but value is inrange
 				ELSIF ErrorOptSens[InternalPos.Index[0]] = TRUE AND (ActPosSens[InternalPos.Index[0]] < MaxPosSens[InternalPos.Index[0]] OR ActPosSens[InternalPos.Index[0]] > MinPosSens[InternalPos.Index[0]]) THEN
-					ActPosHumAxis[InternalPos.Index[0]] := Internal.CurrentPosition[Internal.index[0]]; // Last detected value
+					ActPosHumAxis[InternalPos.Index[0]] := InternalPos.CurrentPosition[InternalPos.Index[0]]; // Last detected value
 					// Sensor work with error and value is higher than maximum value of the range
 				ELSIF ErrorOptSens[InternalPos.Index[0]] = TRUE AND ActPosSens[InternalPos.Index[0]] > MaxPosSens[InternalPos.Index[0]] THEN
 					ActPosHumAxis[InternalPos.Index[0]] := MaxPosSens[InternalPos.Index[0]];
@@ -63,70 +68,32 @@ FUNCTION_BLOCK DetectionPositionAxis
 					ActPosHumAxis[InternalPos.Index[0]] := MinPosSens[InternalPos.Index[0]] ;
 					// Actual human position is set as a last 
 				ELSE
-					ActPosHumAxis[InternalPos.Index[0]] := Internal.CurrentPosition[Internal.index[0]]; // Last detected value in all other cases
+					ActPosHumAxis[InternalPos.Index[0]] := InternalPos.CurrentPosition[InternalPos.Index[0]]; // Last detected value in all other cases
 				END_IF
                 
 			END_FOR
 		
-			// Compute the positions all figures of opponent (by calling the function: DetPos_Figure)
-			// ActPosHumFig := DetPos_Figure(ActPosHumFig,ActPosHumAxis); !!!?!!?!?!?! Is that clear?!!?!?!?
-			
-			// Set the Error Status
-			ErrorStatus := DetPos_Error(ErrorOptSens,ModulOK);
-			
-			// Checking the Error Status
-			IF ErrorStatus = TRUE THEN
-				InternalPos.State := PosSensError;
-			ELSE
-				InternalPos.State := PosCalcPos;
-			END_IF
+			(*// Compute the positions all figures of opponent (by calling the function: DetPos_Figure)
+			FOR InternalPos.Index[1] := 0 TO 3 DO
+				// input into the function block
+				InternalPos.DetPos_Figure0.ActPosHumAxisDP[InternalPos.Index[1]] := ActPosHumAxis[InternalPos.Index[1]];
+				// ?? Call function block
+				// ?? InternalPos.DetPos_Figure0();
+			END_FOR;
+		
+			FOR InternalPos.Index[2] := 0 TO 10 DO
+				// output
+				InternalPos.DetPos_Figure0.ActPosHumFigDP[InternalPos.Index[2]] := ActPosHumFig[InternalPos.Index[2]];
+			END_FOR;*)
 	
-		PosSensError:
-			// ERROR STATE
-			ErrorStatus := DetPos_Error(ErrorOptSens,ModulOK);
-        
-			IF ErrorStatus = TRUE THEN
-				FOR InternalPos.Index[1] := 0 TO 3 DO
-					IF ModulOK[InternalPos.Index[1]] = FALSE THEN
-						ActPosHumAxis[InternalPos.Index[1]] := RefPosHum[InternalPos.Index[1]];
-					ELSE
-						Internal.CurrentPosition[Internal.index[1]] := RefPosHum[InternalPos.Index[1]];
-					END_IF       
-				END_FOR
-                
-				InternalPos.State := PosCalcPos;
-			ELSE
-				InternalPos.State := PosEnabled;
-			END_IF
 	END_CASE
 	
 END_FUNCTION_BLOCK
 
-FUNCTION DetPos_Error
-    
-	FOR i1 := 0 TO 3 DO
-		IF DetPosErrorOptSens[i1] = FALSE THEN
-			DetPosModulOK[i1] := TRUE;
-		ELSE
-			DetPosModulOK[i1] := FALSE;
-		END_IF    
-	END_FOR
-        
-	FOR i2 := 0 TO 3 DO
-		IF DetPosModulOK[i2] = FALSE THEN
-			DetPosErrorOptSens := TRUE;
-			RETURN;
-		ELSE
-			DetPosErrorOptSens := FALSE;
-		END_IF       
-	END_FOR
- 
-END_FUNCTION
-
-FUNCTION DetPos_Figure
-    
-
-	// Set the value at position of Goalman Axis by the Actual Position of Axis with Displacement of Axis
+(* NUMERIC CALCULATION OF POSITION ALL AXES *)
+FUNCTION_BLOCK DetPos_Figure
+	
+		// Set the value at position of Goalman Axis by the Actual Position of Axis with Displacement of Axis
 	IF ActPosHumAxisDP[0] < MaxPosHumDP[0] AND ActPosHumAxisDP[0] > MinPosHumDP[0] THEN
 		ActPosHumFigDP[0] := ActPosHumAxisDP[0]+DispAxisDP[0];
 	ELSIF ActPosHumAxisDP[0] > MaxPosHumDP[0] THEN
@@ -178,5 +145,5 @@ FUNCTION DetPos_Figure
 		END_IF
 
 	END_FOR; 
- 
-END_FUNCTION
+	
+END_FUNCTION_BLOCK

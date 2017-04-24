@@ -241,7 +241,7 @@ void axes_control(struct axes_control* a_c)
 				a_c->linear_axis_cyclic->ErrorReset = 1;
 			
 				if(a_c->rotary_axis_cyclic->Error == 0 && a_c->linear_axis_cyclic->Error == 0 && a_c->rotary_axis_cyclic->StatusID == 0 && a_c->linear_axis_cyclic->StatusID == 0
-				|| a_c->rotary_axis_cyclic->CommandAborted == 0 || a_c->linear_axis_cyclic->CommandAborted == 0{
+				|| a_c->rotary_axis_cyclic->CommandAborted == 0 || a_c->linear_axis_cyclic->CommandAborted == 0){
 					// cyclic position -> on
 					a_c->linear_axis_cyclic->CyclicPosition = 1;
 					a_c->rotary_axis_cyclic->CyclicPosition = 1;

@@ -4,7 +4,6 @@ TYPE
 		(
 		PosEnabled, (*0*)
 		PosCalcPos, (*1*)
-		PosSensError,
 		PosInitial
 		);
 	RotationStatus : 
@@ -15,12 +14,14 @@ TYPE
 		RotInitial
 		);
 	Stuct_OptSensInternal : 	STRUCT 
-		Index : ARRAY[0..1]OF BOOL;
+		Index : ARRAY[0..4]OF USINT;
 		State : PositionStatus;
+		DetRot_ModulOK_0 : DetectionRotation;
+		DetPos_Figure_0 : DetPos_Figure;
 		CurrentPosition : ARRAY[0..3]OF REAL;
 	END_STRUCT;
 	Stuct_RexlSensInternal : 	STRUCT 
-		IndexR : ARRAY[0..1]OF BOOL;
+		IndexR : ARRAY[0..1]OF USINT;
 		StateR : RotationStatus;
 	END_STRUCT;
 END_TYPE
