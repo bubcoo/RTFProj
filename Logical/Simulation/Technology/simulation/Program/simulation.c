@@ -52,6 +52,7 @@ _LOCAL USINT i_ppd, i_ccd, i_ccdCPU, i_ccdHUM, i_cdoa1, i_cdoa2, i_cdoa3;
 _LOCAL USINT c_bState;
 // bool
 _LOCAL BOOL ESTOP,error_s,reset_safetyESTOP;
+_LOCAL BOOL start_game;
 // real
 _LOCAL REAL x_posOfCPU[4];
 _LOCAL REAL x_posOfHUM[4];
@@ -190,16 +191,16 @@ void _INIT ProgramInit(void)
 void _CYCLIC ProgramCyclic(void)
 {  
     switch(SOCCER_TABLE_STEP){
-        case RST_EMPTY:
-            {
-
-            }
-            break;
+		case RST_EMPTY:
+			{
+				if(button == 1){
+					SOCCER_TABLE_STEP = RST_INITIALIZATION_1;
+				}
+			}
+			break;
 		case RST_INITIALIZATION_1:
 			{	
-				if(axes_control_0.successfully == 1){
-					axes_control_0.start_move = 0;
-				}
+
 			}
 			break;
         case RST_CALCULATION_DEFENSE:

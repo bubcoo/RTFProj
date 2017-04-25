@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Content id="ContentMatchPage" height="668" width="1166" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
-    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox1" top="10" left="10" width="1145" height="645" zIndex="0" text="Match" borderWidth="0px" cornerRadius="8px 8px 0px 0px" backColor="rgba(255, 255, 255, 1)" headerGradient="linear-gradient(to bottom,#F7F7F7 10%,#C6C6C6 90%)" borderColor="rgba(190, 190, 190, 0.75)" textColor="rgba(84, 84, 84, 1)" fontName="TSTAR PRO" fontSize="14px">
+    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox1" top="10" left="10" width="1145" height="645" zIndex="0" text="Match" borderWidth="0px" cornerRadius="8px 8px 0px 0px" backColor="rgba(255, 255, 255, 1)" headerGradient="linear-gradient(to bottom, rgba(229,229,229,1) 0%,rgba(247,247,247,1) 100%)" borderColor="rgba(190, 190, 190, 0.75)" textColor="rgba(84, 84, 84, 1)" fontName="TSTAR PRO" fontSize="14px">
       <Widgets>
         <Widget xsi:type="widgets.brease.Image" id="Image1" top="5" left="0" width="1150" height="600" zIndex="0" image="Media/Images/Other/game_playground.png" borderWidth="0px" />
         <Widget xsi:type="widgets.brease.Image" id="Image2" top="375" left="370" width="170" height="230" zIndex="1" image="Media/Images/Other/hum_no1.png" borderWidth="0px" />

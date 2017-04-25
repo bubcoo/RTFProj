@@ -17,5 +17,12 @@
     <Object Type="File">SDM.png</Object>
     <Object Type="File">Graph.png</Object>
     <Object Type="File">Position.png</Object>
+    <Object Type="File">Logout.svg</Object>
+    <Object Type="File">User.svg</Object>
+    <Object Type="File">Login.svg</Object>
+    <Object Type="File">Stop.svg</Object>
+    <Object Type="File">Start.svg</Object>
+    <Object Type="File">HTML.png</Object>
+    <Object Type="File">Overview.png</Object>
   </Objects>
 </Package>

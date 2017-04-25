@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Content id="ContentCameraPage" height="668" width="1166" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:types="http://www.br-automation.com/iat2015/widgetTypes/v2">
   <Widgets>
-    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox1" top="10" left="10" width="1145" height="645" zIndex="0" text="Camera" borderWidth="0px" cornerRadius="8px 8px 0px 0px" backColor="rgba(255, 255, 255, 1)" headerGradient="linear-gradient(to bottom,#F7F7F7 10%,#C6C6C6 90%)" borderColor="rgba(190, 190, 190, 0.75)" textColor="rgba(84, 84, 84, 1)" fontName="TSTAR PRO" fontSize="14px">
+    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox1" top="10" left="10" width="1145" height="645" zIndex="0" text="Camera" borderWidth="0px" cornerRadius="8px 8px 0px 0px" backColor="rgba(255, 255, 255, 1)" headerGradient="linear-gradient(to bottom, rgba(229,229,229,1) 0%,rgba(247,247,247,1) 100%)" borderColor="rgba(190, 190, 190, 0.75)" borderStyle="none" textColor="rgba(84, 84, 84, 1)" fontName="TSTAR PRO" fontSize="14px">
       <Widgets>
         <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutput1" top="21" left="30" width="205" height="30" zIndex="0" borderWidth="2px 6px 2px 2px" />
         <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutput2" top="61" left="30" width="205" height="30" zIndex="1" borderWidth="2px 6px 2px 2px" />
