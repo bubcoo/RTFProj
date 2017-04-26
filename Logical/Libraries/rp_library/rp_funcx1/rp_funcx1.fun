@@ -157,9 +157,11 @@ FUNCTION_BLOCK calculation_newCrossing
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK calculation_posDummiesOpponent (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+FUNCTION_BLOCK calculation_posDummies (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
 	VAR_INPUT
-		displacement_HUMAN : ARRAY[0..3] OF REAL;
+		displacement : ARRAY[0..3] OF REAL;
+		max_disp : ARRAY[0..3] OF REAL;
+		min_disp : ARRAY[0..3] OF REAL;
 	END_VAR
 	VAR_OUTPUT
 		actual_positionsOfDummies : ARRAY[0..10] OF REAL;
