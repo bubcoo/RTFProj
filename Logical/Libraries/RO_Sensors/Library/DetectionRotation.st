@@ -3,49 +3,29 @@
 FUNCTION_BLOCK DetectionRotation
 
 	
-		// Init part of program set the basic values & constants
-	IF Enable <> TRUE THEN
-		// Reset output variables
-		InternalRot.IndexR[0] := 0;
-		InternalRot.IndexR[1] := 0;
-		// Referent positions
-		ActReflRotOP[0] := FALSE;
-		ActReflRotOP[1] := FALSE;
-		ActReflRotOP[2] := FALSE;
-		ActReflRotOP[3] := FALSE;
+	// Set the value of index
+	InternalRot.IndexR[0] := 0;
 		
-		ModulRotOK[0] := TRUE;
-		ModulRotOK[1] := TRUE;
-		ModulRotOK[2] := TRUE;
-		ModulRotOK[3] := TRUE;
-		        
-		// Go to Initialization case
-		InternalRot.StateR := RotInitial;
-	END_IF	
+	// Checking the status of reflex sensor 
+	FOR InternalRot.IndexR[0] := 0 TO 3 DO
 	
-	CASE InternalRot.StateR OF
-		RotInitial:
-			// Initialization state checking enable status
-			IF Enable = TRUE THEN
-				InternalRot.StateR := RotWatchPos;
-			ELSE
-				InternalRot.StateR := RotInitial;
-			END_IF
+		// Reflex sensor works & Modul set TRUE to output
+		IF (ModulRotOK[InternalRot.IndexR[0]] = TRUE) AND (ErrorReflSens[InternalRot.IndexR[0]] = FALSE) THEN
+			ActReflRotOP[InternalRot.IndexR[0]] := ModulRotOK[InternalRot.IndexR[0]];
 		
-		RotWatchPos:
-			// Checking the status of reflex sensor 
-			FOR InternalRot.IndexR[0] := 0 TO 3 DO
-				IF ModulRotOK[InternalRot.IndexR[0]] = TRUE THEN
-					ActReflRotOP[InternalRot.IndexR[0]] := ActReflRotIP[InternalRot.IndexR[0]];
-					ExternalModulRotOK[InternalRot.IndexR[0]] := ModulRotOK[InternalRot.IndexR[0]];
-				ELSIF Enable <> TRUE THEN
-					InternalRot.StateR := RotInitial;
-				ELSE
-					ActReflRotOP[InternalRot.IndexR[0]] := TRUE;
-				END_IF       
-			END_FOR
+		// Reflex sensor works but Modul set FALSE to output	
+		ELSIF (ModulRotOK[InternalRot.IndexR[0]] = FALSE) AND (ErrorReflSens[InternalRot.IndexR[0]] = FALSE) THEN
+				ActReflRotOP[InternalRot.IndexR[0]] := ModulRotOK[InternalRot.IndexR[0]];
 		
+			// Reflex sensor doesn't works 	
+		ELSIF (ErrorReflSens[InternalRot.IndexR[0]] = TRUE) THEN
+			ActReflRotOP[InternalRot.IndexR[0]] := FALSE;
 		
-	END_CASE
+		// 	Set the status of Actual position of Rotation by the ModulOK status
+		ELSE
+			ActReflRotOP[InternalRot.IndexR[0]] := ModulRotOK[InternalRot.IndexR[0]];
+		END_IF       
+	END_FOR
+	
 
 END_FUNCTION_BLOCK

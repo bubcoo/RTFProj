@@ -13,4 +13,5 @@ VAR_CONFIG
 	Cyclic#1.::table_foot:ESTOP AT %IX."X20SLX842".SafeDigitalInput03;
 	Cyclic#1.::table_foot:OSSD2 AT %IX."X20SLX842".SafeDigitalInput02;
 	Cyclic#1.::table_foot:SAFETY_MODUL_OK AT %IX."X20SLX842".ModuleOk;
+	::table_foot:DetectionPositionAxis_0.ActPosSens[0] AT %IW."X20AI2632".AnalogInput01;
 END_VAR

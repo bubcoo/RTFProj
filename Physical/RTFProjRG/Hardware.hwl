@@ -88,16 +88,16 @@
       <Point X="1020" Y="155" />
       <Point X="1020" Y="170" />
     </Link>
-    <Link From="In-Sight" To="80VD100PD.C188-01a" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
-      <Point X="719" Y="495" />
-      <Point X="719" Y="495" />
-      <Point X="719" Y="502" />
-      <Point X="719" Y="515" />
-      <Point X="1052" Y="515" />
-      <Point X="1052" Y="170" />
+    <Link From="80VD100PD.C188-01a" To="In-Sight" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
+      <Point X="1030" Y="170" />
+      <Point X="1030" Y="170" />
       <Point X="1039" Y="170" />
-      <Point X="1030" Y="170" />
-      <Point X="1030" Y="170" />
+      <Point X="1052" Y="170" />
+      <Point X="1052" Y="515" />
+      <Point X="719" Y="515" />
+      <Point X="719" Y="502" />
+      <Point X="719" Y="495" />
+      <Point X="719" Y="495" />
     </Link>
   </Links>
   <InfoElements />

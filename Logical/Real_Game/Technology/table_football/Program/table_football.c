@@ -25,6 +25,7 @@
 
 #include "Camera.h"
 #include "Bar_Light.h"
+#include "Library.h"
 
 #ifdef _DEFAULT_INCLUDES
 	#include <AsDefault.h>
@@ -55,6 +56,8 @@ _LOCAL struct err_detection e_detect;
 _LOCAL struct axes_control axes_c[4];
 // struct - camera
 _LOCAL RTCtime_typ ActTime_tmp;
+// struct - sensors
+_LOCAL struct DetectionPositionAxis DetectionPositionAxis_0;
 // udint
 _LOCAL UDINT alarm_device_address;
 _LOCAL UDINT specific_directionOfBall;
@@ -194,6 +197,7 @@ void _INIT ProgramInit(void)
     }
 	/************************************* Camera initialization **************************************/
 	FBCamera_0.Enable = 1;
+	/************************************* Sensor initialization **************************************/
 	
 	/*************************************** INITIALIZATIONS ******************************************/
 	// initialization x axes for CPU
@@ -253,6 +257,7 @@ void _CYCLIC ProgramCyclic(void)
 	// initializatiom temperature
 	temp_lin[0] = mp_Axis.mp_axisLinear[0].Info.CyclicRead.MotorTemperature.Value;
 	temp_rot[0] = mp_Axis.mp_axisRotary[0].Info.CyclicRead.MotorTemperature.Value;
+	
 	
 	switch(SOCCER_TABLE_STEP){
 		case RST_INITIALIZATION_1:
@@ -602,6 +607,8 @@ void _CYCLIC ProgramCyclic(void)
 	//Light(&Light_0);
 	// Detection score
 	//GoalKeeper(&GoalKeeper_0);
+	// sensor
+	DetectionPositionAxis(&DetectionPositionAxis_0);
 	// Measuremet of score
 	measurement_ofScore(&m_ofScore);
 	// axes control

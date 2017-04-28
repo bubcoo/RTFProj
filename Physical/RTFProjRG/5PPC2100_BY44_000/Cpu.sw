@@ -13,8 +13,8 @@
   <TaskClass Name="Cyclic#8" />
   <DataObjects>
     <DataObject Name="assl1" Source="" Memory="UserROM" Language="Binary" />
-    <DataObject Name="Acp10sys" Source="" Memory="UserROM" Language="Binary" />
     <DataObject Name="Arnc0sys" Source="" Memory="UserROM" Language="Binary" />
+    <DataObject Name="Acp10sys" Source="" Memory="UserROM" Language="Binary" />
   </DataObjects>
   <NcDataObjects>
     <NcDataObject Name="acp10etxen" Source="ACP10_ETXEN.acp10etxen.dob" Memory="UserROM" Language="Ett" />
@@ -41,6 +41,8 @@
     <BinaryObject Name="TCData" Source="" Memory="SystemROM" Language="Binary" />
     <BinaryObject Name="udbdef" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="Linear" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="iomap" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="OpcUaMap" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="sysconf" Source="" Memory="SystemROM" Language="Binary" />
     <BinaryObject Name="Config" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="TC" Source="" Memory="UserROM" Language="Binary" />
@@ -53,10 +55,8 @@
     <BinaryObject Name="Rotary" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="Acp10map" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="acp10cfg" Source="" Memory="UserROM" Language="Binary" />
-    <BinaryObject Name="arnc0cfg" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="Arnc0map" Source="" Memory="UserROM" Language="Binary" />
-    <BinaryObject Name="OpcUaMap" Source="" Memory="UserROM" Language="Binary" />
-    <BinaryObject Name="iomap" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="arnc0cfg" Source="" Memory="UserROM" Language="Binary" />
   </Binaries>
   <Libraries>
     <LibraryObject Name="operator" Source="Libraries.operator.lby" Memory="UserROM" Language="Binary" Debugging="true" />
@@ -77,7 +77,6 @@
     <LibraryObject Name="rp_funcx1" Source="Libraries.rp_library.rp_funcx1.lby" Memory="UserROM" Language="ANSIC" Debugging="true" />
     <LibraryObject Name="Camera" Source="Libraries.LB_Camera.Camera.lby" Memory="UserROM" Language="ANSIC" Debugging="true" />
     <LibraryObject Name="Bar_Light" Source="Libraries.LB_Camera.Bar_Light.lby" Memory="UserROM" Language="ANSIC" Debugging="true" />
-    <LibraryObject Name="ro_sensors" Source="Libraries.RO_Sensors.ro_sensors.lby" Memory="UserROM" Language="IEC" Debugging="true" />
     <LibraryObject Name="GoalKeeper" Source="Libraries.RO_LB_ScoreDetection.GoalKeeper.lby" Memory="UserROM" Language="ANSIC" Debugging="true" />
     <LibraryObject Name="AsBrStr" Source="Libraries.AsBrStr.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="IecCheck" Source="Libraries.IecCheck.lby" Memory="UserROM" Language="IEC" Debugging="true" />
@@ -92,6 +91,7 @@
     <LibraryObject Name="Acp10man" Source="Libraries.Acp10man.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="NcGlobal" Source="Libraries.NcGlobal.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="Acp10par" Source="Libraries.Acp10par.lby" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="Library" Source="Libraries.RO_Sensors.Library.lby" Memory="UserROM" Language="IEC" Debugging="true" />
     <LibraryObject Name="powerlnk" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="areventlog" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
   </Libraries>
