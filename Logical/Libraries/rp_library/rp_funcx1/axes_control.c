@@ -61,8 +61,8 @@ void axes_control(struct axes_control* a_c)
 			{
 				a_c->Internal.before_state = 1;
 			
-				if(a_c->linear_axis_param->Acceleration == a_c->linear_param.acceleration){
-					if(a_c->rotary_axis_param->Acceleration == a_c->rotary_param.acceleration){
+				if(a_c->linear_axis_param->Acceleration == a_c->linear_param.acceleration && a_c->linear_axis_cyclic->Velocity == a_c->linear_param.velocity){
+					if(a_c->rotary_axis_param->Acceleration == a_c->rotary_param.acceleration && a_c->rotary_axis_cyclic->Velocity == a_c->rotary_param.velocity){
 						if(((a_c->rotary_axis_cyclic->Error == 1 && a_c->rotary_axis_cyclic->StatusID != 0) || (a_c->linear_axis_cyclic->Error == 1 && a_c->linear_axis_cyclic->StatusID != 0))
 						|| (a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1)){
 							// cyclic position -> off
@@ -90,7 +90,7 @@ void axes_control(struct axes_control* a_c)
 						}
 					}
 				}else{
-					if(a_c->rotary_axis_param->Acceleration == a_c->rotary_param.acceleration){
+					if(a_c->rotary_axis_param->Acceleration == a_c->rotary_param.acceleration && a_c->rotary_axis_cyclic->Velocity == a_c->rotary_param.velocity){
 						if(((a_c->rotary_axis_cyclic->Error == 1 && a_c->rotary_axis_cyclic->StatusID != 0) || (a_c->linear_axis_cyclic->Error == 1 && a_c->linear_axis_cyclic->StatusID != 0))
 						|| (a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1)){
 							// cyclic position -> off
@@ -125,10 +125,8 @@ void axes_control(struct axes_control* a_c)
 				a_c->Internal.before_state = 2;
 			
 				// linear axis param cyclic
-				a_c->linear_axis_cyclic->Velocity   			= a_c->linear_param.velocity;
 				a_c->linear_axis_cyclic->Position 				= a_c->linear_param.displacement;
 				// rotary axis param cyclic
-				a_c->rotary_axis_cyclic->Velocity   			= a_c->rotary_param.velocity;
 				a_c->rotary_axis_cyclic->Position 				= a_c->rotary_param.displacement;
 			
 				if(((a_c->rotary_axis_cyclic->Error == 1 && a_c->rotary_axis_cyclic->StatusID != 0) || (a_c->linear_axis_cyclic->Error == 1 && a_c->linear_axis_cyclic->StatusID != 0))
@@ -151,22 +149,22 @@ void axes_control(struct axes_control* a_c)
 				// turn off 
 				a_c->rotary_axis_cyclic->CyclicPosition = 0;
 			
-				// linear axis param cyclic
-				a_c->linear_axis_cyclic->Velocity   			= a_c->linear_param.velocity;
-				a_c->linear_axis_cyclic->Position 				= a_c->linear_param.displacement;
-				// rotary axis param
-				a_c->rotary_axis_param->Acceleration		    = a_c->rotary_param.acceleration;
-				a_c->rotary_axis_param->Deceleration			= a_c->rotary_param.deceleration;
-				// rotary axis param cyclic
-				a_c->rotary_axis_cyclic->Velocity   			= a_c->rotary_param.velocity;
-				a_c->rotary_axis_cyclic->Position 				= a_c->rotary_param.displacement;
-			
 				if(a_c->rotary_axis_cyclic->CyclicPosition == 0){
+					// linear axis param cyclic
+					a_c->linear_axis_cyclic->Velocity   			= a_c->linear_param.velocity;
+					a_c->linear_axis_cyclic->Position 				= a_c->linear_param.displacement;
+					// rotary axis param
+					a_c->rotary_axis_param->Acceleration		    = a_c->rotary_param.acceleration;
+					a_c->rotary_axis_param->Deceleration			= a_c->rotary_param.deceleration;
+					// rotary axis param cyclic
+					a_c->rotary_axis_cyclic->Velocity   			= a_c->rotary_param.velocity;
+					a_c->rotary_axis_cyclic->Position 				= a_c->rotary_param.displacement;
+			
 					// update parameters
 					a_c->rotary_axis_cyclic->Update = 1;
 			
 					if(((a_c->rotary_axis_cyclic->Error == 1 && a_c->rotary_axis_cyclic->StatusID != 0) || (a_c->linear_axis_cyclic->Error == 1 && a_c->linear_axis_cyclic->StatusID != 0))
-					|| (a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1)){
+					 || (a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1)){
 						// cyclic position -> off
 						a_c->linear_axis_cyclic->CyclicPosition = 0;
 						a_c->rotary_axis_cyclic->CyclicPosition = 0;
@@ -180,7 +178,9 @@ void axes_control(struct axes_control* a_c)
 							if(a_c->rotary_axis_cyclic->Update == 0){
 								// turn on
 								a_c->rotary_axis_cyclic->CyclicPosition = 1;
-								a_c->Internal.state = 6;
+								if(a_c->rotary_axis_cyclic->CyclicPosition == 1){
+									a_c->Internal.state = 6;
+								}
 							}
 						}
 					}
@@ -194,17 +194,17 @@ void axes_control(struct axes_control* a_c)
 				// turn off 
 				a_c->linear_axis_cyclic->CyclicPosition = 0;
 			
-				// linear axis param
-				a_c->linear_axis_param->Acceleration		    = a_c->linear_param.acceleration;
-				a_c->linear_axis_param->Deceleration			= a_c->linear_param.deceleration;
-				// linear axis param cyclic
-				a_c->linear_axis_cyclic->Velocity   			= a_c->linear_param.velocity;
-				a_c->linear_axis_cyclic->Position 				= a_c->linear_param.displacement;
-				// rotary axis param cyclic
-				a_c->rotary_axis_cyclic->Velocity   			= a_c->rotary_param.velocity;
-				a_c->rotary_axis_cyclic->Position 				= a_c->rotary_param.displacement;
-			
 				if(a_c->linear_axis_cyclic->CyclicPosition == 0){
+					// linear axis param
+					a_c->linear_axis_param->Acceleration		    = a_c->linear_param.acceleration;
+					a_c->linear_axis_param->Deceleration			= a_c->linear_param.deceleration;
+					// linear axis param cyclic
+					a_c->linear_axis_cyclic->Velocity   			= a_c->linear_param.velocity;
+					a_c->linear_axis_cyclic->Position 				= a_c->linear_param.displacement;
+					// rotary axis param cyclic
+					a_c->rotary_axis_cyclic->Velocity   			= a_c->rotary_param.velocity;
+					a_c->rotary_axis_cyclic->Position 				= a_c->rotary_param.displacement;
+			
 					// update parameters
 					a_c->linear_axis_cyclic->Update = 1;
 			
@@ -223,7 +223,9 @@ void axes_control(struct axes_control* a_c)
 							if(a_c->linear_axis_cyclic->Update == 0){
 								// turn on
 								a_c->linear_axis_cyclic->CyclicPosition = 1;
-								a_c->Internal.state = 6;
+								if(a_c->linear_axis_cyclic->CyclicPosition == 1){
+									a_c->Internal.state = 6;
+								}
 							}
 						}
 					}
@@ -238,20 +240,20 @@ void axes_control(struct axes_control* a_c)
 				a_c->linear_axis_cyclic->CyclicPosition = 0;
 				a_c->rotary_axis_cyclic->CyclicPosition = 0;
 			
-				// linear axis param
-				a_c->linear_axis_param->Acceleration		    = a_c->linear_param.acceleration;
-				a_c->linear_axis_param->Deceleration			= a_c->linear_param.deceleration;
-				// linear axis param cyclic
-				a_c->linear_axis_cyclic->Velocity   			= a_c->linear_param.velocity;
-				a_c->linear_axis_cyclic->Position 				= a_c->linear_param.displacement;
-				// rotary axis param
-				a_c->rotary_axis_param->Acceleration		    = a_c->rotary_param.acceleration;
-				a_c->rotary_axis_param->Deceleration			= a_c->rotary_param.deceleration;
-				// rotary axis param cyclic
-				a_c->rotary_axis_cyclic->Velocity   			= a_c->rotary_param.velocity;
-				a_c->rotary_axis_cyclic->Position 				= a_c->rotary_param.displacement;
-			
 				if(a_c->linear_axis_cyclic->CyclicPosition == 0 && a_c->rotary_axis_cyclic->CyclicPosition == 0){
+					// linear axis param
+					a_c->linear_axis_param->Acceleration		    = a_c->linear_param.acceleration;
+					a_c->linear_axis_param->Deceleration			= a_c->linear_param.deceleration;
+					// linear axis param cyclic
+					a_c->linear_axis_cyclic->Velocity   			= a_c->linear_param.velocity;
+					a_c->linear_axis_cyclic->Position 				= a_c->linear_param.displacement;
+					// rotary axis param
+					a_c->rotary_axis_param->Acceleration		    = a_c->rotary_param.acceleration;
+					a_c->rotary_axis_param->Deceleration			= a_c->rotary_param.deceleration;
+					// rotary axis param cyclic
+					a_c->rotary_axis_cyclic->Velocity   			= a_c->rotary_param.velocity;
+					a_c->rotary_axis_cyclic->Position 				= a_c->rotary_param.displacement;
+			
 					// update parameters
 					a_c->linear_axis_cyclic->Update = 1;
 					a_c->rotary_axis_cyclic->Update = 1;
@@ -273,7 +275,9 @@ void axes_control(struct axes_control* a_c)
 								// turn on
 								a_c->linear_axis_cyclic->CyclicPosition = 1;
 								a_c->rotary_axis_cyclic->CyclicPosition = 1;
-								a_c->Internal.state = 6;
+								if(a_c->linear_axis_cyclic->CyclicPosition == 1 && a_c->rotary_axis_cyclic->CyclicPosition == 1){
+									a_c->Internal.state = 6;
+								}
 							}
 						}
 					}

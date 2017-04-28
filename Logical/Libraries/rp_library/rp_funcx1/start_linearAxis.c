@@ -39,7 +39,10 @@ void start_linearAxis(struct start_linearAxis* s_la)
 					// reset output
 					s_la->succesfully = 0;
 					if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
-						s_la->Internal.state = 10;
+						s_la->axis_name->ErrorReset = 0;
+						if(s_la->axis_name->ErrorReset == 0){
+							s_la->Internal.state = 10;
+						}
 					}else{
 						if(s_la->start_btn == 1){
 							s_la->Internal.state = 1;
@@ -54,12 +57,15 @@ void start_linearAxis(struct start_linearAxis* s_la)
 				// power on -> axis
 				s_la->axis_name->Power = 1;
 			
-				if(s_la->axis_name->PowerOn == 1){
-					s_la->Internal.state = 2;
-				}else if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
-					s_la->Internal.state = 10;
+				if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
+					s_la->axis_name->ErrorReset = 0;
+					if(s_la->axis_name->ErrorReset == 0){
+						s_la->Internal.state = 10;
+					}
 				}else{
-					s_la->Internal.state = s_la->Internal.before_state;
+					if(s_la->axis_name->PowerOn == 1){
+						s_la->Internal.state = 2;
+					}
 				}
 			}
 			break;
@@ -69,13 +75,18 @@ void start_linearAxis(struct start_linearAxis* s_la)
 				// update -> axis
 				s_la->axis_name->Update = 1;
 			
-				if(s_la->axis_name->UpdateDone == 1){
-					s_la->axis_name->Update = 0;
-					s_la->Internal.state 	= 3;
-				}else if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
-					s_la->Internal.state = 10;
+				if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
+					s_la->axis_name->ErrorReset = 0;
+					if(s_la->axis_name->ErrorReset == 0){
+						s_la->Internal.state = 10;
+					}
 				}else{
-					s_la->Internal.state = s_la->Internal.before_state;
+					if(s_la->axis_name->UpdateDone == 1){
+						s_la->axis_name->Update = 0;
+						if(s_la->axis_name->UpdateDone == 0){
+							s_la->Internal.state 	= 3;
+						}
+					}
 				}
 			}
 		case 3:
@@ -84,14 +95,17 @@ void start_linearAxis(struct start_linearAxis* s_la)
 				// home -> axis
 				s_la->axis_name->Home = 1;
 			
-				if(s_la->axis_name->IsHomed == 1){
-					s_la->axis_name->Home = 0;
-					s_la->succesfully     = 1;
-					s_la->Internal.state  = 0;
-				}else if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
-					s_la->Internal.state = 10;
+				if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){
+					s_la->axis_name->ErrorReset = 0;
+					if(s_la->axis_name->ErrorReset == 0){
+						s_la->Internal.state = 10;
+					}
 				}else{
-					s_la->Internal.state = s_la->Internal.before_state;
+					if(s_la->axis_name->IsHomed == 1){
+						s_la->axis_name->Home = 0;
+						s_la->succesfully     = 1;
+						s_la->Internal.state  = 0;
+					}
 				}
 			}
 			break;

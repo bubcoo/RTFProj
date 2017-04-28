@@ -53,6 +53,7 @@ TYPE
 		RST_STOP := 300,
 		RST_SAFETY := 400,
 		RST_AFTER_SAFETY := 401,
+		RST_AFTER_SAFETY_HOME := 402,
 		RST_ERROR := 500
 		);
 	rp_MainSteps : 

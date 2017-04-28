@@ -33,7 +33,7 @@
 
 // struct - rp_funcx1
 _LOCAL struct forecast_direction f_d;
-_LOCAL struct calculation_posDummiesOpponent c_ppd;
+_LOCAL struct calculation_posDummies c_ppd;
 _LOCAL struct calculation_crossingBall c_cb[2];
 _LOCAL struct calculation_displacementOfAxes c_doa;
 _LOCAL struct start_rotaryAxis start_rotaryAxis_0;
@@ -52,6 +52,7 @@ _LOCAL USINT i_ppd, i_ccd, i_ccdCPU, i_ccdHUM, i_cdoa1, i_cdoa2, i_cdoa3;
 _LOCAL USINT c_bState;
 // bool
 _LOCAL BOOL ESTOP,error_s,reset_safetyESTOP;
+_LOCAL BOOL start_game;
 // real
 _LOCAL REAL x_posOfCPU[4];
 _LOCAL REAL x_posOfHUM[4];
@@ -190,16 +191,16 @@ void _INIT ProgramInit(void)
 void _CYCLIC ProgramCyclic(void)
 {  
     switch(SOCCER_TABLE_STEP){
-        case RST_EMPTY:
-            {
-
-            }
-            break;
+		case RST_EMPTY:
+			{
+				if(button == 1){
+					SOCCER_TABLE_STEP = RST_INITIALIZATION_1;
+				}
+			}
+			break;
 		case RST_INITIALIZATION_1:
 			{	
-				if(axes_control_0.successfully == 1){
-					axes_control_0.start_move = 0;
-				}
+
 			}
 			break;
         case RST_CALCULATION_DEFENSE:
@@ -211,11 +212,21 @@ void _CYCLIC ProgramCyclic(void)
                 f_d.ball2_y = ball2[1];
                 forecast_direction(&f_d);
                 // calculation pos dummies opponent
+				// maximum displacement of individual axes
+				c_ppd.max_disp[0] = 1000;
+				c_ppd.max_disp[0] = 1850;
+				c_ppd.max_disp[0] = 650;
+				c_ppd.max_disp[0] = 955;
+				// minimum displacement of individual axes
+				c_ppd.min_disp[0] = -1000;
+				c_ppd.min_disp[0] = -1850;
+				c_ppd.min_disp[0] = -650;
+				c_ppd.min_disp[0] = -955;
                 for(i_ppd = 0; i_ppd < (int)(sizeof(optical_sensor)/sizeof(optical_sensor[0])); i_ppd++){
-                    c_ppd.displacement_HUMAN[i_ppd] = optical_sensor[i_ppd];
+                    c_ppd.displacement[i_ppd] = optical_sensor[i_ppd];
                 }
 
-                calculation_posDummiesOpponent(&c_ppd);
+                calculation_posDummies(&c_ppd);
                 // calculation crossing ball
                 for(i_ccd = 0; i_ccd < (int)(sizeof(ball1)/sizeof(ball1[0])); i_ccd++){
                     c_cb[i_ccd].ball1_x = ball1[0];

@@ -5,15 +5,197 @@
     <prop type="x-BR-TS:Namespace">IAT</prop>
   </header>
   <body>
-    <tu tuid="Samples.HELLO_WORLD">
+    <tu tuid="logO">
+      <tuv xml:lang="sk">
+        <seg>Odhlásenie</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Odhlášení</seg>
+      </tuv>
       <tuv xml:lang="en">
-        <seg>Hello world!</seg>
+        <seg>Logout</seg>
       </tuv>
       <tuv xml:lang="de">
         <seg>Servus Welt!</seg>
       </tuv>
       <tuv xml:lang="fr">
         <seg>Bonjour tout le monde!</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navCam">
+      <tuv xml:lang="sk">
+        <seg>Kamera</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Kamera</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Camera</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navHome">
+      <tuv xml:lang="sk">
+        <seg>Domov</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Domů</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Home</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navGame">
+      <tuv xml:lang="sk">
+        <seg>Hra</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Hra</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Game</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navSDM">
+      <tuv xml:lang="sk">
+        <seg>SDM</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>SDM</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>SDM</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navMatch">
+      <tuv xml:lang="sk">
+        <seg>Zápas</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Zápas</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Match</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navAlarm">
+      <tuv xml:lang="sk">
+        <seg>Alarm</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Alarm</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Alarm</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navSft">
+      <tuv xml:lang="sk">
+        <seg>Bezpečnosť</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Bezpečnost</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Safety</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navTemp">
+      <tuv xml:lang="sk">
+        <seg>Teplota</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Teplota</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Temperature</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navAbout">
+      <tuv xml:lang="sk">
+        <seg>Ohľadom</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Ohledně</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>About</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navPos">
+      <tuv xml:lang="sk">
+        <seg>Pozícia</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Pozice</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Position</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navGrap">
+      <tuv xml:lang="sk">
+        <seg>Graf</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Graf</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Graph</seg>
+      </tuv>
+    </tu>
+    <tu tuid="btnMb">
+      <tuv xml:lang="sk">
+        <seg>Diplomové/Bakalárské\n práce</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Diplomové/Bakalářské\n práce</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Master's/Bachelor's\n thesis</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navDs">
+      <tuv xml:lang="sk">
+        <seg>Dátový hárok</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Dátový hárek</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Data Sheet</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navWd">
+      <tuv xml:lang="sk">
+        <seg>Elektrická schéma</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Elektrická schéma</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Wiring diagram</seg>
+      </tuv>
+    </tu>
+    <tu tuid="SMDgp">
+      <tuv xml:lang="sk">
+        <seg>Správca diagnostiky systému</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Správca diagnostiky systému</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>System Diagnostics Manager</seg>
+      </tuv>
+    </tu>
+    <tu tuid="navMd">
+      <tuv xml:lang="sk">
+        <seg>Diplomové/Bakalárské práce</seg>
+      </tuv>
+      <tuv xml:lang="cz">
+        <seg>Diplomové/Bakalářské práce</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Master's/Bachelor's thesis</seg>
       </tuv>
     </tu>
   </body>

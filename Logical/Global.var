@@ -1,0 +1,3 @@
+VAR
+	button : BOOL;
+END_VAR

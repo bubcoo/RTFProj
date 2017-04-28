@@ -2,8 +2,8 @@
 <!--IOMapping Version="4.0"-->
 <IOOffsets SIBytes="2048" SOBytes="2048" NSIBytes="1024" NSOBytes="1024" ConnectionsValidOffset="24" >
 		<Module Name="SL1.SM1" Hardware="X20SLX842" SafeLogicID="1" SafeModuleID="1" SISize="8" SOSize="2" NSISize="20" NSOSize="20" SIOffset="16" SOOffset="12" NSIOffset="0" NSOOffset="0" HWTypeCode="63" >
-			<Channel Name="SafeDigitalInput01" Mapping="SIX16.0" Variable="SDI_SSD1" Address="Cyclic#1.::table_foot:SSD1" SODIndex="0x9999" SODSubIndex="0x1" />
-			<Channel Name="SafeDigitalInput02" Mapping="SIX16.1" Variable="SDI_SSD2" Address="Cyclic#1.::table_foot:SSD2" SODIndex="0x9999" SODSubIndex="0x1" />
+			<Channel Name="SafeDigitalInput01" Mapping="SIX16.0" Variable="SDI_SSD1" SODIndex="0x9999" SODSubIndex="0x1" />
+			<Channel Name="SafeDigitalInput02" Mapping="SIX16.1" Variable="SDI_SSD2" Address="Cyclic#1.::table_foot:OSSD2" SODIndex="0x9999" SODSubIndex="0x1" />
 			<Channel Name="SafeDigitalInput03" Mapping="SIX16.2" Variable="SDI_ESTOP" Address="Cyclic#1.::table_foot:ESTOP" SODIndex="0x9999" SODSubIndex="0x1" />
 			<Channel Name="SafeDigitalOutput01" Mapping="SQX12.0" Variable="SDO_ACOPOSR1" SODIndex="0x9999" SODSubIndex="0x4" />
 			<Channel Name="SafeDigitalOutput02" Mapping="SQX12.1" Variable="SDO_ACOPOSR2" SODIndex="0x9999" SODSubIndex="0x4" />

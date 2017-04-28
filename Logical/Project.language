@@ -4,7 +4,7 @@
     <Property ID="LanguageName" Value="English" />
     <Property ID="IsDesignLanguage" Value="TRUE" />
   </Element>
-  <Element ID="cz" Type="Language">
+  <Element ID="cze" Type="Language">
     <Property ID="LanguageName" Value="Czech" />
   </Element>
   <Element ID="sk" Type="Language">

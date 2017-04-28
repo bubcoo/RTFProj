@@ -6,7 +6,7 @@
     <File>rp_functions.c</File>
     <File>Types.typ</File>
     <File>forecast_direction.c</File>
-    <File>calculation_posDummiesOpponent.c</File>
+    <File>calculation_posDummies.c</File>
     <File>calculation_crossingBall.c</File>
     <File>calculation_displacementOfAxes.c</File>
     <File>measurement_ofScore.c</File>

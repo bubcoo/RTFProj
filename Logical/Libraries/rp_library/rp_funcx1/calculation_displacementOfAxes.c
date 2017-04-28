@@ -131,10 +131,10 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 				
 				if(aux_acceleration[i_out] > 489000){
 					acceleration[i_out] = 489000;
-					deceleration[i_out] = acceleration[i_out];
+					deceleration[i_out] = 489000;
 				}else{
 					acceleration[i_out] = aux_acceleration[i_out];
-					deceleration[i_out] = acceleration[i_out];
+					deceleration[i_out] = aux_acceleration[i_out];
 				}
 			}else{
 				velocity[i_out]		    = aux_velocity[i_out];
@@ -142,10 +142,10 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 				
 				if(aux_acceleration[i_out] > 489000){
 					acceleration[i_out] = 489000;
-					deceleration[i_out] = acceleration[i_out];
+					deceleration[i_out] = 489000;
 				}else{
 					acceleration[i_out] = aux_acceleration[i_out];
-					deceleration[i_out] = acceleration[i_out];
+					deceleration[i_out] = aux_acceleration[i_out];
 				}
 			}
 		}else{
@@ -157,21 +157,21 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 				
 				if(aux_acceleration[i_out] > 489000){
 					acceleration[i_out] = 489000;
-					deceleration[i_out] = acceleration[i_out];
+					deceleration[i_out] = 489000;
 				}else{
 					acceleration[i_out] = aux_acceleration[i_out];
-					deceleration[i_out] = acceleration[i_out];
+					deceleration[i_out] = aux_acceleration[i_out];
 				}
 			}else{
 				velocity[i_out] 		= aux_velocity[i_out];
-				aux_acceleration[i_out] = velocity[i_out]/velocity[i_out]/c_dOA->time_axisIntersection[i_out];
+				aux_acceleration[i_out] = velocity[i_out]/c_dOA->time_axisIntersection[i_out];
 				
 				if(aux_acceleration[i_out] > 489000){
 					acceleration[i_out] = 489000;
-					deceleration[i_out] = acceleration[i_out];
+					deceleration[i_out] = 489000;
 				}else{
 					acceleration[i_out] = aux_acceleration[i_out];
-					deceleration[i_out] = acceleration[i_out];
+					deceleration[i_out] = aux_acceleration[i_out];
 				}
 			}
 		}

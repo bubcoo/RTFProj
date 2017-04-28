@@ -45,10 +45,11 @@ _LOCAL MpAlarmXListUIConnectType AlarmListUI_ConnectType;
 _LOCAL MpAlarmXHistoryUIConnectType AlarmHistoryUI_ConnectType;
 // struct - rp_funcx1
 _LOCAL struct forecast_direction f_d;
-_LOCAL struct calculation_posDummiesOpponent c_ppd;
+_LOCAL struct calculation_posDummies c_ppd;
 _LOCAL struct calculation_crossingBall c_cb[2];
 _LOCAL struct calculation_displacementOfAxes c_doa;
 _LOCAL struct get_rotationalPostition get_rotPos;
+_LOCAL struct get_rotationalPostition get_rotPosASH;
 _LOCAL struct measurement_ofScore m_ofScore;
 _LOCAL struct start_rotaryAxis start_rotA[4];
 _LOCAL struct start_linearAxis start_linA[4];
@@ -436,11 +437,21 @@ void _CYCLIC ProgramCyclic(void)
 				f_d.ball2_y = ball2[1];
 				forecast_direction(&f_d);
 				// calculation pos dummies opponent
+				// maximum displacement of individual axes
+				c_ppd.max_disp[0] = 1000;
+				c_ppd.max_disp[0] = 1850;
+				c_ppd.max_disp[0] = 650;
+				c_ppd.max_disp[0] = 955;
+				// minimum displacement of individual axes
+				c_ppd.min_disp[0] = -1000;
+				c_ppd.min_disp[0] = -1850;
+				c_ppd.min_disp[0] = -650;
+				c_ppd.min_disp[0] = -955;
 				for(i_ppd = 0; i_ppd < (int)(sizeof(optical_sensor)/sizeof(optical_sensor[0])); i_ppd++){
-					c_ppd.displacement_HUMAN[i_ppd] = optical_sensor[i_ppd];
+					c_ppd.displacement[i_ppd] = optical_sensor[i_ppd];
 				}
 
-				calculation_posDummiesOpponent(&c_ppd);
+				calculation_posDummies(&c_ppd);
 				// calculation crossing ball
 				for(i_ccd = 0; i_ccd < (int)(sizeof(ball1)/sizeof(ball1[0])); i_ccd++){
 					c_cb[i_ccd].ball1_x = ball1[0];
@@ -527,7 +538,7 @@ void _CYCLIC ProgramCyclic(void)
 			break;
 		case RST_AFTER_SAFETY:
 			{
-				/************************************ AFTER SAFETY: POWER ON AXES *************************************/	
+				/************************************ AFTER SAFETY: POWER ON AXES *************************************/
 				for(i_bs = 0; i_bs <= max_numberOfFormation - 1; i_bs++){
 					mp_Axis.mp_axisRotary[i_bs].Power = 1;
 					mp_Axis.mp_axisLinear[i_bs].Power = 1;
@@ -537,6 +548,7 @@ void _CYCLIC ProgramCyclic(void)
 							c_bState++;
 						}
 					}
+					
 				}
 				
 				if(c_bState == max_numberOfFormation){
@@ -553,6 +565,11 @@ void _CYCLIC ProgramCyclic(void)
 							SOCCER_TABLE_STEP = BEFORE_STATE;
 						}
 					}
+				}else if(ESTOP == 0 || OSSD2 == 0){				
+					reset_safetyESTOP = 0;
+					if(reset_safetyESTOP == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}
 				}
 			}
 			break;
@@ -560,13 +577,18 @@ void _CYCLIC ProgramCyclic(void)
 			{
 				/******************************************* ERROR STATE **********************************************/
 				for(i_rstE = 0; i_rstE <= max_numberOfFormation - 1; i_rstE++){
-					// rotary error reset -> On
-					if(mp_Axis.mp_axisRotary[i_rstE].Error == 1){
-						mp_Axis.mp_axisRotary[i_rstE].ErrorReset = 1;
-					}
-					// linear error reset -> On
-					if(mp_Axis.mp_axisLinear[i_rstE].Error == 1){
-						mp_Axis.mp_axisLinear[i_rstE].ErrorReset = 1;
+					mp_Axis.mp_axisRotary[i_rstE].ErrorReset = 0;
+					mp_Axis.mp_axisLinear[i_rstE].ErrorReset = 0;
+					
+					if(mp_Axis.mp_axisRotary[i_rstE].ErrorReset == 0 && mp_Axis.mp_axisLinear[i_rstE].ErrorReset == 0){
+						// rotary error reset -> On
+						if(mp_Axis.mp_axisRotary[i_rstE].Error == 1){
+							mp_Axis.mp_axisRotary[i_rstE].ErrorReset = 1;
+						}
+						// linear error reset -> On
+						if(mp_Axis.mp_axisLinear[i_rstE].Error == 1){
+							mp_Axis.mp_axisLinear[i_rstE].ErrorReset = 1;
+						}
 					}
 				}
 				

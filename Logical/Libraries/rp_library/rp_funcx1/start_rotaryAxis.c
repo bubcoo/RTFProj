@@ -37,7 +37,10 @@ void start_rotaryAxis(struct start_rotaryAxis* s_ra)
 					// reset output
 					s_ra->succesfully = 0;
 					if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
-						s_ra->Internal.state = 10;
+						s_ra->axis_name->ErrorReset = 0;
+						if(s_ra->axis_name->ErrorReset == 0){
+							s_ra->Internal.state = 10;
+						}
 					}else{
 						if(s_ra->start_btn == 1){
 							s_ra->Internal.state = 1;
@@ -52,12 +55,15 @@ void start_rotaryAxis(struct start_rotaryAxis* s_ra)
 				// power on -> axis
 				s_ra->axis_name->Power = 1;
 			
-				if(s_ra->axis_name->PowerOn == 1){
-					s_ra->Internal.state = 2;
-				}else if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
-					s_ra->Internal.state = 10;
+				if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
+					s_ra->axis_name->ErrorReset = 0;
+					if(s_ra->axis_name->ErrorReset == 0){
+						s_ra->Internal.state = 10;
+					}
 				}else{
-					s_ra->Internal.state = s_ra->Internal.before_state;
+					if(s_ra->axis_name->PowerOn == 1){
+						s_ra->Internal.state = 2;
+					}
 				}
 			}
 			break;
@@ -67,13 +73,18 @@ void start_rotaryAxis(struct start_rotaryAxis* s_ra)
 				// update -> axis
 				s_ra->axis_name->Update = 1;
 			
-				if(s_ra->axis_name->UpdateDone == 1){
-					s_ra->axis_name->Update = 0;
-					s_ra->Internal.state 	= 3;
-				}else if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
-					s_ra->Internal.state = 10;
+				if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
+					s_ra->axis_name->ErrorReset = 0;
+					if(s_ra->axis_name->ErrorReset == 0){
+						s_ra->Internal.state = 10;
+					}
 				}else{
-					s_ra->Internal.state = s_ra->Internal.before_state;
+					if(s_ra->axis_name->UpdateDone == 1){
+						s_ra->axis_name->Update = 0;
+						if(s_ra->axis_name->Update == 0){
+							s_ra->Internal.state = 3;
+						}
+					}
 				}
 			}
 		case 3:
@@ -82,13 +93,16 @@ void start_rotaryAxis(struct start_rotaryAxis* s_ra)
 				// home -> axis
 				s_ra->axis_name->Home = 1;
 			
-				if(s_ra->axis_name->IsHomed == 1){
-					s_ra->axis_name->Home = 0;
-					s_ra->Internal.state  = 4;
-				}else if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
-					s_ra->Internal.state = 10;
+				if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
+					s_ra->axis_name->ErrorReset = 0;
+					if(s_ra->axis_name->ErrorReset == 0){
+						s_ra->Internal.state = 10;
+					}
 				}else{
-					s_ra->Internal.state = s_ra->Internal.before_state;
+					if(s_ra->axis_name->IsHomed == 1){
+						s_ra->axis_name->Home = 0;
+						s_ra->Internal.state  = 4;
+					}
 				}
 			}
 			break;
@@ -98,17 +112,20 @@ void start_rotaryAxis(struct start_rotaryAxis* s_ra)
 				// move absolute -> axis
 				s_ra->axis_name->MoveAbsolute = 1;
 				
-				if(s_ra->axis_name->InPosition == 1){
-					s_ra->axis_name->MoveAbsolute = 0;
-					
-					if(s_ra->axis_name->MoveAbsolute == 0){
-						s_ra->succesfully	          = 1;
-						s_ra->Internal.state		  = 0;
+				if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
+					s_ra->axis_name->ErrorReset = 0;
+					if(s_ra->axis_name->ErrorReset == 0){
+						s_ra->Internal.state = 10;
 					}
-				}else if(s_ra->axis_name->Error == 1 || s_ra->axis_name->StatusID != 0){
-					s_ra->Internal.state = 10;
 				}else{
-					s_ra->Internal.state = s_ra->Internal.before_state;
+					if(s_ra->axis_name->InPosition == 1){
+						s_ra->axis_name->MoveAbsolute = 0;
+					
+						if(s_ra->axis_name->MoveAbsolute == 0){
+							s_ra->succesfully	 = 1;
+							s_ra->Internal.state = 0;
+						}
+					}
 				}
 			}
 			break;
