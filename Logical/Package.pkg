@@ -10,5 +10,6 @@
     <Object Type="Package">Real_Game</Object>
     <Object Type="Package">mappView</Object>
     <Object Type="File">Project.language</Object>
+    <Object Type="Package">Connection</Object>
   </Objects>
 </Package>

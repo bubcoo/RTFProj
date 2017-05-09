@@ -24,5 +24,18 @@
     <Object Type="File">Start.svg</Object>
     <Object Type="File">HTML.png</Object>
     <Object Type="File">Overview.png</Object>
+    <Object Type="File">gear_run.png</Object>
+    <Object Type="File">soccer_ball.png</Object>
+    <Object Type="File">AboutW.png</Object>
+    <Object Type="File">AlarmW.png</Object>
+    <Object Type="File">CameraW.png</Object>
+    <Object Type="File">GraphW.png</Object>
+    <Object Type="File">HomeW.png</Object>
+    <Object Type="File">OptionsW.png</Object>
+    <Object Type="File">SafetyW.png</Object>
+    <Object Type="File">SDMW.png</Object>
+    <Object Type="File">TemperatureW.png</Object>
+    <Object Type="File">exit.png</Object>
+    <Object Type="File">strt.png</Object>
   </Objects>
 </Package>

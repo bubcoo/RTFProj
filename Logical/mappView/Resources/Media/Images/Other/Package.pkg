@@ -27,5 +27,16 @@
     <Object Type="File">alrmx.png</Object>
     <Object Type="File">seko.png</Object>
     <Object Type="File">PDF.png</Object>
+    <Object Type="File">brAll.png</Object>
+    <Object Type="File">alrmxG.png</Object>
+    <Object Type="File">tab.png</Object>
+    <Object Type="File">pb.png</Object>
+    <Object Type="File">pbD.png</Object>
+    <Object Type="File">hb.png</Object>
+    <Object Type="File">hbD.png</Object>
+    <Object Type="File">match_ball.png</Object>
+    <Object Type="File">cognex.png</Object>
+    <Object Type="File">logo_cognex.png</Object>
+    <Object Type="File">front2.png</Object>
   </Objects>
 </Package>

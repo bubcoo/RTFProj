@@ -18,8 +18,6 @@
     <Object Type="Library" Language="Binary" Description="The BRSystem library provides the user with a number of system functions for e.g. handling permanent memory, accessing exception information, etc.">brsystem</Object>
     <Object Type="Library" Language="Binary" Description="This library contains standard function blocks and functions for IEC 61131-3.">standard</Object>
     <Object Type="Package" Description="Roman Parák Library">rp_library</Object>
-    <Object Type="Package" Description="Lubomir Bubenik's Library for camera.">LB_Camera</Object>
-    <Object Type="Package" Description="Radek Otradovský Library for sensors.">RO_Sensors</Object>
     <Object Type="Package" Description="Lubo and Radek Library for detection of score.">RO_LB_ScoreDetection</Object>
     <Object Type="Library" Language="Binary" Description="The AsBrStr Library contains FBKs for memory and character string handling.">AsBrStr</Object>
     <Object Type="Library" Language="IEC">IecCheck</Object>
@@ -35,5 +33,9 @@
     <Object Type="Library" Language="Binary" Description="Single and multi axes control">MpAxis</Object>
     <Object Type="Library" Language="Binary" Description="Advanced alarm management">MpAlarmX</Object>
     <Object Type="Library" Language="Binary" Description="ACOPOS Simulation">Acp10sim</Object>
+    <Object Type="Library" Language="IEC">RO_Sensors</Object>
+    <Object Type="Library" Language="ANSIC">Camera</Object>
+    <Object Type="Library" Language="ANSIC">Bar_Light</Object>
+    <Object Type="Library" Language="Binary" Description="This library contains FBKs for exchanging data packets via datagram sockets (UDP).">AsUDP</Object>
   </Objects>
 </Package>

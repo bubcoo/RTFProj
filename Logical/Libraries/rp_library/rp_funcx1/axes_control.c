@@ -29,7 +29,25 @@ void axes_control(struct axes_control* a_c)
 			
 				if(a_c->start_move == 1){
 					a_c->successfully = 0;
-					if(((a_c->rotary_axis_cyclic->Error == 1 && a_c->rotary_axis_cyclic->StatusID != 0) || (a_c->linear_axis_cyclic->Error == 1 && a_c->linear_axis_cyclic->StatusID != 0))
+					
+					if(a_c->successfully == 0){
+						if(((a_c->rotary_axis_cyclic->Error == 1 && a_c->rotary_axis_cyclic->StatusID != 0) || (a_c->linear_axis_cyclic->Error == 1 && a_c->linear_axis_cyclic->StatusID != 0))
+						|| (a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1)){
+							// cyclic position -> off
+							a_c->linear_axis_cyclic->CyclicPosition = 0;
+							a_c->rotary_axis_cyclic->CyclicPosition = 0;
+							if(a_c->linear_axis_cyclic->CyclicPosition == 0 && a_c->rotary_axis_cyclic->CyclicPosition == 0){
+								// go to error state
+								a_c->Internal.state = 10;
+							}
+						}else{
+							// start cyclic position
+							a_c->linear_axis_cyclic->CyclicPosition = 1;
+							a_c->rotary_axis_cyclic->CyclicPosition = 1;
+							// go to next state
+							a_c->Internal.state = 1;
+						}
+					}else if(((a_c->rotary_axis_cyclic->Error == 1 && a_c->rotary_axis_cyclic->StatusID != 0) || (a_c->linear_axis_cyclic->Error == 1 && a_c->linear_axis_cyclic->StatusID != 0))
 					|| (a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1)){
 						// cyclic position -> off
 						a_c->linear_axis_cyclic->CyclicPosition = 0;
@@ -38,21 +56,6 @@ void axes_control(struct axes_control* a_c)
 							// go to error state
 							a_c->Internal.state = 10;
 						}
-					}else{
-						// start cyclic position
-						a_c->linear_axis_cyclic->CyclicPosition = 1;
-						a_c->rotary_axis_cyclic->CyclicPosition = 1;
-						// go to next state
-						a_c->Internal.state = 1;
-					}
-				}else if(((a_c->rotary_axis_cyclic->Error == 1 && a_c->rotary_axis_cyclic->StatusID != 0) || (a_c->linear_axis_cyclic->Error == 1 && a_c->linear_axis_cyclic->StatusID != 0))
-				|| (a_c->rotary_axis_cyclic->CommandAborted == 1 || a_c->linear_axis_cyclic->CommandAborted == 1)){
-					// cyclic position -> off
-					a_c->linear_axis_cyclic->CyclicPosition = 0;
-					a_c->rotary_axis_cyclic->CyclicPosition = 0;
-					if(a_c->linear_axis_cyclic->CyclicPosition == 0 && a_c->rotary_axis_cyclic->CyclicPosition == 0){
-						// go to error state
-						a_c->Internal.state = 10;
 					}
 				}
 			}

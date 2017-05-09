@@ -25,7 +25,7 @@
 
 #include "Camera.h"
 #include "Bar_Light.h"
-#include "Library.h"
+#include "RO_Sensors.h"
 
 #ifdef _DEFAULT_INCLUDES
 	#include <AsDefault.h>
@@ -35,7 +35,7 @@
 #define EACH_FORMATION 1;
 
 /************************ GLOBAL VARIABLES ******************************/
-_GLOBAL FBCamera_typ FBCamera_0;
+_GLOBAL FBCamera_typ cam_det;
 _GLOBAL Light_typ Light_0;
 _GLOBAL GoalKeeper_typ GoalKeeper_0;
 
@@ -55,10 +55,13 @@ _LOCAL struct start_rotaryAxis start_rotA[4];
 _LOCAL struct start_linearAxis start_linA[4];
 _LOCAL struct err_detection e_detect;
 _LOCAL struct axes_control axes_c[4];
+_LOCAL struct ball_shooting ball_shoot;
+_LOCAL struct turn_position turn_pos;
+_LOCAL struct check_attack_mode check_aM;
 // struct - camera
 _LOCAL RTCtime_typ ActTime_tmp;
 // struct - sensors
-_LOCAL struct DetectionPositionAxis DetectionPositionAxis_0;
+_LOCAL struct DetectionPositionAxis dpA;
 // udint
 _LOCAL UDINT alarm_device_address;
 _LOCAL UDINT specific_directionOfBall;
@@ -71,9 +74,10 @@ _LOCAL BOOL SAFETY_MODUL_OK;
 _LOCAL USINT max_numberOfFormation;
 _LOCAL USINT i_axisNum;
 _LOCAL USINT i_act, i_bs, i_bs2, i_sAx, i_initS, i_errD, i_rstE, i_rstE2;
-_LOCAL USINT i_home, i_int3;
-_LOCAL USINT c_ofActive, c_bState, c_sAx, c_initS, c_int3;
+_LOCAL USINT i_home, i_int3, i_def, i_dp1, i_dp2, i_cm;
+_LOCAL USINT c_ofActive, c_bState, c_sAx, c_initS, c_int3, c_dp;
 _LOCAL USINT i_ppd, i_ccd, i_ccdCPU, i_ccdHUM, i_cdoa1, i_cdoa2, i_cdoa3;
+_LOCAL USINT index_ofAxesAM;
 // real
 _LOCAL REAL x_posOfCPU[4];
 _LOCAL REAL x_posOfHUM[4];
@@ -197,9 +201,11 @@ void _INIT ProgramInit(void)
 		axes_c[i_axisNum].rotary_axis_param  = &mp_Axis.param_cyclicSetRotary[i_axisNum];
     }
 	/************************************* Camera initialization **************************************/
-	FBCamera_0.Enable = 1;
-	/************************************* Sensor initialization **************************************/
-	
+	cam_det.Enable = 1;
+	/********************************** Ball shooting initialization **********************************/
+	ball_shoot.Enable = 1;
+	/********************************** Turn position initialization **********************************/
+	turn_pos.Enable = 1;
 	/*************************************** INITIALIZATIONS ******************************************/
 	// initialization x axes for CPU
 	x_posOfCPU[0] = 800;
@@ -239,6 +245,8 @@ void _INIT ProgramInit(void)
 	c_ofActive = 0;
 	c_sAx	   = 0;
 	c_bState   = 0;
+	// initi index attack mode
+	index_ofAxesAM = 0;
 	// initialization define position of rotary Axis
 	define_posRotary[0] = 117956383;	
 	// linear max positions
@@ -259,8 +267,27 @@ void _CYCLIC ProgramCyclic(void)
 	temp_lin[0] = mp_Axis.mp_axisLinear[0].Info.CyclicRead.MotorTemperature.Value;
 	temp_rot[0] = mp_Axis.mp_axisRotary[0].Info.CyclicRead.MotorTemperature.Value;
 	
-	
 	switch(SOCCER_TABLE_STEP){
+		case RST_EMPTY:
+			{
+				/*
+				DetectionPositionAxis(&dpA);
+				// SENSOR
+				optical_sensor[0] = dpA.ActPosHumAxis[0];
+				optical_sensor[1] = dpA.ActPosHumAxis[1];
+				optical_sensor[2] = dpA.ActPosHumAxis[2];
+				optical_sensor[3] = dpA.ActPosHumAxis[3];
+				*/
+				// Camera
+				FBCamera(&cam_det);
+				// CAMERA
+				ball1[0] = cam_det.Results.AxisX;
+				ball1[1] = cam_det.Results.AxisY;
+				ball2[0] = cam_det.Results.AxisXOld;
+				ball2[1] = cam_det.Results.AxisYOld;
+				time_B2B = cam_det.Results.TimeDiff_ms/1000;
+			}
+			break;
 		case RST_INITIALIZATION_1:
 			{	
 				/*************************************** INITIALIZATION no.1 ******************************************/
@@ -425,6 +452,72 @@ void _CYCLIC ProgramCyclic(void)
 				}
 			}
 			break;
+		case RST_INITIALIZATION_5:
+			{
+				/*************************************** INITIALIZATION no.5 ******************************************/
+				// values -> camera
+				// ball step -> k - 1
+				ball1[0] = 0;
+				ball1[1] = 0;
+				// ball step -> k
+				ball2[0] = 0;
+				ball2[1] = 0;
+				// time between two balls
+				time_B2B = 0;
+	
+				// values -> optical sensor
+				optical_sensor[0] = 0;
+				optical_sensor[1] = 0;
+				optical_sensor[2] = 0;
+				optical_sensor[3] = 0;
+    			// values -> reflex sensor
+				reflex_sensor[0] = 1;
+				reflex_sensor[1] = 1;
+				reflex_sensor[2] = 1;
+				reflex_sensor[3] = 1;
+												
+				if(ESTOP == 0 || OSSD2 == 0){
+					SOCCER_TABLE_STEP = RST_SAFETY;
+				}else if(e_detect.err_detect == 1){
+					SOCCER_TABLE_STEP = RST_ERROR;
+				}else {
+					//SOCCER_TABLE_STEP = RST_CHECK_MODE;
+				}
+			}
+			break;
+		case RST_CHECK_MODE:
+			{
+				/******************************************* CHECK MODE ***********************************************/
+				check_aM.ball1_x = ball1[0];
+				check_aM.ball1_y = ball1[1];
+				check_aM.ball2_x = ball2[0];
+				check_aM.ball2_y = ball2[1];
+				
+				for(i_cm = 0; i_cm <= max_numberOfFormation - 1; i_cm++){
+					check_aM.act_displacement_cpu[i_cm] = mp_Axis.mp_cyclicSetLinear[i_cm].Info.SlavePosition;
+					check_aM.angle_ofRotation[i_cm] 	= mp_Axis.mp_cyclicSetRotary[i_cm].Info.SlavePosition;
+				}
+				// call function
+				check_attack_mode(&check_aM);
+				
+				if(ESTOP == 0 || OSSD2 == 0){
+					SOCCER_TABLE_STEP = RST_SAFETY;
+				}else if(e_detect.err_detect == 1){
+					SOCCER_TABLE_STEP = RST_ERROR;
+				}else {
+					index_ofAxesAM = check_aM.index_ofAxis;
+					if(check_aM.attack_mode == 0){
+						// If ball it isn't near of dummy -> Defences
+						SOCCER_TABLE_STEP = RST_CALCULATION_DEFENSE;
+					}else if(check_aM.attack_mode == 1){
+						// attack mode If ball is behind of dummy -> turn position
+						SOCCER_TABLE_STEP = RST_ATTACK_MODE_TURN_POS;
+					}else if(check_aM.attack_mode == 2){
+						// attack mode If ball is before of dummy -> shoot
+						SOCCER_TABLE_STEP = RST_ATTACK_MODE_SHOOT;
+					}
+				}
+			}
 		case RST_CALCULATION_DEFENSE:
 			{
 				/*************************************** CALCULATION DEFENSE ******************************************/
@@ -438,15 +531,15 @@ void _CYCLIC ProgramCyclic(void)
 				forecast_direction(&f_d);
 				// calculation pos dummies opponent
 				// maximum displacement of individual axes
-				c_ppd.max_disp[0] = 1000;
+				c_ppd.max_disp[0] = 1025;
 				c_ppd.max_disp[0] = 1850;
-				c_ppd.max_disp[0] = 650;
-				c_ppd.max_disp[0] = 955;
+				c_ppd.max_disp[0] = 665;
+				c_ppd.max_disp[0] = 975;
 				// minimum displacement of individual axes
-				c_ppd.min_disp[0] = -1000;
+				c_ppd.min_disp[0] = -1025;
 				c_ppd.min_disp[0] = -1850;
-				c_ppd.min_disp[0] = -650;
-				c_ppd.min_disp[0] = -955;
+				c_ppd.min_disp[0] = -665;
+				c_ppd.min_disp[0] = -975;
 				for(i_ppd = 0; i_ppd < (int)(sizeof(optical_sensor)/sizeof(optical_sensor[0])); i_ppd++){
 					c_ppd.displacement[i_ppd] = optical_sensor[i_ppd];
 				}
@@ -486,7 +579,7 @@ void _CYCLIC ProgramCyclic(void)
 				for(i_cdoa2 = 0; i_cdoa2 < (int)(sizeof(c_cb[0].act_posOfAxesY)/sizeof(c_cb[0].act_posOfAxesY[0])); i_cdoa2++){
 					c_doa.act_posOfAxesCPU_Y[i_cdoa2]    = c_cb[0].act_posOfAxesY[i_cdoa2];
 					c_doa.time_axisIntersection[i_cdoa2] = c_cb[0].time_axisIntersection[i_cdoa2] * 0.2;
-					c_doa.act_displacementCPU[i_cdoa2]   = 0; // actual displacement
+					c_doa.act_displacementCPU[i_cdoa2]   = mp_Axis.mp_cyclicSetLinear[i_cdoa2].Info.SlavePosition;
 					c_doa.reversed_HUM[i_cdoa2]          = reflex_sensor[i_cdoa2];
 				}
 				c_doa.act_posOfAxesHUM_Y[0] = c_cb[1].act_posOfAxesY[3];
@@ -500,12 +593,93 @@ void _CYCLIC ProgramCyclic(void)
 				c_doa.x_posOfBall[1] = ball2[0];
 				calculation_displacementOfAxes(&c_doa);
 				
+				for(i_def = 0; i_def <= max_numberOfFormation - 1; i_def++){
+					axes_c[i_def].linear_param.acceleration = c_doa.acceleration[i_def];
+					axes_c[i_def].linear_param.deceleration = c_doa.deceleration[i_def];
+					axes_c[i_def].linear_param.velocity     = c_doa.velocity[i_def];
+					axes_c[i_def].linear_param.displacement = c_doa.displacement[i_def];
+				}
+				
 				if(ESTOP == 0 || OSSD2 == 0){
 					SOCCER_TABLE_STEP = RST_SAFETY;
 				}else if(e_detect.err_detect == 1){
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else {
-					//SOCCER_TABLE_STEP = RST_INITIALIZATION_3;
+					c_dp = 0;
+					
+					if(c_dp == 0){
+						SOCCER_TABLE_STEP = RST_MOVE_INTO_DEFENSE_POS1;
+					}
+				}
+			}
+			break;
+		case RST_MOVE_INTO_DEFENSE_POS1:
+			{
+				/*************************************** DEF. MOVE no.1 ******************************************/
+				for(i_dp1 = 0; i_dp1 <= max_numberOfFormation - 1; i_dp1++){
+					axes_c[i_dp1].start_move = 1;
+				}
+				if(ESTOP == 0 || OSSD2 == 0){
+					SOCCER_TABLE_STEP = RST_SAFETY;
+				}else if(e_detect.err_detect == 1){
+					SOCCER_TABLE_STEP = RST_ERROR;
+				}else {
+					SOCCER_TABLE_STEP = RST_MOVE_INTO_DEFENSE_POS2;
+				}
+			}
+			break;
+		case RST_MOVE_INTO_DEFENSE_POS2:
+			{
+				/*************************************** DEF. MOVE no.2 ******************************************/
+				for(i_dp2 = 0; i_dp2 <= max_numberOfFormation - 1; i_dp2++){
+					if(axes_c[i_dp2].successfully == 1){
+						axes_c[i_dp2].start_move = 0;
+						c_dp++;
+					}
+				}
+				
+				if(ESTOP == 0 || OSSD2 == 0){
+					SOCCER_TABLE_STEP = RST_SAFETY;
+				}else if(e_detect.err_detect == 1){
+					SOCCER_TABLE_STEP = RST_ERROR;
+				}else {
+					SOCCER_TABLE_STEP = RST_INITIALIZATION_4;
+				}
+			}
+			break;
+		case RST_ATTACK_MODE_SHOOT:
+			{
+				/*************************************** ATTACK MODE SHOOT ****************************************/
+				ball_shoot.axes_control = &axes_c[0];
+				ball_shoot.rotary_axes  = &mp_Axis.mp_cyclicSetRotary[0];
+				ball_shooting(&ball_shoot);
+				if(ball_shoot.start_shoot == 1){
+					if(ball_shoot.successfully == 1){
+						ball_shoot.start_shoot = 0;
+						
+						if(ball_shoot.start_shoot == 0){
+							SOCCER_TABLE_STEP = RST_INITIALIZATION_4;
+						}
+					}
+				}
+			}
+			break;
+		case RST_ATTACK_MODE_TURN_POS:
+			{
+				/*************************************** ATTACK MODE TURN POS. *************************************/
+				turn_pos.axes_control = &axes_c[0];
+				turn_pos.linear_axes  = &mp_Axis.mp_cyclicSetLinear[0];
+				turn_pos.rotary_axes  = &mp_Axis.mp_cyclicSetRotary[0];
+				turn_position(&turn_pos);
+				
+				if(turn_pos.start_turn == 1){
+					if(turn_pos.successfully == 1){
+						turn_pos.start_turn = 0;
+						
+						if(turn_pos.start_turn == 0){
+							SOCCER_TABLE_STEP = RST_INITIALIZATION_4;
+						}
+					}
 				}
 			}
 			break;
@@ -612,6 +786,11 @@ void _CYCLIC ProgramCyclic(void)
 				}
 			}
 			break;
+		case RST_STOP:
+			{
+				/****************************************** STOP -> MODE *********************************************/
+			}
+			break;
 	}// end switch
 	
 	/************************** Call function & function blocks **************************/
@@ -623,14 +802,10 @@ void _CYCLIC ProgramCyclic(void)
 	// Active AxisBasic & AxisCyclicSet -> through the individual functions
 	start_axesBasic(max_numberOfFormation,&mp_Axis.mp_axisLinear,&mp_Axis.mp_axisRotary);
 	start_axesCyclic(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
-	// Camera
-	FBCamera(&FBCamera_0);
 	// Lights
 	//Light(&Light_0);
 	// Detection score
 	//GoalKeeper(&GoalKeeper_0);
-	// sensor
-	DetectionPositionAxis(&DetectionPositionAxis_0);
 	// Measuremet of score
 	measurement_ofScore(&m_ofScore);
 	// axes control

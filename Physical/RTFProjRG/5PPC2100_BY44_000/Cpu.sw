@@ -6,7 +6,9 @@
   </TaskClass>
   <TaskClass Name="Cyclic#2" />
   <TaskClass Name="Cyclic#3" />
-  <TaskClass Name="Cyclic#4" />
+  <TaskClass Name="Cyclic#4">
+    <Task Name="Client" Source="Connection.Client.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+  </TaskClass>
   <TaskClass Name="Cyclic#5" />
   <TaskClass Name="Cyclic#6" />
   <TaskClass Name="Cyclic#7" />
@@ -75,8 +77,6 @@
     <LibraryObject Name="brsystem" Source="Libraries.brsystem.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="standard" Source="Libraries.standard.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="rp_funcx1" Source="Libraries.rp_library.rp_funcx1.lby" Memory="UserROM" Language="ANSIC" Debugging="true" />
-    <LibraryObject Name="Camera" Source="Libraries.LB_Camera.Camera.lby" Memory="UserROM" Language="ANSIC" Debugging="true" />
-    <LibraryObject Name="Bar_Light" Source="Libraries.LB_Camera.Bar_Light.lby" Memory="UserROM" Language="ANSIC" Debugging="true" />
     <LibraryObject Name="GoalKeeper" Source="Libraries.RO_LB_ScoreDetection.GoalKeeper.lby" Memory="UserROM" Language="ANSIC" Debugging="true" />
     <LibraryObject Name="AsBrStr" Source="Libraries.AsBrStr.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="IecCheck" Source="Libraries.IecCheck.lby" Memory="UserROM" Language="IEC" Debugging="true" />
@@ -91,8 +91,11 @@
     <LibraryObject Name="Acp10man" Source="Libraries.Acp10man.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="NcGlobal" Source="Libraries.NcGlobal.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="Acp10par" Source="Libraries.Acp10par.lby" Memory="UserROM" Language="Binary" Debugging="true" />
-    <LibraryObject Name="Library" Source="Libraries.RO_Sensors.Library.lby" Memory="UserROM" Language="IEC" Debugging="true" />
+    <LibraryObject Name="RO_Sensors" Source="Libraries.RO_Sensors.lby" Memory="UserROM" Language="IEC" Debugging="true" />
+    <LibraryObject Name="Camera" Source="Libraries.Camera.lby" Memory="UserROM" Language="ANSIC" Debugging="true" />
+    <LibraryObject Name="Bar_Light" Source="Libraries.Bar_Light.lby" Memory="UserROM" Language="ANSIC" Debugging="true" />
     <LibraryObject Name="powerlnk" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="areventlog" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="AsUDP" Source="Libraries.AsUDP.lby" Memory="UserROM" Language="Binary" Debugging="true" />
   </Libraries>
 </SwConfiguration>

@@ -5,7 +5,6 @@
     <Object Type="Package" Description="AreaContents">AreaContents</Object>
     <Object Type="Package">CameraPage</Object>
     <Object Type="Package">GamePage</Object>
-    <Object Type="Package">SDMPage</Object>
     <Object Type="Package">MatchPage</Object>
     <Object Type="Package">HomePage</Object>
     <Object Type="Package">AlarmPage</Object>
@@ -17,5 +16,7 @@
     <Object Type="Package">mbInfo</Object>
     <Object Type="Package">dsInfo</Object>
     <Object Type="Package">wdInfo</Object>
+    <Object Type="Package">SPage</Object>
+    <Object Type="Package">MatHist</Object>
   </Objects>
 </Package>

@@ -202,16 +202,6 @@ FUNCTION_BLOCK forecast_direction (*TODO: Add your comment here*) (*$GROUP=User,
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK get_rotationalPostition
-	VAR_INPUT
-		actual_position : ARRAY[0..3] OF LREAL;
-		define_position : ARRAY[0..3] OF LREAL;
-	END_VAR
-	VAR_OUTPUT
-		result : ARRAY[0..3] OF LREAL;
-	END_VAR
-END_FUNCTION_BLOCK
-
 FUNCTION random_number : INT (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
 	VAR_INPUT
 		min_num : INT;
@@ -273,6 +263,16 @@ FUNCTION_BLOCK control_temperature (*TODO: Add your comment here*) (*$GROUP=User
 	END_VAR
 END_FUNCTION_BLOCK
 
+FUNCTION_BLOCK get_rotationalPostition
+	VAR_INPUT
+		actual_position : ARRAY[0..3] OF LREAL;
+		define_position : ARRAY[0..3] OF LREAL;
+	END_VAR
+	VAR_OUTPUT
+		result : ARRAY[0..3] OF LREAL;
+	END_VAR
+END_FUNCTION_BLOCK
+
 FUNCTION_BLOCK axes_control (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
 	VAR_INPUT
 		Enable : BOOL;
@@ -289,5 +289,78 @@ FUNCTION_BLOCK axes_control (*TODO: Add your comment here*) (*$GROUP=User,$CAT=U
 	END_VAR
 	VAR
 		Internal : internal_controlAxis;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK ball_shooting (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		Enable : BOOL;
+		start_shoot : BOOL;
+		rotary_axes : REFERENCE TO MpAxisCyclicSet;
+		axes_control : REFERENCE TO axes_control;
+	END_VAR
+	VAR_OUTPUT
+		successfully : BOOL;
+	END_VAR
+	VAR
+		Internal : internal_ballShooting;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK turn_position (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		Enable : BOOL;
+		start_turn : BOOL;
+		index_ofAxis : USINT;
+		linear_axes : REFERENCE TO MpAxisCyclicSet;
+		rotary_axes : REFERENCE TO MpAxisCyclicSet;
+		axes_control : REFERENCE TO axes_control;
+	END_VAR
+	VAR_OUTPUT
+		successfully : BOOL;
+	END_VAR
+	VAR
+		Internal : internal_turnPos;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK detect_axisNumber
+	VAR_INPUT
+		ball1_x : REAL;
+		ball2_x : REAL;
+	END_VAR
+	VAR_OUTPUT
+		axis_number : USINT;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK choose_attack_mode
+	VAR_INPUT
+		axis_number : USINT;
+		behind_position : INT;
+		before_position : INT;
+		ball1_x : REAL;
+		ball1_y : REAL;
+		ball2_x : REAL;
+		ball2_y : REAL;
+		actual_positionsOfDummies : ARRAY[0..10] OF REAL;
+	END_VAR
+	VAR_OUTPUT
+		mode : USINT;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK check_attack_mode (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		ball1_x : REAL;
+		ball1_y : REAL;
+		ball2_x : REAL;
+		ball2_y : REAL;
+		angle_ofRotation : ARRAY[0..3] OF REAL;
+		act_displacement_cpu : ARRAY[0..3] OF REAL;
+	END_VAR
+	VAR_OUTPUT
+		attack_mode : USINT;
+		index_ofAxis : USINT;
 	END_VAR
 END_FUNCTION_BLOCK

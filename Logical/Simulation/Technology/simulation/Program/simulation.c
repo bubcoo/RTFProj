@@ -38,7 +38,9 @@ _LOCAL struct calculation_crossingBall c_cb[2];
 _LOCAL struct calculation_displacementOfAxes c_doa;
 _LOCAL struct start_rotaryAxis start_rotaryAxis_0;
 _LOCAL struct control_temperature c_temp;
-_LOCAL struct axes_control axes_control_0;
+_LOCAL struct axes_control axes_control_0[4];
+_LOCAL struct ball_shooting ball_s;
+_LOCAL struct check_attack_mode check_attack_mode_0;
 // struct - MpAlarmX
 _LOCAL MpAlarmXListUIConnectType AlarmListUI_ConnectType;
 _LOCAL MpAlarmXHistoryUIConnectType AlarmHistoryUI_ConnectType;
@@ -49,6 +51,8 @@ _LOCAL USINT max_numberOfFormation;
 _LOCAL USINT i_axisNum;
 _LOCAL USINT i_bs;
 _LOCAL USINT i_ppd, i_ccd, i_ccdCPU, i_ccdHUM, i_cdoa1, i_cdoa2, i_cdoa3;
+_LOCAL USINT c_dp;
+_LOCAL USINT i_def, i_dp1, i_dp2;
 _LOCAL USINT c_bState;
 // bool
 _LOCAL BOOL ESTOP,error_s,reset_safetyESTOP;
@@ -146,11 +150,6 @@ void _INIT ProgramInit(void)
 		// temperature - rotary
 		mp_Axis.param_axisRotary[i_axisNum].CyclicRead.MotorTempMode = mpAXIS_READ_POLLING_5s;
     }
-	// initialization axes control FB
-	axes_control_0.linear_axis_cyclic = &mp_Axis.mp_cyclicSetLinear[0];
-	axes_control_0.linear_axis_param  = &mp_Axis.param_cyclicSetLinear[0];
-	axes_control_0.rotary_axis_cyclic = &mp_Axis.mp_cyclicSetRotary[0];
-	axes_control_0.rotary_axis_param  = &mp_Axis.param_cyclicSetRotary[0];
     // initialization switch
     SOCCER_TABLE_STEP = RST_EMPTY;
     // initialization x axes for CPU
@@ -180,9 +179,18 @@ void _INIT ProgramInit(void)
     reflex_sensor[1] = 1;
     reflex_sensor[2] = 1;
     reflex_sensor[3] = 1;
-    
 	// init safety
 	ESTOP = 1;
+	// axes control
+	// FB for linear and fotary axes -> Control
+	axes_control_0[0].Enable			 = 1;
+	axes_control_0[0].linear_axis_cyclic = &mp_Axis.mp_cyclicSetLinear[0];
+	axes_control_0[0].linear_axis_param  = &mp_Axis.param_cyclicSetLinear[0];
+	axes_control_0[0].rotary_axis_cyclic = &mp_Axis.mp_cyclicSetRotary[0];
+	axes_control_0[0].rotary_axis_param  = &mp_Axis.param_cyclicSetRotary[0];
+	ball_s.Enable 		= 1;
+	ball_s.axes_control = &axes_control_0[0];
+	ball_s.rotary_axes  = &mp_Axis.mp_cyclicSetRotary[0];
 }// end _INIT
 
 /**********************************************************************************************************/
@@ -190,17 +198,41 @@ void _INIT ProgramInit(void)
 /**********************************************************************************************************/
 void _CYCLIC ProgramCyclic(void)
 {  
+	// primary -> create function block: ball_shooting(); check_mode(); turn_position();
     switch(SOCCER_TABLE_STEP){
 		case RST_EMPTY:
 			{
-				if(button == 1){
-					SOCCER_TABLE_STEP = RST_INITIALIZATION_1;
-				}
+				check_attack_mode(&check_attack_mode_0);
 			}
 			break;
 		case RST_INITIALIZATION_1:
+			{
+				mp_Axis.mp_axisLinear[0].Power = 1;
+				mp_Axis.mp_axisRotary[0].Power = 1;
+				
+				if(mp_Axis.mp_axisLinear[0].PowerOn == 1 && mp_Axis.mp_axisRotary[0].PowerOn == 1){
+					SOCCER_TABLE_STEP = RST_INITIALIZATION_2;
+				}
+			}
+			break;
+		case RST_INITIALIZATION_2:
+			{
+				mp_Axis.mp_axisLinear[0].Home  = 1;
+				mp_Axis.mp_axisRotary[0].Home  = 1;
+				
+				if(mp_Axis.mp_axisLinear[0].IsHomed == 1 && mp_Axis.mp_axisRotary[0].IsHomed == 1){
+					SOCCER_TABLE_STEP = RST_INITIALIZATION_3;
+				}
+			}
+			break;
+		case RST_INITIALIZATION_3:
+			{
+				
+			}
+			break;
+		case RST_INITIALIZATION_4:
 			{	
-
+				
 			}
 			break;
         case RST_CALCULATION_DEFENSE:
@@ -273,8 +305,55 @@ void _CYCLIC ProgramCyclic(void)
                 c_doa.x_posOfBall[0] = ball1[0];
                 c_doa.x_posOfBall[1] = ball2[0];
                 calculation_displacementOfAxes(&c_doa);
+				
+				for(i_def = 0; i_def <= max_numberOfFormation - 1; i_def++){
+					axes_control_0[i_def].linear_param.acceleration = c_doa.acceleration[i_def];
+					axes_control_0[i_def].linear_param.deceleration = c_doa.deceleration[i_def];
+					axes_control_0[i_def].linear_param.velocity     = c_doa.velocity[i_def];
+					axes_control_0[i_def].linear_param.displacement = c_doa.displacement[i_def];
+				}
+				
+				if(ESTOP == 0){
+					SOCCER_TABLE_STEP = RST_SAFETY;
+				}else{
+					c_dp = 0;
+					
+					if(c_dp == 0){
+						SOCCER_TABLE_STEP = RST_MOVE_INTO_DEFENSE_POS1;
+					}
+				}
             }
             break;
+		case RST_MOVE_INTO_DEFENSE_POS1:
+			{
+				for(i_dp1 = 0; i_dp1 <= max_numberOfFormation - 1; i_dp1++){
+					axes_control_0[i_dp1].start_move = 1;
+				}
+				
+				if(ESTOP == 0){
+					SOCCER_TABLE_STEP = RST_SAFETY;
+				}else{
+					SOCCER_TABLE_STEP = RST_MOVE_INTO_DEFENSE_POS2;
+				}
+			}
+			break;
+		case RST_MOVE_INTO_DEFENSE_POS2:
+			{
+				for(i_dp2 = 0; i_dp2 <= max_numberOfFormation - 1; i_dp2++){
+					if(axes_control_0[i_dp2].successfully == 1){
+						axes_control_0[i_dp2].start_move = 0;
+						c_dp++;
+					}
+				}
+				
+				if(ESTOP == 0){
+					SOCCER_TABLE_STEP = RST_SAFETY;
+				}else{
+					if(c_dp == max_numberOfFormation){
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_4;
+					}
+				}
+			}
 		case RST_SAFETY:
 			{
 			}
@@ -298,7 +377,10 @@ void _CYCLIC ProgramCyclic(void)
 	
 	// control temperature
 	//control_temperature(&c_temp);
-	axes_control(&axes_control_0);
+	if(SOCCER_TABLE_STEP >= 3){
+		axes_control(&axes_control_0[0]);
+		ball_shooting(&ball_s);
+	}
     
 }// end _CYCLIC
 

@@ -17,6 +17,7 @@
     </Connector>
     <Parameter ID="AutomationRuntime" Value="AR010" />
     <Parameter ID="ConfigurationID" Value="RTFProj_Config1" />
+    <Parameter ID="Simulation" Value="1" />
     <Parameter ID="TimerDeviceType" Value="EPLX2X" />
     <Parameter ID="TimerDevice" Value="5ACCIF01.FPSC-000.IF1" />
     <Parameter ID="TaskClassIdleTime" Value="2000" />
@@ -136,7 +137,7 @@
     <Connection Connector="PS" TargetModule="X20BB80" TargetConnector="PS1" />
     <Parameter ID="Supervision" Value="off" />
   </Module>
-  <Module Name="X20SLX842" Type="X20SLX842" Version="1.10.1.2">
+  <Module Name="X20SLX842" Type="X20SLX842" Version="1.10.2.9">
     <Connection Connector="SS1" TargetModule="X20TB52" TargetConnector="SS" />
     <Connection Connector="SS2" TargetModule="X20TB52a" TargetConnector="SS" />
     <Connection Connector="SL" TargetModule="X20BM33" TargetConnector="SL1" />

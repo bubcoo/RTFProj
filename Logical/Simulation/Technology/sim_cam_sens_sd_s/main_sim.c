@@ -14,7 +14,6 @@
 #include <string.h>
 #include <math.h>
 #include "rp_funcx1.h"
-#include "ro_sensors.h"
 
 #ifdef _DEFAULT_INCLUDES
 	#include <AsDefault.h>

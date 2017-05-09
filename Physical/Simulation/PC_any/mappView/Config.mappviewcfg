@@ -10,7 +10,7 @@
     </Group>
     <Group ID="OpcUa">
       <Group ID="SamplingRates">
-        <Property ID="default" Value="250" />
+        <Property ID="default" Value="200" />
         <Property ID="slow" Value="2000" />
         <Property ID="fast" Value="100" />
       </Group>

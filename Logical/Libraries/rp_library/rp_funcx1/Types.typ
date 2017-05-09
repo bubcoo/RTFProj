@@ -1,11 +1,22 @@
 (*Enumerations*)
 
 TYPE
+	internal_turnPos : 	STRUCT 
+		auxiliary_move_pos : REAL;
+		distance_ofMoveNeg : REAL;
+		distance_ofMovePos : REAL;
+		min_pos_ofAxes : ARRAY[0..3]OF REAL;
+		max_pos_ofAxes : ARRAY[0..3]OF REAL;
+		state : USINT;
+	END_STRUCT;
 	param_ac : 	STRUCT 
 		displacement : REAL;
 		velocity : REAL;
 		acceleration : REAL;
 		deceleration : REAL;
+	END_STRUCT;
+	internal_ballShooting : 	STRUCT 
+		state : USINT;
 	END_STRUCT;
 	internal_controlAxis : 	STRUCT 
 		before_state : USINT;
@@ -43,7 +54,12 @@ TYPE
 		RST_INITIALIZATION_3 := 3,
 		RST_INITIALIZATION_4 := 4,
 		RST_INITIALIZATION_5 := 5,
+		RST_CHECK_MODE := 6,
 		RST_CALCULATION_DEFENSE := 10,
+		RST_MOVE_INTO_DEFENSE_POS1 := 11,
+		RST_MOVE_INTO_DEFENSE_POS2 := 12,
+		RST_ATTACK_MODE_SHOOT := 20,
+		RST_ATTACK_MODE_TURN_POS := 21,
 		RST_RUN1 := 100,
 		RST_RUN2 := 101,
 		RST_RUN3 := 102,

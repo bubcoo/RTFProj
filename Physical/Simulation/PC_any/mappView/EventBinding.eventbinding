@@ -12,7 +12,77 @@
 			<EventHandler>
 				<Action>
 					<Target xsi:type="clientSystem.Action">
-						<Method xsi:type="clientSystem.Action.OpenDialog" dialogId="MyDialog" horizontalPos="center" verticalPos="middle" />
+						<Method xsi:type="clientSystem.Action.OpenDialog" dialogId="DialogLogin" horizontalPos="center" verticalPos="middle" />
+					</Target>
+				</Action>
+			</EventHandler>
+		</EventBinding>
+		<!-- Start Dialog -->
+		<EventBinding>
+			<Source xsi:type="widgets.brease.Image.Event" 
+				contentRefId="ContentGamePage"
+				widgetRefId="Image5"
+			event="Click" />
+			<EventHandler>
+				<Action>
+					<Target xsi:type="clientSystem.Action">
+						<Method xsi:type="clientSystem.Action.OpenDialog" dialogId="DialogStart" horizontalPos="center" verticalPos="middle" />
+					</Target>
+				</Action>
+			</EventHandler>
+		</EventBinding>
+		
+		<EventBinding>
+			<Source xsi:type="widgets.brease.NavigationButton.Event" 
+				contentRefId="ContentDiagStart"
+				widgetRefId="NavigationButton2"
+			event="Click" />
+			<EventHandler>
+				<Action>
+					<Target xsi:type="clientSystem.Action">
+						<Method xsi:type="clientSystem.Action.CloseDialog" dialogId="DialogStart"/>
+					</Target>
+				</Action>
+			</EventHandler>
+		</EventBinding>
+		<!-- End Game Dialog -->
+		<EventBinding>
+			<Source xsi:type="widgets.brease.Image.Event" 
+				contentRefId="ContentMatchPage"
+				widgetRefId="Image5"
+			event="Click" />
+			<EventHandler>
+				<Action>
+					<Target xsi:type="clientSystem.Action">
+						<Method xsi:type="clientSystem.Action.OpenDialog" dialogId="DialogEnd" horizontalPos="center" verticalPos="middle" />
+					</Target>
+				</Action>
+			</EventHandler>
+		</EventBinding>
+		
+		<EventBinding>
+			<Source xsi:type="widgets.brease.NavigationButton.Event" 
+				contentRefId="ContentDiagEnd"
+				widgetRefId="NavigationButton2"
+			event="Click" />
+			<EventHandler>
+				<Action>
+					<Target xsi:type="clientSystem.Action">
+						<Method xsi:type="clientSystem.Action.CloseDialog" dialogId="DialogEnd"/>
+					</Target>
+				</Action>
+			</EventHandler>
+		</EventBinding>
+		
+		<EventBinding>
+			<Source xsi:type="widgets.brease.NavigationButton.Event" 
+				contentRefId="ContentDiagEnd"
+				widgetRefId="NavigationButton3"
+			event="Click" />
+			<EventHandler>
+				<Action>
+					<Target xsi:type="clientSystem.Action">
+						<Method xsi:type="clientSystem.Action.CloseDialog" dialogId="DialogEnd"/>
 					</Target>
 				</Action>
 			</EventHandler>
