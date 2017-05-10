@@ -19,4 +19,5 @@ VAR_CONFIG
 	::table_foot:dpA.ActPosSens[2] AT %IW."X20AI2622".AnalogInput02;
 	::cam_det.InSight.InspectionResults_I2011_S03 AT %ID."In-Sight".InspectionResults_I2011_S03;
 	::cam_det.InSight.InspectionResults_I2011_S04 AT %ID."In-Sight".InspectionResults_I2011_S04;
+	::cam_det.InSight.UserData_I2021_S01 AT %QD."In-Sight".UserData_I2021_S01;
 END_VAR

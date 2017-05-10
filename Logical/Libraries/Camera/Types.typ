@@ -29,6 +29,7 @@ TYPE
 		InspectionResults_I2011_S02 : UDINT; (*Y Axis*)
 		InspectionResults_I2011_S03 : UDINT; (*Succes*)
 		InspectionResults_I2011_S04 : UDINT; (*Fail*)
+		UserData_I2021_S01 : UDINT; (*Change zone*)
 	END_STRUCT;
 	Internal_type : 	STRUCT 
 		NaN : REAL;
@@ -39,7 +40,23 @@ TYPE
 		FailCount : UDINT;
 		disableBit : USINT;
 		Search_tmp : BOOL;
+		Zone : Zone_enum;
+		ChangeZone : ChangeZone_enum;
+		oldState : ChangeZone_enum;
 	END_STRUCT;
+	Zone_enum : 
+		(
+		ZONE1 := 0,
+		ZONE2 := 1,
+		ZONE3 := 2,
+		WHOLE := 500
+		);
+	ChangeZone_enum : 
+		(
+		CHANGE := 2,
+		ONE_ZONE := 1,
+		WHOLE_ZONE := 0
+		);
 	Results_type : 	STRUCT 
 		AxisX : REAL;
 		AxisY : REAL;
@@ -48,6 +65,7 @@ TYPE
 		AxisYOld : REAL;
 		TimeDiff_ms : REAL;
 		ActTimeOld : RTCtime_typ;
+		NewVal : BOOL;
 	END_STRUCT;
 	CameraControl_type : 	STRUCT 
 		ControlSwitch : ControlSwitch_enum;

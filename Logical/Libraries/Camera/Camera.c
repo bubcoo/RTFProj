@@ -7,8 +7,13 @@
 
 #define NaN sqrt(-1)
 #define CAM_OFFLINE_MASK 128												//1000 0000b
-#define CAM_ONLINE_MASK 0xFFFFFF7F											
+#define CAM_ONLINE_MASK 0xFFFFFF7F
+
+#define CAM_USER_DATA 0x10004												//Mask for user data ack	
+#define CAM_FIND_WHOLE_ZONE 0xFFFFFFFF										//Mask for finding at whole playground
+
 #define MAX_DIFF_PER 0.15													//Max diffrence between old and actual value in %
+
 
 #define ABS_F(X) ((X) < (0) ? -(X) : (X)) 									//ABS funkcion
 							//		  |							9800
@@ -85,9 +90,74 @@ void FBCamera(struct FBCamera *inst)
 			if (!(inst->InSight.ModuleOk))									//if camera is disconnected change state to ENABLE where waiting for connect
 				inst->Internal.MainSwitch = ENABLED;
 			if (inst->Search){
-				inst->InSight.Control_I2000_S01 &= CAM_ONLINE_MASK;			//Disable control bit for cammera offline mode
 				inst->isSearching = 1;
-				getRealAxes(inst);
+				inst->InSight.Control_I2000_S01 &= CAM_ONLINE_MASK;			//Disable control bit for cammera offline mode
+				switch (inst->Internal.ChangeZone)
+				{
+					
+					case CHANGE:
+						if ((inst->InSight.Control_I2000_S01 & CAM_USER_DATA) == CAM_USER_DATA){
+							if ((inst->InSight.Status_I2001_S01 & 0x10000) == 0x10000) {
+								if (inst->Internal.oldState == ONE_ZONE)
+									inst->Internal.ChangeZone = WHOLE_ZONE;
+								else
+									inst->Internal.ChangeZone = ONE_ZONE;
+								inst->InSight.Control_I2000_S01 &= 0xFFFEFFFB;
+							}
+						}
+						else 
+							inst->Internal.ChangeZone = WHOLE_ZONE;							
+						break;
+					
+					case ONE_ZONE:
+						getRealAxes(inst);
+						inst->Internal.oldState = ONE_ZONE;
+						if (((isnan(inst->Results.AxisX)) || isnan(inst->Results.AxisY)) && (inst->Results.NewVal)){
+							inst->Internal.ChangeZone = CHANGE;
+							inst->InSight.Control_I2000_S01 |= CAM_USER_DATA;
+							inst->InSight.UserData_I2021_S01 = 65535;
+						}
+						switch (inst->Internal.Zone){
+							case ZONE1:
+								break;
+							
+							case ZONE2:
+								break;
+							
+							case ZONE3:
+								
+								break;
+							case WHOLE:
+								
+								break;
+						}
+						break;
+
+					case WHOLE_ZONE:
+						getRealAxes(inst);
+						inst->Internal.Zone = WHOLE;
+						inst->Internal.oldState = WHOLE_ZONE;
+						if(inst->isBallFound){
+							inst->Internal.ChangeZone = CHANGE;
+							inst->InSight.Control_I2000_S01 |= CAM_USER_DATA;
+							if (inst->Results.AxisX > 10500){
+								inst->InSight.UserData_I2021_S01 = 97;
+								inst->Internal.Zone = ZONE1;}
+							else if (inst->Results.AxisX > 9000){
+								inst->InSight.UserData_I2021_S01 = 2;
+								inst->Internal.Zone = ZONE2;}
+							else if (inst->Results.AxisX > 5000){
+								inst->InSight.UserData_I2021_S01 = 14;
+								inst->Internal.Zone = ZONE3;}
+							else{
+								inst->Internal.ChangeZone = WHOLE_ZONE;
+								inst->InSight.Control_I2000_S01 &= 0xFFFEFFFB;
+								inst->InSight.UserData_I2021_S01 = 65535;
+							}
+						}
+						break;
+					
+				}
 			}
 			else{
 				inst->InSight.Control_I2000_S01 |= CAM_OFFLINE_MASK;
@@ -134,6 +204,9 @@ void initFB(struct FBCamera *inst)
 	memset(&inst->Results.ActTime,0,sizeof(inst->Results.ActTime));
 	inst->Results.AxisXOld = NaN;
 	inst->Results.AxisYOld = NaN;
+	inst->InSight.Control_I2000_S01 |= CAM_USER_DATA;
+	inst->InSight.UserData_I2021_S01 = 65535;
+	inst->Internal.ChangeZone = CHANGE;
 }
 
 void resetFB(struct FBCamera *inst)
@@ -157,32 +230,40 @@ void setError(struct FBCamera *inst,unsigned int status) {
 void getRealAxes(struct FBCamera *inst)
 {
 	if (inst->Internal.SuccesCount != inst->InSight.InspectionResults_I2011_S03){
-		
+		inst->Results.NewVal = 1;
 		REAL AxisXnew = ((inst->InSight.InspectionResults_I2011_S01*X_LIN_EQ_K)+X_LIN_EQ_Q);
 		REAL AxisYnew = ((inst->InSight.InspectionResults_I2011_S02*Y_LIN_EQ_K)+Y_LIN_EQ_Q);
 		
-		if (isnan(inst->Results.AxisX) || isnan(inst->Results.AxisY)){
-			inst->Results.AxisX = AxisXnew;
-			inst->Results.AxisY = AxisYnew;
-		}
-		else if(((ABS_F(AxisXnew - (inst->Results.AxisX))) < (X_MAX_DIFF * 2)) && (((ABS_F(AxisYnew - (inst->Results.AxisY))) < (Y_MAX_DIFF * 2)))) {
-			inst->Results.AxisXOld = inst->Results.AxisX = ((AxisXnew + inst->Results.AxisX)/2);
-			inst->Results.AxisYOld = inst->Results.AxisY = ((AxisYnew + inst->Results.AxisY)/2);
+		if (((AxisXnew >= 0) && (AxisXnew < 12100)) && ((AxisYnew < 3515) && (AxisYnew > -3515))){
+			
+			if (isnan(inst->Results.AxisX) || isnan(inst->Results.AxisY)){
+				inst->Results.AxisX = AxisXnew;
+				inst->Results.AxisY = AxisYnew;
+			}
+			else if(((ABS_F(AxisXnew - (inst->Results.AxisX))) < (X_MAX_DIFF * 2)) && (((ABS_F(AxisYnew - (inst->Results.AxisY))) < (Y_MAX_DIFF * 2)))) {
+				inst->Results.AxisXOld = inst->Results.AxisX = ((AxisXnew + inst->Results.AxisX)/2);
+				inst->Results.AxisYOld = inst->Results.AxisY = ((AxisYnew + inst->Results.AxisY)/2);
+			}
+			else{
+				inst->Results.AxisXOld = inst->Results.AxisX;
+				inst->Results.AxisYOld = inst->Results.AxisY;
+				inst->Results.AxisX = AxisXnew;
+				inst->Results.AxisY = AxisYnew;
+			}
+			memcpy((UDINT)&inst->Results.ActTimeOld,(UDINT)&inst->Results.ActTime,sizeof(inst->Results.ActTime));
+			RTC_gettime(&inst->Results.ActTime);
+			inst->Results.TimeDiff_ms = ((RctToReal_ms(inst->Results.ActTime)) - (RctToReal_ms(inst->Results.ActTimeOld)));
+			inst->isBallFound = 1;
+			inst->Status = ERR_OK;
+			inst->Internal.SuccesCount = inst->InSight.InspectionResults_I2011_S03;
 		}
 		else{
-			inst->Results.AxisXOld = inst->Results.AxisX;
-			inst->Results.AxisYOld = inst->Results.AxisY;
-			inst->Results.AxisX = AxisXnew;
-			inst->Results.AxisY = AxisYnew;
+			inst->Status = ERR_BALL_OUTRANGE;
+			inst->isBallFound = 0;
 		}
-		memcpy((UDINT)&inst->Results.ActTimeOld,(UDINT)&inst->Results.ActTime,sizeof(inst->Results.ActTime));
-		RTC_gettime(&inst->Results.ActTime);
-		inst->Results.TimeDiff_ms = ((RctToReal_ms(inst->Results.ActTime)) - (RctToReal_ms(inst->Results.ActTimeOld)));
-		inst->isBallFound = 1;
-		inst->Internal.SuccesCount = inst->InSight.InspectionResults_I2011_S03;
 	}
 	else if (inst->Internal.FailCount != inst->InSight.InspectionResults_I2011_S04){ 
-		
+		inst->Results.NewVal = 1;
 		if (!isnan(inst->Results.AxisX) || !isnan(inst->Results.AxisY)){
 			inst->Results.AxisXOld = inst->Results.AxisX;
 			inst->Results.AxisYOld = inst->Results.AxisY;
@@ -194,8 +275,10 @@ void getRealAxes(struct FBCamera *inst)
 		RTC_gettime(&inst->Results.ActTime);
 		inst->Results.TimeDiff_ms = ((RctToReal_ms(inst->Results.ActTime)) - (RctToReal_ms(inst->Results.ActTimeOld)));
 	}
-	else
+	else{
 		inst->isBallFound = 0;
+		inst->Results.NewVal = 1;
+	}
 }
 
 REAL RctToReal_ms (struct RTCtime_typ RTCtime){

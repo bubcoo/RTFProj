@@ -3,6 +3,15 @@
   <DefaultView>
     <Module>
       <GlobalVariables Name="Global PV">
+        <Variable Name="cam_det" Enable="True">
+          <Variable Name="Results" Enable="True">
+            <Variable Name="AxisX" Enable="True" />
+            <Variable Name="AxisY" Enable="True" />
+            <Variable Name="AxisXOld" Enable="True" />
+            <Variable Name="AxisYOld" Enable="True" />
+            <Variable Name="TimeDiff_ms" Enable="True" />
+          </Variable>
+        </Variable>
         <Variable Name="GoalKeeper_0" Enable="True" />
       </GlobalVariables>
     </Module>
