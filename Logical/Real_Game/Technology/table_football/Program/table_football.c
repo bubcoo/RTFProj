@@ -859,7 +859,7 @@ void _CYCLIC ProgramCyclic(void)
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if(START_GAME == 1 && STOP_GAME == 0){
 					if(c_astop == max_numberOfFormation){
-						SOCCER_TABLE_STEP = RST_INITIALIZATION_4;
+						SOCCER_TABLE_STEP = RST_NULL_POS1;
 					}
 				}else if(STOP_GAME == 1){
 					SOCCER_TABLE_STEP = RST_STOP;
