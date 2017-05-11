@@ -15,8 +15,8 @@
 	<Page refId="GraphPage"/>
 	<Page refId="SPage"/>
 	<Page refId="mbInfo"/>
+	<Page refId="wdInfo"/>
 	<Page refId="dsInfo"/>
-	<Page refId="wdInfo"/>	
   </Pages>
   <Navigations>
     <Navigation refId="MainNavigation" />

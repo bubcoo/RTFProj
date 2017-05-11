@@ -27,6 +27,9 @@ TYPE
 		state : USINT;
 	END_STRUCT;
 	internal_machtInfo : 	STRUCT 
+		WINNER : USINT;
+		DRAW : USINT;
+		LOSE : USINT;
 		length : UDINT;
 		write_matchInfo : BOOL;
 		auxiliary_str : ARRAY[0..10]OF UDINT;
@@ -67,6 +70,9 @@ TYPE
 		RST_RUN5 := 104,
 		RST_SERVICE := 200,
 		RST_STOP := 300,
+		RST_AFTER_STOP := 301,
+		RST_NULL_POS1 := 310,
+		RST_NULL_POS2 := 311,
 		RST_SAFETY := 400,
 		RST_AFTER_SAFETY := 401,
 		RST_AFTER_SAFETY_HOME := 402,
