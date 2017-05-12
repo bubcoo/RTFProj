@@ -291,7 +291,7 @@ void _CYCLIC ProgramCyclic(void)
                 }
                 for(i_cdoa2 = 0; i_cdoa2 < (int)(sizeof(c_cb[0].act_posOfAxesY)/sizeof(c_cb[0].act_posOfAxesY[0])); i_cdoa2++){
                     c_doa.act_posOfAxesCPU_Y[i_cdoa2]    = c_cb[0].act_posOfAxesY[i_cdoa2];
-                    c_doa.time_axisIntersection[i_cdoa2] = c_cb[0].time_axisIntersection[i_cdoa2] * 0.2;
+                    c_doa.time_axisIntersection[i_cdoa2] = c_cb[0].time_axisIntersection[i_cdoa2];
                     c_doa.act_displacementCPU[i_cdoa2]   = 0; // actual displacement
                     c_doa.reversed_HUM[i_cdoa2]          = reflex_sensor[i_cdoa2];
                 }

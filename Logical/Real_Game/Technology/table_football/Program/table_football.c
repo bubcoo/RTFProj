@@ -2,8 +2,8 @@
 * B&R Automation - Perfection in Automation (https://www.br-automation.com)
     ******************************************************************************************
     * Program 	    : Master's Thesis - Soccer Table (Table Football - real game)
-    * Author  	    : Roman Parak
-    * Created 	    : 24 hours 7 days of week
+    * Author  	    : Bc. Roman Parak
+    * Created 	    : 2016/2017
 	* University    : Brno University of Technology(BUT)
 	* Faculty       : Faculty of Mechanical Engineering(FME)
 	* Study Program : Applied Computer Science and Control
@@ -502,6 +502,8 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
@@ -540,6 +542,8 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
@@ -649,6 +653,8 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
@@ -669,6 +675,8 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
@@ -694,6 +702,8 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
@@ -716,6 +726,8 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
@@ -745,6 +757,8 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
@@ -774,6 +788,8 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
@@ -902,6 +918,8 @@ void _CYCLIC ProgramCyclic(void)
 					if(STOP_GAME == 0 || EXIT_GAME == 0){
 						START_GAME		  = 0;
 						RESTART_GAME	  = 0;
+						// stop searching 
+						cam_det.Search = 0;
 						SOCCER_TABLE_STEP = RST_AFTER_STOP;
 					}
 				}
@@ -931,6 +949,8 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
@@ -966,6 +986,8 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
@@ -991,6 +1013,8 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
