@@ -4,10 +4,10 @@
     <GeneratorDescription Name="AutomationStudio" Version="4.2.8.54 SP" LanguageID="1">
       <Info Name="ARVersion" Value="42602" />
       <Info Name="SafetyRelease" Value="1.10" />
-      <Info Name="Communication" Value="/IF=tcpip /LOPO=11159 /SA=1 /RT=1000 /AM=* /SDT=5 /DAIP=172.25.15.67 /REPO=11159 /ANSL=1 /PT=11169 /PORT=50000" />
+      <Info Name="Communication" Value="/IF=tcpip /LOPO=11159 /SA=1 /RT=1000 /AM=* /DAIP=127.0.0.1 /REPO=11160 /ANSL=1 /PORT=50000" />
     </GeneratorDescription>
     <SafetyConfigurationManager TransportSAddr="1">
-      <DeviceDescription Module="X20SLXxxx_110.SCM" minOpenSafetyRelease="1.5"><![CDATA[C:\BrAutomation\AS42\AS\Hardware\Modules\OSDD\X20SLXxxx_SCM_R110_sm.xosdd]]></DeviceDescription>
+      <DeviceDescription Module="X20SLXxxx_110.SCM" minOpenSafetyRelease="1.5"><![CDATA[C:\BrAutomation\AS42\AS\Hardware\Modules\OSDD\X20SLXxxx_SCM_R110.xosdd]]></DeviceDescription>
       <NodeDescription />
     </SafetyConfigurationManager>
     <SafetyNode SAddr="1">
@@ -28,8 +28,8 @@
         <Classification Type="VendorSpecific">IO</Classification>
         <Classification Type="VendorSpecific">Combined</Classification>
         <Info Name="Interface" Value="SL1.IF1.ST1.IF1.ST6" />
-        <Info Name="HWC_Revision" Value="1.10.2.9" />
-        <Info Name="HWC_LastEdit" Value="6. 4. 2017 15:58:54" />
+        <Info Name="HWC_Revision" Value="1.10.1.2" />
+        <Info Name="HWC_LastEdit" Value="22/09/2016 13:55:38" />
         <Info Name="AS_Name" Value="X20SLX842" />
         <Info Name="FirstPublishedSafetyRelease" Value="1.10" />
         <Info Name="ProjectSL" Value="1" />

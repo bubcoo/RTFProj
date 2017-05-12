@@ -80,7 +80,7 @@ _LOCAL USINT i_visPH;
 _LOCAL USINT i_act, i_bs, i_bs2, i_sAx, i_initS, i_errD, i_rstE, i_rstE2;
 _LOCAL USINT i_home, i_int3, i_def, i_dp1, i_dp2, i_cm;
 _LOCAL USINT c_ofActive, c_bState, c_sAx, c_initS, c_int3, c_dp, c_astop, c_nmp;
-_LOCAL USINT i_stop, i_astop, i_mnp1, imnp2, i_shoot, i_turnp;
+_LOCAL USINT i_stop, i_astop, i_mnp1, i_mnp2, i_shoot, i_turnp;
 _LOCAL USINT i_ppd, i_ccd, i_ccdCPU, i_ccdHUM, i_cdoa1, i_cdoa2, i_cdoa3;
 _LOCAL USINT index_ofAxesAM;
 // real
@@ -265,9 +265,9 @@ void _INIT ProgramInit(void)
 	// initialization start buttons
 	START_GAME 	 = 0;
 	START_INIT 	 = 0;
-	STOP_GAME  	 = 1;
+	STOP_GAME  	 = 0;
 	EXIT_GAME  	 = 0;
-	RESTART_GAME = 0
+	RESTART_GAME = 0;
 	// initialization safety reset
 	reset_safetyESTOP = 0;
 }
@@ -303,11 +303,7 @@ void _CYCLIC ProgramCyclic(void)
 				ball2[1] = cam_det.Results.AxisYOld;
 				time_B2B = cam_det.Results.TimeDiff_ms/1000;
 				
-				if(ESTOP == 0 || OSSD2 == 0){
-					SOCCER_TABLE_STEP = RST_SAFETY;
-				}else if(e_detect.err_detect == 1){
-					SOCCER_TABLE_STEP = RST_ERROR;
-				}else if(START_INIT == 1){
+				if(START_INIT == 1){
 					SOCCER_TABLE_STEP = RST_INITIALIZATION_1;
 				}
 			}
@@ -488,42 +484,44 @@ void _CYCLIC ProgramCyclic(void)
 		case RST_INITIALIZATION_5:
 			{
 				/*************************************** INITIALIZATION no.5 ******************************************/
-				// start searching 
-				cam_det.Search = 1;
-				// call function for camera
-				FBCamera(&cam_det);
-				// values -> camera
-				// ball step -> k - 1
-				ball1[0] = cam_det.Results.AxisXOld;
-				ball1[1] = cam_det.Results.AxisYOld;
-				// ball step -> k
-				ball2[0] = cam_det.Results.AxisX;
-				ball2[1] = cam_det.Results.AxisY;
-				// time between two balls
-				time_B2B = cam_det.Results.TimeDiff_ms/1000;
+				if(cam_det.Active == 1){
+					// start searching 
+					cam_det.Search = 1;
+					// call function for camera
+					FBCamera(&cam_det);
+					// values -> camera
+					// ball step -> k - 1
+					ball1[0] = cam_det.Results.AxisXOld;
+					ball1[1] = cam_det.Results.AxisYOld;
+					// ball step -> k
+					ball2[0] = cam_det.Results.AxisX;
+					ball2[1] = cam_det.Results.AxisY;
+					// time between two balls
+					time_B2B = cam_det.Results.TimeDiff_ms/1000;
 	
-				// values -> optical sensor
-				optical_sensor[0] = 0;
-				optical_sensor[1] = 0;
-				optical_sensor[2] = 0;
-				optical_sensor[3] = 0;
-    			// values -> reflex sensor
-				reflex_sensor[0] = 1;
-				reflex_sensor[1] = 1;
-				reflex_sensor[2] = 1;
-				reflex_sensor[3] = 1;
+					// values -> optical sensor
+					optical_sensor[0] = 0;
+					optical_sensor[1] = 0;
+					optical_sensor[2] = 0;
+					optical_sensor[3] = 0;
+					// values -> reflex sensor
+					reflex_sensor[0] = 1;
+					reflex_sensor[1] = 1;
+					reflex_sensor[2] = 1;
+					reflex_sensor[3] = 1;
 												
-				if(ESTOP == 0 || OSSD2 == 0){
-					SOCCER_TABLE_STEP = RST_SAFETY;
-				}else if(e_detect.err_detect == 1){
-					SOCCER_TABLE_STEP = RST_ERROR;
-				}else if(START_GAME == 1 && STOP_GAME == 0){
-					if(cam_det.isSearching == 1){
-						cam_det.Search	  = 0;
-						SOCCER_TABLE_STEP = RST_CHECK_MODE;
+					if(ESTOP == 0 || OSSD2 == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(e_detect.err_detect == 1){
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else if(START_GAME == 1 && STOP_GAME == 0){
+						if(cam_det.isSearching == 1){
+							cam_det.Search	  = 0;
+							SOCCER_TABLE_STEP = RST_CHECK_MODE;
+						}
+					}else if(STOP_GAME == 1){
+						SOCCER_TABLE_STEP = RST_STOP;
 					}
-				}else if(STOP_GAME == 1){
-					SOCCER_TABLE_STEP = RST_STOP;
 				}
 			}
 			break;
@@ -648,7 +646,7 @@ void _CYCLIC ProgramCyclic(void)
 					axes_c[i_def].rotary_param.acceleration = 125000;
 					axes_c[i_def].rotary_param.deceleration = 125000;
 					axes_c[i_def].rotary_param.velocity		= 10000;
-					if(i_def < (c_cb[0].count_axesIntersection[0] - 1){
+					if(i_def < (c_cb[0].count_axesIntersection[0] - 1)){
 						axes_c[i_def].rotary_param.displacement = -250;
 					}else{
 						axes_c[i_def].rotary_param.displacement = 250;
@@ -714,7 +712,7 @@ void _CYCLIC ProgramCyclic(void)
 		case RST_ATTACK_MODE_SHOOT1:
 			{
 				/*************************************** ATTACK MODE SHOOT no.1 *************************************/
-				for(i_shoot = 0; i_shoot < max_numberOfFormation - 1; i_shoot++){
+				for(i_shoot = 0; i_shoot <= max_numberOfFormation - 1; i_shoot++){
 					if(index_ofAxesAM < i_shoot){
 						mp_Axis.mp_cyclicSetRotary[index_ofAxesAM].Position = 600;
 					}
@@ -877,7 +875,7 @@ void _CYCLIC ProgramCyclic(void)
 				/****************************************** STOP -> MODE *********************************************/
 				EXIT_GAME = 0;
 				
-				for(i_stop = 0; i_stop < max_numberOfFormation - 1; i_stop++){
+				for(i_stop = 0; i_stop <= max_numberOfFormation - 1; i_stop++){
 					mp_Axis.mp_axisLinear[i_stop].Stop = 1;
 					mp_Axis.mp_axisRotary[i_stop].Stop = 1;
 				}
@@ -898,7 +896,7 @@ void _CYCLIC ProgramCyclic(void)
 		case RST_AFTER_STOP:
 			{
 				/************************************ AFTER STOP -> MODE ********************************************/
-				for(i_astop = 0; i_astop < max_numberOfFormation - 1; i_astop++){
+				for(i_astop = 0; i_astop <= max_numberOfFormation - 1; i_astop++){
 					mp_Axis.mp_axisLinear[i_astop].Stop = 0;
 					mp_Axis.mp_axisRotary[i_astop].Stop = 0;
 					
@@ -981,28 +979,26 @@ void _CYCLIC ProgramCyclic(void)
 	
 	/************************************ VISUALIZATION **********************************/
 	// images power and home axes
-	if(SOCCER_TABLE_STEP >= 4){
-		for(i_visPH = 0; i_visPH < max_numberOfFormation - 1; i_visPH++){
-			if(mp_Axis.mp_axisLinear[i_visPH].PowerOn == 1){
-				vis_linearPower[i_visPH] = 1;
-			}else{
-				vis_linearPower[i_visPH] = 0;
-			}
-			if(mp_Axis.mp_axisLinear[i_visPH].IsHomed == 1){
-				vis_linearHome[i_visPH] = 1;
-			}else{
-				vis_linearHome[i_visPH] = 0;
-			}
-			if(mp_Axis.mp_axisRotary[i_visPH].PowerOn == 1){
-				vis_rotaryPower[i_visPH] = 1;
-			}else{
-				vis_rotaryPower[i_visPH] = 0;
-			}
-			if(mp_Axis.mp_axisRotary[i_visPH].IsHomed == 1){
-				vis_rotaryHome[i_visPH] = 1;
-			}else{
-				vis_rotaryHome[i_visPH] = 0;
-			}
+	for(i_visPH = 0; i_visPH <= max_numberOfFormation - 1; i_visPH++){
+		if(mp_Axis.mp_axisLinear[i_visPH].PowerOn == 1){
+			vis_linearPower[i_visPH] = 1;
+		}else{
+			vis_linearPower[i_visPH] = 0;
+		}
+		if(mp_Axis.mp_axisLinear[i_visPH].IsHomed == 1){
+			vis_linearHome[i_visPH] = 1;
+		}else{
+			vis_linearHome[i_visPH] = 0;
+		}
+		if(mp_Axis.mp_axisRotary[i_visPH].PowerOn == 1){
+			vis_rotaryPower[i_visPH] = 1;
+		}else{
+			vis_rotaryPower[i_visPH] = 0;
+		}
+		if(mp_Axis.mp_axisRotary[i_visPH].IsHomed == 1){
+			vis_rotaryHome[i_visPH] = 1;
+		}else{
+			vis_rotaryHome[i_visPH] = 0;
 		}
 	}
 	// images warning and safety
@@ -1040,12 +1036,10 @@ void _CYCLIC ProgramCyclic(void)
 	// Measuremet of score
 	measurement_ofScore(&m_ofScore);
 	// axes control
-	if(SOCCER_TABLE_STEP >= 1){
-		axes_control(&axes_c[0]);
-		axes_control(&axes_c[1]);
-		axes_control(&axes_c[2]);
-		axes_control(&axes_c[3]);
-	}
+	axes_control(&axes_c[0]);
+	//axes_control(&axes_c[1]);
+	//axes_control(&axes_c[2]);
+	//axes_control(&axes_c[3]);
 	// error detection Axes
 	// error rotary
 	e_detect.rotary_ERR[0] = mp_Axis.mp_axisRotary[0].Error;

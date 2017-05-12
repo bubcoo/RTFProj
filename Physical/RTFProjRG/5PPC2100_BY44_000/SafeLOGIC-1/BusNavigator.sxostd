@@ -29,7 +29,7 @@
         <Classification Type="VendorSpecific">Combined</Classification>
         <Info Name="Interface" Value="SL1.IF1.ST1.IF1.ST6" />
         <Info Name="HWC_Revision" Value="1.10.1.2" />
-        <Info Name="HWC_LastEdit" Value="22. 9. 2016 13:55:38" />
+        <Info Name="HWC_LastEdit" Value="22/09/2016 13:55:38" />
         <Info Name="AS_Name" Value="X20SLX842" />
         <Info Name="FirstPublishedSafetyRelease" Value="1.10" />
         <Info Name="ProjectSL" Value="1" />
