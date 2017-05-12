@@ -16,30 +16,29 @@ void GoalKeeper(struct GoalKeeper *inst){
 	
 		if (!inst->DI9371.ModuleOk)
 			inst->status = ERR_DI_NOTFOUND;
-		else
+		else{
 			inst->status = ERR_OK;
 	
-		TON_10ms(&inst->Internal.DisableTimer1);
+			TON_10ms(&inst->Internal.DisableTimer1);
 		
-		if ((inst->Internal.DisableTimer1.IN == 1) && (inst->Internal.DisableTimer1.Q))
-			inst->Internal.DisableTimer1.IN = 0;
-		else if ((!inst->DI9371.DigitalInput_1) && (!inst->isGoal1) && (!inst->Internal.DisableTimer1.IN)) {
-			inst->isGoal1 = 1;
-			inst->Internal.DisableTimer1.IN = 1;
-		}			
-		else
-			inst->isGoal1 = 0;
+			if ((inst->Internal.DisableTimer1.IN == 1) && (inst->Internal.DisableTimer1.Q))
+				inst->Internal.DisableTimer1.IN = 0;
+			else if ((!inst->DI9371.DigitalInput_1) && (!inst->isGoal1) && (!inst->Internal.DisableTimer1.IN)) {
+				inst->isGoal1 = 1;
+				inst->Internal.DisableTimer1.IN = 1;
+			}			
+			else inst->isGoal1 = 0;
 		
-		TON_10ms(&inst->Internal.DisableTimer2);
+			TON_10ms(&inst->Internal.DisableTimer2);
 		
-		if ((inst->Internal.DisableTimer2.IN == 1) && (inst->Internal.DisableTimer2.Q))
-			inst->Internal.DisableTimer2.IN = 0;
-		else if ((!inst->DI9371.DigitalInput_2) && (!inst->isGoal2) && (!inst->Internal.DisableTimer2.IN)) {
-			inst->isGoal2 = 1;
-			inst->Internal.DisableTimer2.IN = 1;
-		}			
-		else
-			inst->isGoal2 = 0;
+			if ((inst->Internal.DisableTimer2.IN == 1) && (inst->Internal.DisableTimer2.Q))
+				inst->Internal.DisableTimer2.IN = 0;
+			else if ((!inst->DI9371.DigitalInput_2) && (!inst->isGoal2) && (!inst->Internal.DisableTimer2.IN)) {
+				inst->isGoal2 = 1;
+				inst->Internal.DisableTimer2.IN = 1;
+			}			
+			else inst->isGoal2 = 0;
+		}
 	}
 	else
 		inst->status = ERR_FUB_ENABLE_FALSE;

@@ -140,14 +140,14 @@ void FBCamera(struct FBCamera *inst)
 						if(inst->isBallFound){
 							inst->Internal.ChangeZone = CHANGE;
 							inst->InSight.Control_I2000_S01 |= CAM_USER_DATA;
-							if (inst->Results.AxisX > 10500){
-								inst->InSight.UserData_I2021_S01 = 97;
+							if (inst->Results.AxisX > 10300){
+								inst->InSight.UserData_I2021_S01 = 7;
 								inst->Internal.Zone = ZONE1;}
-							else if (inst->Results.AxisX > 9000){
-								inst->InSight.UserData_I2021_S01 = 2;
+							else if (inst->Results.AxisX > 9100){
+								inst->InSight.UserData_I2021_S01 = 504;
 								inst->Internal.Zone = ZONE2;}
-							else if (inst->Results.AxisX > 5000){
-								inst->InSight.UserData_I2021_S01 = 14;
+							else if (inst->Results.AxisX > 7350){
+								inst->InSight.UserData_I2021_S01 = 3584;
 								inst->Internal.Zone = ZONE3;}
 							else{
 								inst->Internal.ChangeZone = WHOLE_ZONE;
