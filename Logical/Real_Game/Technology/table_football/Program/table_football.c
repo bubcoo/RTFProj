@@ -3,13 +3,13 @@
     ******************************************************************************************
     * Program 	    : Master's Thesis - Soccer Table (Table Football - real game)
     * Author  	    : Roman Parak
-    * Created 	    : date ... 
+    * Created 	    : 24 hours 7 days of week
 	* University    : Brno University of Technology(BUT)
 	* Faculty       : Faculty of Mechanical Engineering(FME)
 	* Study Program : Applied Computer Science and Control
 	* Institute     : Institute of Automation and Computer Science
 **********************************************************************************************
-* Implementation OF PROGRAM table_football(Real_Game/Technolog/table_football/Program/table_football.h)
+* Implementation OF PROGRAM table_football(Real_Game/Technology/table_football/Program/table_football.c)
 **********************************************************************************************/
 
 /*************************** LIBRARIES *********************************/
@@ -70,14 +70,17 @@ _LOCAL BOOL reset_safetyESTOP;
 _LOCAL BOOL ESTOP;
 _LOCAL BOOL OSSD2;
 _LOCAL BOOL SAFETY_MODUL_OK;
-_LOCAL BOOL START_GAME, STOP_GAME, START_INIT;
+_LOCAL BOOL START_GAME, STOP_GAME, START_INIT, EXIT_GAME, RESTART_GAME;
 // usint
 _LOCAL USINT max_numberOfFormation;
 _LOCAL USINT i_axisNum;
+_LOCAL USINT vis_linearPower[4], vis_linearHome[4], vis_rotaryPower[4], vis_rotaryHome[4];
+_LOCAL USINT vis_warning, vis_safety;
+_LOCAL USINT i_visPH;
 _LOCAL USINT i_act, i_bs, i_bs2, i_sAx, i_initS, i_errD, i_rstE, i_rstE2;
 _LOCAL USINT i_home, i_int3, i_def, i_dp1, i_dp2, i_cm;
 _LOCAL USINT c_ofActive, c_bState, c_sAx, c_initS, c_int3, c_dp, c_astop, c_nmp;
-_LOCAL USINT i_stop, i_astop, i_mnp1, imnp2;
+_LOCAL USINT i_stop, i_astop, i_mnp1, imnp2, i_shoot, i_turnp;
 _LOCAL USINT i_ppd, i_ccd, i_ccdCPU, i_ccdHUM, i_cdoa1, i_cdoa2, i_cdoa3;
 _LOCAL USINT index_ofAxesAM;
 // real
@@ -201,6 +204,10 @@ void _INIT ProgramInit(void)
     }
 	/************************************* Camera initialization **************************************/
 	cam_det.Enable = 1;
+	/************************************* GoakKeeper Sensor Initialization ***************************/
+	GoalKeeper_0.enable = 1;
+	/************************************* Light initialization **************************************/
+	Light_0.Enable	= 1;
 	/********************************** Ball shooting initialization **********************************/
 	ball_shoot.Enable = 1;
 	/********************************** Turn position initialization **********************************/
@@ -256,9 +263,11 @@ void _INIT ProgramInit(void)
 	//SOCCER_TABLE_STEP = RST_INITIALIZATION_1;
 	SOCCER_TABLE_STEP = RST_EMPTY;
 	// initialization start buttons
-	START_GAME = 0;
-	START_INIT = 0;
-	STOP_GAME  = 1;
+	START_GAME 	 = 0;
+	START_INIT 	 = 0;
+	STOP_GAME  	 = 1;
+	EXIT_GAME  	 = 0;
+	RESTART_GAME = 0
 	// initialization safety reset
 	reset_safetyESTOP = 0;
 }
@@ -458,11 +467,18 @@ void _CYCLIC ProgramCyclic(void)
 				/*************************************** INITIALIZATION no.4 ******************************************/
 				BEFORE_STATE = RST_INITIALIZATION_4;
 				
+				if(EXIT_GAME == 1){
+					START_GAME 	 = 0;
+					RESTART_GAME = 0;
+					STOP_GAME	 = 1;
+				}
+				
 				if(ESTOP == 0 || OSSD2 == 0){
 					SOCCER_TABLE_STEP = RST_SAFETY;
 				}else if(e_detect.err_detect == 1){
 					SOCCER_TABLE_STEP = RST_ERROR;
-				}else if(START_GAME == 1 && STOP_GAME == 0){
+				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
+					EXIT_GAME		  = 0;
 					SOCCER_TABLE_STEP = RST_INITIALIZATION_5;
 				}else if(STOP_GAME == 1){
 					SOCCER_TABLE_STEP = RST_STOP;
@@ -472,6 +488,8 @@ void _CYCLIC ProgramCyclic(void)
 		case RST_INITIALIZATION_5:
 			{
 				/*************************************** INITIALIZATION no.5 ******************************************/
+				// start searching 
+				cam_det.Search = 1;
 				// call function for camera
 				FBCamera(&cam_det);
 				// values -> camera
@@ -500,7 +518,10 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(e_detect.err_detect == 1){
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if(START_GAME == 1 && STOP_GAME == 0){
-					SOCCER_TABLE_STEP = RST_CHECK_MODE;
+					if(cam_det.isSearching == 1){
+						cam_det.Search	  = 0;
+						SOCCER_TABLE_STEP = RST_CHECK_MODE;
+					}
 				}else if(STOP_GAME == 1){
 					SOCCER_TABLE_STEP = RST_STOP;
 				}
@@ -535,7 +556,7 @@ void _CYCLIC ProgramCyclic(void)
 						SOCCER_TABLE_STEP = RST_ATTACK_MODE_TURN_POS;
 					}else if(check_aM.attack_mode == 2){
 						// attack mode If ball is before of dummy -> shoot
-						SOCCER_TABLE_STEP = RST_ATTACK_MODE_SHOOT;
+						SOCCER_TABLE_STEP = RST_ATTACK_MODE_SHOOT1;
 					}
 				}else if(STOP_GAME == 1){
 					SOCCER_TABLE_STEP = RST_STOP;
@@ -618,10 +639,20 @@ void _CYCLIC ProgramCyclic(void)
 				calculation_displacementOfAxes(&c_doa);
 				
 				for(i_def = 0; i_def <= max_numberOfFormation - 1; i_def++){
+					// linear parameters adjustment
 					axes_c[i_def].linear_param.acceleration = c_doa.acceleration[i_def];
 					axes_c[i_def].linear_param.deceleration = c_doa.deceleration[i_def];
 					axes_c[i_def].linear_param.velocity     = c_doa.velocity[i_def];
 					axes_c[i_def].linear_param.displacement = c_doa.displacement[i_def];
+					// rotary parameters aadjustment
+					axes_c[i_def].rotary_param.acceleration = 125000;
+					axes_c[i_def].rotary_param.deceleration = 125000;
+					axes_c[i_def].rotary_param.velocity		= 10000;
+					if(i_def < (c_cb[0].count_axesIntersection[0] - 1){
+						axes_c[i_def].rotary_param.displacement = -250;
+					}else{
+						axes_c[i_def].rotary_param.displacement = 250;
+					}
 				}
 				
 				if(ESTOP == 0 || OSSD2 == 0){
@@ -680,12 +711,34 @@ void _CYCLIC ProgramCyclic(void)
 				}
 			}
 			break;
-		case RST_ATTACK_MODE_SHOOT:
+		case RST_ATTACK_MODE_SHOOT1:
 			{
-				/*************************************** ATTACK MODE SHOOT ****************************************/
-				ball_shoot.axes_control = &axes_c[0];
-				ball_shoot.rotary_axes  = &mp_Axis.mp_cyclicSetRotary[0];
+				/*************************************** ATTACK MODE SHOOT no.1 *************************************/
+				for(i_shoot = 0; i_shoot < max_numberOfFormation - 1; i_shoot++){
+					if(index_ofAxesAM < i_shoot){
+						mp_Axis.mp_cyclicSetRotary[index_ofAxesAM].Position = 600;
+					}
+				}
+				
+				if(ESTOP == 0 || OSSD2 == 0){
+					SOCCER_TABLE_STEP = RST_SAFETY;
+				}else if(e_detect.err_detect == 1){
+					SOCCER_TABLE_STEP = RST_ERROR;
+				}else if(START_GAME == 1 && STOP_GAME == 0){
+					SOCCER_TABLE_STEP = RST_ATTACK_MODE_SHOOT2;
+				}else if(STOP_GAME == 1){
+					SOCCER_TABLE_STEP = RST_STOP;
+				}
+			}
+			break;
+		case RST_ATTACK_MODE_SHOOT2:
+			{
+				/*************************************** ATTACK MODE SHOOT no.2 *************************************/
+				ball_shoot.axes_control = &axes_c[index_ofAxesAM];
+				ball_shoot.rotary_axes  = &mp_Axis.mp_cyclicSetRotary[index_ofAxesAM];
+				ball_shoot.start_shoot	= 1;
 				ball_shooting(&ball_shoot);
+				
 				if(ball_shoot.start_shoot == 1){
 					if(ball_shoot.successfully == 1){
 						ball_shoot.start_shoot = 0;
@@ -822,6 +875,8 @@ void _CYCLIC ProgramCyclic(void)
 		case RST_STOP:
 			{
 				/****************************************** STOP -> MODE *********************************************/
+				EXIT_GAME = 0;
+				
 				for(i_stop = 0; i_stop < max_numberOfFormation - 1; i_stop++){
 					mp_Axis.mp_axisLinear[i_stop].Stop = 1;
 					mp_Axis.mp_axisRotary[i_stop].Stop = 1;
@@ -924,6 +979,51 @@ void _CYCLIC ProgramCyclic(void)
 			break;
 	}// end switch
 	
+	/************************************ VISUALIZATION **********************************/
+	// images power and home axes
+	if(SOCCER_TABLE_STEP >= 4){
+		for(i_visPH = 0; i_visPH < max_numberOfFormation - 1; i_visPH++){
+			if(mp_Axis.mp_axisLinear[i_visPH].PowerOn == 1){
+				vis_linearPower[i_visPH] = 1;
+			}else{
+				vis_linearPower[i_visPH] = 0;
+			}
+			if(mp_Axis.mp_axisLinear[i_visPH].IsHomed == 1){
+				vis_linearHome[i_visPH] = 1;
+			}else{
+				vis_linearHome[i_visPH] = 0;
+			}
+			if(mp_Axis.mp_axisRotary[i_visPH].PowerOn == 1){
+				vis_rotaryPower[i_visPH] = 1;
+			}else{
+				vis_rotaryPower[i_visPH] = 0;
+			}
+			if(mp_Axis.mp_axisRotary[i_visPH].IsHomed == 1){
+				vis_rotaryHome[i_visPH] = 1;
+			}else{
+				vis_rotaryHome[i_visPH] = 0;
+			}
+		}
+	}
+	// images warning and safety
+	if(ESTOP == 0 || OSSD2 == 0){
+		vis_safety  = 1;
+		vis_warning = 1;
+	}else if(e_detect.err_detect == 1){
+		vis_safety  = 0;
+		vis_warning = 1;
+	}else{
+		vis_safety  = 0;
+		vis_warning = 0;
+	}
+	m_ofScore.start_measurement   = START_GAME;
+	m_ofScore.exit_game			  = EXIT_GAME;
+	m_ofScore.restart_measurement = RESTART_GAME;
+	if(STOP_GAME == 1){
+		m_ofScore.pause = 1;
+	}else{
+		m_ofScore.pause = 0;
+	}
 	/************************** Call function & function blocks **************************/
 	// AlarmX
 	MpAlarmXCore(&mp_alarmX.mp_core);
@@ -934,14 +1034,17 @@ void _CYCLIC ProgramCyclic(void)
 	start_axesBasic(max_numberOfFormation,&mp_Axis.mp_axisLinear,&mp_Axis.mp_axisRotary);
 	start_axesCyclic(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
 	// Lights
-	//Light(&Light_0);
+	Light(&Light_0);
 	// Detection score
-	//GoalKeeper(&GoalKeeper_0);
+	GoalKeeper(&GoalKeeper_0);
 	// Measuremet of score
 	measurement_ofScore(&m_ofScore);
 	// axes control
 	if(SOCCER_TABLE_STEP >= 1){
 		axes_control(&axes_c[0]);
+		axes_control(&axes_c[1]);
+		axes_control(&axes_c[2]);
+		axes_control(&axes_c[3]);
 	}
 	// error detection Axes
 	// error rotary
