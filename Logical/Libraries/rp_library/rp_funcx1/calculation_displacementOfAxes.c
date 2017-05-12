@@ -31,6 +31,7 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 	REAL max_dispOfD[4], min_dispOfD[4], max_posOfD[4], min_posOfD[4], matrix_posOfCPU[4][5], real_disp[4];
 	REAL velocity[4], acceleration[4], deceleration[4];
 	REAL aux_velocity[4], aux_acceleration[4];
+	REAL aux_time;
 	UDINT auxiliary_str;
 	USINT i_rC, i_rCn, i, j, i_out, i_chRD, i_chRDn, i_chRDnn;
 	
@@ -116,18 +117,14 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 		}
 	}// end for{i}
 	
-	c_dOA->displacement[0] = real_disp[0];
-	c_dOA->displacement[1] = real_disp[1];
-	c_dOA->displacement[2] = real_disp[2];
-	c_dOA->displacement[3] = real_disp[3];
-	
 	for(i_out = 0; i_out < (int)(sizeof(calc_rC.real_cross)/sizeof(calc_rC.real_cross[0])); i_out++){
 		// max velocity = 29000, max acceleration = 489 000
+		aux_time = real_disp[i_out]/29000;
 		if(isnan(c_dOA->time_axisIntersection[i_out])){
-			aux_velocity[i_out]     = fabs(fabs(real_disp[i_out]) - fabs(c_dOA->act_displacementCPU[i_out]))/0.019;
+			aux_velocity[i_out]     = fabs(fabs(real_disp[i_out]) - fabs(c_dOA->act_displacementCPU[i_out]))/aux_time;
 			if(aux_velocity[i_out] > 29000){
 				velocity[i_out] 	= 29000;
-				aux_acceleration[i_out] = velocity[i_out]/0.019;
+				aux_acceleration[i_out] = velocity[i_out]/aux_time;
 				
 				if(aux_acceleration[i_out] > 489000){
 					acceleration[i_out] = 489000;
@@ -138,7 +135,7 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 				}
 			}else{
 				velocity[i_out]		    = aux_velocity[i_out];
-				aux_acceleration[i_out] = velocity[i_out]/0.019;
+				aux_acceleration[i_out] = velocity[i_out]/aux_time;
 				
 				if(aux_acceleration[i_out] > 489000){
 					acceleration[i_out] = 489000;
@@ -176,6 +173,7 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 			}
 		}
 		
+		c_dOA->displacement[i_out] = real_disp[i_out];
 		c_dOA->velocity[i_out] 	   = velocity[i_out];
 		c_dOA->acceleration[i_out] = acceleration[i_out];
 		c_dOA->deceleration[i_out] = deceleration[i_out];
