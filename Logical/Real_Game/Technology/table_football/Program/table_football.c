@@ -624,19 +624,21 @@ void _CYCLIC ProgramCyclic(void)
 				calculation_displacementOfAxes(&c_doa);
 				
 				for(i_def = 0; i_def <= max_numberOfFormation - 1; i_def++){
-					// linear parameters adjustment
-					axes_c[i_def].linear_param.acceleration = c_doa.acceleration[i_def];
-					axes_c[i_def].linear_param.deceleration = c_doa.deceleration[i_def];
-					axes_c[i_def].linear_param.velocity     = c_doa.velocity[i_def];
-					axes_c[i_def].linear_param.displacement = c_doa.displacement[i_def];
-					// rotary parameters aadjustment
-					axes_c[i_def].rotary_param.acceleration = 125000;
-					axes_c[i_def].rotary_param.deceleration = 125000;
-					axes_c[i_def].rotary_param.velocity		= 10000;
-					if(i_def < (c_cb[0].count_axesIntersection[0] - 1)){
-						axes_c[i_def].rotary_param.displacement = -250;
-					}else{
-						axes_c[i_def].rotary_param.displacement = 250;
+					if(!isnan(c_doa.velocity[i_def])){
+						// linear parameters adjustment
+						axes_c[i_def].linear_param.acceleration = c_doa.acceleration[i_def];
+						axes_c[i_def].linear_param.deceleration = c_doa.deceleration[i_def];
+						axes_c[i_def].linear_param.velocity     = c_doa.velocity[i_def];
+						axes_c[i_def].linear_param.displacement = c_doa.displacement[i_def];
+						// rotary parameters aadjustment
+						axes_c[i_def].rotary_param.acceleration = 125000;
+						axes_c[i_def].rotary_param.deceleration = 125000;
+						axes_c[i_def].rotary_param.velocity		= 10000;
+						if(i_def < (c_cb[0].count_axesIntersection[0] - 1)){
+							axes_c[i_def].rotary_param.displacement = -250;
+						}else{
+							axes_c[i_def].rotary_param.displacement = 250;
+						}
 					}
 				}
 				
