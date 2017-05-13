@@ -750,9 +750,29 @@ void _CYCLIC ProgramCyclic(void)
 							ball_shoot.start_shoot = 0;
 						
 							if(ball_shoot.start_shoot == 0){
-								SOCCER_TABLE_STEP = RST_INITIALIZATION_5;
+								SOCCER_TABLE_STEP = RST_ATTACK_MODE_SHOOT3;
 							}
 						}
+					}
+				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
+					START_GAME		  = 0;
+					RESTART_GAME	  = 0;
+					// stop searching 
+					cam_det.Search = 0;
+					SOCCER_TABLE_STEP = RST_STOP;
+				}
+			}
+			break;
+		case RST_ATTACK_MODE_SHOOT3:
+			{
+				/*************************************** ATTACK MODE SHOOT no.3 *************************************/
+				if(ESTOP == 0 || OSSD2 == 0){
+					SOCCER_TABLE_STEP = RST_SAFETY;
+				}else if(e_detect.err_detect == 1){
+					SOCCER_TABLE_STEP = RST_ERROR;
+				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
+					if(cam_det.Results.AxisXOld != ball1[0] && cam_det.Results.AxisYOld != ball1[1]){
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_5;
 					}
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;

@@ -307,10 +307,12 @@ void _CYCLIC ProgramCyclic(void)
                 calculation_displacementOfAxes(&c_doa);
 				
 				for(i_def = 0; i_def <= max_numberOfFormation - 1; i_def++){
-					axes_control_0[i_def].linear_param.acceleration = c_doa.acceleration[i_def];
-					axes_control_0[i_def].linear_param.deceleration = c_doa.deceleration[i_def];
-					axes_control_0[i_def].linear_param.velocity     = c_doa.velocity[i_def];
-					axes_control_0[i_def].linear_param.displacement = c_doa.displacement[i_def];
+					if(!isnan(c_doa.velocity[i_def])){
+						axes_control_0[i_def].linear_param.acceleration = c_doa.acceleration[i_def];
+						axes_control_0[i_def].linear_param.deceleration = c_doa.deceleration[i_def];
+						axes_control_0[i_def].linear_param.velocity     = c_doa.velocity[i_def];
+						axes_control_0[i_def].linear_param.displacement = c_doa.displacement[i_def];
+					}
 				}
 				
 				if(ESTOP == 0){
