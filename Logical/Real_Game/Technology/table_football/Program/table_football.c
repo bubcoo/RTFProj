@@ -471,12 +471,21 @@ void _CYCLIC ProgramCyclic(void)
 			{
 				/*************************************** INITIALIZATION no.5 ******************************************/
 				// values -> camera
-				// ball step -> k - 1
-				ball1[0] = cam_det.Results.AxisXOld;
-				ball1[1] = cam_det.Results.AxisYOld;
-				// ball step -> k
-				ball2[0] = cam_det.Results.AxisX;
-				ball2[1] = cam_det.Results.AxisY;
+				if(isnan(cam_det.Results.AxisX) || isnan(cam_det.Results.AxisY)){
+					// ball step -> k - 1
+					ball1[0] = cam_det.Results.AxisXOld;
+					ball1[1] = cam_det.Results.AxisYOld;
+					// ball step -> k
+					ball2[0] = cam_det.Results.AxisXOld + 1;
+					ball2[1] = cam_det.Results.AxisYOld + 1;
+				}else{
+					// ball step -> k - 1
+					ball1[0] = cam_det.Results.AxisXOld;
+					ball1[1] = cam_det.Results.AxisYOld;
+					// ball step -> k
+					ball2[0] = cam_det.Results.AxisX;
+					ball2[1] = cam_det.Results.AxisY;
+				}
 				// time between two balls
 				time_B2B = cam_det.Results.TimeDiff_ms/1000;
 				// values -> optical sensor
