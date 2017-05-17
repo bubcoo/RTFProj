@@ -36,7 +36,6 @@
 
 /************************ GLOBAL VARIABLES ******************************/
 _GLOBAL FBCamera_typ cam_det;
-_GLOBAL Light_typ Light_0;
 _GLOBAL GoalKeeper_typ GoalKeeper_0;
 
 /************************ LOCAL VARIABLES ******************************/
@@ -802,10 +801,8 @@ void _CYCLIC ProgramCyclic(void)
 	// Active AxisBasic & AxisCyclicSet -> through the individual functions
 	start_axesBasic(max_numberOfFormation,&mp_Axis.mp_axisLinear,&mp_Axis.mp_axisRotary);
 	start_axesCyclic(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
-	// Lights
-	//Light(&Light_0);
 	// Detection score
-	//GoalKeeper(&GoalKeeper_0);
+	GoalKeeper(&GoalKeeper_0);
 	// Measuremet of score
 	measurement_ofScore(&m_ofScore);
 	// axes control

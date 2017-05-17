@@ -27,8 +27,8 @@ void Light(struct Light *inst)
 				{
 					inst->isPWMEnabled = inst->internal.PWM.PWMEnabled = 1;
 					inst->isPWMEnabled = inst->internal.PWM.PWM.Enable = 1;
-					inst->internal.PWM.PWM.MinPulseWidth = 0.001;						
-					inst->internal.PWM.PWM.Period = 0.01;								
+					inst->internal.PWM.PWM.MinPulseWidth = 0.0008;						
+					inst->internal.PWM.PWM.Period = 0.008;								
 					inst->internal.PWM.PWM.Mode = mtBASICS_PULSE_BEGINNING;
 				}
 				else
@@ -36,7 +36,7 @@ void Light(struct Light *inst)
 		
 				inst->internal.PWM.PWM.DutyCycle = 100;
 				inst->internal.TaskClass.RTInfo_0.enable = 0;
-				inst->internal.TaskClass.CyclicTime = ((inst->internal.TaskClass.RTInfo_0.cycle_time)/1000);
+				inst->internal.TaskClass.CyclicTime = ((inst->internal.TaskClass.RTInfo_0.cycle_time)/800);
 				inst->internal.MainControlBarLight = DISABLED_BARLIGHT;
 			}
 			break;
@@ -55,6 +55,7 @@ void Light(struct Light *inst)
 					inst->internal.MainControlBarLight = ERROR_BARLIGHT;
 				}
 			}
+			inst->isPowerOn = 0;
 			break;
 	
 		case ENABLED_BARLIGHT:
@@ -70,8 +71,13 @@ void Light(struct Light *inst)
 					PWMControl(inst);
 				}
 				else inst->DO9322.DigitalOutput = 1;
+				inst->isPowerOn = 1;
 			}
-			else inst->DO9322.DigitalOutput = 0;
+			
+			else{
+				inst->DO9322.DigitalOutput = 0;
+				inst->isPowerOn = 0;
+			}
 			break;
 		
 		case ERROR_BARLIGHT:
@@ -87,7 +93,6 @@ void resetFB(struct Light *inst)
 	inst->DO9322.DigitalOutput = 0;
 	inst->DutyCycle = 100;
 	inst->Error = 0;
-	inst->PowerOn = 0;
 	inst->isPowerOn = 0;
 	inst->Status = ERR_OK;
 }

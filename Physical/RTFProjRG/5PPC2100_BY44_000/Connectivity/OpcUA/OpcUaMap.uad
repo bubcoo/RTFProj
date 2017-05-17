@@ -4,6 +4,9 @@
     <Module>
       <GlobalVariables Name="Global PV">
         <Variable Name="cam_det" Enable="True">
+          <Variable Name="MappView" Enable="True">
+            <Variable Name="ZoneString" Enable="True" />
+          </Variable>
           <Variable Name="Results" Enable="True">
             <Variable Name="AxisX" Enable="True" />
             <Variable Name="AxisY" Enable="True" />
@@ -13,6 +16,9 @@
           </Variable>
         </Variable>
         <Variable Name="GoalKeeper_0" Enable="True" />
+        <Variable Name="Light_0" Enable="True">
+          <Variable Name="DutyCycle" Enable="True" />
+        </Variable>
       </GlobalVariables>
     </Module>
   </DefaultView>

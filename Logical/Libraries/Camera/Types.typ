@@ -49,6 +49,10 @@ TYPE
 		ZONE1 := 0,
 		ZONE2 := 1,
 		ZONE3 := 2,
+		ZONE5 := 2,
+		ZONE4 := 2,
+		ZONE6 := 2,
+		ZONE7 := 2,
 		WHOLE := 500
 		);
 	ChangeZone_enum : 
@@ -71,6 +75,7 @@ TYPE
 		ControlSwitch : ControlSwitch_enum;
 	END_STRUCT;
 	MappView_type : 	STRUCT 
+		ZoneString : STRING[80];
 		PicEnable : BOOL;
 		Y : ARRAY[0..1000]OF INT;
 		X : ARRAY[0..1000]OF INT := [11(5),0,996(0)];

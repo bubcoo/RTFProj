@@ -574,5 +574,21 @@
         <seg>Position - [ k - 1 ]</seg>
       </tuv>
     </tu>
+    <tu tuid="ZoneString">
+      <tuv xml:lang="sk">
+        <seg>Zóna vyhľadávania</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Finding Zone</seg>
+      </tuv>
+    </tu>
+    <tu tuid="LightIntezity">
+      <tuv xml:lang="sk">
+        <seg>Intezita osvetlenia</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Light Intenzity</seg>
+      </tuv>
+    </tu>
   </body>
 </tmx>

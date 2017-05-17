@@ -72,6 +72,7 @@ void FBCamera(struct FBCamera *inst)
 		/******************************************************************/
 		
 		case ENABLED:														//FB is enabled and working
+			inst->Status = ERR_OK;											//No error in enable case
 			inst->Active = 1;												//variable indicating active FB
 			if (!inst->InSight.ModuleOk){									//InSight Camera is not connected properly
 				inst->isCameraReady = 0;									//Bit for user that Camera is not working
@@ -79,22 +80,21 @@ void FBCamera(struct FBCamera *inst)
 					setError(inst,ERR_CAM_NOTFOUND);						//Error, Status 65533 - camera not found	
 			}
 			else {
-				unsigned int status;
-				inst->isCameraReady = 1;								//Bit for user that Camera is working
-				inst->Internal.MainSwitch = RUN;						//Change state to RUN
-				inst->Status = ERR_OK;									//No error in enable case
+				inst->isCameraReady = 1;									//Bit for user that Camera is working
+				inst->Internal.MainSwitch = RUN;							//Change state to RUN								
 			}
 			break;
 		
+		/******************************************************************/
+		/*						FB and Camera are ready				 	  */
+		/******************************************************************/
 		case RUN:															//FB is enabled and camera communicating
 			if (!(inst->InSight.ModuleOk))									//if camera is disconnected change state to ENABLE where waiting for connect
 				inst->Internal.MainSwitch = ENABLED;
 			if (inst->Search){
 				inst->isSearching = 1;
 				inst->InSight.Control_I2000_S01 &= CAM_ONLINE_MASK;			//Disable control bit for cammera offline mode
-				switch (inst->Internal.ChangeZone)
-				{
-					
+				switch (inst->Internal.ChangeZone){	
 					case CHANGE:
 						if ((inst->InSight.Control_I2000_S01 & CAM_USER_DATA) == CAM_USER_DATA){
 							if ((inst->InSight.Status_I2001_S01 & 0x10000) == 0x10000) {
@@ -105,8 +105,7 @@ void FBCamera(struct FBCamera *inst)
 								inst->InSight.Control_I2000_S01 &= 0xFFFEFFFB;
 							}
 						}
-						else 
-							inst->Internal.ChangeZone = WHOLE_ZONE;							
+						else inst->Internal.ChangeZone = WHOLE_ZONE;							
 						break;
 					
 					case ONE_ZONE:
@@ -119,14 +118,33 @@ void FBCamera(struct FBCamera *inst)
 						}
 						switch (inst->Internal.Zone){
 							case ZONE1:
+								strcpy(inst->MappView.ZoneString,"Zone 1");
 								break;
 							
 							case ZONE2:
+								strcpy(inst->MappView.ZoneString,"Zone 2");
 								break;
 							
 							case ZONE3:
-								
+								strcpy(inst->MappView.ZoneString,"Zone 3");
 								break;
+													
+							case ZONE4:
+								strcpy(inst->MappView.ZoneString,"Zone 4");
+								break;
+													
+							case ZONE5:
+								strcpy(inst->MappView.ZoneString,"Zone 5");
+								break;
+													
+							case ZONE6:
+								strcpy(inst->MappView.ZoneString,"Zone 6");
+								break;
+													
+							case ZONE7:
+								strcpy(inst->MappView.ZoneString,"Zone 7");
+								break;
+						
 							case WHOLE:
 								
 								break;
@@ -137,22 +155,35 @@ void FBCamera(struct FBCamera *inst)
 						getRealAxes(inst);
 						inst->Internal.Zone = WHOLE;
 						inst->Internal.oldState = WHOLE_ZONE;
+						strcpy(inst->MappView.ZoneString,"Whole");
 						if(inst->isBallFound){
 							inst->Internal.ChangeZone = CHANGE;
 							inst->InSight.Control_I2000_S01 |= CAM_USER_DATA;
 							if (inst->Results.AxisX > 10300){
 								inst->InSight.UserData_I2021_S01 = 7;
 								inst->Internal.Zone = ZONE1;}
-							else if (inst->Results.AxisX > 9100){
+							else if (inst->Results.AxisX > 9050){
 								inst->InSight.UserData_I2021_S01 = 504;
 								inst->Internal.Zone = ZONE2;}
 							else if (inst->Results.AxisX > 7350){
 								inst->InSight.UserData_I2021_S01 = 3584;
 								inst->Internal.Zone = ZONE3;}
+							else if (inst->Results.AxisX > 6250){
+								inst->InSight.UserData_I2021_S01 = 4096;
+								inst->Internal.Zone = ZONE4;}
+							else if (inst->Results.AxisX > 4400){
+								inst->InSight.UserData_I2021_S01 = 16384;
+								inst->Internal.Zone = ZONE5;}
+							else if (inst->Results.AxisX > 2460){
+								inst->InSight.UserData_I2021_S01 = 8192;
+								inst->Internal.Zone = ZONE6;}
+							else if (inst->Results.AxisX > 0){
+								inst->InSight.UserData_I2021_S01 = 98304;
+								inst->Internal.Zone = ZONE7;}
 							else{
 								inst->Internal.ChangeZone = WHOLE_ZONE;
 								inst->InSight.Control_I2000_S01 &= 0xFFFEFFFB;
-								inst->InSight.UserData_I2021_S01 = 65535;
+								inst->InSight.UserData_I2021_S01 = 0xFFFFFFF;
 							}
 						}
 						break;
