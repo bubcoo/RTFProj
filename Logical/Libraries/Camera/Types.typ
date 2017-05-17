@@ -49,10 +49,10 @@ TYPE
 		ZONE1 := 0,
 		ZONE2 := 1,
 		ZONE3 := 2,
-		ZONE5 := 2,
-		ZONE4 := 2,
-		ZONE6 := 2,
-		ZONE7 := 2,
+		ZONE4 := 3,
+		ZONE5 := 4,
+		ZONE6 := 5,
+		ZONE7 := 6,
 		WHOLE := 500
 		);
 	ChangeZone_enum : 

@@ -206,8 +206,6 @@ void _INIT ProgramInit(void)
 	cam_det.Internal.ChangeZone = ONE_ZONE;
 	/************************************* GoakKeeper Sensor Initialization ***************************/
 	GoalKeeper_0.enable = 1;
-	/************************************* Light initialization **************************************/
-	Light_0.Enable	= 1;
 	/********************************** Ball shooting initialization **********************************/
 	ball_shoot.Enable = 1;
 	/********************************** Turn position initialization **********************************/
