@@ -425,7 +425,8 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 		y_crossGK = y_crossDF + 200;
 	}
 	
-	c_nC->new_cross[0] = y_crossGK;
+	//c_nC->new_cross[0] = y_crossGK;
+	c_nC->new_cross[0] = c_nC->act_posOfAxesCPU_Y[0];
 	c_nC->new_cross[1] = y_crossDF;
 	c_nC->new_cross[2] = y_crossMD;
 	c_nC->new_cross[3] = y_crossFW;

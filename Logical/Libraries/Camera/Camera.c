@@ -160,30 +160,30 @@ void FBCamera(struct FBCamera *inst)
 							inst->Internal.ChangeZone = CHANGE;
 							inst->InSight.Control_I2000_S01 |= CAM_USER_DATA;
 							if (inst->Results.AxisX > 10300){
-								inst->InSight.UserData_I2021_S01 = 7;
+								inst->InSight.UserData_I2021_S01 = 1;
 								inst->Internal.Zone = ZONE1;}
 							else if (inst->Results.AxisX > 9050){
-								inst->InSight.UserData_I2021_S01 = 504;
+								inst->InSight.UserData_I2021_S01 = 2;
 								inst->Internal.Zone = ZONE2;}
 							else if (inst->Results.AxisX > 7350){
-								inst->InSight.UserData_I2021_S01 = 3584;
+								inst->InSight.UserData_I2021_S01 = 4;
 								inst->Internal.Zone = ZONE3;}
 							else if (inst->Results.AxisX > 6250){
-								inst->InSight.UserData_I2021_S01 = 4096;
+								inst->InSight.UserData_I2021_S01 = 8;
 								inst->Internal.Zone = ZONE4;}
 							else if (inst->Results.AxisX > 4400){
-								inst->InSight.UserData_I2021_S01 = 16384;
+								inst->InSight.UserData_I2021_S01 = 16;
 								inst->Internal.Zone = ZONE5;}
 							else if (inst->Results.AxisX > 2460){
-								inst->InSight.UserData_I2021_S01 = 8192;
+								inst->InSight.UserData_I2021_S01 = 32;
 								inst->Internal.Zone = ZONE6;}
 							else if (inst->Results.AxisX > 0){
-								inst->InSight.UserData_I2021_S01 = 98304;
+								inst->InSight.UserData_I2021_S01 = 64;
 								inst->Internal.Zone = ZONE7;}
 							else{
 								inst->Internal.ChangeZone = WHOLE_ZONE;
 								inst->InSight.Control_I2000_S01 &= 0xFFFEFFFB;
-								inst->InSight.UserData_I2021_S01 = 0xFFFFFFF;
+								inst->InSight.UserData_I2021_S01 = 0xFFFF;
 							}
 						}
 						break;

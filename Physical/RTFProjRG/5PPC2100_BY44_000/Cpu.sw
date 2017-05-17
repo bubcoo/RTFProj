@@ -2,11 +2,9 @@
 <?AutomationStudio Version=4.2.8.54 SP?>
 <SwConfiguration CpuAddress="SL1" xmlns="http://br-automation.co.at/AS/SwConfiguration">
   <TaskClass Name="Cyclic#1">
-    <Task Name="Lights_con" Source="Real_Game.Technology.Lights_control.prg" Memory="UserROM" Language="ANSIC" Debugging="true" />
-  </TaskClass>
-  <TaskClass Name="Cyclic#2">
     <Task Name="table_foot" Source="Real_Game.Technology.table_football.prg" Memory="UserROM" Language="ANSIC" Debugging="true" />
   </TaskClass>
+  <TaskClass Name="Cyclic#2" />
   <TaskClass Name="Cyclic#3" />
   <TaskClass Name="Cyclic#4">
     <Task Name="Client" Source="Connection.Client.prg" Memory="UserROM" Language="IEC" Debugging="true" />
@@ -17,8 +15,8 @@
   <TaskClass Name="Cyclic#8" />
   <DataObjects>
     <DataObject Name="assl1" Source="" Memory="UserROM" Language="Binary" />
-    <DataObject Name="Acp10sys" Source="" Memory="UserROM" Language="Binary" />
     <DataObject Name="Arnc0sys" Source="" Memory="UserROM" Language="Binary" />
+    <DataObject Name="Acp10sys" Source="" Memory="UserROM" Language="Binary" />
   </DataObjects>
   <NcDataObjects>
     <NcDataObject Name="acp10etxen" Source="ACP10_ETXEN.acp10etxen.dob" Memory="UserROM" Language="Ett" />
@@ -59,8 +57,8 @@
     <BinaryObject Name="Rotary" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="Acp10map" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="acp10cfg" Source="" Memory="UserROM" Language="Binary" />
-    <BinaryObject Name="arnc0cfg" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="Arnc0map" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="arnc0cfg" Source="" Memory="UserROM" Language="Binary" />
   </Binaries>
   <Libraries>
     <LibraryObject Name="operator" Source="Libraries.operator.lby" Memory="UserROM" Language="Binary" Debugging="true" />
