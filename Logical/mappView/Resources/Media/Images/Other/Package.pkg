@@ -38,5 +38,7 @@
     <Object Type="File">cognex.png</Object>
     <Object Type="File">logo_cognex.png</Object>
     <Object Type="File">front2.png</Object>
+    <Object Type="File">green.png</Object>
+    <Object Type="File">red.png</Object>
   </Objects>
 </Package>

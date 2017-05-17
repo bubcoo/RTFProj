@@ -22,9 +22,9 @@ void ball_shooting(struct ball_shooting* b_s)
 		case 0:
 			{
 				// initialization parameters of axes for shooting ball
-				b_s->axes_control->rotary_param.acceleration = 1000;
-				b_s->axes_control->rotary_param.deceleration = 1000;
-				b_s->axes_control->rotary_param.velocity     = 100;
+				b_s->axes_control->rotary_param.acceleration = 3969754;
+				b_s->axes_control->rotary_param.deceleration = 3969754;
+				b_s->axes_control->rotary_param.velocity     = 63000;
 			
 				// start function
 				if(b_s->start_shoot == 1){

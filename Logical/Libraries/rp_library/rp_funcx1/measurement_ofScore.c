@@ -90,10 +90,18 @@ void measurement_ofScore(struct measurement_ofScore* m_oS)
                         m_oS->probability_CPU = 0;
                     }
                 }
-                if(((m_oS->count_goals_CPU + m_oS->count_goals_HUM) == 10) && m_oS->Error == 0){
-                    m_oS->Internal.state             = 2;
-                    m_oS->Internal.write_matchInfo   = 1;
-                }else if(m_oS->exit_game == 1 ){
+				if(((m_oS->count_goals_CPU + m_oS->count_goals_HUM) == 10) && m_oS->Error == 0){
+					if(m_oS->count_goals_CPU > m_oS->count_goals_HUM){
+						m_oS->Internal.WINNER++;
+					}else if(m_oS->count_goals_CPU == m_oS->count_goals_HUM){
+						m_oS->Internal.DRAW++;
+					}else if(m_oS->count_goals_CPU < m_oS->count_goals_HUM){
+						m_oS->Internal.LOSE++;
+					}
+					// change state
+					m_oS->Internal.state             = 2;
+					m_oS->Internal.write_matchInfo   = 1;
+				}else if(m_oS->exit_game == 1 ){
                     m_oS->Internal.state = 3;
                 }else if(m_oS->restart_measurement == 1){
                     m_oS->Internal.state = 4;
@@ -242,6 +250,9 @@ void initialization(struct measurement_ofScore* m_oS){
     m_oS->Internal.results[0]        = 0;
     m_oS->Internal.results[1]        = 0;
 	m_oS->Internal.before_state      = 0;
+	m_oS->Internal.WINNER			 = 0;
+	m_oS->Internal.DRAW			     = 0;
+	m_oS->Internal.LOSE				 = 0;
     m_oS->count_goals_CPU            = 0;
     m_oS->count_goals_HUM            = 0;
     m_oS->sens_wicket_HUM            = 0;

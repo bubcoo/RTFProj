@@ -171,10 +171,10 @@ void calculation_crossingBall(struct calculation_crossingBall* c_cB)
 		}
 		
 	}else{
-		c_cB->overall_velocity = sqrt(-1);
+		c_cB->overall_velocity = 150000;
 		
 		for(i_timeL = 0; i_timeL < (int)(sizeof(y_auxiliaryPos)/sizeof(y_auxiliaryPos[0])); i_timeL++){
-			c_cB->time_axisIntersection[i_timeL] = sqrt(-1);
+			c_cB->time_axisIntersection[i_timeL] = fabs(x_auxiliaryPos[i_timeL] - x_position[0])/c_cB->overall_velocity ;
 		}
 		
 	}

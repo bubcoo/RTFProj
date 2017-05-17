@@ -2,7 +2,7 @@
 <pdef:Page id="wdInfo" layoutRefId="MyLayout" 
 	xmlns:pdef="http://www.br-automation.com/iat2015/pageDefinition/v2">
   <Assignments>
-    <Assignment type="Content" baseContentRefId="ContentwdInfoPage" areaRefId="AreaContent"
+    <Assignment type="Content" baseContentRefId="ContentwdPage" areaRefId="AreaContent"
 		styleRefId="transparent" />
 	<Assignment type="Content" baseContentRefId="ContentInfo" areaRefId="AreaInfo"
 		styleRefId="transparent" />
