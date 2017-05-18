@@ -1123,6 +1123,7 @@ void _CYCLIC ProgramCyclic(void)
 	e_detect.linear_ERR[3] = 0;
 	// call function error detection
 	err_detection(&e_detect);
+	FBCamera(&cam_det);
 
 }
 
