@@ -5,6 +5,5 @@
     <Object Type="Program" Language="ANSIC" Description="Roman Parák program for real game.">table_football</Object>
     <Object Type="Program" Language="ANSIC" Description="Roman Parák program for real game (test).">Test</Object>
     <Object Type="Program" Language="ANSIC" Description="Lubo,Radek program for real game.">cam_sens_sd_s</Object>
-    <Object Type="Program" Language="ANSIC">Lights_control</Object>
   </Objects>
 </Package>

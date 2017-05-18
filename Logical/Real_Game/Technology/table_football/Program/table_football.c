@@ -37,6 +37,7 @@
 /************************ GLOBAL VARIABLES ******************************/
 _GLOBAL FBCamera_typ cam_det;
 _GLOBAL GoalKeeper_typ GoalKeeper_0;
+_GLOBAL Light_typ Light_0;
 
 /************************ LOCAL VARIABLES ******************************/
 // struct - MpAlarmX
@@ -206,6 +207,9 @@ void _INIT ProgramInit(void)
 	cam_det.Internal.ChangeZone = ONE_ZONE;
 	/************************************* GoakKeeper Sensor Initialization ***************************/
 	GoalKeeper_0.enable = 1;
+	/************************************* Light initialization **************************************/
+	Light_0.Enable = 1;
+	Light_0.PowerOn = 1;
 	/********************************** Ball shooting initialization **********************************/
 	ball_shoot.Enable = 1;
 	/********************************** Turn position initialization **********************************/
@@ -501,10 +505,7 @@ void _CYCLIC ProgramCyclic(void)
 				}else if(e_detect.err_detect == 1){
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
-					if(cam_det.isSearching == 1){
-						cam_det.Search	  = 0;
-						SOCCER_TABLE_STEP = RST_CHECK_MODE;
-					}
+					SOCCER_TABLE_STEP = RST_CHECK_MODE;
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
@@ -535,15 +536,20 @@ void _CYCLIC ProgramCyclic(void)
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
 					index_ofAxesAM = check_aM.index_ofAxis;
-					if(check_aM.attack_mode == 0){
+					if(index_ofAxesAM == 0){
+						if(check_aM.attack_mode == 0){
+							// If ball it isn't near of dummy -> Defences
+							SOCCER_TABLE_STEP = RST_CALCULATION_DEFENSE;
+						}else if(check_aM.attack_mode == 1){
+							// attack mode If ball is behind of dummy -> turn position
+							SOCCER_TABLE_STEP = RST_ATTACK_MODE_TURN_POS;
+						}else if(check_aM.attack_mode == 2){
+							// attack mode If ball is before of dummy -> shoot
+							SOCCER_TABLE_STEP = RST_ATTACK_MODE_SHOOT2;
+						}
+					}else{
 						// If ball it isn't near of dummy -> Defences
 						SOCCER_TABLE_STEP = RST_CALCULATION_DEFENSE;
-					}else if(check_aM.attack_mode == 1){
-						// attack mode If ball is behind of dummy -> turn position
-						SOCCER_TABLE_STEP = RST_ATTACK_MODE_TURN_POS;
-					}else if(check_aM.attack_mode == 2){
-						// attack mode If ball is before of dummy -> shoot
-						SOCCER_TABLE_STEP = RST_ATTACK_MODE_SHOOT1;
 					}
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
@@ -1101,15 +1107,21 @@ void _CYCLIC ProgramCyclic(void)
 	// Active AxisBasic & AxisCyclicSet -> through the individual functions
 	start_axesBasic(max_numberOfFormation,&mp_Axis.mp_axisLinear,&mp_Axis.mp_axisRotary);
 	start_axesCyclic(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
+	// Camera
+	FBCamera(&cam_det);
 	// Detection score
 	GoalKeeper(&GoalKeeper_0);
 	// Measuremet of score
 	measurement_ofScore(&m_ofScore);
-	// axes control
-	axes_control(&axes_c[0]);
-	//axes_control(&axes_c[1]);
-	//axes_control(&axes_c[2]);
-	//axes_control(&axes_c[3]);
+	// Light
+	Light(&Light_0);
+	if(SOCCER_TABLE_STEP >= 1){
+		// axes control
+		axes_control(&axes_c[0]);
+		//axes_control(&axes_c[1]);
+		//axes_control(&axes_c[2]);
+		//axes_control(&axes_c[3]);
+	}
 	// error detection Axes
 	// error rotary
 	e_detect.rotary_ERR[0] = mp_Axis.mp_axisRotary[0].Error;
