@@ -297,7 +297,6 @@ FUNCTION_BLOCK ball_shooting (*TODO: Add your comment here*) (*$GROUP=User,$CAT=
 		Enable : BOOL;
 		start_shoot : BOOL;
 		rotary_axes : REFERENCE TO MpAxisCyclicSet;
-		axes_control : REFERENCE TO axes_control;
 	END_VAR
 	VAR_OUTPUT
 		successfully : BOOL;
@@ -314,7 +313,6 @@ FUNCTION_BLOCK turn_position (*TODO: Add your comment here*) (*$GROUP=User,$CAT=
 		index_ofAxis : USINT;
 		linear_axes : REFERENCE TO MpAxisCyclicSet;
 		rotary_axes : REFERENCE TO MpAxisCyclicSet;
-		axes_control : REFERENCE TO axes_control;
 	END_VAR
 	VAR_OUTPUT
 		successfully : BOOL;

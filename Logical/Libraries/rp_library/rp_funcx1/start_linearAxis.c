@@ -29,9 +29,9 @@ void start_linearAxis(struct start_linearAxis* s_la)
 					// adjustment parameters -> axis
 					s_la->axis_param->Home.Mode 				  = mpAXIS_HOME_MODE_BLOCK_TORQUE;
 					s_la->axis_param->Home.Position 		  	  = s_la->max_leftPosition;
-					s_la->axis_param->Home.StartVelocity   		  = 400;
-					s_la->axis_param->Home.HomingVelocity  		  = 400;
-					s_la->axis_param->Home.Acceleration    		  = 1000;
+					s_la->axis_param->Home.StartVelocity   		  = 700;
+					s_la->axis_param->Home.HomingVelocity  		  = 700;
+					s_la->axis_param->Home.Acceleration    		  = 200000;
 					s_la->axis_param->Home.StartDirection  		  = mpAXIS_HOME_DIR_POSITIVE;
 					s_la->axis_param->Home.HomingDirection 		  = mpAXIS_HOME_DIR_NEGATIVE;
 					s_la->axis_param->Home.TorqueLimit	 		  = 0.02;
