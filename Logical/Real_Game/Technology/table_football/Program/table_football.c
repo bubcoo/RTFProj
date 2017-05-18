@@ -644,7 +644,7 @@ void _CYCLIC ProgramCyclic(void)
 						mp_Axis.mp_cyclicSetLinear[i_def].Position 	= c_doa.displacement[i_def];
 						// rotary
 						mp_Axis.mp_cyclicSetRotary[i_def].Velocity = 10000.0;
-						if(i_def < (c_cb[0].count_axesIntersection[0] - 1)){
+						if(i_def < (c_cb[0].count_axesIntersection[0])){
 							mp_Axis.mp_cyclicSetRotary[i_def].Position = -250;
 						}else{
 							mp_Axis.mp_cyclicSetRotary[i_def].Position = 250;
@@ -788,9 +788,7 @@ void _CYCLIC ProgramCyclic(void)
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
 					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
 					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
-					if(cam_det.Results.AxisXOld != ball1[0] && cam_det.Results.AxisYOld != ball1[1]){
-						SOCCER_TABLE_STEP = RST_INITIALIZATION_5;
-					}
+					SOCCER_TABLE_STEP = RST_INITIALIZATION_5;
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
