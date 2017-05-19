@@ -78,7 +78,8 @@ TYPE
 		RST_SAFETY := 400,
 		RST_AFTER_SAFETY := 401,
 		RST_AFTER_SAFETY_HOME := 402,
-		RST_ERROR := 500
+		RST_ERROR := 500,
+		RST_ERROR2 := 501
 		);
 	rp_MainSteps : 
 		(

@@ -145,6 +145,10 @@ void FBCamera(struct FBCamera *inst)
 								strcpy(inst->MappView.ZoneString,"Zone 7");
 								break;
 						
+							case ZONE8:
+								strcpy(inst->MappView.ZoneString,"Zone 8");
+								break;
+						
 							case WHOLE:
 								
 								break;
@@ -174,12 +178,15 @@ void FBCamera(struct FBCamera *inst)
 							else if (inst->Results.AxisX > 4400){
 								inst->InSight.UserData_I2021_S01 = 16;
 								inst->Internal.Zone = ZONE5;}
-							else if (inst->Results.AxisX > 2460){
+							else if (inst->Results.AxisX > 3850){
 								inst->InSight.UserData_I2021_S01 = 32;
 								inst->Internal.Zone = ZONE6;}
-							else if (inst->Results.AxisX > 0){
+							else if (inst->Results.AxisX > 1260){
 								inst->InSight.UserData_I2021_S01 = 64;
 								inst->Internal.Zone = ZONE7;}
+							else if(inst->Results.AxisX > 0){
+								inst->InSight.UserData_I2021_S01 = 128;
+								inst->Internal.Zone = ZONE8;}
 							else{
 								inst->Internal.ChangeZone = WHOLE_ZONE;
 								inst->InSight.Control_I2000_S01 &= 0xFFFEFFFB;

@@ -28,8 +28,8 @@ void start_rotaryAxis(struct start_rotaryAxis* s_ra)
 				if(s_ra->start_btn == 1){
 					// adjust param -> axis
 					// move position
-					s_ra->axis_param->Acceleration = 2000;
-					s_ra->axis_param->Deceleration = 2000;
+					s_ra->axis_param->Acceleration = 3969754;
+					s_ra->axis_param->Deceleration = 3969754;
 					s_ra->axis_param->Velocity     = 1000;
 					s_ra->axis_param->Position 	   = 0;
 					// home

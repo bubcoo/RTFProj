@@ -34,8 +34,8 @@
         <Parameter ID="t_in_pos" Value="0.0" />
         <Parameter ID="pos_sw_end" Value="3601" />
         <Parameter ID="neg_sw_end" Value="-3601" />
-        <Parameter ID="ds_warning" Value="200.0" />
-        <Parameter ID="ds_stop" Value="200.0" />
+        <Parameter ID="ds_warning" Value="30.0" />
+        <Parameter ID="ds_stop" Value="170.0" />
         <Parameter ID="a_stop" Value="1.0E+30" />
         <Parameter ID="dv_stop" Value="0.0" />
         <Parameter ID="dv_stop_mode" Value="ncOFF" />

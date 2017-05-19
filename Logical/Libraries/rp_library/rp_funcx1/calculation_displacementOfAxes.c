@@ -40,22 +40,22 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 	
 	// Ceilings of the axes
 	// Axes
-	max_posOfD[0] = 820;
+	max_posOfD[0] = 800;
 	max_posOfD[1] = 3050;
 	max_posOfD[2] = 3050;
 	max_posOfD[3] = 3055;
 	
-	min_posOfD[0] = -950;
+	min_posOfD[0] = -930;
 	min_posOfD[1] = -3050;
 	min_posOfD[2] = -3050;
 	min_posOfD[3] = -3055;
 	// Dummies
-	max_dispOfD[0] = 820;
+	max_dispOfD[0] = 800;
 	max_dispOfD[1] = 1850;
 	max_dispOfD[2] = 650;
 	max_dispOfD[3] = 955;
 	
-	min_dispOfD[0] = -950;
+	min_dispOfD[0] = -930;
 	min_dispOfD[1] = -1850;
 	min_dispOfD[2] = -650;
 	min_dispOfD[3] = -955;
@@ -287,8 +287,8 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 	REAL y_crossGK, y_crossDF, y_crossMD, y_crossFW;
 	
 	// initial max goalkeeper
-	gk_max = 820;
-	gk_min = -950;
+	gk_max = 800;
+	gk_min = -930;
 	
 	resultUP   = strcmp(c_nC->specific_direction, "up_backward");
 	resultLF   = strcmp(c_nC->specific_direction, "left");
@@ -426,7 +426,13 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 	}
 	
 	//c_nC->new_cross[0] = y_crossGK;
-	c_nC->new_cross[0] = c_nC->act_posOfAxesCPU_Y[0];
+	if(c_nC->act_posOfAxesCPU_Y[0] > gk_max){
+		c_nC->new_cross[0] = gk_max;
+	}else if(c_nC->act_posOfAxesCPU_Y[0] < gk_min){
+		c_nC->new_cross[0] = gk_min;
+	}else{
+		c_nC->new_cross[0] = c_nC->act_posOfAxesCPU_Y[0];
+	}
 	c_nC->new_cross[1] = y_crossDF;
 	c_nC->new_cross[2] = y_crossMD;
 	c_nC->new_cross[3] = y_crossFW;

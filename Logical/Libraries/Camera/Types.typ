@@ -53,6 +53,7 @@ TYPE
 		ZONE5 := 4,
 		ZONE6 := 5,
 		ZONE7 := 6,
+		ZONE8 := 7,
 		WHOLE := 500
 		);
 	ChangeZone_enum : 

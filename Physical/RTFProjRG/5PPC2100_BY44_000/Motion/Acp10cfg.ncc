@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.8.54 SP?>
 <NcConfiguration Version="3.16.2" NcSwId="Acp10">
   <Group ID="ACP10CF1_typ">
     <Parameter ID="cnt_nettrc_rec_drive" Value="1500" />
@@ -10,7 +11,7 @@
     <Parameter ID="safemc_log_err_to_ax" Value="Yes" />
     <Group ID="network_init">
       <Parameter ID="ncsw_init_execute" Value="Yes" />
-      <Parameter ID="automatic_execute" Value="No" />
+      <Parameter ID="automatic_execute" Value="Yes" />
       <Parameter ID="node_nr_warning" Value="Yes" />
       <Parameter ID="net_err_before_ncact" Value="Yes" />
     </Group>

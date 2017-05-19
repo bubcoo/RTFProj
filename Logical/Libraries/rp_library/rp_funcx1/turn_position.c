@@ -24,48 +24,38 @@ void turn_position(struct turn_position* t_p)
 				// parameters of move
 				t_p->Internal.distance_ofMovePos  = 100 + 170 + 80 + 150;
 				t_p->Internal.distance_ofMoveNeg  = (-1)*t_p->Internal.distance_ofMovePos;
+				// velocity
+				t_p->rotary_axes->Velocity 		= 2500;
+				t_p->linear_axes->Velocity 		= 1000;
 				// initialization parameters
-				t_p->Internal.max_pos_ofAxes[0] = 820;
+				t_p->Internal.max_pos_ofAxes[0] = 800;
 				t_p->Internal.max_pos_ofAxes[1] = 0;
 				t_p->Internal.max_pos_ofAxes[2] = 0;
 				t_p->Internal.max_pos_ofAxes[3] = 0;
 			
-				t_p->Internal.min_pos_ofAxes[0] = -950;
+				t_p->Internal.min_pos_ofAxes[0] = -930;
 				t_p->Internal.min_pos_ofAxes[1] = 0;
 				t_p->Internal.min_pos_ofAxes[2] = 0;
 				t_p->Internal.min_pos_ofAxes[3] = 0;
 			
-				// initialization parameters of axes for turn position
-				// {rotary}
-				t_p->axes_control->rotary_param.acceleration = 2500;
-				t_p->axes_control->rotary_param.deceleration = 2500;
-				t_p->axes_control->rotary_param.velocity     = 500;
-				// {linear}
-				t_p->axes_control->linear_param.acceleration = 1000;
-				t_p->axes_control->linear_param.deceleration = 1000;
-				t_p->axes_control->linear_param.velocity     = 100;
-			
 				// start function
 				if(t_p->start_turn == 1){
 					t_p->successfully = 0;
-					if(t_p->axes_control->Enable == 1 && t_p->successfully == 0){
+					if(t_p->successfully == 0){
 						// first position
-						t_p->axes_control->rotary_param.displacement = 500;
+						t_p->rotary_axes->Position = 500;
 						if((t_p->linear_axes->Info.SlavePosition + t_p->Internal.distance_ofMovePos) > t_p->Internal.max_pos_ofAxes[t_p->index_ofAxis]){
 							t_p->Internal.auxiliary_move_pos = t_p->linear_axes->Info.SlavePosition;
-							t_p->axes_control->linear_param.displacement = t_p->linear_axes->Info.SlavePosition + t_p->Internal.distance_ofMoveNeg;
+							t_p->linear_axes->Position = t_p->linear_axes->Info.SlavePosition + t_p->Internal.distance_ofMoveNeg;
 						}else if((t_p->linear_axes->Info.SlavePosition + t_p->Internal.distance_ofMovePos) < t_p->Internal.min_pos_ofAxes[t_p->index_ofAxis]){
 							t_p->Internal.auxiliary_move_pos = t_p->linear_axes->Info.SlavePosition;
-							t_p->axes_control->linear_param.displacement = t_p->linear_axes->Info.SlavePosition + t_p->Internal.distance_ofMovePos;
+							t_p->linear_axes->Position = t_p->linear_axes->Info.SlavePosition + t_p->Internal.distance_ofMovePos;
 						}else{
 							t_p->Internal.auxiliary_move_pos = t_p->linear_axes->Info.SlavePosition;
-							t_p->axes_control->linear_param.displacement = t_p->linear_axes->Info.SlavePosition + t_p->Internal.distance_ofMovePos;
+							t_p->linear_axes->Position = t_p->linear_axes->Info.SlavePosition + t_p->Internal.distance_ofMovePos;
 						}
-						t_p->axes_control->start_move = 1;
-						if(t_p->axes_control->start_move == 1){
-							// change state
-							t_p->Internal.state = 1;
-						}
+						// change state
+						t_p->Internal.state = 1;
 						
 					}
 				}
@@ -73,47 +63,33 @@ void turn_position(struct turn_position* t_p)
 			break;
 		case 1:
 			{
-				if(t_p->axes_control->successfully == 1){
-					t_p->axes_control->start_move = 0;
-					if((t_p->axes_control->rotary_param.displacement == t_p->rotary_axes->Info.SlavePosition) &&(t_p->axes_control->linear_param.displacement == t_p->linear_axes->Info.SlavePosition)){
-						// second position
-						t_p->axes_control->linear_param.displacement = t_p->Internal.auxiliary_move_pos;
-						t_p->axes_control->rotary_param.displacement = -500;
-						t_p->axes_control->start_move = 1;
-						if(t_p->axes_control->start_move == 1){
-							t_p->Internal.state = 2;
-						}
-					}
+
+				if((t_p->rotary_axes->Position == t_p->rotary_axes->Info.SlavePosition) &&(t_p->linear_axes->Position == t_p->linear_axes->Info.SlavePosition)){
+					t_p->rotary_axes->Position = -500;
+					t_p->Internal.state = 2;
 				}
+				
 			}
 			break;
 		case 2:
 			{
-				if(t_p->axes_control->successfully == 1){
-					t_p->axes_control->start_move = 0;
-					if((t_p->axes_control->rotary_param.displacement == t_p->rotary_axes->Info.SlavePosition) &&(t_p->axes_control->linear_param.displacement == t_p->linear_axes->Info.SlavePosition)){
-						// initial position
-						t_p->axes_control->rotary_param.displacement = -250;
-						t_p->axes_control->start_move = 1;
-						if(t_p->axes_control->start_move == 1){
-							// change state
-							t_p->Internal.state = 3;
-						}
-					}
+				if((t_p->rotary_axes->Position == t_p->rotary_axes->Info.SlavePosition) &&(t_p->linear_axes->Position == t_p->linear_axes->Info.SlavePosition)){
+					// initial position
+					t_p->linear_axes->Position = t_p->Internal.distance_ofMoveNeg;
+					t_p->rotary_axes->Position = -250;
+					// change state
+					t_p->Internal.state = 3;
 				}
+				
 			}
 			break;
 		case 3:
 			{
-				if(t_p->axes_control->successfully == 1){
-					t_p->axes_control->start_move = 0;
-					if((t_p->axes_control->rotary_param.displacement == t_p->rotary_axes->Info.SlavePosition) &&(t_p->axes_control->linear_param.displacement == t_p->linear_axes->Info.SlavePosition)){
-						t_p->successfully = 1;
-						if(t_p->successfully == 1){
-							t_p->Internal.state = 0;
-						}
-					}
+				if((t_p->rotary_axes->Position == t_p->rotary_axes->Info.SlavePosition) &&(t_p->linear_axes->Position == t_p->linear_axes->Info.SlavePosition)){
+					t_p->successfully = 1;
+					t_p->Internal.state = 0;
 				}
+				
 			}
 			break;
 	}// end switch

@@ -18,12 +18,12 @@ void check_attack_mode(struct check_attack_mode* ch_aM)
 	USINT i_chp, i_aM, stand_mode;
 	REAL max_pos[4], min_pos[4];
 	
-	max_pos[0] = 820;
+	max_pos[0] = 800;
 	max_pos[1] = 0;
 	max_pos[2] = 0;
 	max_pos[3] = 0;
 	
-	min_pos[0] = -950;
+	min_pos[0] = -930;
 	min_pos[1] = 0;
 	min_pos[2] = 0;
 	min_pos[3] = 0;
