@@ -5,7 +5,7 @@
       <Widgets>
         <Widget xsi:type="widgets.brease.Image" id="Image1" top="-22" left="130" width="830" height="643" zIndex="0" image="Media/Images/Other/viewFromAbove.png" borderWidth="0px" />
         <Widget xsi:type="widgets.brease.Image" id="Image2" top="475" left="30" width="270" height="105" zIndex="1" image="Media/Images/Other/safetyOpen.png" borderWidth="0px" />
-        <Widget xsi:type="widgets.brease.ImageList" id="ImageList1" top="70" left="341" width="410" height="456" zIndex="2" imageList="['green.png', 'red.png']" imagePrefix="Media/Images/Other/" opacity="0.7" />
+        <Widget xsi:type="widgets.brease.ImageList" id="ImageList1" top="70" left="270" width="410" height="456" zIndex="2" imageList="['green.png', 'red.png']" imagePrefix="Media/Images/Other/" opacity="0.7" />
       </Widgets>
     </Widget>
   </Widgets>

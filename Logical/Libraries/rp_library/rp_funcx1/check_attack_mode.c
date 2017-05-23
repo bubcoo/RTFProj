@@ -48,7 +48,7 @@ void check_attack_mode(struct check_attack_mode* ch_aM)
 			stand_mode		= 1;
 		}else{
 			// stand behind the ball
-			behind_position = -90;
+			behind_position = -170;
 			before_position = 320;
 			stand_mode		= 2;
 		}

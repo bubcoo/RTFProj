@@ -14,10 +14,10 @@
     <File>start_rotaryAxis.c</File>
     <File>err_detection.c</File>
     <File>control_temperature.c</File>
-    <File>axes_control.c</File>
     <File>ball_shooting.c</File>
     <File>turn_position.c</File>
     <File>check_attack_mode.c</File>
+    <File>axes_control.c</File>
   </Files>
   <Dependencies>
     <Dependency ObjectName="MpAlarmX" />

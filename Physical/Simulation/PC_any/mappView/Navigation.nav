@@ -180,6 +180,6 @@
 			<Destination refId="AlarmPage" index="7" />
 			<Destination refId="SftPage" index="8" />
 			<Destination refId="AboutPage" index="9" />
-		</NavigationPath>
+	    </NavigationPath>
   </NavigationPaths>
 </ndef:Navigation>

@@ -2,7 +2,7 @@
 <vdef:Visualization id="RSTSIMPROJ" xmlns:vdef="http://www.br-automation.com/iat2015/visualizationDefinition/v2">
   <StartPage pageRefId="HomePage" />
   <Pages>
-	<Page refId="HomePage"/>
+    <Page refId="HomePage"/>
 	<Page refId="GamePage"/>
 	<Page refId="MatchPage"/>
 	<Page refId="MatHist"/>
@@ -22,13 +22,13 @@
     <Navigation refId="MainNavigation" />
   </Navigations>  
   <BindingsSets>
-    <BindingsSet refId="binding_GP" />
+    <!--<BindingsSet refId="" />-->
   </BindingsSets>
   <EventBindingsSets>
-   <EventBindingsSet refId="MyEventBinding" />
+    <EventBindingsSet refId="MyEventBinding" />
   </EventBindingsSets>
   <Dialogs>
-    <Dialog refId="DialogLogin" />
+	<Dialog refId="DialogLogin" />
 	<Dialog refId="DialogStart" />
 	<Dialog refId="DialogEnd" />
   </Dialogs>

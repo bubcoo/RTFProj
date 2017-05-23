@@ -25,8 +25,8 @@ void turn_position(struct turn_position* t_p)
 				t_p->Internal.distance_ofMovePos  = 100 + 170 + 80 + 150;
 				t_p->Internal.distance_ofMoveNeg  = (-1)*t_p->Internal.distance_ofMovePos;
 				// velocity
-				t_p->rotary_axes->Velocity 		= 2500;
-				t_p->linear_axes->Velocity 		= 1000;
+				t_p->rotary_axes->Velocity 		= 1500;
+				t_p->linear_axes->Velocity 		= 500;
 				// initialization parameters
 				t_p->Internal.max_pos_ofAxes[0] = 800;
 				t_p->Internal.max_pos_ofAxes[1] = 0;

@@ -814,6 +814,7 @@ void _CYCLIC ProgramCyclic(void)
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
 					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
 					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
+					turn_pos.start_turn							 = 1;
 					if(turn_pos.start_turn == 1){
 						if(turn_pos.successfully == 1){
 							turn_pos.start_turn = 0;

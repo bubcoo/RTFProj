@@ -188,9 +188,6 @@ void _INIT ProgramInit(void)
 	axes_control_0[0].linear_axis_param  = &mp_Axis.param_cyclicSetLinear[0];
 	axes_control_0[0].rotary_axis_cyclic = &mp_Axis.mp_cyclicSetRotary[0];
 	axes_control_0[0].rotary_axis_param  = &mp_Axis.param_cyclicSetRotary[0];
-	ball_s.Enable 		= 1;
-	ball_s.axes_control = &axes_control_0[0];
-	ball_s.rotary_axes  = &mp_Axis.mp_cyclicSetRotary[0];
 }// end _INIT
 
 /**********************************************************************************************************/
@@ -381,7 +378,6 @@ void _CYCLIC ProgramCyclic(void)
 	//control_temperature(&c_temp);
 	if(SOCCER_TABLE_STEP >= 3){
 		axes_control(&axes_control_0[0]);
-		ball_shooting(&ball_s);
 	}
     
 }// end _CYCLIC
