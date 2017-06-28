@@ -538,7 +538,7 @@ void _CYCLIC ProgramCyclic(void)
 					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
 					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
 					if(index_ofAxesAM == 0){
-						if(check_aM.attack_mode == 0){
+						if(check_aM.attack_mode == 0 && cam_det.isBallFound == 1){
 							// If ball it isn't near of dummy -> Defences
 							SOCCER_TABLE_STEP = RST_CALCULATION_DEFENSE;
 						}else if(check_aM.attack_mode == 1){
