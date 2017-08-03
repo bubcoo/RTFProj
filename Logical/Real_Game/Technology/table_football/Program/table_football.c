@@ -253,9 +253,15 @@ void _INIT ProgramInit(void)
 	// initi index attack mode
 	index_ofAxesAM = 0;
 	// initialization define position of rotary Axis
-	define_posRotary[0] = 117956383;	
+	define_posRotary[0] = 177433748;
+	define_posRotary[1] = 117152556;
+	define_posRotary[2] = 117974054;
+	define_posRotary[3] = 131615018;
 	// linear max positions
 	linear_maxPos[0]    = 820;
+	linear_maxPos[1]    = 1080;
+	linear_maxPos[2]    = 570;
+	linear_maxPos[3]    = 880;
 	// intialization state machine
 	//SOCCER_TABLE_STEP = RST_INITIALIZATION_1;
 	SOCCER_TABLE_STEP = RST_EMPTY;

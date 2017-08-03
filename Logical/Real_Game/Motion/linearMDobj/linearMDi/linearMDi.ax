@@ -32,8 +32,8 @@
         <Parameter ID="a2_neg" Value="490000.0" />
         <Parameter ID="t_jolt" Value="0.01" />
         <Parameter ID="t_in_pos" Value="0.0" />
-        <Parameter ID="pos_sw_end" Value="821" />
-        <Parameter ID="neg_sw_end" Value="-931" />
+        <Parameter ID="pos_sw_end" Value="571" />
+        <Parameter ID="neg_sw_end" Value="-551" />
         <Parameter ID="ds_warning" Value="200.0" />
         <Parameter ID="ds_stop" Value="200.0" />
         <Parameter ID="a_stop" Value="1.0E+30" />

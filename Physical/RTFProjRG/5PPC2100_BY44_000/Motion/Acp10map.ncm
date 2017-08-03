@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio Version=?>
 <NcMapping NcSwId="Acp10">
-  <NcObject Name="rotaryGK" ModuleId="80VD100PD.C000-01" Type="ncAXIS" Channel="1" AcoposSimulation="Off" InitParameter="rotaryGKi" AcoposParameter="rotaryGKa" Disabled="FALSE" ModuleDisabled="FALSE" />
-  <NcObject Name="rotaryDF" ModuleId="80VD100PD.C000-01" Type="ncAXIS" Channel="2" AcoposSimulation="Off" InitParameter="rotaryDFi" AcoposParameter="rotaryDFa" Disabled="FALSE" ModuleDisabled="FALSE" />
-  <NcObject Name="80VD100PD.C000-01_ncV_AXIS1" ModuleId="80VD100PD.C000-01" Type="ncV_AXIS" Channel="1" Disabled="TRUE" ModuleDisabled="FALSE" />
-  <NcObject Name="80VD100PD.C000-01_ncV_AXIS2" ModuleId="80VD100PD.C000-01" Type="ncV_AXIS" Channel="2" Disabled="TRUE" ModuleDisabled="FALSE" />
   <NcObject Name="linearGK" ModuleId="80VD100PD.C188-01" Type="ncAXIS" Channel="1" AcoposSimulation="Off" InitParameter="linearGKi" AcoposParameter="linearGKa" Disabled="FALSE" ModuleDisabled="FALSE" />
   <NcObject Name="linearDF" ModuleId="80VD100PD.C188-01" Type="ncAXIS" Channel="2" AcoposSimulation="Off" InitParameter="linearDFi" AcoposParameter="linearDFa" Disabled="FALSE" ModuleDisabled="FALSE" />
   <NcObject Name="80VD100PD.C188-01_ncV_AXIS1" ModuleId="80VD100PD.C188-01" Type="ncV_AXIS" Channel="1" Disabled="TRUE" ModuleDisabled="FALSE" />
@@ -17,4 +13,8 @@
   <NcObject Name="linearFW" ModuleId="80VD100PD.C188-01a" Type="ncAXIS" Channel="2" AcoposSimulation="Off" InitParameter="linearFWi" AcoposParameter="linearFWa" Disabled="FALSE" ModuleDisabled="FALSE" />
   <NcObject Name="80VD100PD.C188-01a_ncV_AXIS1" ModuleId="80VD100PD.C188-01a" Type="ncV_AXIS" Channel="1" Disabled="TRUE" ModuleDisabled="FALSE" />
   <NcObject Name="80VD100PD.C188-01a_ncV_AXIS2" ModuleId="80VD100PD.C188-01a" Type="ncV_AXIS" Channel="2" Disabled="TRUE" ModuleDisabled="FALSE" />
+  <NcObject Name="rotaryGK" ModuleId="80VD100PD.C000-01" Type="ncAXIS" Channel="1" AcoposSimulation="Off" InitParameter="rotaryGKi" AcoposParameter="rotaryGKa" Disabled="FALSE" ModuleDisabled="FALSE" />
+  <NcObject Name="rotaryDF" ModuleId="80VD100PD.C000-01" Type="ncAXIS" Channel="2" AcoposSimulation="Off" InitParameter="rotaryDFi" AcoposParameter="rotaryDFa" Disabled="FALSE" ModuleDisabled="FALSE" />
+  <NcObject Name="80VD100PD.C000-01_ncV_AXIS1" ModuleId="80VD100PD.C000-01" Type="ncV_AXIS" Channel="1" Disabled="TRUE" ModuleDisabled="FALSE" />
+  <NcObject Name="80VD100PD.C000-01_ncV_AXIS2" ModuleId="80VD100PD.C000-01" Type="ncV_AXIS" Channel="2" Disabled="TRUE" ModuleDisabled="FALSE" />
 </NcMapping>
