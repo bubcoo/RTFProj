@@ -26,6 +26,25 @@ FUNCTION_BLOCK measurement_ofScore (*TODO: Add your comment here*) (*$GROUP=User
 	END_VAR
 END_FUNCTION_BLOCK
 
+FUNCTION_BLOCK axes_control (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		Enable : BOOL;
+		start_move : BOOL;
+		linear_axis_cyclic : REFERENCE TO MpAxisCyclicSet;
+		linear_axis_param : REFERENCE TO MpAxisCyclicSetParType;
+		linear_param : param_ac;
+		rotary_axis_cyclic : REFERENCE TO MpAxisCyclicSet;
+		rotary_axis_param : REFERENCE TO MpAxisCyclicSetParType;
+		rotary_param : param_ac;
+	END_VAR
+	VAR_OUTPUT
+		successfully : BOOL;
+	END_VAR
+	VAR
+		Internal : internal_controlAxis;
+	END_VAR
+END_FUNCTION_BLOCK
+
 FUNCTION_BLOCK calculete_min
 	VAR_INPUT
 		cmp_num : ARRAY[0..4] OF REAL;
@@ -270,25 +289,6 @@ FUNCTION_BLOCK get_rotationalPostition
 	END_VAR
 	VAR_OUTPUT
 		result : ARRAY[0..3] OF LREAL;
-	END_VAR
-END_FUNCTION_BLOCK
-
-FUNCTION_BLOCK axes_control (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
-	VAR_INPUT
-		Enable : BOOL;
-		start_move : BOOL;
-		linear_axis_cyclic : REFERENCE TO MpAxisCyclicSet;
-		linear_axis_param : REFERENCE TO MpAxisCyclicSetParType;
-		linear_param : param_ac;
-		rotary_axis_cyclic : REFERENCE TO MpAxisCyclicSet;
-		rotary_axis_param : REFERENCE TO MpAxisCyclicSetParType;
-		rotary_param : param_ac;
-	END_VAR
-	VAR_OUTPUT
-		successfully : BOOL;
-	END_VAR
-	VAR
-		Internal : internal_controlAxis;
 	END_VAR
 END_FUNCTION_BLOCK
 

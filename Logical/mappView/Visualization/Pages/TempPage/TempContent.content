@@ -19,7 +19,7 @@
                             </Widget>
                             <Widget xsi:type="widgets.brease.OnlineChartYAxis" id="OnlineChartYAxis9" width="60" zIndex="1">
                               <Widgets>
-                                <Widget xsi:type="widgets.brease.OnlineChartGraph" id="OnlineChartGraph1" zIndex="0" maxValue="1000" minValue="-1000" xAxisRefId="OnlineChartTimeAxis9" />
+                                <Widget xsi:type="widgets.brease.OnlineChartGraph" id="OnlineChartGraph1" zIndex="0" maxValue="120" xAxisRefId="OnlineChartTimeAxis9" />
                               </Widgets>
                             </Widget>
                           </Widgets>

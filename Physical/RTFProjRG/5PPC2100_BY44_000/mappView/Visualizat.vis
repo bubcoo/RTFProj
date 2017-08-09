@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<vdef:Visualization id="RSTPROJBR" xmlns:vdef="http://www.br-automation.com/iat2015/visualizationDefinition/v2">
+<vdef:Visualization id="RSTSIMPROJ" xmlns:vdef="http://www.br-automation.com/iat2015/visualizationDefinition/v2">
   <StartPage pageRefId="HomePage" />
   <Pages>
-	<Page refId="HomePage"/>
+    <Page refId="HomePage"/>
 	<Page refId="GamePage"/>
 	<Page refId="MatchPage"/>
 	<Page refId="MatHist"/>
@@ -15,20 +15,20 @@
 	<Page refId="GraphPage"/>
 	<Page refId="SPage"/>
 	<Page refId="mbInfo"/>
+	<Page refId="wdInfo"/>
 	<Page refId="dsInfo"/>
-	<Page refId="wdInfo"/>	
   </Pages>
   <Navigations>
     <Navigation refId="MainNavigation" />
   </Navigations>  
   <BindingsSets>
-    <BindingsSet refId="binding_GP" />
+    <!--<BindingsSet refId="" />-->
   </BindingsSets>
   <EventBindingsSets>
-   <EventBindingsSet refId="MyEventBinding" />
+    <EventBindingsSet refId="MyEventBinding" />
   </EventBindingsSets>
   <Dialogs>
-    <Dialog refId="DialogLogin" />
+	<Dialog refId="DialogLogin" />
 	<Dialog refId="DialogStart" />
 	<Dialog refId="DialogEnd" />
   </Dialogs>

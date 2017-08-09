@@ -21,12 +21,12 @@
   <NcDataObjects>
     <NcDataObject Name="acp10etxen" Source="ACP10_ETXEN.acp10etxen.dob" Memory="UserROM" Language="Ett" />
     <NcDataObject Name="rotaryDFa" Source="Real_Game.Motion.rotaryDFobj.rotaryDFa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="rotaryDFi" Source="Real_Game.Motion.rotaryDFobj.rotaryDFi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="rotaryGKa" Source="Real_Game.Motion.rotaryGKobj.rotaryGKa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="rotaryGKi" Source="Real_Game.Motion.rotaryGKobj.rotaryGKi.dob" Memory="UserROM" Language="Ax" />
     <NcDataObject Name="linearDFa" Source="Real_Game.Motion.linearDFobj.linearDFa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="rotaryDFi" Source="Real_Game.Motion.rotaryDFobj.rotaryDFi.dob" Memory="UserROM" Language="Ax" />
     <NcDataObject Name="linearDFi" Source="Real_Game.Motion.linearDFobj.linearDFi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="rotaryGKa" Source="Real_Game.Motion.rotaryGKobj.rotaryGKa.dob" Memory="UserROM" Language="Apt" />
     <NcDataObject Name="linearGKa" Source="Real_Game.Motion.linearGKobj.linearGKa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="rotaryGKi" Source="Real_Game.Motion.rotaryGKobj.rotaryGKi.dob" Memory="UserROM" Language="Ax" />
     <NcDataObject Name="linearGKi" Source="Real_Game.Motion.linearGKobj.linearGKi.dob" Memory="UserROM" Language="Ax" />
     <NcDataObject Name="rotaryFWa" Source="Real_Game.Motion.rotaryFWobj.rotaryFWa.dob" Memory="UserROM" Language="Apt" />
     <NcDataObject Name="rotaryFWi" Source="Real_Game.Motion.rotaryFWobj.rotaryFWi.dob" Memory="UserROM" Language="Ax" />

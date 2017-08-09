@@ -40,7 +40,7 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 	
 	// Ceilings of the axes
 	// Axes
-	max_posOfD[0] = 800;
+	max_posOfD[0] = 820;
 	max_posOfD[1] = 3050;
 	max_posOfD[2] = 3050;
 	max_posOfD[3] = 3055;
@@ -51,14 +51,14 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 	min_posOfD[3] = -3055;
 	// Dummies
 	max_dispOfD[0] = 800;
-	max_dispOfD[1] = 1850;
-	max_dispOfD[2] = 650;
-	max_dispOfD[3] = 955;
+	max_dispOfD[1] = 1060;
+	max_dispOfD[2] = 550;
+	max_dispOfD[3] = 860;
 	
-	min_dispOfD[0] = -930;
-	min_dispOfD[1] = -1850;
-	min_dispOfD[2] = -650;
-	min_dispOfD[3] = -955;
+	min_dispOfD[0] = -910;
+	min_dispOfD[1] = -960;
+	min_dispOfD[2] = -530;
+	min_dispOfD[3] = -800;
 	// Actual positions of dummies CPU
 	// goalkeeper
 	matrix_posOfCPU[0][0] = 0 + c_dOA->act_displacementCPU[0];
@@ -288,7 +288,7 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 	
 	// initial max goalkeeper
 	gk_max = 800;
-	gk_min = -930;
+	gk_min = -910;
 	
 	resultUP   = strcmp(c_nC->specific_direction, "up_backward");
 	resultLF   = strcmp(c_nC->specific_direction, "left");

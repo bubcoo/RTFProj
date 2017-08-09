@@ -253,9 +253,15 @@ void _INIT ProgramInit(void)
 	// initi index attack mode
 	index_ofAxesAM = 0;
 	// initialization define position of rotary Axis
-	define_posRotary[0] = 117956383;	
+	define_posRotary[0] = 177433748;
+	define_posRotary[1] = 117152556;
+	define_posRotary[2] = 117974054;
+	define_posRotary[3] = 131615018;
 	// linear max positions
 	linear_maxPos[0]    = 820;
+	linear_maxPos[1]    = 1080;
+	linear_maxPos[2]    = 570;
+	linear_maxPos[3]    = 880;
 	// intialization state machine
 	//SOCCER_TABLE_STEP = RST_INITIALIZATION_1;
 	SOCCER_TABLE_STEP = RST_EMPTY;
@@ -538,7 +544,7 @@ void _CYCLIC ProgramCyclic(void)
 					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
 					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
 					if(index_ofAxesAM == 0){
-						if(check_aM.attack_mode == 0){
+						if(check_aM.attack_mode == 0 && cam_det.isBallFound == 1){
 							// If ball it isn't near of dummy -> Defences
 							SOCCER_TABLE_STEP = RST_CALCULATION_DEFENSE;
 						}else if(check_aM.attack_mode == 1){
@@ -814,6 +820,7 @@ void _CYCLIC ProgramCyclic(void)
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
 					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
 					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
+					turn_pos.start_turn							 = 1;
 					if(turn_pos.start_turn == 1){
 						if(turn_pos.successfully == 1){
 							turn_pos.start_turn = 0;
