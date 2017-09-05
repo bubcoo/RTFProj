@@ -77,11 +77,13 @@ _GLOBAL axesAcopos axis_acopos;
 
 // axis type -> ACOPOS
 // goalkeeper
-_GLOBAL ACP10AXIS_typ linearGK;
-_GLOBAL ACP10AXIS_typ rotaryGK;
+_GLOBAL ACP10AXIS_typ linGK;
+_GLOBAL ACP10AXIS_typ rotGK;
 // defender
-_GLOBAL ACP10AXIS_typ linearDF;
-_GLOBAL ACP10AXIS_typ rotaryDF;
+_GLOBAL ACP10AXIS_typ linDF;
+_GLOBAL ACP10VAXIS_typ linDFV;
+_GLOBAL ACP10AXIS_typ rotDF;
+_GLOBAL ACP10VAXIS_typ rotDFV;
 // midfielder
 _GLOBAL ACP10AXIS_typ linearMD;
 _GLOBAL ACP10AXIS_typ rotaryMD;

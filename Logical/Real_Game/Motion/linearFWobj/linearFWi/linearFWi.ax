@@ -130,10 +130,10 @@
       </Group>
       <Group ID="homing">
         <Group ID="parameter">
-          <Parameter ID="s" Value="820" />
-          <Parameter ID="v_switch" Value="400.0" />
-          <Parameter ID="v_trigger" Value="400.0" />
-          <Parameter ID="a" Value="1000.0" />
+          <Parameter ID="s" Value="880" />
+          <Parameter ID="v_switch" Value="5000.0" />
+          <Parameter ID="v_trigger" Value="5000.0" />
+          <Parameter ID="a" Value="200000.0" />
           <Parameter ID="mode" Value="ncBLOCK_TORQUE" />
           <Parameter ID="edge_sw" Value="ncPOSITIVE" />
           <Parameter ID="start_dir" Value="ncPOSITIVE" />

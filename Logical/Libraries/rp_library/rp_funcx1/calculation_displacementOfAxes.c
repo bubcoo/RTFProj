@@ -49,16 +49,16 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 	min_posOfD[1] = -3050;
 	min_posOfD[2] = -3050;
 	min_posOfD[3] = -3055;
-	// Dummies
+	// Dummies {-50 units, without GK}
 	max_dispOfD[0] = 800;
-	max_dispOfD[1] = 1060;
-	max_dispOfD[2] = 550;
-	max_dispOfD[3] = 860;
+	max_dispOfD[1] = 1030;
+	max_dispOfD[2] = 520;
+	max_dispOfD[3] = 830;
 	
 	min_dispOfD[0] = -910;
-	min_dispOfD[1] = -960;
-	min_dispOfD[2] = -530;
-	min_dispOfD[3] = -800;
+	min_dispOfD[1] = -930;
+	min_dispOfD[2] = -500;
+	min_dispOfD[3] = -770;
 	// Actual positions of dummies CPU
 	// goalkeeper
 	matrix_posOfCPU[0][0] = 0 + c_dOA->act_displacementCPU[0];
@@ -93,9 +93,9 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 	calculation_realCrossing(&calc_rC);
 
 	for(i = 0; i < (int)(sizeof(calc_rC.real_cross)/sizeof(calc_rC.real_cross[0])); i++){
-		if(calc_rC.real_cross[i] > max_posOfD[i]){
+		if(calc_rC.real_cross[i] > max_dispOfD[i]){
 			real_disp[i] = max_dispOfD[i];
-		}else if(calc_rC.real_cross[i] < min_posOfD[i]){
+		}else if(calc_rC.real_cross[i] < min_dispOfD[i] && calc_rC.real_cross[i] < max_dispOfD[i]){
 			real_disp[i] = min_dispOfD[i];
 		}else {
 			ch_rightD.index      = i;
@@ -146,7 +146,13 @@ void calculation_displacementOfAxes(struct calculation_displacementOfAxes* c_dOA
 			}
 		}
 		
-		c_dOA->displacement[i_out] = real_disp[i_out];
+		if(real_disp[i_out] > max_dispOfD[i_out]){
+			c_dOA->displacement[i_out] = max_dispOfD[i_out];
+		}else if(real_disp[i_out] < min_dispOfD[i_out] && real_disp[i_out] < max_dispOfD[i_out]){
+			c_dOA->displacement[i_out] = min_dispOfD[i_out];
+		}else{
+			c_dOA->displacement[i_out] = real_disp[i_out];
+		}
 		c_dOA->velocity[i_out] 	   = velocity[i_out];
 		c_dOA->acceleration[i_out] = acceleration[i_out];
 		c_dOA->deceleration[i_out] = deceleration[i_out];
@@ -419,6 +425,7 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 			break;
 	}// end switch
 	
+	
 	if(y_crossGK > gk_max){
 		y_crossGK = y_crossDF - 200;
 	}else if(y_crossGK < gk_min){
@@ -426,6 +433,7 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 	}
 	
 	//c_nC->new_cross[0] = y_crossGK;
+	
 	if(c_nC->act_posOfAxesCPU_Y[0] > gk_max){
 		c_nC->new_cross[0] = gk_max;
 	}else if(c_nC->act_posOfAxesCPU_Y[0] < gk_min){
@@ -433,6 +441,7 @@ void calculation_newCrossing(struct calculation_newCrossing* c_nC)
 	}else{
 		c_nC->new_cross[0] = c_nC->act_posOfAxesCPU_Y[0];
 	}
+	
 	c_nC->new_cross[1] = y_crossDF;
 	c_nC->new_cross[2] = y_crossMD;
 	c_nC->new_cross[3] = y_crossFW;

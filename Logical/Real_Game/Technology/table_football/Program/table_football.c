@@ -2,7 +2,7 @@
 * B&R Automation - Perfection in Automation (https://www.br-automation.com)
     ******************************************************************************************
     * Program 	    : Master's Thesis - Soccer Table (Table Football - real game)
-    * Author  	    : Bc. Roman Parak
+    * Author  	    : Ing. Roman Parak
     * Created 	    : 2016/2017
 	* University    : Brno University of Technology(BUT)
 	* Faculty       : Faculty of Mechanical Engineering(FME)
@@ -30,9 +30,6 @@
 #ifdef _DEFAULT_INCLUDES
 	#include <AsDefault.h>
 #endif
-
-/*************************** DEFINITIONS *******************************/
-#define EACH_FORMATION 1;
 
 /************************ GLOBAL VARIABLES ******************************/
 _GLOBAL FBCamera_typ cam_det;
@@ -70,6 +67,7 @@ _LOCAL BOOL ESTOP;
 _LOCAL BOOL OSSD2;
 _LOCAL BOOL SAFETY_MODUL_OK;
 _LOCAL BOOL START_GAME, STOP_GAME, START_INIT, EXIT_GAME, RESTART_GAME;
+_LOCAL BOOL START_HOME_MANUAL, START_HOME_AUT;
 // usint
 _LOCAL USINT max_numberOfFormation;
 _LOCAL USINT i_axisNum;
@@ -108,7 +106,7 @@ void _INIT ProgramInit(void)
 {
     /*********************************** Declaration variables **********************************/
     // generally
-    max_numberOfFormation = EACH_FORMATION;
+    max_numberOfFormation = 4;
     
     // axis type -> MAPP
     // linear
@@ -253,10 +251,10 @@ void _INIT ProgramInit(void)
 	// initi index attack mode
 	index_ofAxesAM = 0;
 	// initialization define position of rotary Axis
-	define_posRotary[0] = 177433748;
-	define_posRotary[1] = 117152556;
-	define_posRotary[2] = 117974054;
-	define_posRotary[3] = 131615018;
+	define_posRotary[0] = 177417632;
+	define_posRotary[1] = 66395800;
+	define_posRotary[2] = 118069521;
+	define_posRotary[3] = 7444750;
 	// linear max positions
 	linear_maxPos[0]    = 820;
 	linear_maxPos[1]    = 1080;
@@ -346,6 +344,13 @@ void _CYCLIC ProgramCyclic(void)
 									c_er2			  = 0;
 									SOCCER_TABLE_STEP = RST_ERROR;
 								}else {
+									/*
+									if(START_HOME_AUT == 1){
+										SOCCER_TABLE_STEP = RST_INITIALIZATION_2;
+									}else if(START_HOME_MANUAL == 1){
+										SOCCER_TABLE_STEP = RST_MANUAL_HOME;
+									}
+									*/
 									SOCCER_TABLE_STEP = RST_INITIALIZATION_2;
 								}
 							}
@@ -365,50 +370,257 @@ void _CYCLIC ProgramCyclic(void)
 				if(reset_safetyESTOP == 1){
 					reset_safetyESTOP = 0;
 				}
+				/***** GOALKEEPER - ROTARY *****/
+				start_rotA[0].value_ofRotatation = angle_ofRotation[0];
+				start_rotA[0].start_btn          = 1;
+				start_rotaryAxis(&start_rotA[0]);
 				
-				for(i_sAx = 0; i_sAx <= max_numberOfFormation - 1; i_sAx++){
-					// input parameters -> Rotary
-					start_rotA[i_sAx].value_ofRotatation = angle_ofRotation[i_sAx];
-					start_rotA[i_sAx].start_btn		     = 1;
-					// call function block
-					start_rotaryAxis(&start_rotA[i_sAx]);
-					
-					if(start_rotA[i_sAx].succesfully == 1){
-						// input parameter -> Rotary : Off
-						start_rotA[i_sAx].start_btn		    = 0;
-						// input parameters -> Linear
-						start_linA[i_sAx].max_leftPosition  = linear_maxPos[i_sAx];
-						start_linA[i_sAx].start_btn			= 1;
-						
-						// call function block
-						start_linearAxis(&start_linA[i_sAx]);
-					}
-					// output
-					if(start_linA[i_sAx].succesfully == 1){
-						// input parameter -> Linear : Off
-						start_linA[i_sAx].start_btn = 0;
-						if(c_sAx == i_sAx){
-							c_sAx++;
-						}
-					}
-				}
-				if(c_sAx == max_numberOfFormation){
+				if(start_rotA[0].succesfully == 1 && mp_Axis.mp_axisRotary[0].IsHomed == 1){
 					if(ESTOP == 0 || OSSD2 == 0){
 						SOCCER_TABLE_STEP = RST_SAFETY;
 					}else if(e_detect.err_detect == 1){
 						c_er1 			  = 0;
 						c_er2			  = 0;
 						SOCCER_TABLE_STEP = RST_ERROR;
-					}else {
-						SOCCER_TABLE_STEP = RST_INITIALIZATION_3;
+					}else{
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_4;//6
 					}
 				}
 			}
 			break;
 		case RST_INITIALIZATION_3:
-			{	
-				/*************************************** INITIALIZATION no.3 ******************************************/
+			{
+				/****************************** INITIALIZATION no.3 POWER ON & HOME AXES ******************************/
 				BEFORE_STATE = RST_INITIALIZATION_3;
+				
+				// reset safety -> turn off
+				if(reset_safetyESTOP == 1){
+					reset_safetyESTOP = 0;
+				}
+				/***** DEFENDER - ROTARY *****/
+				start_rotA[1].value_ofRotatation = angle_ofRotation[1];
+				start_rotA[1].start_btn          = 1;
+				start_rotaryAxis(&start_rotA[1]);
+				
+				if(start_rotA[1].succesfully == 1 && mp_Axis.mp_axisRotary[1].IsHomed == 1){
+					if(ESTOP == 0 || OSSD2 == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(e_detect.err_detect == 1){
+						c_er1 			  = 0;
+						c_er2			  = 0;
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else{
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_4;
+					}
+				}
+			}
+			break;
+		case RST_INITIALIZATION_4:
+			{
+				/****************************** INITIALIZATION no.4 POWER ON & HOME AXES ******************************/
+				BEFORE_STATE = RST_INITIALIZATION_4;
+				
+				// reset safety -> turn off
+				if(reset_safetyESTOP == 1){
+					reset_safetyESTOP = 0;
+				}
+				/***** MIDFIELDER - ROTARY *****/
+				start_rotA[2].value_ofRotatation = angle_ofRotation[2];
+				start_rotA[2].start_btn          = 1;
+				start_rotaryAxis(&start_rotA[2]);
+				
+				if(start_rotA[2].succesfully == 1 && mp_Axis.mp_axisRotary[2].IsHomed == 1){
+					if(ESTOP == 0 || OSSD2 == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(e_detect.err_detect == 1){
+						c_er1 			  = 0;
+						c_er2			  = 0;
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else{
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_5;
+					}
+				}
+			}
+			break;
+		case RST_INITIALIZATION_5:
+			{
+				/****************************** INITIALIZATION no.5 POWER ON & HOME AXES ******************************/
+				BEFORE_STATE = RST_INITIALIZATION_5;
+				
+				// reset safety -> turn off
+				if(reset_safetyESTOP == 1){
+					reset_safetyESTOP = 0;
+				}
+				/***** FORWARD - ROTARY *****/
+				start_rotA[3].value_ofRotatation = angle_ofRotation[3];
+				start_rotA[3].start_btn          = 1;
+				start_rotaryAxis(&start_rotA[3]);
+				
+				if(start_rotA[3].succesfully == 1 && mp_Axis.mp_axisRotary[3].IsHomed == 1){
+					if(ESTOP == 0 || OSSD2 == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(e_detect.err_detect == 1){
+						c_er1 			  = 0;
+						c_er2			  = 0;
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else{
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_6;
+					}
+				}
+			}
+			break;
+		case RST_INITIALIZATION_6:
+			{
+				/****************************** INITIALIZATION no.6 POWER ON & HOME AXES ******************************/
+				BEFORE_STATE = RST_INITIALIZATION_6;
+				
+				// reset safety -> turn off
+				if(reset_safetyESTOP == 1){
+					reset_safetyESTOP = 0;
+				}
+				/***** GOALKEEPER - LINEAR *****/
+				start_linA[0].max_leftPosition = linear_maxPos[0];
+				start_linA[0].velocity		   = 1000;
+				start_linA[0].start_btn		   = 1;
+				start_linearAxis(&start_linA[0]);
+				
+				if(start_linA[0].succesfully == 1 && mp_Axis.mp_axisLinear[0].IsHomed == 1){
+					if(ESTOP == 0 || OSSD2 == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(e_detect.err_detect == 1){
+						c_er1 			  = 0;
+						c_er2			  = 0;
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else{
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_8;//10
+					}
+				}
+			}
+			break;
+		case RST_INITIALIZATION_7:
+			{
+				/****************************** INITIALIZATION no.7 POWER ON & HOME AXES ******************************/
+				BEFORE_STATE = RST_INITIALIZATION_7;
+				
+				// reset safety -> turn off
+				if(reset_safetyESTOP == 1){
+					reset_safetyESTOP = 0;
+				}
+				/***** DEFENDER - LINEAR *****/
+				start_linA[1].max_leftPosition = linear_maxPos[1];
+				start_linA[1].velocity		   = 5000;
+				start_linA[1].start_btn		   = 1;
+				start_linearAxis(&start_linA[1]);
+				
+				if(start_linA[1].succesfully == 1 && mp_Axis.mp_axisLinear[1].IsHomed == 1){
+					if(ESTOP == 0 || OSSD2 == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(e_detect.err_detect == 1){
+						c_er1 			  = 0;
+						c_er2			  = 0;
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else{
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_8;
+					}
+				}
+			}
+			break;
+		case RST_INITIALIZATION_8:
+			{
+				/****************************** INITIALIZATION no.8 POWER ON & HOME AXES ******************************/
+				BEFORE_STATE = RST_INITIALIZATION_8;
+				
+				// reset safety -> turn off
+				if(reset_safetyESTOP == 1){
+					reset_safetyESTOP = 0;
+				}
+				/***** MIDFIELDER - LINEAR *****/
+				start_linA[2].max_leftPosition = linear_maxPos[2];
+				start_linA[2].velocity		   = 5000;
+				start_linA[2].start_btn		   = 1;
+				start_linearAxis(&start_linA[2]);
+				
+				if(start_linA[2].succesfully == 1 && mp_Axis.mp_axisLinear[2].IsHomed == 1){
+					if(ESTOP == 0 || OSSD2 == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(e_detect.err_detect == 1){
+						c_er1 			  = 0;
+						c_er2			  = 0;
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else{
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_9;
+					}
+				}
+			}
+			break;
+		case RST_INITIALIZATION_9:
+			{
+				/****************************** INITIALIZATION no.9 POWER ON & HOME AXES ******************************/
+				BEFORE_STATE = RST_INITIALIZATION_9;
+				
+				// reset safety -> turn off
+				if(reset_safetyESTOP == 1){
+					reset_safetyESTOP = 0;
+				}
+				/***** FORWARD - LINEAR *****/
+				start_linA[3].max_leftPosition = linear_maxPos[3];
+				start_linA[3].velocity		   = 5000;
+				start_linA[3].start_btn		   = 1;
+				start_linearAxis(&start_linA[3]);
+				
+				if(start_linA[3].succesfully == 1 && mp_Axis.mp_axisLinear[3].IsHomed == 1){
+					if(ESTOP == 0 || OSSD2 == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(e_detect.err_detect == 1){
+						c_er1 			  = 0;
+						c_er2			  = 0;
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else{
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_10;
+					}
+				}
+			}
+			break;
+		case RST_MANUAL_HOME:
+			{
+				// linear 
+				mp_Axis.mp_axisLinear[0].Home = 1;
+				mp_Axis.mp_axisLinear[1].Home = 1;
+				mp_Axis.mp_axisLinear[2].Home = 1;
+				mp_Axis.mp_axisLinear[3].Home = 1;
+				// rotary
+				mp_Axis.mp_axisRotary[0].Home = 1;
+				mp_Axis.mp_axisRotary[1].Home = 1;
+				mp_Axis.mp_axisRotary[2].Home = 1;
+				mp_Axis.mp_axisRotary[3].Home = 1;
+				
+				if(mp_Axis.mp_axisLinear[max_numberOfFormation-1].IsHomed == 1 && mp_Axis.mp_axisRotary[max_numberOfFormation-1].IsHomed == 1){
+					if(ESTOP == 0 || OSSD2 == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(e_detect.err_detect == 1){
+						c_er1 			  = 0;
+						c_er2			  = 0;
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else{
+						// linear 
+						mp_Axis.mp_axisLinear[0].Home = 0;
+						mp_Axis.mp_axisLinear[1].Home = 0;
+						mp_Axis.mp_axisLinear[2].Home = 0;
+						mp_Axis.mp_axisLinear[3].Home = 0;
+						// rotary
+						mp_Axis.mp_axisRotary[0].Home = 0;
+						mp_Axis.mp_axisRotary[1].Home = 0;
+						mp_Axis.mp_axisRotary[2].Home = 0;
+						mp_Axis.mp_axisRotary[3].Home = 0;
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_10;
+					}
+				}
+			}
+			break;
+		case RST_INITIALIZATION_10:
+			{	
+				/*************************************** INITIALIZATION no.10 ******************************************/
+				BEFORE_STATE = RST_INITIALIZATION_10;
 				
 				for(i_int3 = 0; i_int3 <= max_numberOfFormation - 1; i_int3++){
 					// axes cyclic parameter
@@ -434,15 +646,15 @@ void _CYCLIC ProgramCyclic(void)
 						c_er2			  = 0;
 						SOCCER_TABLE_STEP = RST_ERROR;
 					}else {
-						SOCCER_TABLE_STEP = RST_INITIALIZATION_4;
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_11;
 					}
 				}
 			}
 			break;
-		case RST_INITIALIZATION_4:
+		case RST_INITIALIZATION_11:
 			{
-				/*************************************** INITIALIZATION no.4 ******************************************/
-				BEFORE_STATE = RST_INITIALIZATION_4;
+				/*************************************** INITIALIZATION no.11 ******************************************/
+				BEFORE_STATE = RST_INITIALIZATION_11;
 				
 				if(ESTOP == 0 || OSSD2 == 0){
 					SOCCER_TABLE_STEP = RST_SAFETY;
@@ -453,11 +665,10 @@ void _CYCLIC ProgramCyclic(void)
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
 					STOP_GAME = 0;
 					EXIT_GAME = 0;
-					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
-					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
+					start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
 					// start searching 
 					cam_det.Search 	  = 1;
-					SOCCER_TABLE_STEP = RST_INITIALIZATION_5;
+					SOCCER_TABLE_STEP = RST_INITIALIZATION_12;
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME	 = 0;
 					RESTART_GAME = 0;
@@ -467,9 +678,9 @@ void _CYCLIC ProgramCyclic(void)
 				}
 			}
 			break;
-		case RST_INITIALIZATION_5:
+		case RST_INITIALIZATION_12:
 			{
-				/*************************************** INITIALIZATION no.5 ******************************************/
+				/*************************************** INITIALIZATION no.12 ******************************************/
 				// values -> camera
 				if(isnan(cam_det.Results.AxisX) || isnan(cam_det.Results.AxisY)){
 					// ball step -> k - 1
@@ -506,8 +717,8 @@ void _CYCLIC ProgramCyclic(void)
 					c_er2			  = 0;
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
-					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
-					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
+					
+					start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
 					SOCCER_TABLE_STEP = RST_CHECK_MODE;
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
@@ -540,9 +751,8 @@ void _CYCLIC ProgramCyclic(void)
 					c_er2			  = 0;
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
-					index_ofAxesAM = check_aM.index_ofAxis;
-					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
-					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
+					index_ofAxesAM = check_aM.index_ofAxis;	
+					start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
 					if(index_ofAxesAM == 0){
 						if(check_aM.attack_mode == 0 && cam_det.isBallFound == 1){
 							// If ball it isn't near of dummy -> Defences
@@ -666,8 +876,8 @@ void _CYCLIC ProgramCyclic(void)
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
 					c_dp = 0;
-					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
-					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
+					
+					start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
 					if(c_dp == 0){
 						SOCCER_TABLE_STEP = RST_MOVE_INTO_DEFENSE_POS1;
 					}
@@ -684,7 +894,8 @@ void _CYCLIC ProgramCyclic(void)
 			{
 				/*************************************** DEF. MOVE no.1 ******************************************/
 				for(i_dp1 = 0; i_dp1 <= max_numberOfFormation - 1; i_dp1++){
-					if((((mp_Axis.mp_cyclicSetRotary[i_dp1].Error == 1 && mp_Axis.mp_cyclicSetRotary[i_dp1].StatusID != 0) || (mp_Axis.mp_cyclicSetLinear[i_dp1].Error == 1 && mp_Axis.mp_cyclicSetLinear[i_dp1].StatusID != 0))
+					if((((mp_Axis.mp_cyclicSetRotary[i_dp1].Error == 1 && mp_Axis.mp_cyclicSetRotary[i_dp1].StatusID != 0) || (mp_Axis.
+						mp_cyclicSetLinear[i_dp1].Error == 1 && mp_Axis.mp_cyclicSetLinear[i_dp1].StatusID != 0))
 					|| (mp_Axis.mp_cyclicSetRotary[i_dp1].CommandAborted == 1 || mp_Axis.mp_cyclicSetLinear[i_dp1].CommandAborted == 1))){
 						if(c_dp == i_dp1){
 							c_dp++;
@@ -700,16 +911,14 @@ void _CYCLIC ProgramCyclic(void)
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
 					if(c_dp == max_numberOfFormation){
-						mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
-						mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
+						start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
 						c_dp 			  = 0;
 						c_er1 			  = 0;
 						c_er2			  = 0;
 						SOCCER_TABLE_STEP = RST_ERROR;
 					}else{
-						mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
-						mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
-						SOCCER_TABLE_STEP = RST_INITIALIZATION_5;
+						start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_11;
 					}
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
@@ -736,8 +945,7 @@ void _CYCLIC ProgramCyclic(void)
 					c_er2			  = 0;
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
-					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
-					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
+					start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
 					SOCCER_TABLE_STEP = RST_ATTACK_MODE_SHOOT2;
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
@@ -762,8 +970,7 @@ void _CYCLIC ProgramCyclic(void)
 					c_er2			  = 0;
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
-					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
-					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
+					start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
 					if(ball_shoot.start_shoot == 1){
 						if(ball_shoot.successfully == 1){
 							ball_shoot.start_shoot = 0;
@@ -792,9 +999,8 @@ void _CYCLIC ProgramCyclic(void)
 					c_er2			  = 0;
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
-					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
-					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
-					SOCCER_TABLE_STEP = RST_INITIALIZATION_5;
+					start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
+					SOCCER_TABLE_STEP = RST_INITIALIZATION_11;
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
@@ -818,15 +1024,14 @@ void _CYCLIC ProgramCyclic(void)
 					c_er2			  = 0;
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
-					mp_Axis.mp_cyclicSetRotary[0].CyclicPosition = 1;
-					mp_Axis.mp_cyclicSetLinear[0].CyclicPosition = 1;
+					start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
 					turn_pos.start_turn							 = 1;
 					if(turn_pos.start_turn == 1){
 						if(turn_pos.successfully == 1){
 							turn_pos.start_turn = 0;
 						
 							if(turn_pos.start_turn == 0){
-								SOCCER_TABLE_STEP = RST_INITIALIZATION_5;
+								SOCCER_TABLE_STEP = RST_INITIALIZATION_11;
 							}
 						}
 					}
@@ -930,7 +1135,8 @@ void _CYCLIC ProgramCyclic(void)
 							mp_Axis.mp_cyclicSetLinear[i_rstE].ErrorReset = 1;
 						}
 					}
-											
+					
+					
 					if(c_er1 == i_rstE){
 						c_er1++;
 					}
@@ -946,6 +1152,7 @@ void _CYCLIC ProgramCyclic(void)
 					if(c_er1 == max_numberOfFormation){
 						SOCCER_TABLE_STEP = RST_ERROR2;
 					}
+					SOCCER_TABLE_STEP = RST_ERROR2;
 				}
 			}
 			break;
@@ -964,7 +1171,7 @@ void _CYCLIC ProgramCyclic(void)
 						mp_Axis.mp_cyclicSetLinear[i_rstE].ErrorReset 	   = 0;
 						mp_Axis.mp_axisLinear[i_rstE2].Power 	  	  	   = 1;
 					}
-					
+				
 					if(c_er2 == i_rstE2){
 						c_er2++;
 					}
@@ -980,6 +1187,7 @@ void _CYCLIC ProgramCyclic(void)
 					if(c_er2 == max_numberOfFormation){
 						SOCCER_TABLE_STEP = BEFORE_STATE;
 					}
+					SOCCER_TABLE_STEP = BEFORE_STATE;
 				}
 			}
 			break;
@@ -1051,7 +1259,7 @@ void _CYCLIC ProgramCyclic(void)
 				for(i_mnp1 = 0; i_mnp1 <= max_numberOfFormation - 1; i_mnp1++){
 					// axes cyclic parameter
 					// linear
-					mp_Axis.mp_cyclicSetLinear[i_int3].Velocity 	    = 29000.0;
+					mp_Axis.mp_cyclicSetLinear[i_int3].Velocity = 29000.0;
 					mp_Axis.mp_cyclicSetLinear[i_int3].Position = 0;
 					// rotary
 					mp_Axis.mp_cyclicSetRotary[i_int3].Velocity = 10000.0;
@@ -1065,7 +1273,7 @@ void _CYCLIC ProgramCyclic(void)
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
 					c_nmp 			  = 0;
-					SOCCER_TABLE_STEP = RST_INITIALIZATION_5;
+					SOCCER_TABLE_STEP = RST_INITIALIZATION_11;
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
 					RESTART_GAME	  = 0;
@@ -1133,6 +1341,8 @@ void _CYCLIC ProgramCyclic(void)
 	FBCamera(&cam_det);
 	// Detection score
 	GoalKeeper(&GoalKeeper_0);
+	// sensors
+	DetectionPositionAxis(&dpA);
 	// Measuremet of score
 	measurement_ofScore(&m_ofScore);
 	// Light
@@ -1140,19 +1350,19 @@ void _CYCLIC ProgramCyclic(void)
 	// error detection Axes
 	// error rotary
 	e_detect.rotary_ERR[0] = mp_Axis.mp_axisRotary[0].Error;
-	e_detect.rotary_ERR[1] = 0;
-	e_detect.rotary_ERR[2] = 0;
-	e_detect.rotary_ERR[3] = 0;
+	//e_detect.rotary_ERR[1] = mp_Axis.mp_axisRotary[1].Error;
+	e_detect.rotary_ERR[2] = mp_Axis.mp_axisRotary[2].Error;
+	e_detect.rotary_ERR[3] = mp_Axis.mp_axisRotary[3].Error;
 	// error linear
 	e_detect.linear_ERR[0] = mp_Axis.mp_axisLinear[0].Error;
-	e_detect.linear_ERR[1] = 0;
-	e_detect.linear_ERR[2] = 0;
-	e_detect.linear_ERR[3] = 0;
+	//e_detect.linear_ERR[1] = mp_Axis.mp_axisLinear[1].Error;
+	e_detect.linear_ERR[2] = mp_Axis.mp_axisLinear[2].Error;
+	e_detect.linear_ERR[3] = mp_Axis.mp_axisLinear[3].Error;
 	// call function error detection
-	err_detection(&e_detect);
-	FBCamera(&cam_det);
-
+	err_detection(&e_detect);	
+	
 }
+
 
 
 

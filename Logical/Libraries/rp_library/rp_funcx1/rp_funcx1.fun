@@ -234,6 +234,7 @@ FUNCTION_BLOCK start_linearAxis (*TODO: Add your comment here*) (*$GROUP=User,$C
 		start_btn : BOOL;
 		axis_name : REFERENCE TO MpAxisBasic;
 		axis_param : REFERENCE TO MpAxisBasicParType;
+		velocity : REAL;
 		max_leftPosition : REAL;
 	END_VAR
 	VAR_OUTPUT

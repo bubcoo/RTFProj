@@ -1,9 +1,9 @@
-LOGStart created on Wednesday 2017/04/26  UTC 08:25:06:744
+LOGStart created on Tuesday 2017/09/05  UTC 12:46:18:687
 
 Reading "OSDD Data"...
 Reading Content "Start"
 Reading properties for module "X20SLX842_110.MainSN".
-  ParameterGroup "Basic_PLC" has 12 parameters.
+  ParameterGroup "Basic_PLC" has 15 parameters.
   ParameterGroup "Safety_Response_Time_Defaults" has 11 parameters.
   ParameterGroup "Options" has 5 parameters.
   ParameterGroup "SafeDigitalInput01" has 6 parameters.
@@ -20,7 +20,7 @@ Reading properties for module "X20SLX842_110.MainSN".
   ParameterGroup "SafeDigitalOutput04" has 1 parameters.
   ParameterGroup "SafeDigitalOutput05" has 1 parameters.
   ParameterGroup "SafeDigitalOutput06" has 5 parameters.
-  ParameterGroup "http://www.br-automation.com" has 84 parameters.
+  ParameterGroup "http://www.br-automation.com" has 89 parameters.
 Module "X20SLX842_110.MainSN.SL1.SM1" is of type "X20 SafeLOGIC Compact, 4xI, 24V, 2xCAT4" and has 1 external machine option objects.
 Module "X20SLX842_110.MainSN.SL1.SM1" is of type "X20 SafeLOGIC Compact, 4xI, 24V, 2xCAT4" and has 2 external machine option objects.
 Module "X20SLX842_110.MainSN.SL1.SM1" is of type "X20 SafeLOGIC Compact, 4xI, 24V, 2xCAT4" and has 3 external machine option objects.
@@ -90,9 +90,9 @@ Content "name1" successfully read from "name2"
 
 
 
-LOGAppend on Wednesday 2017/04/26  UTC 08:25:06:776
+LOGAppend on Tuesday 2017/09/05  UTC 12:46:18:690
 
-Reading "C:\projects\ProjectRealST\Physical\RTFProjRG\5PPC2100_BY44_000\SafeLOGIC-1\BusNavigator.iom"...
+Reading "C:\projects\Robotic_footbal\Physical\RTFProjRG\5PPC2100_BY44_000\SafeLOGIC-1\BusNavigator.iom"...
 Reading Content "IOOffsets"
 IO reservations (MAX number of bytes): SI=2048  SO=2048  NSI=1024  NSO=1024   ConValid = 24  BITEMOsOffset=0  BITEMOsSize=0
 Reading properties for module "SL1.SM1". Beginning at line 3
@@ -111,4 +111,4 @@ Reading properties for channel "BOOL001". Beginning at line 15
 Reading properties for channel "BOOL002". Beginning at line 16
 Reading properties for channel "BOOL101". Beginning at line 17
 Module "SL1.SM1.SL1.SM1" has 14 items.
-Content "IOOffsets" successfully read from "C:\projects\ProjectRealST\Physical\RTFProjRG\5PPC2100_BY44_000\SafeLOGIC-1\BusNavigator.iom"
+Content "IOOffsets" successfully read from "C:\projects\Robotic_footbal\Physical\RTFProjRG\5PPC2100_BY44_000\SafeLOGIC-1\BusNavigator.iom"

@@ -1,9 +1,9 @@
-LOGStart created on Wednesday 2017/04/26  UTC 08:25:09:240
+LOGStart created on Tuesday 2017/09/05  UTC 12:46:20:309
 
 Reading "OSDD Data"...
 Reading Content "Start"
 Reading properties for module "X20SLX842_110.MainSN".
-  ParameterGroup "Basic_PLC" has 12 parameters.
+  ParameterGroup "Basic_PLC" has 15 parameters.
   ParameterGroup "Safety_Response_Time_Defaults" has 11 parameters.
   ParameterGroup "Options" has 5 parameters.
   ParameterGroup "SafeDigitalInput01" has 6 parameters.
@@ -20,7 +20,7 @@ Reading properties for module "X20SLX842_110.MainSN".
   ParameterGroup "SafeDigitalOutput04" has 1 parameters.
   ParameterGroup "SafeDigitalOutput05" has 1 parameters.
   ParameterGroup "SafeDigitalOutput06" has 5 parameters.
-  ParameterGroup "http://www.br-automation.com" has 84 parameters.
+  ParameterGroup "http://www.br-automation.com" has 89 parameters.
 Module "X20SLX842_110.MainSN.SL1.SM1" is of type "X20 SafeLOGIC Compact, 4xI, 24V, 2xCAT4" and has 1 external machine option objects.
 Module "X20SLX842_110.MainSN.SL1.SM1" is of type "X20 SafeLOGIC Compact, 4xI, 24V, 2xCAT4" and has 2 external machine option objects.
 Module "X20SLX842_110.MainSN.SL1.SM1" is of type "X20 SafeLOGIC Compact, 4xI, 24V, 2xCAT4" and has 3 external machine option objects.

@@ -66,14 +66,14 @@ struct axesAcopos get_axisParam(int idx_ofIteration){
     switch(new_idx){
         case aNUM1:
             // goalkeeper
-            a.linear = &linearGK;
-            a.rotary = &rotaryGK;
+            a.linear = &linGK;
+            a.rotary = &rotGK;
             return a;
             break;
         case aNUM2:
             // defender
-            a.linear = &linearDF;
-            a.rotary = &rotaryDF;
+            a.linear = &linDFV;
+            a.rotary = &rotDFV;
             return a;
             break;
         case aNUM3:
@@ -86,8 +86,53 @@ struct axesAcopos get_axisParam(int idx_ofIteration){
             // forward
             a.linear = &linearFW;
             a.rotary = &rotaryFW;
+			return a;
             break;
     }  
+}
+
+void start_cs(USINT num_ofAxes,struct MpAxisCyclicSet* cyclic_linear,struct MpAxisCyclicSet* cyclic_rotary){
+	
+	switch(num_ofAxes){
+		case 1:
+			{
+				cyclic_linear[0].CyclicPosition = 1;
+				cyclic_rotary[0].CyclicPosition = 1;
+			}
+			break;
+		case 2:
+			{
+				cyclic_linear[0].CyclicPosition = 1;
+				cyclic_linear[1].CyclicPosition = 1;
+				cyclic_rotary[0].CyclicPosition = 1;
+				cyclic_rotary[1].CyclicPosition = 1;
+				
+			}
+			break;
+		case 3:
+			{
+				cyclic_linear[0].CyclicPosition = 1;
+				cyclic_linear[1].CyclicPosition = 1;
+				cyclic_linear[2].CyclicPosition = 1;
+				cyclic_rotary[0].CyclicPosition = 1;
+				cyclic_rotary[1].CyclicPosition = 1;
+				cyclic_rotary[2].CyclicPosition = 1;
+			}
+			break;
+		case 4:
+			{
+				cyclic_linear[0].CyclicPosition = 1;
+				cyclic_linear[1].CyclicPosition = 1;
+				cyclic_linear[2].CyclicPosition = 1;
+				cyclic_linear[3].CyclicPosition = 1;
+				cyclic_rotary[0].CyclicPosition = 1;
+				cyclic_rotary[1].CyclicPosition = 1;
+				cyclic_rotary[2].CyclicPosition = 1;
+				cyclic_rotary[3].CyclicPosition = 1;
+			}
+			break;
+	}// end switch
+
 }
 
 

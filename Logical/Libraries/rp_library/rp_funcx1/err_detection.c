@@ -19,9 +19,7 @@ void err_detection(struct err_detection* e_d)
 	
 	for(i = 0; i < (int)(sizeof(e_d->rotary_ERR)/sizeof(e_d->rotary_ERR[0])); i++){
 		if((e_d->rotary_ERR[i] == 1 || e_d->linear_ERR[i]) == 1){
-			if(count_err == i){
-				count_err++;
-			}
+			count_err = 1;
 		}
 	}
 	

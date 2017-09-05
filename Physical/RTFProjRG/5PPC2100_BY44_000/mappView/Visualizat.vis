@@ -22,7 +22,7 @@
     <Navigation refId="MainNavigation" />
   </Navigations>  
   <BindingsSets>
-    <!--<BindingsSet refId="" />-->
+    <BindingsSet refId="binding_GP" />
   </BindingsSets>
   <EventBindingsSets>
     <EventBindingsSet refId="MyEventBinding" />

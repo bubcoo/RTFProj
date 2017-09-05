@@ -20,14 +20,6 @@
   </DataObjects>
   <NcDataObjects>
     <NcDataObject Name="acp10etxen" Source="ACP10_ETXEN.acp10etxen.dob" Memory="UserROM" Language="Ett" />
-    <NcDataObject Name="rotaryDFa" Source="Real_Game.Motion.rotaryDFobj.rotaryDFa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="linearDFa" Source="Real_Game.Motion.linearDFobj.linearDFa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="rotaryDFi" Source="Real_Game.Motion.rotaryDFobj.rotaryDFi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="linearDFi" Source="Real_Game.Motion.linearDFobj.linearDFi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="rotaryGKa" Source="Real_Game.Motion.rotaryGKobj.rotaryGKa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="linearGKa" Source="Real_Game.Motion.linearGKobj.linearGKa.dob" Memory="UserROM" Language="Apt" />
-    <NcDataObject Name="rotaryGKi" Source="Real_Game.Motion.rotaryGKobj.rotaryGKi.dob" Memory="UserROM" Language="Ax" />
-    <NcDataObject Name="linearGKi" Source="Real_Game.Motion.linearGKobj.linearGKi.dob" Memory="UserROM" Language="Ax" />
     <NcDataObject Name="rotaryFWa" Source="Real_Game.Motion.rotaryFWobj.rotaryFWa.dob" Memory="UserROM" Language="Apt" />
     <NcDataObject Name="rotaryFWi" Source="Real_Game.Motion.rotaryFWobj.rotaryFWi.dob" Memory="UserROM" Language="Ax" />
     <NcDataObject Name="rotaryMDa" Source="Real_Game.Motion.rotaryMDobj.rotaryMDa.dob" Memory="UserROM" Language="Apt" />
@@ -36,6 +28,18 @@
     <NcDataObject Name="linearFWi" Source="Real_Game.Motion.linearFWobj.linearFWi.dob" Memory="UserROM" Language="Ax" />
     <NcDataObject Name="linearMDa" Source="Real_Game.Motion.linearMDobj.linearMDa.dob" Memory="UserROM" Language="Apt" />
     <NcDataObject Name="linearMDi" Source="Real_Game.Motion.linearMDobj.linearMDi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="rotDFa" Source="Real_Game.Motion.rotDFobj.rotDFa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="rotDFi" Source="Real_Game.Motion.rotDFobj.rotDFi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="rotDFVa" Source="Real_Game.Motion.rotDFVobj.rotDFVa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="rotDFVi" Source="Real_Game.Motion.rotDFVobj.rotDFVi.dob" Memory="UserROM" Language="Vax" />
+    <NcDataObject Name="rotGKa" Source="Real_Game.Motion.rotGKobj.rotGKa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="rotGKi" Source="Real_Game.Motion.rotGKobj.rotGKi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="linDFa" Source="Real_Game.Motion.linDFobj.linDFa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="linDFi" Source="Real_Game.Motion.linDFobj.linDFi.dob" Memory="UserROM" Language="Ax" />
+    <NcDataObject Name="linDFVa" Source="Real_Game.Motion.linDFVobj.linDFVa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="linDFVi" Source="Real_Game.Motion.linDFVobj.linDFVi.dob" Memory="UserROM" Language="Vax" />
+    <NcDataObject Name="linGKa" Source="Real_Game.Motion.linGKobj.linGKa.dob" Memory="UserROM" Language="Apt" />
+    <NcDataObject Name="linGKi" Source="Real_Game.Motion.linGKobj.linGKi.dob" Memory="UserROM" Language="Ax" />
   </NcDataObjects>
   <Binaries>
     <BinaryObject Name="arsvcreg" Source="" Memory="UserROM" Language="Binary" />

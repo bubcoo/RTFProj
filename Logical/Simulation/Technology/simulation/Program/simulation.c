@@ -151,7 +151,7 @@ void _INIT ProgramInit(void)
 		mp_Axis.param_axisRotary[i_axisNum].CyclicRead.MotorTempMode = mpAXIS_READ_POLLING_5s;
     }
     // initialization switch
-    SOCCER_TABLE_STEP = RST_EMPTY;
+    SOCCER_TABLE_STEP = RST_CALCULATION_DEFENSE;
     // initialization x axes for CPU
     x_posOfCPU[0] = 800;
     x_posOfCPU[1] = 2300;
@@ -312,6 +312,7 @@ void _CYCLIC ProgramCyclic(void)
 					}
 				}
 				
+				/*
 				if(ESTOP == 0){
 					SOCCER_TABLE_STEP = RST_SAFETY;
 				}else{
@@ -321,6 +322,7 @@ void _CYCLIC ProgramCyclic(void)
 						SOCCER_TABLE_STEP = RST_MOVE_INTO_DEFENSE_POS1;
 					}
 				}
+				*/
             }
             break;
 		case RST_MOVE_INTO_DEFENSE_POS1:

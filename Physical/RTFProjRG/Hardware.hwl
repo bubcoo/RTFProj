@@ -25,10 +25,10 @@
     <Module Name="X20TB12" Type="X20TB12" X="469" Y="307" />
     <Module Name="X20BC0083" Type="X20BC0083" X="444" Y="280" />
     <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" X="1114" Y="551" />
-    <Module Name="80VD100PD.C188-01" Type="80VD100PD.C188-01" X="900" Y="551" />
     <Module Name="80VD100PD.C000-01a" Type="80VD100PD.C000-01" X="793" Y="551" />
     <Module Name="80VD100PD.C188-01a" Type="80VD100PD.C188-01" X="1007" Y="551" />
     <Module Name="80VD100PD.C000-01" Type="80VD100PD.C000-01" X="610" Y="280" />
+    <Module Name="80VD100PD.C188-01" Type="80VD100PD.C188-01" X="900" Y="551" />
   </Modules>
   <Links>
     <Link From="5ACCIF01.FPSC-000" To="X20BC0083" FromPort="IF1" ToPort="PLK1" IsRoutedByUser="False">
@@ -40,30 +40,6 @@
       <Point X="443" Y="355.599976" />
       <Point X="458" Y="355.599976" />
       <Point X="458" Y="355.599976" />
-    </Link>
-    <Link From="80VD100PD.C000-01a" To="80VD100PD.C188-01" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
-      <Point X="832" Y="625" />
-      <Point X="832" Y="610" />
-      <Point X="851" Y="610" />
-      <Point X="865" Y="610" />
-      <Point X="865" Y="695" />
-      <Point X="965" Y="695" />
-      <Point X="965" Y="625" />
-      <Point X="958" Y="625" />
-      <Point X="949" Y="625" />
-      <Point X="949" Y="625" />
-    </Link>
-    <Link From="80VD100PD.C000-01a" To="80VD100PD.C188-01a" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
-      <Point X="842" Y="625" />
-      <Point X="842" Y="625" />
-      <Point X="851" Y="625" />
-      <Point X="872" Y="625" />
-      <Point X="872" Y="702" />
-      <Point X="1075" Y="702" />
-      <Point X="1075" Y="610" />
-      <Point X="1065" Y="610" />
-      <Point X="1046" Y="610" />
-      <Point X="1046" Y="625" />
     </Link>
     <Link From="80VD100PD.C188-01a" To="In-Sight" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
       <Point X="1056" Y="625" />
@@ -85,22 +61,40 @@
       <Point X="458" Y="370" />
       <Point X="458" Y="370" />
     </Link>
-    <Link From="80VD100PD.C000-01" To="80VD100PD.C188-01" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
-      <Point X="659" Y="354" />
-      <Point X="659" Y="354" />
+    <Link From="80VD100PD.C000-01a" To="80VD100PD.C000-01" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
+      <Point X="832" Y="625" />
+      <Point X="832" Y="610" />
+      <Point X="851" Y="610" />
+      <Point X="865" Y="610" />
+      <Point X="865" Y="354" />
       <Point X="668" Y="354" />
-      <Point X="965" Y="354" />
-      <Point X="965" Y="610" />
-      <Point X="958" Y="610" />
-      <Point X="939" Y="610" />
+      <Point X="659" Y="354" />
+      <Point X="659" Y="354" />
+    </Link>
+    <Link From="80VD100PD.C188-01" To="80VD100PD.C000-01a" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
       <Point X="939" Y="625" />
+      <Point X="939" Y="610" />
+      <Point X="958" Y="610" />
+      <Point X="965" Y="610" />
+      <Point X="965" Y="695" />
+      <Point X="895" Y="695" />
+      <Point X="895" Y="625" />
+      <Point X="851" Y="625" />
+      <Point X="842" Y="625" />
+      <Point X="842" Y="625" />
+    </Link>
+    <Link From="80VD100PD.C188-01" To="80VD100PD.C188-01a" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
+      <Point X="949" Y="625" />
+      <Point X="949" Y="625" />
+      <Point X="958" Y="625" />
+      <Point X="972" Y="625" />
+      <Point X="972" Y="695" />
+      <Point X="1075" Y="695" />
+      <Point X="1075" Y="610" />
+      <Point X="1065" Y="610" />
+      <Point X="1046" Y="610" />
+      <Point X="1046" Y="625" />
     </Link>
   </Links>
-  <InfoElements>
-    <InfoElementText Id="Textbox_1" X="686" Y="402" Width="145" Height="42">
-      <Text Color="Black" FontName="Arial" FontSize="12" FontStyle="Regular" AlignmentHorizontal="Left">In - Sight Cognex Cam.</Text>
-      <Background Color="White" Transparent="False" />
-      <Border Color="Black" Transparent="False" DashStyle="Solid" Width="1" />
-    </InfoElementText>
-  </InfoElements>
+  <InfoElements />
 </BR.AS.HardwareTopology>
