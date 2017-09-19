@@ -29,14 +29,14 @@ void turn_position(struct turn_position* t_p)
 				t_p->linear_axes->Velocity 		= 500;
 				// initialization parameters
 				t_p->Internal.max_pos_ofAxes[0] = 800;
-				t_p->Internal.max_pos_ofAxes[1] = 0;
-				t_p->Internal.max_pos_ofAxes[2] = 0;
-				t_p->Internal.max_pos_ofAxes[3] = 0;
+				t_p->Internal.max_pos_ofAxes[1] = 1030;
+				t_p->Internal.max_pos_ofAxes[2] = 520;
+				t_p->Internal.max_pos_ofAxes[3] = 830;
 			
-				t_p->Internal.min_pos_ofAxes[0] = -930;
-				t_p->Internal.min_pos_ofAxes[1] = 0;
-				t_p->Internal.min_pos_ofAxes[2] = 0;
-				t_p->Internal.min_pos_ofAxes[3] = 0;
+				t_p->Internal.min_pos_ofAxes[0] = -910;
+				t_p->Internal.min_pos_ofAxes[1] = -930;
+				t_p->Internal.min_pos_ofAxes[2] = -500;
+				t_p->Internal.min_pos_ofAxes[3] = -770;
 			
 				// start function
 				if(t_p->start_turn == 1){

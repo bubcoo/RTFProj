@@ -11,6 +11,7 @@
     <File>calculation_displacementOfAxes.c</File>
     <File>measurement_ofScore.c</File>
     <File>start_linearAxis.c</File>
+    <File>start_virtualAxis.c</File>
     <File>start_rotaryAxis.c</File>
     <File>err_detection.c</File>
     <File>control_temperature.c</File>

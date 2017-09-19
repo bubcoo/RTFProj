@@ -37,7 +37,9 @@ void ball_shooting(struct ball_shooting* b_s)
 				if(b_s->rotary_axes->Info.SlavePosition == b_s->rotary_axes->Position){
 					// second position
 					b_s->rotary_axes->Position	= 500;
-					b_s->Internal.state = 2;
+					if(b_s->rotary_axes->Info.SlavePosition == 500){
+						b_s->Internal.state = 2;
+					}
 				}
 			}
 			break;
@@ -46,9 +48,12 @@ void ball_shooting(struct ball_shooting* b_s)
 				if(b_s->rotary_axes->Info.SlavePosition == b_s->rotary_axes->Position){
 					// second position
 					b_s->rotary_axes->Position	= -250;
-					b_s->successfully = 1;
-					if(b_s->successfully == 1){
-						b_s->Internal.state = 0;
+					
+					if(b_s->rotary_axes->Info.SlavePosition == -250){
+						b_s->successfully = 1;
+						if(b_s->successfully == 1){
+							b_s->Internal.state = 0;
+						}
 					}
 				}
 				

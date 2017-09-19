@@ -19,14 +19,14 @@ void check_attack_mode(struct check_attack_mode* ch_aM)
 	REAL max_pos[4], min_pos[4];
 	
 	max_pos[0] = 800;
-	max_pos[1] = 0;
-	max_pos[2] = 0;
-	max_pos[3] = 0;
+	max_pos[1] = 1060;
+	max_pos[2] = 550;
+	max_pos[3] = 860;
 	
-	min_pos[0] = -930;
-	min_pos[1] = 0;
-	min_pos[2] = 0;
-	min_pos[3] = 0;
+	min_pos[0] = -910;
+	min_pos[1] = -960;
+	min_pos[2] = -530;
+	min_pos[3] = -800;
 
 	for(i_chp = 0; i_chp < (int)(sizeof(ch_aM->act_displacement_cpu)/sizeof(ch_aM->act_displacement_cpu[0])); i_chp++){
 		calculation_posDummies_0.displacement[i_chp] = ch_aM->act_displacement_cpu[i_chp];
@@ -48,8 +48,8 @@ void check_attack_mode(struct check_attack_mode* ch_aM)
 			stand_mode		= 1;
 		}else{
 			// stand behind the ball
-			behind_position = -170;
-			before_position = 320;
+			behind_position = -200; // -170
+			before_position = 350;  // 320
 			stand_mode		= 2;
 		}
 		
@@ -156,8 +156,8 @@ void choose_attack_mode(struct choose_attack_mode* ch_aMode)
 					&& (ch_aMode->ball1_x >= (x_posOfD[ch_aMode->axis_number] + ch_aMode->behind_position)))
 					|| ((ch_aMode->ball2_x <= (x_posOfD[ch_aMode->axis_number] + ch_aMode->before_position))
 					&& (ch_aMode->ball2_x >= (x_posOfD[ch_aMode->axis_number] + ch_aMode->behind_position))))
-					&& ((ch_aMode->ball1_y <= (gk_pos + 100)) && (ch_aMode->ball1_y >= (gk_pos - 100))
-					|| ((ch_aMode->ball2_y <= (gk_pos + 100)) && (ch_aMode->ball2_y >= (gk_pos - 100))))){
+					&& ((ch_aMode->ball1_y <= (gk_pos + 150)) && (ch_aMode->ball1_y >= (gk_pos - 150))
+					|| ((ch_aMode->ball2_y <= (gk_pos + 150)) && (ch_aMode->ball2_y >= (gk_pos - 150))))){
 					aux_mode = 1;
 				}else{
 					aux_mode = 0;
@@ -171,8 +171,8 @@ void choose_attack_mode(struct choose_attack_mode* ch_aMode)
 						&& (ch_aMode->ball1_x >= (x_posOfD[ch_aMode->axis_number] + ch_aMode->behind_position)))
 						|| ((ch_aMode->ball2_x <= (x_posOfD[ch_aMode->axis_number] + ch_aMode->before_position))
 						&& (ch_aMode->ball2_x >= (x_posOfD[ch_aMode->axis_number] + ch_aMode->behind_position))))
-						&& ((ch_aMode->ball1_y <= (df_pos[i_df] + 100)) && (ch_aMode->ball1_y >= (df_pos[i_df] - 100))
-						|| ((ch_aMode->ball2_y <= (df_pos[i_df] + 100)) && (ch_aMode->ball2_y >= (df_pos[i_df] - 100))))){
+						&& ((ch_aMode->ball1_y <= (df_pos[i_df] + 150)) && (ch_aMode->ball1_y >= (df_pos[i_df] - 150))
+						|| ((ch_aMode->ball2_y <= (df_pos[i_df] + 150)) && (ch_aMode->ball2_y >= (df_pos[i_df] - 150))))){
 						aux_mode = 1;
 					}
 				}
@@ -185,8 +185,8 @@ void choose_attack_mode(struct choose_attack_mode* ch_aMode)
 						&& (ch_aMode->ball1_x >= (x_posOfD[ch_aMode->axis_number] + ch_aMode->behind_position)))
 						|| ((ch_aMode->ball2_x <= (x_posOfD[ch_aMode->axis_number] + ch_aMode->before_position))
 						&& (ch_aMode->ball2_x >= (x_posOfD[ch_aMode->axis_number] + ch_aMode->behind_position))))
-						&& ((ch_aMode->ball1_y <= (md_pos[i_md] + 100)) && (ch_aMode->ball1_y >= (md_pos[i_md] - 100))
-						|| ((ch_aMode->ball2_y <= (md_pos[i_md] + 100)) && (ch_aMode->ball2_y >= (md_pos[i_md] - 100))))){
+						&& ((ch_aMode->ball1_y <= (md_pos[i_md] + 150)) && (ch_aMode->ball1_y >= (md_pos[i_md] - 150))
+						|| ((ch_aMode->ball2_y <= (md_pos[i_md] + 150)) && (ch_aMode->ball2_y >= (md_pos[i_md] - 150))))){
 						aux_mode = 1;
 					}
 				}
@@ -199,8 +199,8 @@ void choose_attack_mode(struct choose_attack_mode* ch_aMode)
 						&& (ch_aMode->ball1_x >= (x_posOfD[ch_aMode->axis_number] + ch_aMode->behind_position)))
 						|| ((ch_aMode->ball2_x <= (x_posOfD[ch_aMode->axis_number] + ch_aMode->before_position))
 						&& (ch_aMode->ball2_x >= (x_posOfD[ch_aMode->axis_number] + ch_aMode->behind_position))))
-						&& ((ch_aMode->ball1_y <= (fw_pos[i_fw] + 100)) && (ch_aMode->ball1_y >= (fw_pos[i_fw] - 100))
-						|| ((ch_aMode->ball2_y <= (fw_pos[i_fw] + 100)) && (ch_aMode->ball2_y >= (fw_pos[i_fw] - 100))))){
+						&& ((ch_aMode->ball1_y <= (fw_pos[i_fw] + 150)) && (ch_aMode->ball1_y >= (fw_pos[i_fw] - 150))
+						|| ((ch_aMode->ball2_y <= (fw_pos[i_fw] + 150)) && (ch_aMode->ball2_y >= (fw_pos[i_fw] - 150))))){
 						aux_mode = 1;
 					}
 				}

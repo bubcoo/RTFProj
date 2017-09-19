@@ -72,8 +72,8 @@ struct axesAcopos get_axisParam(int idx_ofIteration){
             break;
         case aNUM2:
             // defender
-            a.linear = &linDFV;
-            a.rotary = &rotDFV;
+            a.linear = &linDF;
+            a.rotary = &rotDF;
             return a;
             break;
         case aNUM3:

@@ -1,4 +1,19 @@
 
+FUNCTION_BLOCK start_virtualAxis
+	VAR_INPUT
+		Enable : BOOL;
+		start_btn : BOOL;
+		axis_name : REFERENCE TO MpAxisBasic;
+		axis_param : REFERENCE TO MpAxisBasicParType;
+	END_VAR
+	VAR_OUTPUT
+		succesfully : BOOL;
+	END_VAR
+	VAR
+		Internal : internal_startAxisR;
+	END_VAR
+END_FUNCTION_BLOCK
+
 FUNCTION_BLOCK measurement_ofScore (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
 	VAR_INPUT
 		Enable : BOOL;

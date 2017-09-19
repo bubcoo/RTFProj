@@ -1,4 +1,4 @@
-LOGStart created on Tuesday 2017/09/05  UTC 12:46:18:687
+LOGStart created on Tuesday 2017/09/12  UTC 08:41:29:654
 
 Reading "OSDD Data"...
 Reading Content "Start"
@@ -90,9 +90,9 @@ Content "name1" successfully read from "name2"
 
 
 
-LOGAppend on Tuesday 2017/09/05  UTC 12:46:18:690
+LOGAppend on Tuesday 2017/09/12  UTC 08:41:29:732
 
-Reading "C:\projects\Robotic_footbal\Physical\RTFProjRG\5PPC2100_BY44_000\SafeLOGIC-1\BusNavigator.iom"...
+Reading "C:\projects\RstProject\Physical\RTFProjRG\5PPC2100_BY44_000\SafeLOGIC-1\BusNavigator.iom"...
 Reading Content "IOOffsets"
 IO reservations (MAX number of bytes): SI=2048  SO=2048  NSI=1024  NSO=1024   ConValid = 24  BITEMOsOffset=0  BITEMOsSize=0
 Reading properties for module "SL1.SM1". Beginning at line 3
@@ -111,4 +111,4 @@ Reading properties for channel "BOOL001". Beginning at line 15
 Reading properties for channel "BOOL002". Beginning at line 16
 Reading properties for channel "BOOL101". Beginning at line 17
 Module "SL1.SM1.SL1.SM1" has 14 items.
-Content "IOOffsets" successfully read from "C:\projects\Robotic_footbal\Physical\RTFProjRG\5PPC2100_BY44_000\SafeLOGIC-1\BusNavigator.iom"
+Content "IOOffsets" successfully read from "C:\projects\RstProject\Physical\RTFProjRG\5PPC2100_BY44_000\SafeLOGIC-1\BusNavigator.iom"

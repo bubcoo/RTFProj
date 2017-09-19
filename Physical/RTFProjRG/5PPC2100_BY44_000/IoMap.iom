@@ -20,4 +20,8 @@ VAR_CONFIG
 	::cam_det.InSight.InspectionResults_I2011_S03 AT %ID."In-Sight".InspectionResults_I2011_S03;
 	::cam_det.InSight.InspectionResults_I2011_S04 AT %ID."In-Sight".InspectionResults_I2011_S04;
 	::cam_det.InSight.UserData_I2021_S01 AT %QD."In-Sight".UserData_I2021_S01;
+	::table_foot:dpA.ReflexSensStatus[3] AT %IX."X20DI9371".DigitalInput01;
+	::table_foot:dpA.ReflexSensStatus[2] AT %IX."X20DI9371".DigitalInput02;
+	::table_foot:dpA.ReflexSensStatus[0] AT %IX."X20DI9371".DigitalInput03;
+	::table_foot:dpA.ReflexSensStatus[1] AT %IX."X20DI9371".DigitalInput04;
 END_VAR

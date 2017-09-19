@@ -35,7 +35,7 @@ void start_linearAxis(struct start_linearAxis* s_la)
 					s_la->axis_param->Home.StartDirection  		  = mpAXIS_HOME_DIR_POSITIVE;
 					s_la->axis_param->Home.HomingDirection 		  = mpAXIS_HOME_DIR_NEGATIVE;
 					s_la->axis_param->Home.TorqueLimit	 		  = 0.02;
-					s_la->axis_param->Home.PositionErrorStopLimit = s_la->max_leftPosition + 1;
+					s_la->axis_param->Home.PositionErrorStopLimit = s_la->max_leftPosition + 10;
 					// reset output
 					s_la->succesfully = 0;
 					if(s_la->axis_name->Error == 1 || s_la->axis_name->StatusID != 0){

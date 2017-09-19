@@ -28,7 +28,7 @@
 #include "RO_Sensors.h"
 
 #ifdef _DEFAULT_INCLUDES
-	#include <AsDefault.h>
+#include <AsDefault.h>
 #endif
 
 /************************ GLOBAL VARIABLES ******************************/
@@ -50,6 +50,7 @@ _LOCAL struct get_rotationalPostition get_rotPosASH;
 _LOCAL struct measurement_ofScore m_ofScore;
 _LOCAL struct start_rotaryAxis start_rotA[4];
 _LOCAL struct start_linearAxis start_linA[4];
+_LOCAL struct start_virtualAxis s_virA;
 _LOCAL struct err_detection e_detect;
 _LOCAL struct ball_shooting ball_shoot;
 _LOCAL struct turn_position turn_pos;
@@ -94,7 +95,7 @@ _LOCAL LREAL act_pos;
 // OUPTUT from the SENSOR & CAMERA
 _LOCAL REAL ball1[2], ball2[2], time_B2B;
 _LOCAL REAL optical_sensor[4];
-_LOCAL REAL reflex_sensor[4];
+_LOCAL BOOL reflex_sensor[4];
 // state machine
 _LOCAL soccer_table_ENUM SOCCER_TABLE_STEP;
 _LOCAL soccer_table_ENUM BEFORE_STATE;
@@ -104,56 +105,56 @@ _LOCAL soccer_table_ENUM BEFORE_STATE;
 /**********************************************************************************************************/
 void _INIT ProgramInit(void)
 {
-    /*********************************** Declaration variables **********************************/
-    // generally
-    max_numberOfFormation = 4;
+	/*********************************** Declaration variables **********************************/
+	// generally
+	max_numberOfFormation = 4;
     
-    // axis type -> MAPP
-    // linear
-    gLinkAxes_linear[0] = gk_mappAxisLR;
-    gLinkAxes_linear[1] = df_mappAxisLR;
-    gLinkAxes_linear[2] = md_mappAxisLR;
-    gLinkAxes_linear[3] = fw_mappAxisLR;
-    // rotary
-    gLinkAxes_rotary[0] = gk_mappAxisRR;
-    gLinkAxes_rotary[1] = df_mappAxisRR;
-    gLinkAxes_rotary[2] = md_mappAxisRR;
-    gLinkAxes_rotary[3] = fw_mappAxisRR;
+	// axis type -> MAPP
+	// linear
+	gLinkAxes_linear[0] = gk_mappAxisLR;
+	gLinkAxes_linear[1] = df_mappAxisLR;
+	gLinkAxes_linear[2] = md_mappAxisLR;
+	gLinkAxes_linear[3] = fw_mappAxisLR;
+	// rotary
+	gLinkAxes_rotary[0] = gk_mappAxisRR;
+	gLinkAxes_rotary[1] = df_mappAxisRR;
+	gLinkAxes_rotary[2] = md_mappAxisRR;
+	gLinkAxes_rotary[3] = fw_mappAxisRR;
 	
-    /************************************ Control of AlarmX ************************************/
-    // adjustment device name
-    alarm_device_address = (UDINT) strcpy(mp_alarmX.deviceName_no1_exp,"EXPORT_HISTORY");
-    // MpAlarmX Core
-    mp_alarmX.mp_core.MpLink         = &gAlarmXCoreR;
-    mp_alarmX.mp_core.Enable         = 1;
-    // MpAlarmX ListUI
-    mp_alarmX.mp_listUI.MpLink       = &gAlarmXCoreR;
-    mp_alarmX.mp_listUI.Enable       = 1;
-    mp_alarmX.mp_listUI.UIConnect    = &AlarmListUI_ConnectType;
-    // MpAlarmX History
-    mp_alarmX.mp_history.MpLink      = &gAlarmXHistoryR;
-    mp_alarmX.mp_history.Enable      = 1;
-    mp_alarmX.mp_history.DeviceName  = &mp_alarmX.deviceName_no1_exp;
-    // MpAlarmX HistoryUI
-    mp_alarmX.mp_historyUI.MpLink    = &gAlarmXHistoryR;
-    mp_alarmX.mp_historyUI.Enable    = 1;
-    mp_alarmX.mp_historyUI.UIConnect = &AlarmHistoryUI_ConnectType;
+	/************************************ Control of AlarmX ************************************/
+	// adjustment device name
+	alarm_device_address = (UDINT) strcpy(mp_alarmX.deviceName_no1_exp,"EXPORT_HISTORY");
+	// MpAlarmX Core
+	mp_alarmX.mp_core.MpLink         = &gAlarmXCoreR;
+	mp_alarmX.mp_core.Enable         = 1;
+	// MpAlarmX ListUI
+	mp_alarmX.mp_listUI.MpLink       = &gAlarmXCoreR;
+	mp_alarmX.mp_listUI.Enable       = 1;
+	mp_alarmX.mp_listUI.UIConnect    = &AlarmListUI_ConnectType;
+	// MpAlarmX History
+	mp_alarmX.mp_history.MpLink      = &gAlarmXHistoryR;
+	mp_alarmX.mp_history.Enable      = 1;
+	mp_alarmX.mp_history.DeviceName  = &mp_alarmX.deviceName_no1_exp;
+	// MpAlarmX HistoryUI
+	mp_alarmX.mp_historyUI.MpLink    = &gAlarmXHistoryR;
+	mp_alarmX.mp_historyUI.Enable    = 1;
+	mp_alarmX.mp_historyUI.UIConnect = &AlarmHistoryUI_ConnectType;
     
-    /************************************* Control of Axes **************************************/
-    for(i_axisNum = 0; i_axisNum <= max_numberOfFormation - 1; i_axisNum++){
-        // initialization ACOPOS variables through function(get_axisParam), that returns two variables type of UDINT
-        // into the structure -> axesAcopos(have two parameters : linear, rotary)
-        axis_acopos = get_axisParam(i_axisNum);
-        // linear -> LinMot
-        // linear axis basic
-        mp_Axis.mp_axisLinear[i_axisNum].Enable     = 1;
-        mp_Axis.mp_axisLinear[i_axisNum].MpLink     = &gLinkAxes_linear[i_axisNum];
-        mp_Axis.mp_axisLinear[i_axisNum].Parameters = &mp_Axis.param_axisLinear[i_axisNum];
-        mp_Axis.mp_axisLinear[i_axisNum].Axis       = axis_acopos.linear;
-        // linear cyclic set
-        mp_Axis.mp_cyclicSetLinear[i_axisNum].Enable     = 1;
-        mp_Axis.mp_cyclicSetLinear[i_axisNum].MpLink     = &gLinkAxes_linear[i_axisNum];
-        mp_Axis.mp_cyclicSetLinear[i_axisNum].Parameters = &mp_Axis.param_cyclicSetLinear[i_axisNum];
+	/************************************* Control of Axes **************************************/
+	for(i_axisNum = 0; i_axisNum <= max_numberOfFormation - 1; i_axisNum++){
+		// initialization ACOPOS variables through function(get_axisParam), that returns two variables type of UDINT
+		// into the structure -> axesAcopos(have two parameters : linear, rotary)
+		axis_acopos = get_axisParam(i_axisNum);
+		// linear -> LinMot
+		// linear axis basic
+		mp_Axis.mp_axisLinear[i_axisNum].Enable     = 1;
+		mp_Axis.mp_axisLinear[i_axisNum].MpLink     = &gLinkAxes_linear[i_axisNum];
+		mp_Axis.mp_axisLinear[i_axisNum].Parameters = &mp_Axis.param_axisLinear[i_axisNum];
+		mp_Axis.mp_axisLinear[i_axisNum].Axis       = axis_acopos.linear;
+		// linear cyclic set
+		mp_Axis.mp_cyclicSetLinear[i_axisNum].Enable     = 1;
+		mp_Axis.mp_cyclicSetLinear[i_axisNum].MpLink     = &gLinkAxes_linear[i_axisNum];
+		mp_Axis.mp_cyclicSetLinear[i_axisNum].Parameters = &mp_Axis.param_cyclicSetLinear[i_axisNum];
 		// adjust parameters cyclic set
 		mp_Axis.param_cyclicSetLinear[i_axisNum].PositionModeMaxVelocity = 30000;
 		mp_Axis.param_cyclicSetLinear[i_axisNum].Acceleration 			 = 200000;
@@ -162,16 +163,16 @@ void _INIT ProgramInit(void)
 		mp_Axis.mp_configAxisLinear[i_axisNum].Enable 		 = 1;
 		mp_Axis.mp_configAxisLinear[i_axisNum].MpLink 		 = &gLinkAxes_linear[i_axisNum];
 		mp_Axis.mp_configAxisLinear[i_axisNum].Configuration = &mp_Axis.param_configAxisLinear[i_axisNum];
-        // rotary -> EnDat
-        // rotary axis basic
-        mp_Axis.mp_axisRotary[i_axisNum].Enable     = 1;
-        mp_Axis.mp_axisRotary[i_axisNum].MpLink     = &gLinkAxes_rotary[i_axisNum];
-        mp_Axis.mp_axisRotary[i_axisNum].Parameters = &mp_Axis.param_axisRotary[i_axisNum];
-        mp_Axis.mp_axisRotary[i_axisNum].Axis       = axis_acopos.rotary;
-        // rotary cyclic set
-        mp_Axis.mp_cyclicSetRotary[i_axisNum].Enable     = 1;
-        mp_Axis.mp_cyclicSetRotary[i_axisNum].MpLink     = &gLinkAxes_rotary[i_axisNum];
-        mp_Axis.mp_cyclicSetRotary[i_axisNum].Parameters = &mp_Axis.param_cyclicSetRotary[i_axisNum];
+		// rotary -> EnDat
+		// rotary axis basic
+		mp_Axis.mp_axisRotary[i_axisNum].Enable     = 1;
+		mp_Axis.mp_axisRotary[i_axisNum].MpLink     = &gLinkAxes_rotary[i_axisNum];
+		mp_Axis.mp_axisRotary[i_axisNum].Parameters = &mp_Axis.param_axisRotary[i_axisNum];
+		mp_Axis.mp_axisRotary[i_axisNum].Axis       = axis_acopos.rotary;
+		// rotary cyclic set
+		mp_Axis.mp_cyclicSetRotary[i_axisNum].Enable     = 1;
+		mp_Axis.mp_cyclicSetRotary[i_axisNum].MpLink     = &gLinkAxes_rotary[i_axisNum];
+		mp_Axis.mp_cyclicSetRotary[i_axisNum].Parameters = &mp_Axis.param_cyclicSetRotary[i_axisNum];
 		// adjust parameters cyclic set
 		mp_Axis.param_cyclicSetRotary[i_axisNum].PositionModeMaxVelocity = 85000;
 		mp_Axis.param_cyclicSetRotary[i_axisNum].Acceleration 			 = 3969754;
@@ -184,7 +185,30 @@ void _INIT ProgramInit(void)
 		mp_Axis.param_axisLinear[i_axisNum].CyclicRead.MotorTempMode = mpAXIS_READ_POLLING_1s;
 		// temperature - rotary
 		mp_Axis.param_axisRotary[i_axisNum].CyclicRead.MotorTempMode = mpAXIS_READ_POLLING_1s;
-		// FB for linear and rotary axes -> Homing
+		
+		/*
+		if(i_axisNum == 1){
+			// FB for linear and rotary axes -> Homing
+			// linear {virtual}
+			s_virA.Enable 	  = 1;
+			s_virA.axis_name  = &mp_Axis.mp_axisLinear[i_axisNum];
+			s_virA.axis_param = &mp_Axis.param_axisLinear[i_axisNum];
+			// rotary
+			start_rotA[i_axisNum].Enable	 = 1;
+			start_rotA[i_axisNum].axis_name	 = &mp_Axis.mp_axisRotary[i_axisNum];
+			start_rotA[i_axisNum].axis_param = &mp_Axis.param_axisRotary[i_axisNum];
+		}else{
+			// rotary
+			start_rotA[i_axisNum].Enable	 = 1;
+			start_rotA[i_axisNum].axis_name	 = &mp_Axis.mp_axisRotary[i_axisNum];
+			start_rotA[i_axisNum].axis_param = &mp_Axis.param_axisRotary[i_axisNum];
+			// linear
+			start_linA[i_axisNum].Enable	 = 1;
+			start_linA[i_axisNum].axis_name	 = &mp_Axis.mp_axisLinear[i_axisNum];
+			start_linA[i_axisNum].axis_param = &mp_Axis.param_axisLinear[i_axisNum];
+		}
+		*/
+		// FB for linear and fotary axes -> Control
 		// rotary
 		start_rotA[i_axisNum].Enable	 = 1;
 		start_rotA[i_axisNum].axis_name	 = &mp_Axis.mp_axisRotary[i_axisNum];
@@ -193,8 +217,10 @@ void _INIT ProgramInit(void)
 		start_linA[i_axisNum].Enable	 = 1;
 		start_linA[i_axisNum].axis_name	 = &mp_Axis.mp_axisLinear[i_axisNum];
 		start_linA[i_axisNum].axis_param = &mp_Axis.param_axisLinear[i_axisNum];
-		// FB for linear and fotary axes -> Control
-    }
+	}
+	// linear axis DF position
+	mp_Axis.param_axisLinear[1].Home.Mode     = mpAXIS_HOME_MODE_DIRECT;
+	mp_Axis.param_axisLinear[1].Home.Position = 1080;
 	/************************************* Camera initialization **************************************/
 	cam_det.Enable = 1;
 	cam_det.Internal.ChangeZone = ONE_ZONE;
@@ -236,7 +262,7 @@ void _INIT ProgramInit(void)
 	optical_sensor[1] = 0;
 	optical_sensor[2] = 0;
 	optical_sensor[3] = 0;
-    // reflective	
+	// reflective	
 	reflex_sensor[0] = 1;
 	reflex_sensor[1] = 1;
 	reflex_sensor[2] = 1;
@@ -251,10 +277,10 @@ void _INIT ProgramInit(void)
 	// initi index attack mode
 	index_ofAxesAM = 0;
 	// initialization define position of rotary Axis
-	define_posRotary[0] = 177417632;
-	define_posRotary[1] = 66395800;
-	define_posRotary[2] = 118069521;
-	define_posRotary[3] = 7444750;
+	define_posRotary[0] = 177414042;
+	define_posRotary[1] = 59923402;
+	define_posRotary[2] = 129617978;
+	define_posRotary[3] = 7446455;
 	// linear max positions
 	linear_maxPos[0]    = 820;
 	linear_maxPos[1]    = 1080;
@@ -383,7 +409,7 @@ void _CYCLIC ProgramCyclic(void)
 						c_er2			  = 0;
 						SOCCER_TABLE_STEP = RST_ERROR;
 					}else{
-						SOCCER_TABLE_STEP = RST_INITIALIZATION_4;//6
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_3;//6 //4
 					}
 				}
 			}
@@ -492,7 +518,7 @@ void _CYCLIC ProgramCyclic(void)
 						c_er2			  = 0;
 						SOCCER_TABLE_STEP = RST_ERROR;
 					}else{
-						SOCCER_TABLE_STEP = RST_INITIALIZATION_8;//10
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_7;//10 //8
 					}
 				}
 			}
@@ -507,6 +533,20 @@ void _CYCLIC ProgramCyclic(void)
 					reset_safetyESTOP = 0;
 				}
 				/***** DEFENDER - LINEAR *****/
+				mp_Axis.mp_axisLinear[1].Home = 1;
+				
+				if(mp_Axis.mp_axisLinear[1].IsHomed == 1){
+					if(ESTOP == 0 || OSSD2 == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(e_detect.err_detect == 1){
+						c_er1 			  = 0;
+						c_er2			  = 0;
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else{
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_8;
+					}
+				}
+				/*
 				start_linA[1].max_leftPosition = linear_maxPos[1];
 				start_linA[1].velocity		   = 5000;
 				start_linA[1].start_btn		   = 1;
@@ -523,6 +563,23 @@ void _CYCLIC ProgramCyclic(void)
 						SOCCER_TABLE_STEP = RST_INITIALIZATION_8;
 					}
 				}
+				*/
+				/*
+				// home virtual linear axis
+				s_virA.start_btn = 1;
+				start_virtualAxis(&s_virA);
+				
+				if(s_virA.succesfully == 1 && (mp_Axis.mp_axisLinear[1].PowerOn == 1 && mp_Axis.mp_axisLinear[1].IsHomed == 1)){
+					if(ESTOP == 0 || OSSD2 == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}else if(e_detect.err_detect == 1){
+						c_er1 			  = 0;
+						c_er2			  = 0;
+						SOCCER_TABLE_STEP = RST_ERROR;
+					}else{
+						SOCCER_TABLE_STEP = RST_INITIALIZATION_8;
+					}
+				}*/
 			}
 			break;
 		case RST_INITIALIZATION_8:
@@ -700,15 +757,15 @@ void _CYCLIC ProgramCyclic(void)
 				// time between two balls
 				time_B2B = cam_det.Results.TimeDiff_ms/1000;
 				// values -> optical sensor
-				optical_sensor[0] = 0;
-				optical_sensor[1] = 0;
-				optical_sensor[2] = 0;
-				optical_sensor[3] = 0;
+				optical_sensor[0] = dpA.ActPosHumAxis[0];
+				optical_sensor[1] = dpA.ActPosHumAxis[1];
+				optical_sensor[2] = dpA.ActPosHumAxis[2];
+				optical_sensor[3] = dpA.ActPosHumAxis[3];
 				// values -> reflex sensor
-				reflex_sensor[0] = 1;
-				reflex_sensor[1] = 1;
-				reflex_sensor[2] = 1;
-				reflex_sensor[3] = 1;
+				reflex_sensor[0] = !dpA.ReflexSensStatus[0];
+				reflex_sensor[1] = !dpA.ReflexSensStatus[1];
+				reflex_sensor[2] = !dpA.ReflexSensStatus[2];
+				reflex_sensor[3] = !dpA.ReflexSensStatus[3];
 												
 				if(ESTOP == 0 || OSSD2 == 0){
 					SOCCER_TABLE_STEP = RST_SAFETY;
@@ -752,21 +809,17 @@ void _CYCLIC ProgramCyclic(void)
 					SOCCER_TABLE_STEP = RST_ERROR;
 				}else if((START_GAME == 1 && STOP_GAME == 0) || (RESTART_GAME == 1 && STOP_GAME == 0)){
 					index_ofAxesAM = check_aM.index_ofAxis;	
-					start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);
-					if(index_ofAxesAM == 0){
-						if(check_aM.attack_mode == 0 && cam_det.isBallFound == 1){
-							// If ball it isn't near of dummy -> Defences
-							SOCCER_TABLE_STEP = RST_CALCULATION_DEFENSE;
-						}else if(check_aM.attack_mode == 1){
-							// attack mode If ball is behind of dummy -> turn position
-							SOCCER_TABLE_STEP = RST_ATTACK_MODE_TURN_POS;
-						}else if(check_aM.attack_mode == 2){
-							// attack mode If ball is before of dummy -> shoot
-							SOCCER_TABLE_STEP = RST_ATTACK_MODE_SHOOT2;
-						}
-					}else{
+					start_cs(max_numberOfFormation,&mp_Axis.mp_cyclicSetLinear,&mp_Axis.mp_cyclicSetRotary);		
+					if(check_aM.attack_mode == 0){
 						// If ball it isn't near of dummy -> Defences
 						SOCCER_TABLE_STEP = RST_CALCULATION_DEFENSE;
+					}else if(check_aM.attack_mode == 1){
+						// attack mode If ball is behind of dummy -> turn position
+						//SOCCER_TABLE_STEP = RST_ATTACK_MODE_TURN_POS;
+						SOCCER_TABLE_STEP = RST_CALCULATION_DEFENSE;
+					}else if(check_aM.attack_mode == 2){
+						// attack mode If ball is before of dummy -> shoot
+						SOCCER_TABLE_STEP = RST_ATTACK_MODE_SHOOT2;
 					}
 				}else if(STOP_GAME == 1 || EXIT_GAME == 1){
 					START_GAME		  = 0;
@@ -1065,7 +1118,7 @@ void _CYCLIC ProgramCyclic(void)
 						c_bState = 0;
 						// change state
 						if(reset_safetyESTOP == 1){
-							SOCCER_TABLE_STEP = RST_AFTER_SAFETY;
+							SOCCER_TABLE_STEP = RST_AFTER_SAFETY_N1;
 						}
 					}
 				}
@@ -1091,6 +1144,47 @@ void _CYCLIC ProgramCyclic(void)
 						reset_safetyESTOP = 0;
 					}
 					
+					if(reset_safetyESTOP == 0){
+						if(ESTOP == 0 || OSSD2 == 0){
+							SOCCER_TABLE_STEP = RST_SAFETY;
+						}else if(e_detect.err_detect == 1){
+							c_er1 			  = 0;
+							c_er2			  = 0;
+							SOCCER_TABLE_STEP = RST_ERROR;
+						}else {
+							SOCCER_TABLE_STEP = BEFORE_STATE;
+						}
+					}
+				}else if(ESTOP == 0 || OSSD2 == 0){				
+					reset_safetyESTOP = 0;
+					if(reset_safetyESTOP == 0){
+						SOCCER_TABLE_STEP = RST_SAFETY;
+					}
+				}
+			}
+			break;
+		case RST_AFTER_SAFETY_N1:
+			{	
+				// gk
+				mp_Axis.mp_axisRotary[0].Power = 1;
+				mp_Axis.mp_axisLinear[0].Power = 1;
+				// df
+				mp_Axis.mp_axisRotary[1].Power = 1;
+				mp_Axis.mp_axisLinear[1].Power = 1;
+				// md
+				mp_Axis.mp_axisRotary[2].Power = 1;
+				mp_Axis.mp_axisLinear[2].Power = 1;
+				// fw
+				mp_Axis.mp_axisRotary[3].Power = 1;
+				mp_Axis.mp_axisLinear[3].Power = 1;
+				
+				if(mp_Axis.mp_axisRotary[0].PowerOn == 1 && mp_Axis.mp_axisLinear[0].PowerOn == 1 &&
+				mp_Axis.mp_axisRotary[1].PowerOn == 1 && mp_Axis.mp_axisLinear[1].PowerOn == 1 &&
+				mp_Axis.mp_axisRotary[2].PowerOn == 1 && mp_Axis.mp_axisLinear[2].PowerOn == 1 &&
+				mp_Axis.mp_axisRotary[3].PowerOn == 1 && mp_Axis.mp_axisLinear[3].PowerOn == 1){
+					if(reset_safetyESTOP == 1){
+						reset_safetyESTOP = 0;
+					}
 					if(reset_safetyESTOP == 0){
 						if(ESTOP == 0 || OSSD2 == 0){
 							SOCCER_TABLE_STEP = RST_SAFETY;
@@ -1328,6 +1422,7 @@ void _CYCLIC ProgramCyclic(void)
 	}else{
 		m_ofScore.pause = 0;
 	}
+	
 	/************************** Call function & function blocks **************************/
 	// AlarmX
 	MpAlarmXCore(&mp_alarmX.mp_core);
@@ -1350,12 +1445,12 @@ void _CYCLIC ProgramCyclic(void)
 	// error detection Axes
 	// error rotary
 	e_detect.rotary_ERR[0] = mp_Axis.mp_axisRotary[0].Error;
-	//e_detect.rotary_ERR[1] = mp_Axis.mp_axisRotary[1].Error;
+	e_detect.rotary_ERR[1] = mp_Axis.mp_axisRotary[1].Error;
 	e_detect.rotary_ERR[2] = mp_Axis.mp_axisRotary[2].Error;
 	e_detect.rotary_ERR[3] = mp_Axis.mp_axisRotary[3].Error;
 	// error linear
 	e_detect.linear_ERR[0] = mp_Axis.mp_axisLinear[0].Error;
-	//e_detect.linear_ERR[1] = mp_Axis.mp_axisLinear[1].Error;
+	e_detect.linear_ERR[1] = mp_Axis.mp_axisLinear[1].Error;
 	e_detect.linear_ERR[2] = mp_Axis.mp_axisLinear[2].Error;
 	e_detect.linear_ERR[3] = mp_Axis.mp_axisLinear[3].Error;
 	// call function error detection
