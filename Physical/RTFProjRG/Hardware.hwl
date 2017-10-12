@@ -24,11 +24,11 @@
     <Module Name="X20PS9400" Type="X20PS9400" X="469" Y="280" />
     <Module Name="X20TB12" Type="X20TB12" X="469" Y="307" />
     <Module Name="X20BC0083" Type="X20BC0083" X="444" Y="280" />
-    <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" X="1114" Y="551" />
-    <Module Name="80VD100PD.C000-01a" Type="80VD100PD.C000-01" X="793" Y="551" />
-    <Module Name="80VD100PD.C188-01a" Type="80VD100PD.C188-01" X="1007" Y="551" />
+    <Module Name="In-Sight" Type="FBE.0000031D_In-Sight-7000" X="1045" Y="445" />
+    <Module Name="80VD100PD.C000-01a" Type="80VD100PD.C000-01" X="740" Y="280.599976" />
+    <Module Name="80VD100PD.C188-01a" Type="80VD100PD.C188-01" X="929" Y="280" />
     <Module Name="80VD100PD.C000-01" Type="80VD100PD.C000-01" X="610" Y="280" />
-    <Module Name="80VD100PD.C188-01" Type="80VD100PD.C188-01" X="900" Y="551" />
+    <Module Name="80VD100PD.C188-01" Type="80VD100PD.C188-01" X="835" Y="280.599976" />
   </Modules>
   <Links>
     <Link From="5ACCIF01.FPSC-000" To="X20BC0083" FromPort="IF1" ToPort="PLK1" IsRoutedByUser="False">
@@ -42,58 +42,62 @@
       <Point X="458" Y="355.599976" />
     </Link>
     <Link From="80VD100PD.C188-01a" To="In-Sight" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
-      <Point X="1056" Y="625" />
-      <Point X="1056" Y="625" />
-      <Point X="1065" Y="625" />
-      <Point X="1147" Y="625" />
-      <Point X="1147" Y="597" />
-      <Point X="1147" Y="590" />
-      <Point X="1147" Y="590" />
+      <Point X="978" Y="354" />
+      <Point X="978" Y="354" />
+      <Point X="987" Y="354" />
+      <Point X="995" Y="354" />
+      <Point X="995" Y="505" />
+      <Point X="1078" Y="505" />
+      <Point X="1078" Y="491" />
+      <Point X="1078" Y="484" />
+      <Point X="1078" Y="484" />
     </Link>
-    <Link From="80VD100PD.C000-01" To="X20BC0083" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
+    <Link From="80VD100PD.C000-01" To="80VD100PD.C000-01a" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="True">
+      <Point X="659" Y="354" />
+      <Point X="659" Y="354" />
+      <Point X="668" Y="354" />
+      <Point X="690.5" Y="354" />
+      <Point X="690.5" Y="442" />
+      <Point X="805" Y="442" />
+      <Point X="805" Y="339.599976" />
+      <Point X="798" Y="339.599976" />
+      <Point X="779" Y="339.599976" />
+      <Point X="779" Y="354.599976" />
+    </Link>
+    <Link From="80VD100PD.C000-01" To="X20BC0083" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="True">
       <Point X="649" Y="354" />
       <Point X="649" Y="339" />
       <Point X="668" Y="339" />
-      <Point X="675" Y="339" />
-      <Point X="675" Y="425" />
-      <Point X="458" Y="425" />
+      <Point X="673.5" Y="339" />
+      <Point X="673.5" Y="441" />
+      <Point X="458" Y="441" />
       <Point X="458" Y="380" />
       <Point X="458" Y="370" />
       <Point X="458" Y="370" />
     </Link>
-    <Link From="80VD100PD.C000-01a" To="80VD100PD.C000-01" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
-      <Point X="832" Y="625" />
-      <Point X="832" Y="610" />
-      <Point X="851" Y="610" />
-      <Point X="865" Y="610" />
-      <Point X="865" Y="354" />
-      <Point X="668" Y="354" />
-      <Point X="659" Y="354" />
-      <Point X="659" Y="354" />
+    <Link From="80VD100PD.C188-01" To="80VD100PD.C188-01a" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="True">
+      <Point X="884" Y="354.599976" />
+      <Point X="884" Y="354.599976" />
+      <Point X="893" Y="354.599976" />
+      <Point X="912" Y="354.599976" />
+      <Point X="912" Y="442" />
+      <Point X="1020.5" Y="442" />
+      <Point X="1020.5" Y="339" />
+      <Point X="987" Y="339" />
+      <Point X="968" Y="339" />
+      <Point X="968" Y="354" />
     </Link>
-    <Link From="80VD100PD.C188-01" To="80VD100PD.C000-01a" FromPort="PLK1" ToPort="PLK2" IsRoutedByUser="False">
-      <Point X="939" Y="625" />
-      <Point X="939" Y="610" />
-      <Point X="958" Y="610" />
-      <Point X="965" Y="610" />
-      <Point X="965" Y="695" />
-      <Point X="895" Y="695" />
-      <Point X="895" Y="625" />
-      <Point X="851" Y="625" />
-      <Point X="842" Y="625" />
-      <Point X="842" Y="625" />
-    </Link>
-    <Link From="80VD100PD.C188-01" To="80VD100PD.C188-01a" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
-      <Point X="949" Y="625" />
-      <Point X="949" Y="625" />
-      <Point X="958" Y="625" />
-      <Point X="972" Y="625" />
-      <Point X="972" Y="695" />
-      <Point X="1075" Y="695" />
-      <Point X="1075" Y="610" />
-      <Point X="1065" Y="610" />
-      <Point X="1046" Y="610" />
-      <Point X="1046" Y="625" />
+    <Link From="80VD100PD.C000-01a" To="80VD100PD.C188-01" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="True">
+      <Point X="789" Y="354.599976" />
+      <Point X="789" Y="354.599976" />
+      <Point X="798" Y="354.599976" />
+      <Point X="812" Y="354.599976" />
+      <Point X="812" Y="442" />
+      <Point X="919.5" Y="442" />
+      <Point X="919.5" Y="339.599976" />
+      <Point X="893" Y="339.599976" />
+      <Point X="874" Y="339.599976" />
+      <Point X="874" Y="354.599976" />
     </Link>
   </Links>
   <InfoElements />
