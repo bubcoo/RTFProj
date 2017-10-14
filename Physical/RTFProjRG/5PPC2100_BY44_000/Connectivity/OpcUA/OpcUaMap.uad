@@ -20,6 +20,11 @@
           <Variable Name="DutyCycle" Enable="True" />
         </Variable>
       </GlobalVariables>
+      <Task Name="table_foot">
+        <Variable Name="START_GAME" Enable="True" />
+        <Variable Name="START_HOME_AUT" Enable="True" />
+        <Variable Name="START_INIT" Enable="True" />
+      </Task>
     </Module>
   </DefaultView>
 </OpcUaSource>

@@ -29,5 +29,13 @@
 <Source xsi:type="opcUa" refId="::AsGlobalPV:Light_0.DutyCycle" attribute="value" />
 <Target xsi:type="brease" contentRefId="ContentCameraPage" widgetRefId="BasicSlider1" attribute="value" />
 </Binding>
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::table_foot:START_GAME" attribute="value" />
+<Target xsi:type="brease" contentRefId="ContentDiagStart" widgetRefId="NavigationButton2" attribute="value" />
+</Binding>
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::table_foot:START_INIT" attribute="value" />
+<Target xsi:type="brease" contentRefId="ContentGamePage" widgetRefId="PushButton3" attribute="value" />
+</Binding>
 </Bindings>
 </BindingsSet>
